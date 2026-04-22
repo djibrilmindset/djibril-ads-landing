@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="10 000€ en 80 jours — Garanti sur contrat. On te forge le mental pour devenir autonome et autosuffisant.">
+    <meta property="og:title" content="10 000€ en 80 jours — Garanti sur contrat">
+    <meta property="og:description" content="On te forge le mental pour devenir autonome. Remboursement + 1000€ si on y arrive pas.">
+    <meta property="og:image" content="https://djibrilmindset.github.io/djibril-ads-landing/og-image.png">
+    <meta property="og:url" content="https://djibrilmindset.github.io/djibril-ads-landing/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>10 000€ en 80 jours — Garanti | Djibril</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* === HERO BACKGROUND ANIMATION === */
+        .hero-bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: radial-gradient(ellipse 100% 100% at 50% 50%, rgba(228, 32, 32, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            animation: heroGlowPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes heroGlowPulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.3; }
+        }
+
+        /* Red particle field */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(228, 32, 32, 0.6);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) translateX(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) translateX(100px);
+            }
+        }
+
+        .particle {
+            animation: particleFloat linear infinite;
+        }
+
+        /* === CONTAINER === */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* === HEADER === */
+        header {
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(228, 32, 32, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .logo {
+            font-family: 'Anton', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #e42020 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            background: linear-gradient(180deg, #e42020 0%, #ff6b6b 50%, #e42020 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(228, 32, 32, 0.3);
+            animation: heroTitlePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes heroTitlePulse {
+            0%, 100% { letter-spacing: -2px; }
+            50% { letter-spacing: -1px; }
+        }
+
+        .hero p {
+            font-size: 24px;
+            line-height: 1.4;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+            font-weight: 500;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #e42020 0%, #ff4444 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(228, 32, 32, 0.5), 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(228, 32, 32, 0.7), 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        /* === GUARANTEE BANNER === CENTERPIECE === */
+        .guarantee-banner {
+            background: linear-gradient(135deg, rgba(228, 32, 32, 0.95) 0%, rgba(255, 68, 68, 0.95) 100%);
+            border: 3px solid #e42020;
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin: 60px auto;
+            max-width: 600px;
+            text-align: center;
+            box-shadow:
+                0 0 60px rgba(228, 32, 32, 0.6),
+                0 0 100px rgba(228, 32, 32, 0.3),
+                inset 0 0 40px rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 10;
+            animation: guaranteeGlow 2s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes guaranteeGlow {
+            0%, 100% {
+                box-shadow:
+                    0 0 60px rgba(228, 32, 32, 0.6),
+                    0 0 100px rgba(228, 32, 32, 0.3),
+                    inset 0 0 40px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                box-shadow:
+                    0 0 80px rgba(228, 32, 32, 0.8),
+                    0 0 130px rgba(228, 32, 32, 0.5),
+                    inset 0 0 50px rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        .guarantee-banner h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 54px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: white;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .guarantee-banner .amount {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .guarantee-banner .days {
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.95);
+            margin-top: 10px;
+        }
+
+        .guarantee-banner p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.95);
+            margin-top: 20px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .refund-guarantee {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        /* Urgency marker */
+        .urgency-marker {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.95);
+            color: #e42020;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: urgencyPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes urgencyPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* === ANIMATED SEPARATOR === */
+        .separator {
+            height: 120px;
+            position: relative;
+            margin: 60px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .separator-line {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, #e42020 25%, #e42020 75%, transparent 100%);
+            animation: separatorFlow 3s linear infinite;
+        }
+
+        @keyframes separatorFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .separator-accent {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 3px solid #e42020;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: separatorOrbit 4s linear infinite;
+        }
+
+        @keyframes separatorOrbit {
+            0% { transform: translateX(-150px) rotateZ(0deg); }
+            50% { opacity: 0.8; }
+            100% { transform: translateX(150px) rotateZ(360deg); }
+        }
+
+        /* === VSL SECTION === */
+        .vsl-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .vsl-section h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #e42020, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .vsl-subtitle {
+            font-size: 18px;
+            color: #b0b0b0;
+            margin-bottom: 40px;
+        }
+
+        .vsl-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow:
+                0 0 50px rgba(228, 32, 32, 0.4),
+                0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(228, 32, 32, 0.3);
+        }
+
+        .vsl-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* === SECTION CARD === */
+        .section-card {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(228, 32, 32, 0.2);
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(228, 32, 32, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .section-card:hover {
+            border-color: rgba(228, 32, 32, 0.5);
+            box-shadow:
+                0 0 30px rgba(228, 32, 32, 0.3),
+                inset 0 0 40px rgba(228, 32, 32, 0.05);
+        }
+
+        .section-card:hover::before {
+            opacity: 1;
+        }
+
+        .section-card h3 {
+            font-family: 'Anton', sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            color: #e42020;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .section-card p, .section-card li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #d0d0d0;
+            margin-bottom: 15px;
+        }
+
+        .section-card ul {
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .section-card li::before {
+            content: '▸ ';
+            color: #e42020;
+            font-weight: 900;
+            margin-right: 10px;
+        }
+
+        /* === OFFER SECTION === */
+        .offer-section {
+            padding: 60px 40px;
+        }
+
+        .offer-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step {
+            background: linear-gradient(135deg, rgba(228, 32, 32, 0.1) 0%, rgba(228, 32, 32, 0.05) 100%);
+            border: 2px solid rgba(228, 32, 32, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            border-color: #e42020;
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(228, 32, 32, 0.3);
+        }
+
+        .step-number {
+            font-family: 'Anton', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: #e42020;
+            margin-bottom: 15px;
+        }
+
+        .step h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* === TESTIMONIALS === */
+        .testimonials-section {
+            padding: 80px 20px;
+            background: rgba(228, 32, 32, 0.03);
+        }
+
+        .testimonials-section h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #e42020, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(30, 30, 30, 0.9);
+            border: 2px solid rgba(228, 32, 32, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-card:hover {
+            border-color: #e42020;
+            transform: translateY(-8px);
+            box-shadow: 0 0 40px rgba(228, 32, 32, 0.4);
+        }
+
+        .testimonial-poster {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            background: linear-gradient(135deg, rgba(228, 32, 32, 0.2) 0%, rgba(228, 32, 32, 0.05) 100%);
+            object-fit: cover;
+        }
+
+        .testimonial-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-name {
+            font-weight: 700;
+            color: #e42020;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .testimonial-brief {
+            font-size: 12px;
+            color: #888;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .testimonial-play {
+            font-size: 12px;
+            color: #e42020;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* === CTA SECTION === */
+        .cta-section {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, transparent 0%, rgba(228, 32, 32, 0.05) 100%);
+        }
+
+        .cta-section h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #e42020, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: #d0d0d0;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #e42020 0%, #ff4444 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 40px rgba(228, 32, 32, 0.5), 0 15px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: left 0.4s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 60px rgba(228, 32, 32, 0.7), 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* === FOOTER === */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid rgba(228, 32, 32, 0.2);
+            color: #888;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 700px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .guarantee-banner {
+                padding: 30px 25px;
+            }
+
+            .guarantee-banner h2 {
+                font-size: 36px;
+            }
+
+            .guarantee-banner .amount {
+                font-size: 32px;
+            }
+
+            .guarantee-banner .days {
+                font-size: 18px;
+            }
+
+            .section-card {
+                padding: 30px 20px;
+            }
+
+            .section-card h3 {
+                font-size: 24px;
+            }
+
+            .vsl-section h2 {
+                font-size: 32px;
+            }
+
+            .cta-section h2 {
+                font-size: 32px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            /* Disable heavy animations on mobile */
+            .particle {
+                display: none;
+            }
+
+            .separator-accent {
+                display: none;
+            }
+
+            @keyframes heroGlowPulse {
+                0% { opacity: 0.1; }
+                50% { opacity: 0.2; }
+                100% { opacity: 0.1; }
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 50px 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .hero-cta {
+                padding: 15px 35px;
+                font-size: 16px;
+            }
+
+            .guarantee-banner {
+                margin: 40px 10px;
+                padding: 25px 15px;
+            }
+
+            .guarantee-banner h2 {
+                font-size: 28px;
+            }
+
+            .guarantee-banner .amount {
+                font-size: 24px;
+            }
+
+            .vsl-container {
+                border-radius: 12px;
+            }
+
+            .section-card {
+                padding: 20px 15px;
+                margin: 25px 0;
+            }
+
+            .offer-steps {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .cta-button {
+                padding: 15px 40px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+      history.scrollRestoration = 'manual';
+      window.scrollTo(0,0);
+      window.addEventListener('load', function() { window.scrollTo(0,0); });
+      window.addEventListener('beforeunload', function() { window.scrollTo(0,0); });
+      setTimeout(function() { window.scrollTo(0,0); }, 50);
+      setTimeout(function() { window.scrollTo(0,0); }, 200);
+    </script>
+    <!-- Animated background -->
+    <div class="hero-bg-animated"></div>
+    <div id="particle-container"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">DJIBRIL</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Deviens <span style="color: #e42020;">Autonome</span><br>en <span style="color: #e42020;">80 Jours</span></h1>
+            <p>On te forge le mental pour devenir <span style="color: #e42020; font-weight: 700;">autonome</span> et <span style="color: #e42020; font-weight: 700;">autosuffisant</span>.</p>
+            <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" class="hero-cta" target="_blank">Réserve ton appel</a>
+        </div>
+    </section>
+
+    <!-- Guarantee Banner - CENTERPIECE -->
+    <div class="guarantee-banner">
+        <h2>Garantie</h2>
+        <div class="amount"><span style="color: #fff; text-shadow: 0 0 30px rgba(255,255,255,0.6);">10 000€</span></div>
+        <div class="days">en <span style="color: #fff; font-weight: 900;">80 jours</span></div>
+        <p><span style="color: #fff; font-weight: 800;">Remboursement</span> intégral + <span style="color: #fff; font-weight: 800;">1 000€</span> si on y arrive pas</p>
+        <div class="refund-guarantee"><span style="color: #fff; font-weight: 800;">Contrat signé</span>. <span style="color: #fff; font-weight: 800;">Zéro risque</span>.</div>
+        <div class="urgency-marker">⚡ <span style="color: #e42020; font-weight: 900;">Offre Limitée</span></div>
+    </div>
+
+    <!-- Animated Separator -->
+    <div class="separator">
+        <div class="separator-line"></div>
+        <div class="separator-accent"></div>
+    </div>
+
+    <!-- VSL Section -->
+    <section class="vsl-section">
+        <div class="container">
+            <h2>Regarde Cette Vidéo</h2>
+            <p class="vsl-subtitle">Comprends le système qu'on te propose</p>
+            <div class="vsl-container">
+                <iframe
+                    src="https://www.youtube.com/embed/YQRdcljTaC8?autoplay=0&rel=0&modestbranding=1"
+                    allowfullscreen=""
+                    allow="autoplay; encrypted-media"
+                    loading="lazy">
+                </iframe>
+            </div>
+            <div style="margin-top: 30px; text-align: center;">
+                <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" target="_blank" class="cta-button" style="display:inline-block; text-decoration:none;">Réserver mon appel après la vidéo →</a>
+                <p style="margin-top: 15px; font-size: 14px; color: #888;">⚡ Dernières places cette semaine · Aucun engagement</p>
+            </div>
+    </section>
+
+    <!-- Animated Separator -->
+    <div class="separator">
+        <div class="separator-line"></div>
+        <div class="separator-accent"></div>
+    </div>
+
+    <!-- Témoignages en évidence -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>82 Résultats Concrets</h2>
+            <div class="testimonials-grid" id="tGrid"></div>
+        </div>
+    </section>
+
+    <!-- CTA URGENT iClosed -->
+    <section class="cta-section" style="padding: 60px 20px; background: linear-gradient(180deg, transparent 0%, rgba(228,32,32,0.08) 100%);">
+        <div class="container">
+            <h2 style="font-family:'Anton',sans-serif; font-size:42px; font-weight:900; margin-bottom:20px; background:linear-gradient(135deg,#e42020,#ff6b6b); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Prends 10 min. On en discute.</h2>
+            <p style="font-size:18px; color:#d0d0d0; margin-bottom:30px;">Pas de paiement maintenant. Juste un appel pour voir si c'est pour toi.</p>
+            <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" class="cta-button" target="_blank" style="display:inline-block; text-decoration:none;">Réserver mon appel gratuit</a>
+            <p style="margin-top:20px; font-size:14px; color:#888;">⚡ Places limitées cette semaine</p>
+        </div>
+    </section>
+
+    <!-- Animated Separator -->
+    <div class="separator">
+        <div class="separator-line"></div>
+        <div class="separator-accent"></div>
+    </div>
+
+    <!-- Final CTA Section -->
+    <section class="cta-section" style="padding: 80px 20px; background: linear-gradient(180deg, rgba(228,32,32,0.05) 0%, transparent 100%);">
+        <div class="container">
+            <div class="guarantee-banner" style="margin: 0 auto 40px;">
+                <h2 style="font-size: 42px;">Garantie</h2>
+                <div class="amount"><span style="color: #fff; text-shadow: 0 0 30px rgba(255,255,255,0.6);">10 000€</span></div>
+                <div class="days">en <span style="color: #fff; font-weight: 900;">80 jours</span></div>
+                <p><span style="color: #fff; font-weight: 800;">Remboursement</span> intégral + <span style="color: #fff; font-weight: 800;">1 000€</span> si on y arrive pas</p>
+                <div class="refund-guarantee"><span style="color: #fff; font-weight: 800;">Contrat signé</span>. <span style="color: #fff; font-weight: 800;">Zéro risque</span>.</div>
+                <div class="urgency-marker">⚡ <span style="color: #e42020; font-weight: 900;">Offre Limitée</span></div>
+            </div>
+            <h2 style="font-family:'Anton',sans-serif; font-size:48px; font-weight:900; margin-bottom:20px; background:linear-gradient(135deg,#e42020,#ff6b6b); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Prêt à Devenir Autonome?</h2>
+            <p style="font-size:18px; color:#d0d0d0; margin-bottom:40px;">Réserve ton appel gratuit. On discute de ta situation en détail.</p>
+            <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" class="cta-button" target="_blank" style="display:inline-block; text-decoration:none;">Prendre rendez-vous maintenant</a>
+            <p style="margin-top:25px; font-size:16px; color:#ff6b6b; font-weight:700;">⏰ Plus que 3 places cette semaine</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Djibril. Tous droits réservés.</p>
+        <p>Autonomie mentale garantie ou remboursement.</p>
+    </footer>
+
+    <script>
+(function() {
+  'use strict';
+
+  // VSL YouTube autoplay
+  var ytPlayer = null; var ytReady = false; var ytPlayed = false;
+  var tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+
+  window.onYouTubeIframeAPIReady = function() {
+    ytPlayer = new YT.Player('vslYT', {
+      events: { onReady: function() { ytReady = true; } }
+    });
+  };
+
+  if ('IntersectionObserver' in window) {
+    var vslObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && ytReady && !ytPlayed) { try { ytPlayer.playVideo(); ytPlayed = true; } catch(e) {} }
+        if (!entry.isIntersecting && ytReady && ytPlayed) { try { ytPlayer.pauseVideo(); } catch(e) {} }
+      });
+    }, { threshold: 0.5 });
+    var vw = document.getElementById('vslWrapper');
+    if (vw) vslObs.observe(vw);
+  }
+
+  var TEMOIGNAGES = [
+  { file: "0.MOV", name: "Témoignage", role: "Membre Djibril Learning", badge: "⭐" },
+  { file: "1.MP4", name: "Témoignage 1", role: "Membre Djibril Learning", badge: "" },
+  { file: "2.MP4", name: "Témoignage 2", role: "Membre Djibril Learning", badge: "" },
+  { file: "3.MP4", name: "Témoignage 3", role: "Membre Djibril Learning", badge: "" },
+  { file: "4.MP4", name: "Témoignage 4", role: "Membre Djibril Learning", badge: "" },
+  { file: "5.MOV", name: "Témoignage 5", role: "Membre Djibril Learning", badge: "" },
+  { file: "6.MP4", name: "Témoignage 6", role: "Membre Djibril Learning", badge: "" },
+  { file: "7.MOV", name: "Témoignage 7", role: "Membre Djibril Learning", badge: "" },
+  { file: "8.MP4", name: "Témoignage 8", role: "Membre Djibril Learning", badge: "" },
+  { file: "9.MP4", name: "Témoignage 9", role: "Membre Djibril Learning", badge: "" },
+  { file: "10.MP4", name: "Témoignage 10", role: "Membre Djibril Learning", badge: "" },
+  { file: "11.MOV", name: "Témoignage 11", role: "Membre Djibril Learning", badge: "" },
+  { file: "12.MP4", name: "Témoignage 12", role: "Membre Djibril Learning", badge: "" },
+  { file: "13.MOV", name: "Témoignage 13", role: "Membre Djibril Learning", badge: "" },
+  { file: "14.MP4", name: "Témoignage 14", role: "Membre Djibril Learning", badge: "" },
+  { file: "15.MP4", name: "Témoignage 15", role: "Membre Djibril Learning", badge: "" },
+  { file: "16.MOV", name: "Témoignage 16", role: "Membre Djibril Learning", badge: "" },
+  { file: "17.MP4", name: "Témoignage 17", role: "Membre Djibril Learning", badge: "" },
+  { file: "18.MOV", name: "Témoignage 18", role: "Membre Djibril Learning", badge: "" },
+  { file: "19.MOV", name: "Témoignage 19", role: "Membre Djibril Learning", badge: "" },
+  { file: "20.MOV", name: "Témoignage 20", role: "Membre Djibril Learning", badge: "" },
+  { file: "21.MOV", name: "Témoignage 21", role: "Membre Djibril Learning", badge: "" },
+  { file: "22.mov", name: "Témoignage 22", role: "Membre Djibril Learning", badge: "" },
+  { file: "23.MOV", name: "Témoignage 23", role: "Membre Djibril Learning", badge: "" },
+  { file: "24.MOV", name: "Témoignage 24", role: "Membre Djibril Learning", badge: "" },
+  { file: "25.MOV", name: "Témoignage 25", role: "Membre Djibril Learning", badge: "" },
+  { file: "26.MOV", name: "Témoignage 26", role: "Membre Djibril Learning", badge: "" },
+  { file: "27.MOV", name: "Témoignage 27", role: "Membre Djibril Learning", badge: "" },
+  { file: "28.MP4", name: "Témoignage 28", role: "Membre Djibril Learning", badge: "" },
+  { file: "29.MOV", name: "Témoignage 29", role: "Membre Djibril Learning", badge: "" },
+  { file: "30.MP4", name: "Témoignage 30", role: "Membre Djibril Learning", badge: "" },
+  { file: "31.MP4", name: "Témoignage 31", role: "Membre Djibril Learning", badge: "" },
+  { file: "32.MOV", name: "Témoignage 32", role: "Membre Djibril Learning", badge: "" },
+  { file: "33.MOV", name: "Témoignage 33", role: "Membre Djibril Learning", badge: "" },
+  { file: "34.MOV", name: "Témoignage 34", role: "Membre Djibril Learning", badge: "" },
+  { file: "35.MP4", name: "Témoignage 35", role: "Membre Djibril Learning", badge: "" },
+  { file: "36.MP4", name: "Témoignage 36", role: "Membre Djibril Learning", badge: "" },
+  { file: "37.MP4", name: "Témoignage 37", role: "Membre Djibril Learning", badge: "" },
+  { file: "38.MP4", name: "Témoignage 38", role: "Membre Djibril Learning", badge: "" },
+  { file: "39.MP4", name: "Témoignage 39", role: "Membre Djibril Learning", badge: "" },
+  { file: "40.MOV", name: "Témoignage 40", role: "Membre Djibril Learning", badge: "" },
+  { file: "41.MP4", name: "Témoignage 41", role: "Membre Djibril Learning", badge: "" },
+  { file: "42.MP4", name: "Témoignage 42", role: "Membre Djibril Learning", badge: "" },
+  { file: "43.mov", name: "Témoignage 43", role: "Membre Djibril Learning", badge: "" },
+  { file: "44.MOV", name: "Témoignage 44", role: "Membre Djibril Learning", badge: "" },
+  { file: "45.MOV", name: "Témoignage 45", role: "Membre Djibril Learning", badge: "" },
+  { file: "46.MOV", name: "Témoignage 46", role: "Membre Djibril Learning", badge: "" },
+  { file: "47.MP4", name: "Témoignage 47", role: "Membre Djibril Learning", badge: "" },
+  { file: "48.MOV", name: "Témoignage 48", role: "Membre Djibril Learning", badge: "" },
+  { file: "49.MOV", name: "Témoignage 49", role: "Membre Djibril Learning", badge: "" },
+  { file: "50.MOV", name: "Témoignage 50", role: "Membre Djibril Learning", badge: "" },
+  { file: "51.mov", name: "Témoignage 51", role: "Membre Djibril Learning", badge: "" },
+  { file: "52.MOV", name: "Témoignage 52", role: "Membre Djibril Learning", badge: "" },
+  { file: "53.MP4", name: "Témoignage 53", role: "Membre Djibril Learning", badge: "" },
+  { file: "54.MOV", name: "Témoignage 54", role: "Membre Djibril Learning", badge: "" },
+  { file: "55.mov", name: "Témoignage 55", role: "Membre Djibril Learning", badge: "" },
+  { file: "56.MOV", name: "Témoignage 56", role: "Membre Djibril Learning", badge: "" },
+  { file: "57.MP4", name: "Témoignage 57", role: "Membre Djibril Learning", badge: "" },
+  { file: "58.MOV", name: "Témoignage 58", role: "Membre Djibril Learning", badge: "" },
+  { file: "59.MOV", name: "Témoignage 59", role: "Membre Djibril Learning", badge: "" },
+  { file: "60.MOV", name: "Témoignage 60", role: "Membre Djibril Learning", badge: "" },
+  { file: "61.MOV", name: "Témoignage 61", role: "Membre Djibril Learning", badge: "" },
+  { file: "62.MOV", name: "Témoignage 62", role: "Membre Djibril Learning", badge: "" },
+  { file: "63.MOV", name: "Témoignage 63", role: "Membre Djibril Learning", badge: "" },
+  { file: "3C6D9B30-78B2-43E3-A632-B68CC56B4E0E.MOV", name: "Témoignage 64", role: "Membre Djibril Learning", badge: "" },
+  { file: "40f0e5f9-dc26-4a0a-a0bf-0ad6435ab2be.MP4", name: "Témoignage 65", role: "Membre Djibril Learning", badge: "" },
+  { file: "4f8c762f-93f7-49d1-9db3-b79c40b3e410.MP4", name: "Témoignage 66", role: "Membre Djibril Learning", badge: "" },
+  { file: "588DDBA3-319C-4884-B14D-0A5CA242619E.MOV", name: "Témoignage 67", role: "Membre Djibril Learning", badge: "" },
+  { file: "717AB29D-471F-485F-BEAF-0D52D99AE48F.MOV", name: "Témoignage 68", role: "Membre Djibril Learning", badge: "" },
+  { file: "8b08105d-f3ee-44d9-ba94-e5d61256416a.MP4", name: "Témoignage 69", role: "Membre Djibril Learning", badge: "" },
+  { file: "9062F57A-CE33-4340-945C-D1A0549F42AC 2.MOV", name: "Témoignage 70", role: "Membre Djibril Learning", badge: "" },
+  { file: "9D92AA08-2FCB-4757-9520-3E008A5146CA.MOV", name: "Témoignage 71", role: "Membre Djibril Learning", badge: "" },
+  { file: "C997682B-F8D5-4B45-A7C2-B3F47681CD1E.MOV", name: "Témoignage 72", role: "Membre Djibril Learning", badge: "" },
+  { file: "EFF79E4E-71E5-44DA-B0F8-A6C7AF4EF56A 2.MOV", name: "Témoignage 73", role: "Membre Djibril Learning", badge: "" },
+  { file: "a4de2288-a2d8-4b06-8c73-273fdbdf0acd.MP4", name: "Témoignage 74", role: "Membre Djibril Learning", badge: "" },
+  { file: "b9960572-6b5b-4e29-a374-7a88bb935d3b.MP4", name: "Témoignage 75", role: "Membre Djibril Learning", badge: "" },
+  { file: "f3a4fd43-7197-4e5d-a13a-7ff9c921c3ef.MP4", name: "Témoignage 76", role: "Membre Djibril Learning", badge: "" },
+  { file: "7*2.MP4", name: "Témoignage 77", role: "Membre Djibril Learning", badge: "" },
+  { file: "16*2.mp4", name: "Témoignage 78", role: "Membre Djibril Learning", badge: "" },
+  { file: "22*2.MOV", name: "Témoignage 79", role: "Membre Djibril Learning", badge: "" },
+  { file: "29*2.MOV", name: "Témoignage 80", role: "Membre Djibril Learning", badge: "" },
+  { file: "34*2.MP4", name: "Témoignage 81", role: "Membre Djibril Learning", badge: "" },
+  { file: "31.MOV", name: "Témoignage 82", role: "Membre Djibril Learning", badge: "" },
+];
+
+  
+var isMobile = window.innerWidth < 700;
+var INITIAL_CARDS = isMobile ? 8 : 16;
+var cardsShown = INITIAL_CARDS;
+var tGrid = document.getElementById('tGrid');
+var tShowMore = document.getElementById('tShowMore');
+var tCount = document.getElementById('tCount');
+var tModal = document.getElementById('tModal');
+var tModalVideo = document.getElementById('tModalVideo');
+var tModalClose = document.getElementById('tModalClose');
+var PLAY_SVG = '<svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>';
+
+if (tCount) tCount.textContent = TEMOIGNAGES.length + '+ témoignages clients';
+
+function createCard(t, i) {
+  var card = document.createElement('div');
+  card.className = 'tcard';
+  card.setAttribute('data-index', i);
+  var baseName = t.file.replace(/\.[^.]+$/, '');
+  var posterPath = 'https://djibrilmindset.github.io/djibril-learning-site/temoignage/posters/' + baseName + '.jpg';
+  card.innerHTML =
+    '<img src="' + posterPath + '" alt="' + t.name + '" loading="eager" onerror="this.style.background=\'#1a0a0a\';this.alt=\'' + t.name + '\'">' +
+    '<div class="tcard-overlay"></div>' +
+    '<div class="tcard-play">' + PLAY_SVG + '</div>' +
+    '<div class="tcard-name">' + t.name + '</div>';
+  card.addEventListener('click', function() { openModal(i); });
+  return card;
+}
+
+function renderCards() {
+  tGrid.innerHTML = '';
+  var limit = Math.min(cardsShown, TEMOIGNAGES.length);
+  for (var i = 0; i < limit; i++) { tGrid.appendChild(createCard(TEMOIGNAGES[i], i)); }
+  if (limit < TEMOIGNAGES.length) {
+    tShowMore.style.display = 'inline-block';
+    tShowMore.textContent = 'Voir les ' + (TEMOIGNAGES.length - limit) + ' autres témoignages ↓';
+  } else { tShowMore.style.display = 'none'; }
+}
+
+tShowMore.addEventListener('click', function() { cardsShown = TEMOIGNAGES.length; renderCards(); });
+
+function openModal(i) {
+  var t = TEMOIGNAGES[i];
+  var normalizedFile = t.file.replace(/\.(MOV|MP4|mov|mp4)$/i, '.mp4');
+  var path = 'https://djibrilmindset.github.io/djibril-learning-site/temoignage/' + normalizedFile;
+  tModalVideo.src = path; tModal.classList.add('active');
+  tModalVideo.play(); document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  tModalVideo.pause(); tModalVideo.src = '';
+  tModal.classList.remove('active'); document.body.style.overflow = '';
+}
+
+tModalClose.addEventListener('click', closeModal);
+tModal.addEventListener('click', function(e) { if (e.target === tModal) closeModal(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+renderCards();
+
+
+  // Scroll reveal
+  if ('IntersectionObserver' in window) {
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>
