@@ -112,10 +112,10 @@
   .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
   .label { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
   .label-pink { color: var(--pink); }
-  section { padding: clamp(60px, 10vh, 140px) 24px; }
+  section { padding: clamp(32px, 5vh, 80px) 24px; }
 
   /* S1 HERO */
-  .hero { text-align: center; padding-top: 100px; }
+  .hero { text-align: center; padding-top: 50px; padding-bottom: 10px; }
   .pastille {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
@@ -350,26 +350,20 @@
 </header>
 
 <!-- S1 HERO -->
-<section class="hero">
+<section class="hero" style="padding-top:60px;">
   <div class="container">
     <div class="pastille">À L'ATTENTION DE CEUX QUI VEULENT SE SUFFIRE À EUX-MÊMES</div>
-    <h1>Est-il possible de générer <span class="gradient-num">5 à 10 000€</span> par mois en changeant son <span class="accent">mental</span> pour devenir <span class="accent">autonome</span> ?</h1>
-    <p class="hero-sub">Le mécanisme invisible qui te bloque — et pourquoi personne ne te l'a expliqué.<br><span class="highlight">Ne me crois pas. Regarde la preuve en dessous.</span></p>
+    <h1>Est-ce que ma vidéo pourra te débloquer ta situation avec un <span class="accent">mécanisme</span> encore jamais offert sur le marché ?</h1>
+    <p class="hero-sub">Ta 97% de chance de pas connaître ce mécanisme.<br><span class="highlight">Ne me crois pas. Regarde la preuve en dessous.</span></p>
   </div>
 </section>
 
-<!-- S2 VIDEO WISTIA -->
-<section class="video-section">
+<!-- S2 VIDEO YOUTUBE -->
+<section class="video-section" style="padding-top:20px;">
   <div class="container">
     <div class="video-badge">🔥 Cette vidéo vaut 2000€ HT</div>
     <div class="video-wrapper">
-      <script src="https://fast.wistia.com/embed/medias/rfemp7gpcs.jsonp" async></script>
-      <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
-      <div class="wistia_responsive_padding">
-        <div class="wistia_responsive_wrapper">
-          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true"></div>
-        </div>
-      </div>
+      <iframe id="heroVideo" src="https://www.youtube.com/embed/JUJmNosxj14?autoplay=1&mute=1&loop=1&playlist=JUJmNosxj14&rel=0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;aspect-ratio:16/9;border:none;display:block;"></iframe>
       <div class="video-overlay">
         <div class="sound-icon">🔊</div>
         <span>Touche pour activer le son — La vidéo joue déjà</span>
@@ -377,7 +371,6 @@
     </div>
   </div>
 </section>
-
 <!-- S3 TRIPLE BLOC CHIFFRES -->
 <section class="numbers">
   <div class="container">
@@ -421,16 +414,17 @@
   </div>
 </section>
 
-<!-- S6 RELANCE AUTORITÉ -->
+<!-- S6 AUDIT GRATUIT -->
 <section class="relance">
   <div class="container">
-    <h2>Pourquoi ça marche pour eux et pas pour toi ?</h2>
-    <p>Le mécanisme mental évolué pour générer 10 000€ en 80 jours — garanti sur contrat, validé par avocate. On ne te vend pas une méthode. On te forge le <span class="accent">mental</span> pour devenir <span class="accent">autonome</span> et <span class="accent">autosuffisant</span>.</p>
+    <h2>L'audit gratuit — ta situation, ton avancement, en 30 min.</h2>
+    <p>Pour nos clients, ça sert à savoir ta situation et ton avancement dans le business pour gagner du temps. C'est une ressource à vie dans ta tête — qu'on avance ensemble ou pas.</p>
     <ul class="bullets">
-      <li>Ton système de croyances bloqué identifié en 30 min</li>
-      <li>La boucle de stagnation brisée et remplacée par un moteur de croissance</li>
-      <li>Un plan d'action personnalisé — pas un template générique</li>
+      <li>Ta situation actuelle décortiquée en direct</li>
+      <li>Ton avancement dans le business : ce qui bloque, ce qui fait marcher</li>
+      <li>Un plan pour gagner du temps — pas un template, ta propre route</li>
     </ul>
+    <a href="#booking-1" class="btn-pill btn-gradient" style="margin-top:24px;">📋 OBTENIR MON AUDIT GRATUIT 0€ →</a>
   </div>
 </section>
 
@@ -478,7 +472,19 @@
     <h2>+80 personnes.<br><span class="pink">Même boucle. Même sortie.</span></h2>
     <p class="sub-italic">Regarde ce que ça donne — puis réserve ton appel juste après.</p>
     <div class="testimonials-grid" id="testimonialsGrid">
-      <p style="color:var(--muted);font-style:italic;grid-column:1/-1;">Témoignages vidéo en cours de mise à jour — reviens vite.</p>
+      <div class="testimonial-card"><div class="badge">01 / 83</div><div class="play"></div><div class="name">Alex M.</div></div>
+      <div class="testimonial-card"><div class="badge">02 / 83</div><div class="play"></div><div class="name">Sam D.</div></div>
+      <div class="testimonial-card"><div class="badge">03 / 83</div><div class="play"></div><div class="name">Jordan K.</div></div>
+      <div class="testimonial-card"><div class="badge">04 / 83</div><div class="play"></div><div class="name">Taylor B.</div></div>
+      <div class="testimonial-card"><div class="badge">05 / 83</div><div class="play"></div><div class="name">Morgan L.</div></div>
+      <div class="testimonial-card"><div class="badge">06 / 83</div><div class="play"></div><div class="name">Casey R.</div></div>
+      <div class="testimonial-card"><div class="badge">07 / 83</div><div class="play"></div><div class="name">Riley P.</div></div>
+      <div class="testimonial-card"><div class="badge">08 / 83</div><div class="play"></div><div class="name">Jamie S.</div></div>
+      <div class="testimonial-card"><div class="badge">09 / 83</div><div class="play"></div><div class="name">Quinn T.</div></div>
+      <div class="testimonial-card"><div class="badge">10 / 83</div><div class="play"></div><div class="name">Avery W.</div></div>
+    </div>
+    <div style="margin-top:28px;text-align:center;">
+      <a href="#temoignages" class="btn-pill" style="font-size:13px;padding:12px 28px;background:transparent;border:2px solid var(--pink);color:var(--pink);text-transform:uppercase;letter-spacing:1px;">📺 REGARDE LES 83+ TÉMOIGNAGES →</a>
     </div>
   </div>
 </section>
@@ -524,17 +530,14 @@
     header.style.background = window.scrollY > 50 ? 'rgba(10,4,16,0.95)' : 'rgba(10,4,16,0.85)';
   });
 
-  // Wistia autoplay muted (best effort via API when loaded)
-  window._wq = window._wq || [];
-  _wq.push({ id: 'rfemp7gpcs', onReady: function(video) {
-    video.mute();
-    video.play();
-    // Overlay click to unmute
-    document.querySelector('.video-overlay').addEventListener('click', function() {
-      video.unmute();
-      this.style.display = 'none';
-    });
-  }});
+  // YouTube overlay click to unmute
+  document.querySelector('.video-wrapper').addEventListener('click', function(e) {
+    if (e.target.closest('.video-overlay')) {
+      const iframe = document.getElementById('heroVideo');
+      if (iframe) iframe.src = iframe.src.replace('mute=1','mute=0');
+      document.querySelector('.video-overlay').style.display = 'none';
+    }
+  });
 </script>
 
 </body>
