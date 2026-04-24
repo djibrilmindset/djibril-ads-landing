@@ -367,26 +367,34 @@
   </div>
 </header>
 
-<!-- S1 VIDEO YOUTUBE -->
-<section class="video-section" style="padding-top:60px;">
+<!-- S1 HERO TITRE (titre TOUT EN HAUT) -->
+<section class="hero" style="padding-top:40px;">
   <div class="container">
-    <div class="video-badge">🔥 Cette vidéo vaut 2000€ HT</div>
+    <div class="pastille">RDV 1-TO-1 GRATUIT AVEC DJIBRIL</div>
+    <h1><span class="gradient-num">5K à 10K/mois</span> en <span class="kw-power">80 jours</span>. <span class="kw-mental">Sans</span> changer de métier. <span class="kw-action">Garanti.</span></h1>
+    <p class="hero-sub"><span class="kw-action">Réserve</span> ton appel <span class="kw-power">gratuit</span> juste après la vidéo.</p>
+  </div>
+</section>
+
+<!-- S2 VIDEO HERO (vidéo SOUS le titre) -->
+<section class="video-section" style="padding-top:30px;">
+  <div class="container">
     <div class="video-wrapper">
-      <iframe id="heroVideo" src="https://www.youtube.com/embed/JUJmNosxj14?autoplay=1&mute=1&loop=1&playlist=JUJmNosxj14&rel=0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;aspect-ratio:16/9;border:none;display:block;"></iframe>
+      <script src="https://fast.wistia.com/embed/medias/rfemp7gpcs.jsonp" async></script>
+      <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+      <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+        <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true" style="height:100%;position:relative;width:100%"></div>
+        </div>
+      </div>
       <div class="video-overlay">
         <div class="sound-icon">🔊</div>
         <span>Touche pour activer le son — La vidéo joue déjà</span>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- S2 HERO -->
-<section class="hero" style="padding-top:20px;">
-  <div class="container">
-    <div class="pastille">À L'ATTENTION DE CEUX QUI VEULENT SE SUFFIRE À EUX-MÊMES</div>
-    <h1>Est-il possible de <span class="kw-action">générer</span> <span class="gradient-num">5 à 10K</span> par mois en changeant son <span class="kw-mental">mental</span> pour être <span class="kw-power">autonome</span> ??</h1>
-    <p class="hero-sub"><span class="kw-mental">Preuve</span> en dessous. <span class="kw-action">Booking</span> juste après.</p>
+    <div style="text-align:center;margin-top:20px;">
+      <a href="#temoignages" class="btn-pill" style="background:linear-gradient(135deg,#ff2e93,#00d4ff);color:#fff;font-weight:800;">📹 VOIR LES 83+ TÉMOIGNAGES →</a>
+    </div>
   </div>
 </section>
 
@@ -487,8 +495,8 @@
 <section class="testimonials" id="temoignages">
   <div class="container">
     <div class="label label-pink">— ILS L'ONT VÉCU</div>
-    <h2>+80 personnes.<br><span class="pink">Même boucle. Même sortie.</span></h2>
-    <p class="sub-italic">69 témoignages vidéo. <span class="kw-power">Scroll.</span> <span class="kw-action">Réserve juste après.</span></p>
+    <h2>+83 personnes.<br><span class="pink">Même boucle. Même sortie.</span></h2>
+    <p class="sub-italic">83 témoignages vidéo. <span class="kw-power">Scroll.</span> <span class="kw-action">Réserve juste après.</span></p>
     <div class="testimonials-grid" id="testimonialsGrid">
       <!-- JS injecte ici -->
     </div>
@@ -548,77 +556,91 @@
     }
   });
 
-  // 69 Témoignages vidéo Wistia réels (récupérés via Wistia API)
+  // 83 Témoignages vidéo Wistia (récupérés via Wistia API, 83 = 69 numérotés + 14 anonymes)
   const TEMOIGNAGES_WISTIA = [
-    {n:1,nom:"Ali K.",id:"0y16q2oude",thumb:"https://embed-ssl.wistia.com/deliveries/1cda3aee60db174d2e6d40a0dd0d5bdc98e2d5bf.jpg"},
-    {n:2,nom:"Karim H.",id:"7m1ikq14mn",thumb:"https://embed-ssl.wistia.com/deliveries/8704d469c5ab86f3123aee616250005dd0bef15f.jpg"},
-    {n:3,nom:"Marc B.",id:"r6sdz788m6",thumb:"https://embed-ssl.wistia.com/deliveries/dfa4b7d7f0e75da74f892048648802f68eaf1e71.jpg"},
-    {n:4,nom:"David F.",id:"zpjrtfvck5",thumb:"https://embed-ssl.wistia.com/deliveries/320ed01f687a7264ff4a9beaeb6dfc518c2e8748.jpg"},
-    {n:5,nom:"Thomas D.",id:"h4988fyei0",thumb:"https://embed-ssl.wistia.com/deliveries/262f4acc3895349298f6c06ec7eac27bd990ae9c.jpg"},
-    {n:6,nom:"Adrien P.",id:"cy05rzemas",thumb:"https://embed-ssl.wistia.com/deliveries/ad59c5c85c8d6fd63a6c05055a3fcb249cddeb23.jpg"},
-    {n:7,nom:"Maxime C.",id:"nh67qkvcpl",thumb:"https://embed-ssl.wistia.com/deliveries/98515cfe8ccf3a8e207828992419288fce735baf.jpg"},
-    {n:8,nom:"Lucas M.",id:"oamtl0t1km",thumb:"https://embed-ssl.wistia.com/deliveries/51c59f6003f8fe1b5664e4ee29bcc05052ced705.jpg"},
-    {n:9,nom:"Antoine V.",id:"kgmir1i6qv",thumb:"https://embed-ssl.wistia.com/deliveries/2f35375db2b0ac69a032779021d8629042381e72.jpg"},
-    {n:10,nom:"Olivier R.",id:"qfr0h9r2m2",thumb:"https://embed-ssl.wistia.com/deliveries/33cc980dec488aa86a049191af6a2fc99a30faa4.jpg"},
-    {n:11,nom:"Yannick B.",id:"wb2n19eagu",thumb:"https://embed-ssl.wistia.com/deliveries/c1669d37e5ee2342ca2c4e895233e94501dc338a.jpg"},
-    {n:12,nom:"Samir T.",id:"9g1jf7nzjv",thumb:"https://embed-ssl.wistia.com/deliveries/1baa34e27c7736b068ecc575679ed577bac564d5.jpg"},
-    {n:13,nom:"Benjamin L.",id:"gjwxjx90wj",thumb:"https://embed-ssl.wistia.com/deliveries/1206d2ed111f2e1f7b12096468af800881bbed5f.jpg"},
-    {n:14,nom:"Hugo M.",id:"il5ohzf2qw",thumb:"https://embed-ssl.wistia.com/deliveries/aa16ac335f2ec0c862e5e84fd1d9ab7330df4425.jpg"},
-    {n:15,nom:"Christophe N.",id:"vvvs9cb91i",thumb:"https://embed-ssl.wistia.com/deliveries/632004c167b8e1782f7e9420e8f818abef259433.jpg"},
-    {n:16,nom:"Matthieu P.",id:"pmxlouje32",thumb:"https://embed-ssl.wistia.com/deliveries/5a3350aefc6234e6774025a9b753191ca37bb12e.jpg"},
-    {n:17,nom:"Felix R.",id:"arscjpke7l",thumb:"https://embed-ssl.wistia.com/deliveries/8a231b43c38324dbe9bad1dcf6641aac95e63fe2.jpg"},
-    {n:18,nom:"Pierre V.",id:"56p3pb14c1",thumb:"https://embed-ssl.wistia.com/deliveries/256d102e20c99c3848ce000eaf7071594d3735d3.jpg"},
-    {n:19,nom:"Dominic H.",id:"nc900jms2i",thumb:"https://embed-ssl.wistia.com/deliveries/dc135c86c7c0725f23317f488ee638e1c04c75f2.jpg"},
-    {n:20,nom:"Marcus W.",id:"ulf3sksaz5",thumb:"https://embed-ssl.wistia.com/deliveries/d497bee941c4a9a2c64efe5d723b7d65a9136d75.jpg"},
-    {n:21,nom:"Nicolas C.",id:"fknb9tu1as",thumb:"https://embed-ssl.wistia.com/deliveries/22c266f5a880d3e38a09df3b105538c8ef9055a3.jpg"},
-    {n:22,nom:"Samuel F.",id:"amkfddzscp",thumb:"https://embed-ssl.wistia.com/deliveries/2125daa3a1b2d6f5ba2f621857d181561d50c740.jpg"},
-    {n:23,nom:"Roberto M.",id:"qnjyuyygml",thumb:"https://embed-ssl.wistia.com/deliveries/d127b35e63f9702fcfb9893e607e5395db01c78b.jpg"},
-    {n:24,nom:"Gabriel L.",id:"qj9xyko36b",thumb:"https://embed-ssl.wistia.com/deliveries/650237e0ab279f62759ee1b49046675f160dda55.jpg"},
-    {n:25,nom:"Julian R.",id:"4l55xlmfij",thumb:"https://embed-ssl.wistia.com/deliveries/565d57d3b08ee1685ca135aa1097d76d1fdeb485.jpg"},
-    {n:26,nom:"Ethan C.",id:"78uk2mh9np",thumb:"https://embed-ssl.wistia.com/deliveries/70113fd60d5bee8d664204232a9e168cfb1823f9.jpg"},
-    {n:27,nom:"Ivan T.",id:"q5cx01g8ia",thumb:"https://embed-ssl.wistia.com/deliveries/9a915f4b808c0f4b00b0e531358a186ddbd0d3a2.jpg"},
-    {n:28,nom:"Leo P.",id:"y3g5guxa96",thumb:"https://embed-ssl.wistia.com/deliveries/b6a0ddbab4421824773afd7bed818e5a03245797.jpg"},
-    {n:29,nom:"Adrian F.",id:"xd19qqu5mi",thumb:"https://embed-ssl.wistia.com/deliveries/fdd4839410e8032c08d57fdcd408f1605f54b05f.jpg"},
-    {n:30,nom:"Daniel S.",id:"c0y5llunv9",thumb:"https://embed-ssl.wistia.com/deliveries/8dd2ec6b7eb7a56a1b7675665f1af524042bba1d.jpg"},
-    {n:31,nom:"Jordan C.",id:"f4omw519tr",thumb:"https://embed-ssl.wistia.com/deliveries/91099ca37b2ac98ee41883e823d5cf4e9b9ff303.jpg"},
-    {n:32,nom:"Raphael C.",id:"nvpohd4lk1",thumb:"https://embed-ssl.wistia.com/deliveries/70317148962b6c1cf217ca74100cf0a08e4ef87e.jpg"},
-    {n:33,nom:"Guillaume N.",id:"zyoma8m7cd",thumb:"https://embed-ssl.wistia.com/deliveries/c373b9a382b4d2188816f738de3760fdb3d0debd.jpg"},
-    {n:34,nom:"Mehdi A.",id:"cxya1rerrk",thumb:"https://embed-ssl.wistia.com/deliveries/32ea26868e4d7337ce39262d4a01505f04f99484.jpg"},
-    {n:35,nom:"Yacine B.",id:"qdk7si2x7z",thumb:"https://embed-ssl.wistia.com/deliveries/7abd6dd68a6c93577dc6ee9bb3c409fa6a33290b.jpg"},
-    {n:36,nom:"Anis F.",id:"swq0dstcor",thumb:"https://embed-ssl.wistia.com/deliveries/2f4ebd47038e9721df7d9df98674af280a145e3b.jpg"},
-    {n:37,nom:"Idris N.",id:"xqlngf3ih6",thumb:"https://embed-ssl.wistia.com/deliveries/be84816964b35838dec275b5842c01f30d6a4f82.jpg"},
-    {n:38,nom:"Malik R.",id:"pw66i10xf5",thumb:"https://embed-ssl.wistia.com/deliveries/82e7bcd84fe43d6b9350a97f7d9d51b0df93087e.jpg"},
-    {n:39,nom:"Omar T.",id:"6t16pmmq7d",thumb:"https://embed-ssl.wistia.com/deliveries/d79ad1bcda08dc9ead7e27652559a7bd354afe65.jpg"},
-    {n:40,nom:"Younes K.",id:"9v0r2495oi",thumb:"https://embed-ssl.wistia.com/deliveries/3ccc6cf20f073e2b1e5d22def3e4e3f5aeb5b64b.jpg"},
-    {n:41,nom:"Souleymane D.",id:"jdjdtl17fe",thumb:"https://embed-ssl.wistia.com/deliveries/e163d8ac7c1863ab65f5fd9f7642756713798a66.jpg"},
-    {n:42,nom:"Amadou C.",id:"y9o25ff90b",thumb:"https://embed-ssl.wistia.com/deliveries/56d83346c4fefac76553d934349e4f8a826989aa.jpg"},
-    {n:43,nom:"Cheikh M.",id:"y3xpgqqaiw",thumb:"https://embed-ssl.wistia.com/deliveries/7d0e30f17a2139be25f1d0f2eaf4d278b8ce249b.jpg"},
-    {n:44,nom:"Bilal H.",id:"4xto92mzox",thumb:"https://embed-ssl.wistia.com/deliveries/94daf66b44a6f76e13f119ef7d2623bceadb851d.jpg"},
-    {n:45,nom:"Tariq S.",id:"q9m6ttsnmn",thumb:"https://embed-ssl.wistia.com/deliveries/4b52d7f8be979ee25700650c3e114d400adf0c5c.jpg"},
-    {n:46,nom:"Khaled L.",id:"8nc99pkhea",thumb:"https://embed-ssl.wistia.com/deliveries/87c83db726e1bcdd9e63156214dad09cf0c1c91f.jpg"},
-    {n:47,nom:"Sami O.",id:"v11hw0kh2e",thumb:"https://embed-ssl.wistia.com/deliveries/536b14e41cd0b55a579f2eceadf38c0a877499e5.jpg"},
-    {n:48,nom:"Rachid Z.",id:"yq9jssaf1a",thumb:"https://embed-ssl.wistia.com/deliveries/8187b1777045e3bc0ae06fdf17dabbfd2883f5df.jpg"},
-    {n:49,nom:"Hakim B.",id:"vts8vwex2v",thumb:"https://embed-ssl.wistia.com/deliveries/c6611b9748c3b2bc3c17a6a8a1a3d748933a9738.jpg"},
-    {n:50,nom:"Nasser P.",id:"bw6v2scn79",thumb:"https://embed-ssl.wistia.com/deliveries/92d20b9d52ba09516c2311d1eddeec11dccae0a6.jpg"},
-    {n:51,nom:"Vincent R.",id:"k888n704n3",thumb:"https://embed-ssl.wistia.com/deliveries/83ca857656215d20cd013510d8b473796d62da0f.jpg"},
-    {n:52,nom:"Quentin J.",id:"dtji3wjoiu",thumb:"https://embed-ssl.wistia.com/deliveries/4abfa5f47e9ac61c6fb772391d09fa5c05b35e70.jpg"},
-    {n:53,nom:"Florian M.",id:"yq9ya6apd4",thumb:"https://embed-ssl.wistia.com/deliveries/11aa7b441e8e7ed85327c17945e6d5449e56632a.jpg"},
-    {n:54,nom:"Romain T.",id:"bj05d7kuhf",thumb:"https://embed-ssl.wistia.com/deliveries/3b77f01962cb525c317aa888d5650d8e7ff1f7f7.jpg"},
-    {n:55,nom:"Julien D.",id:"w4rf12z91v",thumb:"https://embed-ssl.wistia.com/deliveries/a6f0969730ce84dc6459a3167d578aa90cbe5f32.jpg"},
-    {n:56,nom:"Alexandre P.",id:"kgui3v6qoi",thumb:"https://embed-ssl.wistia.com/deliveries/55d47e22f5c74d8f346be1c131a25c65daee2df9.jpg"},
-    {n:57,nom:"Sébastien C.",id:"dqkz1siohj",thumb:"https://embed-ssl.wistia.com/deliveries/d66d1cbf52255d90adbd8f12fbc00cf5ef1d6e37.jpg"},
-    {n:58,nom:"Mathieu G.",id:"jp9pxkcd7b",thumb:"https://embed-ssl.wistia.com/deliveries/802dd2f4d8ecf23fc0e15fe834b2067b359270c4.jpg"},
-    {n:59,nom:"Bastien V.",id:"jggeglhg45",thumb:"https://embed-ssl.wistia.com/deliveries/90202ca0f4f494df0e0efe233b27de1b0086a2f2.jpg"},
-    {n:60,nom:"Theo L.",id:"dmq7xbj3bw",thumb:"https://embed-ssl.wistia.com/deliveries/2036836c7c363287ba623c97b0c60a0a319f588d.jpg"},
-    {n:61,nom:"Arthur N.",id:"quqp0w3htr",thumb:"https://embed-ssl.wistia.com/deliveries/536abbe3c84fdc052f84bb2edda9cfd12c3e3415.jpg"},
-    {n:62,nom:"Paul B.",id:"hzqp2z25sy",thumb:"https://embed-ssl.wistia.com/deliveries/140016412a9a0846d88751482c26ed1968d23b9b.jpg"},
-    {n:63,nom:"Clément H.",id:"7v3ts2fc4d",thumb:"https://embed-ssl.wistia.com/deliveries/2377e761eae735862e8644b9c73280200daa431a.jpg"},
-    {n:64,nom:"Maxence F.",id:"mnu9zo24yc",thumb:"https://embed-ssl.wistia.com/deliveries/bb830bb20b3d620ae06ba04dd7b8d54ad753a310.jpg"},
-    {n:65,nom:"Tom R.",id:"7si6lmqgzq",thumb:"https://embed-ssl.wistia.com/deliveries/18498f2d20e5c5c3feae92413c90fb53abbb6062.jpg"},
-    {n:66,nom:"Nathan S.",id:"a5etrshmpz",thumb:"https://embed-ssl.wistia.com/deliveries/3ecc64e2b12bcd5a43020c0940e6134be89cc7b0.jpg"},
-    {n:67,nom:"Hugo F.",id:"qpnljbh7y2",thumb:"https://embed-ssl.wistia.com/deliveries/277520ab1550742798202004d78e427e05e2d26d.jpg"},
-    {n:68,nom:"Enzo P.",id:"9e6tevdk4t",thumb:"https://embed-ssl.wistia.com/deliveries/8a8e788458cecc00f34be7a0a2f3b295e8d3dda2.jpg"},
-    {n:69,nom:"Léo M.",id:"84qvndi09v",thumb:"https://embed-ssl.wistia.com/deliveries/2948e9e93c1261686b8cf35415d91b0ba0382013.jpg"}
+    {label:'1',nom:'Ali K.',id:'0y16q2oude',thumb:'https://embed-ssl.wistia.com/deliveries/1cda3aee60db174d2e6d40a0dd0d5bdc98e2d5bf.jpg?image_crop_resized=200x120'},
+    {label:'2',nom:'Karim H.',id:'7m1ikq14mn',thumb:'https://embed-ssl.wistia.com/deliveries/8704d469c5ab86f3123aee616250005dd0bef15f.jpg?image_crop_resized=200x120'},
+    {label:'3',nom:'Marc B.',id:'r6sdz788m6',thumb:'https://embed-ssl.wistia.com/deliveries/dfa4b7d7f0e75da74f892048648802f68eaf1e71.jpg?image_crop_resized=200x120'},
+    {label:'A1',nom:'Yacine M.',id:'s1ts2mssv4',thumb:'https://embed-ssl.wistia.com/deliveries/d67ed484b451ac5d365484621ea3390d50732b02.jpg?image_crop_resized=200x120'},
+    {label:'4',nom:'David F.',id:'zpjrtfvck5',thumb:'https://embed-ssl.wistia.com/deliveries/320ed01f687a7264ff4a9beaeb6dfc518c2e8748.jpg?image_crop_resized=200x120'},
+    {label:'A2',nom:'Mehdi K.',id:'f4roc0xe2w',thumb:'https://embed-ssl.wistia.com/deliveries/d24bfe7e5a36c40b4bc4cffe3c8ce8c1c0e25b69.jpg?image_crop_resized=200x120'},
+    {label:'5',nom:'Thomas D.',id:'h4988fyei0',thumb:'https://embed-ssl.wistia.com/deliveries/262f4acc3895349298f6c06ec7eac27bd990ae9c.jpg?image_crop_resized=200x120'},
+    {label:'6',nom:'Adrien P.',id:'cy05rzemas',thumb:'https://embed-ssl.wistia.com/deliveries/ad59c5c85c8d6fd63a6c05055a3fcb249cddeb23.jpg?image_crop_resized=200x120'},
+    {label:'7',nom:'Maxime C.',id:'nh67qkvcpl',thumb:'https://embed-ssl.wistia.com/deliveries/98515cfe8ccf3a8e207828992419288fce735baf.jpg?image_crop_resized=200x120'},
+    {label:'7*2',nom:'Lucas M.',id:'oamtl0t1km',thumb:'https://embed-ssl.wistia.com/deliveries/51c59f6003f8fe1b5664e4ee29bcc05052ced705.jpg?image_crop_resized=200x120'},
+    {label:'8',nom:'Antoine V.',id:'kgmir1i6qv',thumb:'https://embed-ssl.wistia.com/deliveries/2f35375db2b0ac69a032779021d8629042381e72.jpg?image_crop_resized=200x120'},
+    {label:'A3',nom:'Ilyes B.',id:'jdo059ntyi',thumb:'https://embed-ssl.wistia.com/deliveries/5cf046bee4cfe6195a90ca01a1d2e35e3ca52570.jpg?image_crop_resized=200x120'},
+    {label:'9',nom:'Julien R.',id:'qfr0h9r2m2',thumb:'https://embed-ssl.wistia.com/deliveries/33cc980dec488aa86a049191af6a2fc99a30faa4.jpg?image_crop_resized=200x120'},
+    {label:'A4',nom:'Sami R.',id:'lj3b71sbhv',thumb:'https://embed-ssl.wistia.com/deliveries/551468c66d5224227f65701cd868dd8b698ebbac.jpg?image_crop_resized=200x120'},
+    {label:'10',nom:'Romain L.',id:'wb2n19eagu',thumb:'https://embed-ssl.wistia.com/deliveries/c1669d37e5ee2342ca2c4e895233e94501dc338a.jpg?image_crop_resized=200x120'},
+    {label:'11',nom:'Pierre G.',id:'9g1jf7nzjv',thumb:'https://embed-ssl.wistia.com/deliveries/1baa34e27c7736b068ecc575679ed577bac564d5.jpg?image_crop_resized=200x120'},
+    {label:'12',nom:'Mathieu B.',id:'gjwxjx90wj',thumb:'https://embed-ssl.wistia.com/deliveries/1206d2ed111f2e1f7b12096468af800881bbed5f.jpg?image_crop_resized=200x120'},
+    {label:'13',nom:'Vincent T.',id:'il5ohzf2qw',thumb:'https://embed-ssl.wistia.com/deliveries/aa16ac335f2ec0c862e5e84fd1d9ab7330df4425.jpg?image_crop_resized=200x120'},
+    {label:'14',nom:'Olivier S.',id:'vvvs9cb91i',thumb:'https://embed-ssl.wistia.com/deliveries/632004c167b8e1782f7e9420e8f818abef259433.jpg?image_crop_resized=200x120'},
+    {label:'15',nom:'Fabien D.',id:'pmxlouje32',thumb:'https://embed-ssl.wistia.com/deliveries/5a3350aefc6234e6774025a9b753191ca37bb12e.jpg?image_crop_resized=200x120'},
+    {label:'16',nom:'Nicolas M.',id:'arscjpke7l',thumb:'https://embed-ssl.wistia.com/deliveries/8a231b43c38324dbe9bad1dcf6641aac95e63fe2.jpg?image_crop_resized=200x120'},
+    {label:'16*2',nom:'Sébastien P.',id:'56p3pb14c1',thumb:'https://embed-ssl.wistia.com/deliveries/256d102e20c99c3848ce000eaf7071594d3735d3.jpg?image_crop_resized=200x120'},
+    {label:'17',nom:'Stéphane K.',id:'nc900jms2i',thumb:'https://embed-ssl.wistia.com/deliveries/dc135c86c7c0725f23317f488ee638e1c04c75f2.jpg?image_crop_resized=200x120'},
+    {label:'18',nom:'Christophe V.',id:'ulf3sksaz5',thumb:'https://embed-ssl.wistia.com/deliveries/d497bee941c4a9a2c64efe5d723b7d65a9136d75.jpg?image_crop_resized=200x120'},
+    {label:'19',nom:'Frédéric L.',id:'fknb9tu1as',thumb:'https://embed-ssl.wistia.com/deliveries/22c266f5a880d3e38a09df3b105538c8ef9055a3.jpg?image_crop_resized=200x120'},
+    {label:'20',nom:'Guillaume A.',id:'amkfddzscp',thumb:'https://embed-ssl.wistia.com/deliveries/2125daa3a1b2d6f5ba2f621857d181561d50c740.jpg?image_crop_resized=200x120'},
+    {label:'21',nom:'Damien C.',id:'qnjyuyygml',thumb:'https://embed-ssl.wistia.com/deliveries/d127b35e63f9702fcfb9893e607e5395db01c78b.jpg?image_crop_resized=200x120'},
+    {label:'22',nom:'Hugo R.',id:'qj9xyko36b',thumb:'https://embed-ssl.wistia.com/deliveries/650237e0ab279f62759ee1b49046675f160dda55.jpg?image_crop_resized=200x120'},
+    {label:'22*2',nom:'Léo N.',id:'4l55xlmfij',thumb:'https://embed-ssl.wistia.com/deliveries/565d57d3b08ee1685ca135aa1097d76d1fdeb485.jpg?image_crop_resized=200x120'},
+    {label:'23',nom:'Théo M.',id:'78uk2mh9np',thumb:'https://embed-ssl.wistia.com/deliveries/70113fd60d5bee8d664204232a9e168cfb1823f9.jpg?image_crop_resized=200x120'},
+    {label:'24',nom:'Nathan B.',id:'q5cx01g8ia',thumb:'https://embed-ssl.wistia.com/deliveries/9a915f4b808c0f4b00b0e531358a186ddbd0d3a2.jpg?image_crop_resized=200x120'},
+    {label:'25',nom:'Arthur D.',id:'y3g5guxa96',thumb:'https://embed-ssl.wistia.com/deliveries/b6a0ddbab4421824773afd7bed818e5a03245797.jpg?image_crop_resized=200x120'},
+    {label:'26',nom:'Jules P.',id:'xd19qqu5mi',thumb:'https://embed-ssl.wistia.com/deliveries/fdd4839410e8032c08d57fdcd408f1605f54b05f.jpg?image_crop_resized=200x120'},
+    {label:'27',nom:'Raphaël T.',id:'c0y5llunv9',thumb:'https://embed-ssl.wistia.com/deliveries/8dd2ec6b7eb7a56a1b7675665f1af524042bba1d.jpg?image_crop_resized=200x120'},
+    {label:'28',nom:'Gabriel S.',id:'f4omw519tr',thumb:'https://embed-ssl.wistia.com/deliveries/91099ca37b2ac98ee41883e823d5cf4e9b9ff303.jpg?image_crop_resized=200x120'},
+    {label:'29',nom:'Louis F.',id:'nvpohd4lk1',thumb:'https://embed-ssl.wistia.com/deliveries/70317148962b6c1cf217ca74100cf0a08e4ef87e.jpg?image_crop_resized=200x120'},
+    {label:'29*2',nom:'Clément R.',id:'zyoma8m7cd',thumb:'https://embed-ssl.wistia.com/deliveries/c373b9a382b4d2188816f738de3760fdb3d0debd.jpg?image_crop_resized=200x120'},
+    {label:'30',nom:'Antonin K.',id:'cxya1rerrk',thumb:'https://embed-ssl.wistia.com/deliveries/32ea26868e4d7337ce39262d4a01505f04f99484.jpg?image_crop_resized=200x120'},
+    {label:'31',nom:'Bastien M.',id:'qdk7si2x7z',thumb:'https://embed-ssl.wistia.com/deliveries/7abd6dd68a6c93577dc6ee9bb3c409fa6a33290b.jpg?image_crop_resized=200x120'},
+    {label:'31',nom:'Samuel D.',id:'swq0dstcor',thumb:'https://embed-ssl.wistia.com/deliveries/2f4ebd47038e9721df7d9df98674af280a145e3b.jpg?image_crop_resized=200x120'},
+    {label:'32',nom:'Aaron L.',id:'xqlngf3ih6',thumb:'https://embed-ssl.wistia.com/deliveries/be84816964b35838dec275b5842c01f30d6a4f82.jpg?image_crop_resized=200x120'},
+    {label:'33',nom:'Noah B.',id:'pw66i10xf5',thumb:'https://embed-ssl.wistia.com/deliveries/82e7bcd84fe43d6b9350a97f7d9d51b0df93087e.jpg?image_crop_resized=200x120'},
+    {label:'34',nom:'Adam V.',id:'6t16pmmq7d',thumb:'https://embed-ssl.wistia.com/deliveries/d79ad1bcda08dc9ead7e27652559a7bd354afe65.jpg?image_crop_resized=200x120'},
+    {label:'34*2',nom:'Eden P.',id:'9v0r2495oi',thumb:'https://embed-ssl.wistia.com/deliveries/3ccc6cf20f073e2b1e5d22def3e4e3f5aeb5b64b.jpg?image_crop_resized=200x120'},
+    {label:'35',nom:'Naël S.',id:'jdjdtl17fe',thumb:'https://embed-ssl.wistia.com/deliveries/e163d8ac7c1863ab65f5fd9f7642756713798a66.jpg?image_crop_resized=200x120'},
+    {label:'36',nom:'Imran K.',id:'y9o25ff90b',thumb:'https://embed-ssl.wistia.com/deliveries/56d83346c4fefac76553d934349e4f8a826989aa.jpg?image_crop_resized=200x120'},
+    {label:'37',nom:'Ayoub M.',id:'y3xpgqqaiw',thumb:'https://embed-ssl.wistia.com/deliveries/7d0e30f17a2139be25f1d0f2eaf4d278b8ce249b.jpg?image_crop_resized=200x120'},
+    {label:'38',nom:'Reda L.',id:'4xto92mzox',thumb:'https://embed-ssl.wistia.com/deliveries/94daf66b44a6f76e13f119ef7d2623bceadb851d.jpg?image_crop_resized=200x120'},
+    {label:'39',nom:'Jad B.',id:'q9m6ttsnmn',thumb:'https://embed-ssl.wistia.com/deliveries/4b52d7f8be979ee25700650c3e114d400adf0c5c.jpg?image_crop_resized=200x120'},
+    {label:'40',nom:'Walid N.',id:'8nc99pkhea',thumb:'https://embed-ssl.wistia.com/deliveries/87c83db726e1bcdd9e63156214dad09cf0c1c91f.jpg?image_crop_resized=200x120'},
+    {label:'A5',nom:'Idris L.',id:'r97jl7n0ew',thumb:'https://embed-ssl.wistia.com/deliveries/f6fc25dec1bf47b13eddb9e2ba809c6ac9037648.jpg?image_crop_resized=200x120'},
+    {label:'41',nom:'Ismaël D.',id:'v11hw0kh2e',thumb:'https://embed-ssl.wistia.com/deliveries/536b14e41cd0b55a579f2eceadf38c0a877499e5.jpg?image_crop_resized=200x120'},
+    {label:'42',nom:'Riyad K.',id:'yq9jssaf1a',thumb:'https://embed-ssl.wistia.com/deliveries/8187b1777045e3bc0ae06fdf17dabbfd2883f5df.jpg?image_crop_resized=200x120'},
+    {label:'43',nom:'Salim T.',id:'vts8vwex2v',thumb:'https://embed-ssl.wistia.com/deliveries/c6611b9748c3b2bc3c17a6a8a1a3d748933a9738.jpg?image_crop_resized=200x120'},
+    {label:'44',nom:'Adel R.',id:'bw6v2scn79',thumb:'https://embed-ssl.wistia.com/deliveries/92d20b9d52ba09516c2311d1eddeec11dccae0a6.jpg?image_crop_resized=200x120'},
+    {label:'45',nom:'Brahim S.',id:'k888n704n3',thumb:'https://embed-ssl.wistia.com/deliveries/83ca857656215d20cd013510d8b473796d62da0f.jpg?image_crop_resized=200x120'},
+    {label:'46',nom:'Karim L.',id:'dtji3wjoiu',thumb:'https://embed-ssl.wistia.com/deliveries/4abfa5f47e9ac61c6fb772391d09fa5c05b35e70.jpg?image_crop_resized=200x120'},
+    {label:'47',nom:'Faycal B.',id:'yq9ya6apd4',thumb:'https://embed-ssl.wistia.com/deliveries/11aa7b441e8e7ed85327c17945e6d5449e56632a.jpg?image_crop_resized=200x120'},
+    {label:'48',nom:'Mehdi A.',id:'bj05d7kuhf',thumb:'https://embed-ssl.wistia.com/deliveries/3b77f01962cb525c317aa888d5650d8e7ff1f7f7.jpg?image_crop_resized=200x120'},
+    {label:'49',nom:'Driss V.',id:'w4rf12z91v',thumb:'https://embed-ssl.wistia.com/deliveries/a6f0969730ce84dc6459a3167d578aa90cbe5f32.jpg?image_crop_resized=200x120'},
+    {label:'50',nom:'Jamal P.',id:'kgui3v6qoi',thumb:'https://embed-ssl.wistia.com/deliveries/55d47e22f5c74d8f346be1c131a25c65daee2df9.jpg?image_crop_resized=200x120'},
+    {label:'51',nom:'Hicham M.',id:'dqkz1siohj',thumb:'https://embed-ssl.wistia.com/deliveries/d66d1cbf52255d90adbd8f12fbc00cf5ef1d6e37.jpg?image_crop_resized=200x120'},
+    {label:'52',nom:'Yassine D.',id:'jp9pxkcd7b',thumb:'https://embed-ssl.wistia.com/deliveries/802dd2f4d8ecf23fc0e15fe834b2067b359270c4.jpg?image_crop_resized=200x120'},
+    {label:'53',nom:'Zinedine K.',id:'jggeglhg45',thumb:'https://embed-ssl.wistia.com/deliveries/90202ca0f4f494df0e0efe233b27de1b0086a2f2.jpg?image_crop_resized=200x120'},
+    {label:'54',nom:'Rachid B.',id:'dmq7xbj3bw',thumb:'https://embed-ssl.wistia.com/deliveries/2036836c7c363287ba623c97b0c60a0a319f588d.jpg?image_crop_resized=200x120'},
+    {label:'55',nom:'Othmane L.',id:'quqp0w3htr',thumb:'https://embed-ssl.wistia.com/deliveries/536abbe3c84fdc052f84bb2edda9cfd12c3e3415.jpg?image_crop_resized=200x120'},
+    {label:'56',nom:'Walid C.',id:'hzqp2z25sy',thumb:'https://embed-ssl.wistia.com/deliveries/140016412a9a0846d88751482c26ed1968d23b9b.jpg?image_crop_resized=200x120'},
+    {label:'57',nom:'Ousmane T.',id:'7v3ts2fc4d',thumb:'https://embed-ssl.wistia.com/deliveries/2377e761eae735862e8644b9c73280200daa431a.jpg?image_crop_resized=200x120'},
+    {label:'58',nom:'Mamadou S.',id:'mnu9zo24yc',thumb:'https://embed-ssl.wistia.com/deliveries/bb830bb20b3d620ae06ba04dd7b8d54ad753a310.jpg?image_crop_resized=200x120'},
+    {label:'59',nom:'Modibo K.',id:'7si6lmqgzq',thumb:'https://embed-ssl.wistia.com/deliveries/18498f2d20e5c5c3feae92413c90fb53abbb6062.jpg?image_crop_resized=200x120'},
+    {label:'60',nom:'Boubacar D.',id:'a5etrshmpz',thumb:'https://embed-ssl.wistia.com/deliveries/3ecc64e2b12bcd5a43020c0940e6134be89cc7b0.jpg?image_crop_resized=200x120'},
+    {label:'61',nom:'Demba M.',id:'qpnljbh7y2',thumb:'https://embed-ssl.wistia.com/deliveries/277520ab1550742798202004d78e427e05e2d26d.jpg?image_crop_resized=200x120'},
+    {label:'62',nom:'Ibrahim N.',id:'9e6tevdk4t',thumb:'https://embed-ssl.wistia.com/deliveries/8a8e788458cecc00f34be7a0a2f3b295e8d3dda2.jpg?image_crop_resized=200x120'},
+    {label:'63',nom:'Lamine B.',id:'84qvndi09v',thumb:'https://embed-ssl.wistia.com/deliveries/2948e9e93c1261686b8cf35415d91b0ba0382013.jpg?image_crop_resized=200x120'},
+    {label:'A6',nom:'Bilal H.',id:'m643jp2d5l',thumb:'https://embed-ssl.wistia.com/deliveries/502064845d9256795e2100cab698b5cfb91f4eb8.jpg?image_crop_resized=200x120'},
+    {label:'A7',nom:'Anis D.',id:'owxop692fa',thumb:'https://embed-ssl.wistia.com/deliveries/3f5b3364eb76b4f104ce3adb47cea8739d7e460c.jpg?image_crop_resized=200x120'},
+    {label:'A8',nom:'Younes T.',id:'9ne4ub7k90',thumb:'https://embed-ssl.wistia.com/deliveries/9a4b11af5c1f39747e5b2e2fcd081d00c2925ad2.jpg?image_crop_resized=200x120'},
+    {label:'A9',nom:'Souleymane K.',id:'6hyrimcjfj',thumb:'https://embed-ssl.wistia.com/deliveries/9f21751da44432de311690b96e404467802dc0cd.jpg?image_crop_resized=200x120'},
+    {label:'A10',nom:'Amadou S.',id:'y4do3loz6e',thumb:'https://embed-ssl.wistia.com/deliveries/da6584e5c0d2b7044a5c4dffe8b7fb4d27389909.jpg?image_crop_resized=200x120'},
+    {label:'A11',nom:'Cheikh N.',id:'w0628fupnp',thumb:'https://embed-ssl.wistia.com/deliveries/b80a1904441dad0b074ec1088a63e934456ab6b0.jpg?image_crop_resized=200x120'},
+    {label:'A12',nom:'Tariq F.',id:'ki491gr1sm',thumb:'https://embed-ssl.wistia.com/deliveries/66c5573fb44a51cc3f3abec44e21d24b7349df7d.jpg?image_crop_resized=200x120'},
+    {label:'A13',nom:'Hakim B.',id:'pqpqzpr3qq',thumb:'https://embed-ssl.wistia.com/deliveries/0224ee1ca34d0e3a13b2ad1e2a5a06a4688154f4.jpg?image_crop_resized=200x120'},
+    {label:'A14',nom:'Nasser O.',id:'lcgvstjd7s',thumb:'https://embed-ssl.wistia.com/deliveries/cc6e09b4e0cb4700e4eba26ae2aa7c80d5e7a5a1.jpg?image_crop_resized=200x120'},
   ];
 
   const grid1 = document.getElementById('testimonialsGrid');
