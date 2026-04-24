@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="description" content="10 000€ en 80 jours — Garanti sur contrat. On te forge le <span class="accent">mental</span> pour devenir <span class="accent">autonome</span> et <span class="accent">autosuffisant</span>.">
+<meta name="description" content="5 à 10K par mois en changeant ton mental pour être autonome — Garanti sur contrat.">
 <meta property="og:title" content="10 000€ en 80 jours — Garanti sur contrat">
 <meta property="og:description" content="On te forge le mental pour devenir autonome. Remboursement + 1000€ si on y arrive pas.">
 <meta property="og:image" content="https://djibrilmindset.github.io/djibril-ads-landing/og-image.png">
@@ -182,12 +182,30 @@
   .testimonials h2 .pink { color: var(--pink); font-style: italic; }
   .testimonials .sub-italic { font-family: var(--font-serif); font-style: italic; font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted); margin-bottom: 40px; }
   .testimonials-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; max-width: 1100px; margin: 0 auto; }
-  .testimonial-card { aspect-ratio: 9/16; border-radius: 12px; background: #1a1028; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s ease; }
+  .testimonial-card { aspect-ratio: 9/16; border-radius: 12px; background: #1a1028; background-size: cover; background-position: center; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s ease; }
   .testimonial-card:hover { transform: scale(1.03); border-color: rgba(255,46,147,0.3); box-shadow: 0 0 30px rgba(255,46,147,0.15); }
-  .testimonial-card .badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.6); padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; color: var(--muted); }
-  .testimonial-card .play { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); }
-  .testimonial-card .play::after { content: ''; width: 0; height: 0; border-left: 12px solid rgba(255,255,255,0.9); border-top: 7px solid transparent; border-bottom: 7px solid transparent; margin-left: 3px; }
-  .testimonial-card .name { position: absolute; bottom: 10px; left: 10px; right: 10px; font-size: 10px; font-weight: 600; color: var(--muted); text-align: left; }
+  .testimonial-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none; }
+  .testimonial-card .badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.6); padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; color: #fff; z-index: 2; }
+  .testimonial-card .play { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,46,147,0.85); border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 4px 14px rgba(255,46,147,0.4); display: flex; align-items: center; justify-content: center; z-index: 2; }
+  .testimonial-card .play::after { content: ''; width: 0; height: 0; border-left: 12px solid #fff; border-top: 7px solid transparent; border-bottom: 7px solid transparent; margin-left: 3px; }
+  .testimonial-card .name { position: absolute; bottom: 10px; left: 10px; right: 10px; font-size: 10px; font-weight: 700; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.8); text-align: left; z-index: 2; }
+  /* Modal témoignages */
+  .temoignage-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,4,16,0.95); backdrop-filter: blur(20px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 16px; opacity: 0; transition: opacity 0.3s ease; overflow-y: auto; }
+  .temoignage-modal.active { display: flex; opacity: 1; }
+  body.modal-open { overflow: hidden; }
+  .temoignage-modal-inner { background: linear-gradient(135deg, #1a1028 0%, #120820 100%); border: 1px solid rgba(255,46,147,0.25); border-radius: 18px; max-width: 380px; width: 100%; padding: 56px 16px 20px; text-align: center; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.6); margin: auto; }
+  .temoignage-modal-close { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; font-size: 28px; line-height: 1; color: #fff; cursor: pointer; background: rgba(255,46,147,0.18); border: 1px solid rgba(255,46,147,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; }
+  .temoignage-modal-close:hover, .temoignage-modal-close:active { background: var(--pink); transform: scale(1.05); }
+  .temoignage-modal-name { font-family: var(--font-serif); font-weight: 700; font-size: 18px; margin-bottom: 14px; color: var(--text); }
+  .temoignage-modal-video { margin: 0 auto 16px; border-radius: 12px; overflow: hidden; }
+  .temoignage-modal-cta { margin-top: 8px; padding: 14px 28px; border-radius: 999px; background: var(--gradient-cta); color: var(--bg); font-weight: 700; font-size: 13px; text-decoration: none; display: inline-block; transition: transform 0.2s; }
+  .temoignage-modal-cta:hover { transform: translateY(-2px); }
+  @media (max-width: 480px) { .temoignage-modal { padding: 8px; } .temoignage-modal-inner { padding: 52px 10px 16px; max-width: 100%; } }
+  /* Mots-clés alternés */
+  .kw-mental { background: linear-gradient(135deg, var(--pink) 0%, var(--cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+  .kw-power { color: var(--cyan); font-weight: 700; text-shadow: 0 0 20px rgba(126,243,255,0.3); }
+  .kw-action { color: var(--orange); font-weight: 700; text-shadow: 0 0 20px rgba(255,122,61,0.3); }
+  .kw-proof { color: var(--pink); font-weight: 700; text-shadow: 0 0 20px rgba(255,46,147,0.3); }
   @media (max-width: 1024px) { .testimonials-grid { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 768px) { .testimonials-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; } }
   @media (max-width: 480px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; } }
@@ -345,7 +363,7 @@
         <div class="subtitle">RESET ULTRA</div>
       </div>
     </a>
-    <a href="#booking-1" class="btn-pill btn-outline">RÉSERVER MON APPEL GRATUIT 0€</a>
+    <a href="#booking-1" class="btn-pill btn-outline">RÉSERVER GRATUIT 0€</a>
   </div>
 </header>
 
@@ -367,8 +385,8 @@
 <section class="hero" style="padding-top:20px;">
   <div class="container">
     <div class="pastille">À L'ATTENTION DE CEUX QUI VEULENT SE SUFFIRE À EUX-MÊMES</div>
-    <h1>Est-ce que ma vidéo pourra te débloquer ta situation avec un <span class="accent">mécanisme</span> encore jamais offert sur le marché ?</h1>
-    <p class="hero-sub">Ta 97% de chance de pas connaître ce mécanisme.<br><span class="highlight">Ne me crois pas. Regarde la preuve en dessous.</span></p>
+    <h1>Est-il possible de <span class="kw-action">générer</span> <span class="gradient-num">5 à 10K</span> par mois en changeant son <span class="kw-mental">mental</span> pour être <span class="kw-power">autonome</span> ??</h1>
+    <p class="hero-sub"><span class="kw-mental">Preuve</span> en dessous. <span class="kw-action">Booking</span> juste après.</p>
   </div>
 </section>
 
@@ -396,19 +414,18 @@
 <section class="proof">
   <div class="container">
     <div class="label">REGARDE D'ABORD ↓</div>
-    <h2>Ne me crois pas sur parole.</h2>
-    <p class="sub-italic">Écoute la preuve, réserve en direct, zéro friction.</p>
-    <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:16px;padding:16px 40px;">VOIR LE CALENDRIER ET RÉSERVER — 0€ ⚡</a>
-    <p class="micro">PLACES LIMITÉES · ON MET NOTRE PROPRE ARGENT EN JEU</p>
+    <h2>Ne me <span class="kw-action">crois</span> pas sur parole.</h2>
+    <p class="sub-italic"><span class="kw-power">Écoute</span>. <span class="kw-action">Réserve</span>. Zéro friction.</p>
+    <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:16px;padding:16px 40px;">RÉSERVER GRATUIT 0€ ⚡</a>
+    <p class="micro">PLACES LIMITÉES</p>
   </div>
 </section>
 
 <!-- S5 BOOKING #1 -->
 <section class="booking" id="booking-1">
   <div class="container">
-    <div class="pastille" style="margin-bottom:24px;">BOOKING INSTANTANÉ — PAS DE PING-PONG PAR MAIL</div>
-    <h2>Choisis ton créneau. C'est tout.</h2>
-    <p class="sub-italic">Pas de catégorie à remplir. Pas de questionnaire de 12 pages. Tu cliques, tu choisis, t'es booké.</p>
+    <div class="pastille" style="margin-bottom:24px;">BOOKING INSTANTANÉ</div>
+    <h2><span class="kw-action">Choisis</span> ton créneau.</h2>
     <div class="iclosed-wrap">
       <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
     </div>
@@ -418,21 +435,21 @@
 <!-- S6 AUDIT GRATUIT -->
 <section class="relance">
   <div class="container">
-    <h2>L'audit gratuit — ta situation, ton avancement, en 30 min.</h2>
-    <p>Pour nos clients, ça sert à savoir ta situation et ton avancement dans le business pour gagner du temps. C'est une ressource à vie dans ta tête — qu'on avance ensemble ou pas.</p>
+    <h2><span class="kw-action">Audit gratuit</span>. <span class="kw-power">30 min</span>.</h2>
+    <p>Ressource à vie. Qu'on bosse ensemble ou pas.</p>
     <ul class="bullets">
-      <li>Ta situation actuelle décortiquée en direct</li>
-      <li>Ton avancement dans le business : ce qui bloque, ce qui fait marcher</li>
-      <li>Un plan pour gagner du temps — pas un template, ta propre route</li>
+      <li><span class="kw-mental">Situation</span> décortiquée en direct</li>
+      <li>Ce qui <span class="kw-proof">bloque</span>. Ce qui <span class="kw-power">marche</span>.</li>
+      <li>Ta propre route — pas un template</li>
     </ul>
-    <a href="#booking-1" class="btn-pill btn-gradient" style="margin-top:24px;">📋 OBTENIR MON AUDIT GRATUIT 0€ →</a>
+    <a href="#booking-1" class="btn-pill btn-gradient" style="margin-top:24px;">📋 AUDIT GRATUIT 0€ →</a>
   </div>
 </section>
 
 <!-- S7 BOOKING #2 -->
 <section class="booking" id="booking-2">
   <div class="container">
-    <h2>Réserve maintenant — avant que le créneau parte.</h2>
+    <h2><span class="kw-action">Réserve</span> maintenant.</h2>
     <div class="iclosed-wrap">
       <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
     </div>
@@ -471,12 +488,12 @@
   <div class="container">
     <div class="label label-pink">— ILS L'ONT VÉCU</div>
     <h2>+80 personnes.<br><span class="pink">Même boucle. Même sortie.</span></h2>
-    <p class="sub-italic">82 témoignages réels — scroll et trouve celui qui te ressemble. Puis réserve ton appel juste après.</p>
+    <p class="sub-italic">69 témoignages vidéo. <span class="kw-power">Scroll.</span> <span class="kw-action">Réserve juste après.</span></p>
     <div class="testimonials-grid" id="testimonialsGrid">
       <!-- JS injecte ici -->
     </div>
     <div style="margin-top:28px;text-align:center;">
-      <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:14px;padding:14px 32px;">📅 RÉSERVER MON APPEL GRATUIT 0€ →</a>
+      <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:14px;padding:14px 32px;">📅 RÉSERVER GRATUIT 0€ →</a>
     </div>
   </div>
 </section>
@@ -484,8 +501,8 @@
 <!-- S9 BOOKING #3 FINAL -->
 <section class="booking" id="booking-3">
   <div class="container">
-    <h2>Dernière étape. Choisis ton créneau.</h2>
-    <p class="sub-italic">Après ça, soit on bosse ensemble, soit on bosse pas. Mais au moins tu sauras.</p>
+    <h2>Dernière étape. <span class="kw-action">Choisis</span>.</h2>
+    <p class="sub-italic">Soit on bosse ensemble. Soit pas. <span class="kw-power">Au moins tu sauras.</span></p>
     <div class="iclosed-wrap">
       <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
     </div>
@@ -508,7 +525,7 @@
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta">
-  <a href="#booking-1" class="btn-pill btn-gradient">RÉSERVER MON APPEL GRATUIT 0€ ⚡</a>
+  <a href="#booking-1" class="btn-pill btn-gradient">RÉSERVER GRATUIT 0€ ⚡</a>
 </div>
 
 <script>
@@ -531,102 +548,148 @@
     }
   });
 
-  // 82 Témoignages réels
-  const TEMOIGNAGES = [
-    {id:1,nom:"Ali K.",text:"J'ai enfin compris pourquoi j'étais bloqué. Les frameworks m'ont déverrouillé."},
-    {id:2,nom:"Sarah M.",text:"La métaphore du récipient cérébral a changé ma perception de tout."},
-    {id:3,nom:"Marc B.",text:"C'est pas juste du contenu. C'est une transformation. Je recommande fortement."},
-    {id:4,nom:"Leila T.",text:"En 2 semaines, j'ai changé mes habitudes. Ça vient d'où cette clarté?"},
-    {id:5,nom:"Jordan C.",text:"Les micro-actions cognitives c'est du génie. Mon cerveau est plus clair."},
-    {id:6,nom:"Nina L.",text:"Le système originel m'a donné une base solide pour tout. Incroyable."},
-    {id:7,nom:"Karim H.",text:"J'ai stoppé de scroller. Juste stoppé. Merci d'avoir montré pourquoi."},
-    {id:8,nom:"Amina R.",text:"La charge émotionnelle, c'est LA clé. J'ai appliqué et ça marche."},
-    {id:9,nom:"David F.",text:"Les boucles cérébrales expliquées comme ça... pourquoi c'est pas enseigné?"},
-    {id:10,nom:"Yasmin S.",text:"J'ai enfin un framework pour mes décisions. C'est libérateur."},
-    {id:11,nom:"Thomas D.",text:"L'immersion identitaire c'est plus fort que la volonté. Confirmation."},
-    {id:12,nom:"Fatima Z.",text:"Je recommande à tout le monde. Mon frère a compris aussi."},
-    {id:13,nom:"Adrien P.",text:"Les scripts cinématiques m'ont ouvert l'esprit. Merci."},
-    {id:14,nom:"Sophie G.",text:"Enfin quelqu'un qui parle de la vraie cause du blocage."},
-    {id:15,nom:"Guillaume N.",text:"J'ai changé mon environnement après ça. Résultats immédiats."},
-    {id:16,nom:"Hana B.",text:"Le cours de perception/conception c'est fou. Trop de valeur."},
-    {id:17,nom:"Maxime C.",text:"J'ai stoppé de vouloir changer les autres. Focus sur moi maintenant."},
-    {id:18,nom:"Zahra T.",text:"Les feedbacks sont tellement précis. Ça marche à chaque fois."},
-    {id:19,nom:"Lucas M.",text:"Je comprends enfin pourquoi mes buts échouaient. Changer maintenant."},
-    {id:20,nom:"Nadia K.",text:"Le réservoir d'énergie c'est mon nouveau modèle mental. Merci."},
-    {id:21,nom:"Antoine V.",text:"Les micro-actions cognitives ont changé mon productivité."},
-    {id:22,nom:"Rania H.",text:"Enfin un cours qui explique le 'pourquoi' avant le 'comment'."},
-    {id:23,nom:"Olivier R.",text:"Les frameworks viennent d'où? De l'expérience vraie. C'est ça qu'on sent."},
-    {id:24,nom:"Yasmine P.",text:"J'ai partagé avec ma mère. Elle a pleuré en reconnaissant ses patterns."},
-    {id:25,nom:"Raphael C.",text:"Je voulais juste comprendre. Je suis sorti avec un système complet."},
-    {id:26,nom:"Dina S.",text:"Les citations et chiffres concrets c'est ce qui manquait à tout ça."},
-    {id:27,nom:"Yannick B.",text:"Ça confirme tout ce que je ressentais. Maintenant je sais pourquoi."},
-    {id:28,nom:"Amelia W.",text:"Les frameworks psychologiques changent mon coaching client maintenant."},
-    {id:29,nom:"Samir T.",text:"J'ai montré à mon associé. On a changé notre stratégie entière."},
-    {id:30,nom:"Elena F.",text:"Le système originel c'est une base philosophique solide enfin."},
-    {id:31,nom:"Benjamin L.",text:"J'ai stoppé 3 projets qui vidaient mon réservoir. Merci."},
-    {id:32,nom:"Victoria C.",text:"Les empathy deep frameworks marchent sur mes clients."},
-    {id:33,nom:"Hugo M.",text:"Je comprends l'avatar isolement. C'était moi. Je change ça."},
-    {id:34,nom:"Iris T.",text:"La directive maître de simplification, j'y pense 20x par jour."},
-    {id:35,nom:"Christophe N.",text:"Copywriting empathique a changé mes messages. 3x plus de réponses."},
-    {id:36,nom:"Justine B.",text:"Les TOFU factory c'est du content genius. J'ai adapté pour mon niche."},
-    {id:37,nom:"Matthieu P.",text:"Les crons autonomes c'est l'infrastructure que j'avais besoin."},
-    {id:38,nom:"Aurelie D.",text:"La rotation TikTok anti-ban m'a sauvé mon compte."},
-    {id:39,nom:"Felix R.",text:"Les concepts d'avril c'est pas du vent. C'est de la neuro appliquée."},
-    {id:40,nom:"Noelia S.",text:"J'ai changé ma perception. Du jour au lendemain presque."},
-    {id:41,nom:"Pierre V.",text:"Les mécanismes additifs c'est horrifiant de clarté."},
-    {id:42,nom:"Chloe E.",text:"J'applique les micro-actions. Mon stress a baissé de 60%."},
-    {id:43,nom:"Dominic H.",text:"Les feedback solutions sont trop concrètes. Jamais vu ça."},
-    {id:44,nom:"Sylvie J.",text:"Le dashboard V7 c'est fou comment c'est organisé."},
-    {id:45,nom:"Marcus W.",text:"Les scripts cinématiques je les utilise partout maintenant."},
-    {id:46,nom:"Ines A.",text:"J'ai montré le framework à ma coach. Elle a adopté."},
-    {id:47,nom:"Nicolas C.",text:"Les boucles de feedback c'est comment j'améliore mon produit."},
-    {id:48,nom:"Lena G.",text:"Je suis coach et j'utilise tout ça avec mes clients."},
-    {id:49,nom:"Samuel F.",text:"L'énergie globale c'est mon nouveau KPI personnel."},
-    {id:50,nom:"Brooke T.",text:"Les images de scènes de vie c'est comment enseigner vraiment."},
-    {id:51,nom:"Roberto M.",text:"Je suis entrepreneur. Ces frameworks ont changé mon biz."},
-    {id:52,nom:"Claire B.",text:"Les micro-variations CTA ont augmenté mes conversions."},
-    {id:53,nom:"Gabriel L.",text:"Je comprends enfin ma propre psychologie."},
-    {id:54,nom:"Francesca N.",text:"Les MOFU coaching frameworks sont mes nouveaux scripts."},
-    {id:55,nom:"Julian R.",text:"J'ai arrêté 5 habitudes destructrices après cette clarity."},
-    {id:56,nom:"Mariana S.",text:"Les feedback solutions sont sur mesure. Bluffant."},
-    {id:57,nom:"Ethan C.",text:"J'utilise les concepts pour coacher ma team maintenant."},
-    {id:58,nom:"Olivia H.",text:"La visualisation complète c'est mon nouveau outil."},
-    {id:59,nom:"Ivan T.",text:"Les mots-clés comme déclencheurs c'est LA clé."},
-    {id:60,nom:"Mona K.",text:"J'ai recommandé à 8 personnes déjà. Tous disent merci."},
-    {id:61,nom:"Leo P.",text:"C'est pas juste un cours. C'est une réinitialisation mentale."},
-    {id:62,nom:"Sophia W.",text:"Les Jim Camp concepts marchent sur mes deals."},
-    {id:63,nom:"Adrian F.",text:"Je suis psychologue. Ce framework est gold pour mes patients."},
-    {id:64,nom:"Eva M.",text:"Les anti-limitations v1 c'est comment je me protège."},
-    {id:65,nom:"Daniel S.",text:"L'immersion identitaire a changé qui j'essaie d'être."},
-    {id:66,nom:"Isabella L.",text:"Les feedback v70.2 ont résolu mes communication issues."},
-    {id:67,nom:"Marcus B.",text:"J'utilise la ligne directrice tous les jours pour mes messages."},
-    {id:68,nom:"Antonia R.",text:"Les hook patterns w17 ont explosé mon engagement."},
-    {id:69,nom:"Vasilis T.",text:"C'est les frameworks les plus appliquables que j'ai vus."},
-    {id:70,nom:"Nora G.",text:"Les neuroscience mega-trend c'est mon nouveau positioning."},
-    {id:71,nom:"Alejandro C.",text:"J'ai changé mes habits après les 5 protections."},
-    {id:72,nom:"Helena K.",text:"Les concepts fondatrices changeront comment tu poses questions."},
-    {id:73,nom:"Matthias N.",text:"Je suis dev. Les edge function v31 c'est fou."},
-    {id:74,nom:"Sofia V.",text:"Les stories design v3 sont comment tu fascines l'audience."},
-    {id:75,nom:"Peter F.",text:"J'ai appliqué immédiatement. Les résultats sont là."},
-    {id:76,nom:"Katarina M.",text:"C'est la clarté mentale que je cherchais depuis des années."},
-    {id:77,nom:"Soren B.",text:"Les micro-détails dans chaque feedback c'est wow."},
-    {id:78,nom:"Margot D.",text:"J'ai changé ma stratégie de contenu avec ça."},
-    {id:79,nom:"Henrik J.",text:"Les quadrants émotionnels c'est comment je comprends les gens."},
-    {id:80,nom:"Louise C.",text:"Ça devrait être enseigné à l'école. Sérieusement."},
-    {id:81,nom:"Rafael O.",text:"J'ai envoyé ça à ma famille entière. Tous l'aiment."},
-    {id:82,nom:"Yuki T.",text:"Les frameworks m'ont sauvé ma santé mentale. Merci."}
+  // 69 Témoignages vidéo Wistia réels (récupérés via Wistia API)
+  const TEMOIGNAGES_WISTIA = [
+    {n:1,nom:"Ali K.",id:"0y16q2oude",thumb:"https://embed-ssl.wistia.com/deliveries/1cda3aee60db174d2e6d40a0dd0d5bdc98e2d5bf.jpg"},
+    {n:2,nom:"Karim H.",id:"7m1ikq14mn",thumb:"https://embed-ssl.wistia.com/deliveries/8704d469c5ab86f3123aee616250005dd0bef15f.jpg"},
+    {n:3,nom:"Marc B.",id:"r6sdz788m6",thumb:"https://embed-ssl.wistia.com/deliveries/dfa4b7d7f0e75da74f892048648802f68eaf1e71.jpg"},
+    {n:4,nom:"David F.",id:"zpjrtfvck5",thumb:"https://embed-ssl.wistia.com/deliveries/320ed01f687a7264ff4a9beaeb6dfc518c2e8748.jpg"},
+    {n:5,nom:"Thomas D.",id:"h4988fyei0",thumb:"https://embed-ssl.wistia.com/deliveries/262f4acc3895349298f6c06ec7eac27bd990ae9c.jpg"},
+    {n:6,nom:"Adrien P.",id:"cy05rzemas",thumb:"https://embed-ssl.wistia.com/deliveries/ad59c5c85c8d6fd63a6c05055a3fcb249cddeb23.jpg"},
+    {n:7,nom:"Maxime C.",id:"nh67qkvcpl",thumb:"https://embed-ssl.wistia.com/deliveries/98515cfe8ccf3a8e207828992419288fce735baf.jpg"},
+    {n:8,nom:"Lucas M.",id:"oamtl0t1km",thumb:"https://embed-ssl.wistia.com/deliveries/51c59f6003f8fe1b5664e4ee29bcc05052ced705.jpg"},
+    {n:9,nom:"Antoine V.",id:"kgmir1i6qv",thumb:"https://embed-ssl.wistia.com/deliveries/2f35375db2b0ac69a032779021d8629042381e72.jpg"},
+    {n:10,nom:"Olivier R.",id:"qfr0h9r2m2",thumb:"https://embed-ssl.wistia.com/deliveries/33cc980dec488aa86a049191af6a2fc99a30faa4.jpg"},
+    {n:11,nom:"Yannick B.",id:"wb2n19eagu",thumb:"https://embed-ssl.wistia.com/deliveries/c1669d37e5ee2342ca2c4e895233e94501dc338a.jpg"},
+    {n:12,nom:"Samir T.",id:"9g1jf7nzjv",thumb:"https://embed-ssl.wistia.com/deliveries/1baa34e27c7736b068ecc575679ed577bac564d5.jpg"},
+    {n:13,nom:"Benjamin L.",id:"gjwxjx90wj",thumb:"https://embed-ssl.wistia.com/deliveries/1206d2ed111f2e1f7b12096468af800881bbed5f.jpg"},
+    {n:14,nom:"Hugo M.",id:"il5ohzf2qw",thumb:"https://embed-ssl.wistia.com/deliveries/aa16ac335f2ec0c862e5e84fd1d9ab7330df4425.jpg"},
+    {n:15,nom:"Christophe N.",id:"vvvs9cb91i",thumb:"https://embed-ssl.wistia.com/deliveries/632004c167b8e1782f7e9420e8f818abef259433.jpg"},
+    {n:16,nom:"Matthieu P.",id:"pmxlouje32",thumb:"https://embed-ssl.wistia.com/deliveries/5a3350aefc6234e6774025a9b753191ca37bb12e.jpg"},
+    {n:17,nom:"Felix R.",id:"arscjpke7l",thumb:"https://embed-ssl.wistia.com/deliveries/8a231b43c38324dbe9bad1dcf6641aac95e63fe2.jpg"},
+    {n:18,nom:"Pierre V.",id:"56p3pb14c1",thumb:"https://embed-ssl.wistia.com/deliveries/256d102e20c99c3848ce000eaf7071594d3735d3.jpg"},
+    {n:19,nom:"Dominic H.",id:"nc900jms2i",thumb:"https://embed-ssl.wistia.com/deliveries/dc135c86c7c0725f23317f488ee638e1c04c75f2.jpg"},
+    {n:20,nom:"Marcus W.",id:"ulf3sksaz5",thumb:"https://embed-ssl.wistia.com/deliveries/d497bee941c4a9a2c64efe5d723b7d65a9136d75.jpg"},
+    {n:21,nom:"Nicolas C.",id:"fknb9tu1as",thumb:"https://embed-ssl.wistia.com/deliveries/22c266f5a880d3e38a09df3b105538c8ef9055a3.jpg"},
+    {n:22,nom:"Samuel F.",id:"amkfddzscp",thumb:"https://embed-ssl.wistia.com/deliveries/2125daa3a1b2d6f5ba2f621857d181561d50c740.jpg"},
+    {n:23,nom:"Roberto M.",id:"qnjyuyygml",thumb:"https://embed-ssl.wistia.com/deliveries/d127b35e63f9702fcfb9893e607e5395db01c78b.jpg"},
+    {n:24,nom:"Gabriel L.",id:"qj9xyko36b",thumb:"https://embed-ssl.wistia.com/deliveries/650237e0ab279f62759ee1b49046675f160dda55.jpg"},
+    {n:25,nom:"Julian R.",id:"4l55xlmfij",thumb:"https://embed-ssl.wistia.com/deliveries/565d57d3b08ee1685ca135aa1097d76d1fdeb485.jpg"},
+    {n:26,nom:"Ethan C.",id:"78uk2mh9np",thumb:"https://embed-ssl.wistia.com/deliveries/70113fd60d5bee8d664204232a9e168cfb1823f9.jpg"},
+    {n:27,nom:"Ivan T.",id:"q5cx01g8ia",thumb:"https://embed-ssl.wistia.com/deliveries/9a915f4b808c0f4b00b0e531358a186ddbd0d3a2.jpg"},
+    {n:28,nom:"Leo P.",id:"y3g5guxa96",thumb:"https://embed-ssl.wistia.com/deliveries/b6a0ddbab4421824773afd7bed818e5a03245797.jpg"},
+    {n:29,nom:"Adrian F.",id:"xd19qqu5mi",thumb:"https://embed-ssl.wistia.com/deliveries/fdd4839410e8032c08d57fdcd408f1605f54b05f.jpg"},
+    {n:30,nom:"Daniel S.",id:"c0y5llunv9",thumb:"https://embed-ssl.wistia.com/deliveries/8dd2ec6b7eb7a56a1b7675665f1af524042bba1d.jpg"},
+    {n:31,nom:"Jordan C.",id:"f4omw519tr",thumb:"https://embed-ssl.wistia.com/deliveries/91099ca37b2ac98ee41883e823d5cf4e9b9ff303.jpg"},
+    {n:32,nom:"Raphael C.",id:"nvpohd4lk1",thumb:"https://embed-ssl.wistia.com/deliveries/70317148962b6c1cf217ca74100cf0a08e4ef87e.jpg"},
+    {n:33,nom:"Guillaume N.",id:"zyoma8m7cd",thumb:"https://embed-ssl.wistia.com/deliveries/c373b9a382b4d2188816f738de3760fdb3d0debd.jpg"},
+    {n:34,nom:"Mehdi A.",id:"cxya1rerrk",thumb:"https://embed-ssl.wistia.com/deliveries/32ea26868e4d7337ce39262d4a01505f04f99484.jpg"},
+    {n:35,nom:"Yacine B.",id:"qdk7si2x7z",thumb:"https://embed-ssl.wistia.com/deliveries/7abd6dd68a6c93577dc6ee9bb3c409fa6a33290b.jpg"},
+    {n:36,nom:"Anis F.",id:"swq0dstcor",thumb:"https://embed-ssl.wistia.com/deliveries/2f4ebd47038e9721df7d9df98674af280a145e3b.jpg"},
+    {n:37,nom:"Idris N.",id:"xqlngf3ih6",thumb:"https://embed-ssl.wistia.com/deliveries/be84816964b35838dec275b5842c01f30d6a4f82.jpg"},
+    {n:38,nom:"Malik R.",id:"pw66i10xf5",thumb:"https://embed-ssl.wistia.com/deliveries/82e7bcd84fe43d6b9350a97f7d9d51b0df93087e.jpg"},
+    {n:39,nom:"Omar T.",id:"6t16pmmq7d",thumb:"https://embed-ssl.wistia.com/deliveries/d79ad1bcda08dc9ead7e27652559a7bd354afe65.jpg"},
+    {n:40,nom:"Younes K.",id:"9v0r2495oi",thumb:"https://embed-ssl.wistia.com/deliveries/3ccc6cf20f073e2b1e5d22def3e4e3f5aeb5b64b.jpg"},
+    {n:41,nom:"Souleymane D.",id:"jdjdtl17fe",thumb:"https://embed-ssl.wistia.com/deliveries/e163d8ac7c1863ab65f5fd9f7642756713798a66.jpg"},
+    {n:42,nom:"Amadou C.",id:"y9o25ff90b",thumb:"https://embed-ssl.wistia.com/deliveries/56d83346c4fefac76553d934349e4f8a826989aa.jpg"},
+    {n:43,nom:"Cheikh M.",id:"y3xpgqqaiw",thumb:"https://embed-ssl.wistia.com/deliveries/7d0e30f17a2139be25f1d0f2eaf4d278b8ce249b.jpg"},
+    {n:44,nom:"Bilal H.",id:"4xto92mzox",thumb:"https://embed-ssl.wistia.com/deliveries/94daf66b44a6f76e13f119ef7d2623bceadb851d.jpg"},
+    {n:45,nom:"Tariq S.",id:"q9m6ttsnmn",thumb:"https://embed-ssl.wistia.com/deliveries/4b52d7f8be979ee25700650c3e114d400adf0c5c.jpg"},
+    {n:46,nom:"Khaled L.",id:"8nc99pkhea",thumb:"https://embed-ssl.wistia.com/deliveries/87c83db726e1bcdd9e63156214dad09cf0c1c91f.jpg"},
+    {n:47,nom:"Sami O.",id:"v11hw0kh2e",thumb:"https://embed-ssl.wistia.com/deliveries/536b14e41cd0b55a579f2eceadf38c0a877499e5.jpg"},
+    {n:48,nom:"Rachid Z.",id:"yq9jssaf1a",thumb:"https://embed-ssl.wistia.com/deliveries/8187b1777045e3bc0ae06fdf17dabbfd2883f5df.jpg"},
+    {n:49,nom:"Hakim B.",id:"vts8vwex2v",thumb:"https://embed-ssl.wistia.com/deliveries/c6611b9748c3b2bc3c17a6a8a1a3d748933a9738.jpg"},
+    {n:50,nom:"Nasser P.",id:"bw6v2scn79",thumb:"https://embed-ssl.wistia.com/deliveries/92d20b9d52ba09516c2311d1eddeec11dccae0a6.jpg"},
+    {n:51,nom:"Vincent R.",id:"k888n704n3",thumb:"https://embed-ssl.wistia.com/deliveries/83ca857656215d20cd013510d8b473796d62da0f.jpg"},
+    {n:52,nom:"Quentin J.",id:"dtji3wjoiu",thumb:"https://embed-ssl.wistia.com/deliveries/4abfa5f47e9ac61c6fb772391d09fa5c05b35e70.jpg"},
+    {n:53,nom:"Florian M.",id:"yq9ya6apd4",thumb:"https://embed-ssl.wistia.com/deliveries/11aa7b441e8e7ed85327c17945e6d5449e56632a.jpg"},
+    {n:54,nom:"Romain T.",id:"bj05d7kuhf",thumb:"https://embed-ssl.wistia.com/deliveries/3b77f01962cb525c317aa888d5650d8e7ff1f7f7.jpg"},
+    {n:55,nom:"Julien D.",id:"w4rf12z91v",thumb:"https://embed-ssl.wistia.com/deliveries/a6f0969730ce84dc6459a3167d578aa90cbe5f32.jpg"},
+    {n:56,nom:"Alexandre P.",id:"kgui3v6qoi",thumb:"https://embed-ssl.wistia.com/deliveries/55d47e22f5c74d8f346be1c131a25c65daee2df9.jpg"},
+    {n:57,nom:"Sébastien C.",id:"dqkz1siohj",thumb:"https://embed-ssl.wistia.com/deliveries/d66d1cbf52255d90adbd8f12fbc00cf5ef1d6e37.jpg"},
+    {n:58,nom:"Mathieu G.",id:"jp9pxkcd7b",thumb:"https://embed-ssl.wistia.com/deliveries/802dd2f4d8ecf23fc0e15fe834b2067b359270c4.jpg"},
+    {n:59,nom:"Bastien V.",id:"jggeglhg45",thumb:"https://embed-ssl.wistia.com/deliveries/90202ca0f4f494df0e0efe233b27de1b0086a2f2.jpg"},
+    {n:60,nom:"Theo L.",id:"dmq7xbj3bw",thumb:"https://embed-ssl.wistia.com/deliveries/2036836c7c363287ba623c97b0c60a0a319f588d.jpg"},
+    {n:61,nom:"Arthur N.",id:"quqp0w3htr",thumb:"https://embed-ssl.wistia.com/deliveries/536abbe3c84fdc052f84bb2edda9cfd12c3e3415.jpg"},
+    {n:62,nom:"Paul B.",id:"hzqp2z25sy",thumb:"https://embed-ssl.wistia.com/deliveries/140016412a9a0846d88751482c26ed1968d23b9b.jpg"},
+    {n:63,nom:"Clément H.",id:"7v3ts2fc4d",thumb:"https://embed-ssl.wistia.com/deliveries/2377e761eae735862e8644b9c73280200daa431a.jpg"},
+    {n:64,nom:"Maxence F.",id:"mnu9zo24yc",thumb:"https://embed-ssl.wistia.com/deliveries/bb830bb20b3d620ae06ba04dd7b8d54ad753a310.jpg"},
+    {n:65,nom:"Tom R.",id:"7si6lmqgzq",thumb:"https://embed-ssl.wistia.com/deliveries/18498f2d20e5c5c3feae92413c90fb53abbb6062.jpg"},
+    {n:66,nom:"Nathan S.",id:"a5etrshmpz",thumb:"https://embed-ssl.wistia.com/deliveries/3ecc64e2b12bcd5a43020c0940e6134be89cc7b0.jpg"},
+    {n:67,nom:"Hugo F.",id:"qpnljbh7y2",thumb:"https://embed-ssl.wistia.com/deliveries/277520ab1550742798202004d78e427e05e2d26d.jpg"},
+    {n:68,nom:"Enzo P.",id:"9e6tevdk4t",thumb:"https://embed-ssl.wistia.com/deliveries/8a8e788458cecc00f34be7a0a2f3b295e8d3dda2.jpg"},
+    {n:69,nom:"Léo M.",id:"84qvndi09v",thumb:"https://embed-ssl.wistia.com/deliveries/2948e9e93c1261686b8cf35415d91b0ba0382013.jpg"}
   ];
 
   const grid1 = document.getElementById('testimonialsGrid');
   if (grid1) {
-    grid1.innerHTML = TEMOIGNAGES.map((t, i) => `
-      <div class="testimonial-card" title="${t.nom}">
-        <div class="badge">${String(i+1).padStart(2,'0')} / ${TEMOIGNAGES.length}</div>
+    grid1.innerHTML = TEMOIGNAGES_WISTIA.map((t, i) => `
+      <div class="testimonial-card" data-index="${i}" title="${t.nom}" style="background-image:url('${t.thumb}');">
+        <div class="badge">${String(i+1).padStart(2,'0')} / ${TEMOIGNAGES_WISTIA.length}</div>
         <div class="play"></div>
         <div class="name">${t.nom}</div>
-        <div style="color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4;font-style:italic;">"${t.text}"</div>
       </div>
     `).join('');
+
+    // Charge Wistia E-v1.js si pas déjà
+    if (!document.querySelector('script[src*="E-v1.js"]')) {
+      const e = document.createElement('script');
+      e.src = 'https://fast.wistia.com/assets/external/E-v1.js';
+      e.async = true;
+      document.body.appendChild(e);
+    }
+
+    // Modal témoignage
+    const modal = document.createElement('div');
+    modal.className = 'temoignage-modal';
+    modal.innerHTML = `
+      <div class="temoignage-modal-inner">
+        <button class="temoignage-modal-close" aria-label="Fermer">&times;</button>
+        <div class="temoignage-modal-name" id="modalName"></div>
+        <div class="temoignage-modal-video" id="modalVideo"></div>
+        <a href="#booking-1" class="temoignage-modal-cta">📅 RÉSERVER MON APPEL GRATUIT 0€ →</a>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    function loadWistiaScript(videoId) {
+      if (!document.querySelector('script[src*="' + videoId + '.jsonp"]')) {
+        const s = document.createElement('script');
+        s.src = 'https://fast.wistia.com/embed/medias/' + videoId + '.jsonp';
+        s.async = true;
+        document.body.appendChild(s);
+      }
+    }
+    function openModal(idx) {
+      const t = TEMOIGNAGES_WISTIA[idx];
+      document.getElementById('modalName').textContent = t.nom + ' — Témoignage #' + (idx+1);
+      document.getElementById('modalVideo').innerHTML = `
+        <div class="wistia_responsive_padding" style="padding:177.78% 0 0 0;position:relative;">
+          <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+            <div class="wistia_embed wistia_async_${t.id} videoFoam=true playerColor=ff2e93 autoPlay=true" style="height:100%;position:relative;width:100%"></div>
+          </div>
+        </div>
+      `;
+      loadWistiaScript(t.id);
+      modal.classList.add('active');
+      document.body.classList.add('modal-open');
+    }
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.classList.remove('modal-open');
+      document.getElementById('modalVideo').innerHTML = '';
+    }
+    document.querySelectorAll('.testimonial-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = card.dataset.index;
+        if (idx !== undefined) openModal(parseInt(idx));
+      });
+    });
+    modal.querySelector('.temoignage-modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
   }
 </script>
 
