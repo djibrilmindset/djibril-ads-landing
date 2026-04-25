@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://djibrilmindset.github.io/djibril-ads-landing/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<title>Djibril Landing — RESET ULTRA | 10 000€ en 80 jours</title>
+<title>10 000€ en 80 jours — Sur contrat ou +1 000€ pour toi</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -182,13 +182,80 @@
   .testimonials h2 .pink { color: var(--pink); font-style: italic; }
   .testimonials .sub-italic { font-family: var(--font-serif); font-style: italic; font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted); margin-bottom: 40px; }
   .testimonials-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; max-width: 1100px; margin: 0 auto; }
-  .testimonial-card { aspect-ratio: 9/16; border-radius: 12px; background: #1a1028; background-size: cover; background-position: center; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s ease; }
-  .testimonial-card:hover { transform: scale(1.03); border-color: rgba(255,46,147,0.3); box-shadow: 0 0 30px rgba(255,46,147,0.15); }
-  .testimonial-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none; }
-  .testimonial-card .badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.6); padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; color: #fff; z-index: 2; }
-  .testimonial-card .play { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,46,147,0.85); border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 4px 14px rgba(255,46,147,0.4); display: flex; align-items: center; justify-content: center; z-index: 2; }
-  .testimonial-card .play::after { content: ''; width: 0; height: 0; border-left: 12px solid #fff; border-top: 7px solid transparent; border-bottom: 7px solid transparent; margin-left: 3px; }
-  .testimonial-card .name { position: absolute; bottom: 10px; left: 10px; right: 10px; font-size: 10px; font-weight: 700; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.8); text-align: left; z-index: 2; }
+  /* === CARTES TÉMOIGNAGES — DESIGN v2 (sophistiqué, identique au learning-site) === */
+  .testimonial-card {
+    aspect-ratio: 9/16; border-radius: 14px;
+    background: #1a1028; background-size: cover; background-position: center;
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; cursor: pointer;
+    transition: transform 0.4s cubic-bezier(.2,.8,.2,1), box-shadow 0.4s ease, border-color 0.3s;
+    will-change: transform;
+  }
+  .testimonial-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 55%, rgba(10,4,16,0.85) 100%);
+    pointer-events: none;
+  }
+  .testimonial-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,46,147,0) 0%, rgba(255,46,147,0) 70%, rgba(255,46,147,0.18) 100%);
+    pointer-events: none; opacity: 0; transition: opacity 0.4s;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: rgba(255,46,147,0.5);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.45), 0 0 25px rgba(255,46,147,0.25);
+  }
+  .testimonial-card:hover::after { opacity: 1; }
+  .testimonial-card:hover .play {
+    transform: scale(1.12);
+    box-shadow: 0 6px 22px rgba(255,46,147,0.6), 0 0 0 4px rgba(255,46,147,0.18);
+  }
+  .testimonial-card .badge {
+    position: absolute; top: 10px; left: 10px;
+    padding: 4px 10px; border-radius: 999px;
+    background: rgba(10,4,16,0.7); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-family: 'SF Mono', ui-monospace, Menlo, monospace;
+    font-size: 9.5px; font-weight: 600; letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.92); z-index: 3;
+  }
+  .testimonial-card .stars {
+    position: absolute; top: 10px; right: 10px;
+    padding: 3px 8px; border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255,122,61,0.85), rgba(255,46,147,0.85));
+    font-size: 8.5px; letter-spacing: 0.5px; font-weight: 700; color: #fff; z-index: 3;
+    opacity: 0; transform: translateY(-4px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .testimonial-card:hover .stars { opacity: 1; transform: translateY(0); }
+  .testimonial-card .play {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(255,255,255,0.12); backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255,255,255,0.45);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center; z-index: 3;
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s;
+  }
+  .testimonial-card .play::after {
+    content: ''; width: 0; height: 0;
+    border-left: 13px solid #fff;
+    border-top: 8px solid transparent; border-bottom: 8px solid transparent;
+    margin-left: 4px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+  }
+  .testimonial-card .name {
+    position: absolute; bottom: 10px; left: 10px; right: 10px;
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 12px; font-weight: 600; color: #fff;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+    text-align: left; letter-spacing: 0.01em; z-index: 3;
+  }
+  .testimonial-card .name .dot {
+    display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--cyan); margin-right: 6px; vertical-align: middle;
+    box-shadow: 0 0 6px rgba(126,243,255,0.8);
+  }
   /* Modal témoignages */
   .temoignage-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,4,16,0.95); backdrop-filter: blur(20px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 16px; opacity: 0; transition: opacity 0.3s ease; overflow-y: auto; }
   .temoignage-modal.active { display: flex; opacity: 1; }
@@ -371,8 +438,8 @@
 <section class="hero" style="padding-top:40px;">
   <div class="container">
     <div class="pastille">RDV 1-TO-1 GRATUIT AVEC DJIBRIL</div>
-    <h1>Est-il possible de générer <span class="gradient-num">5 à 10 000€</span> en <span class="kw-power">80 jours</span> grâce à son <span class="kw-mental">mental</span>, et d'<span class="kw-action">oublier ses problèmes</span> jusqu'à la fin de sa vie ?</h1>
-    <p class="hero-sub"><span class="kw-action">Réserve</span> ton appel <span class="kw-power">gratuit</span> juste après la vidéo.</p>
+    <h1><span class="gradient-num">10 000€</span>. <span class="kw-power">80 jours</span>.<br>Sur <span class="kw-action">contrat</span>.</h1>
+    <p class="hero-sub">Si on échoue : <span class="kw-power">remboursé</span> + <span class="kw-mental">1 000€</span> pour ton temps. <span class="kw-action">Zéro risque</span>.</p>
   </div>
 </section>
 
@@ -432,8 +499,9 @@
 <!-- S5 BOOKING #1 -->
 <section class="booking" id="booking-1">
   <div class="container">
-    <div class="pastille" style="margin-bottom:24px;">BOOKING INSTANTANÉ</div>
-    <h2><span class="kw-action">Choisis</span> ton créneau.</h2>
+    <div class="pastille" style="margin-bottom:24px;">BOOKING INSTANTANÉ — <span style="color:var(--cyan);">8 PLACES / SEMAINE</span></div>
+    <h2><span class="kw-action">Choisis</span> ton créneau.<br><span class="pink" style="font-style:italic;">30 minutes. Zéro vente.</span></h2>
+    <p class="sub-italic" style="font-family:var(--font-serif);font-style:italic;font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);margin:8px auto 24px;max-width:600px;">On <span style="color:var(--cyan);">décortique</span> ta situation. Tu repars avec un plan d'action — <span style="color:var(--orange);">qu'on bosse ensemble ou pas</span>.</p>
     <div class="iclosed-wrap">
       <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
     </div>
@@ -647,8 +715,10 @@
   if (grid1) {
     grid1.innerHTML = TEMOIGNAGES_WISTIA.map((t, i) => `
       <div class="testimonial-card" data-index="${i}" style="background-image:url('${t.thumb}');">
-        <div class="badge">${String(i+1).padStart(2,'0')} / ${TEMOIGNAGES_WISTIA.length}</div>
+        <div class="badge">${String(i+1).padStart(2,'0')} / ${String(TEMOIGNAGES_WISTIA.length).padStart(2,'0')}</div>
+        <div class="stars">★★★★★</div>
         <div class="play"></div>
+        <div class="name"><span class="dot"></span>${t.nom}</div>
       </div>
     `).join('');
 
