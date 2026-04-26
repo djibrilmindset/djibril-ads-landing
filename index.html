@@ -544,7 +544,7 @@
 <section class="hero" style="padding-top:40px;">
   <div class="container">
     <div class="pastille">RDV 1-TO-1 GRATUIT AVEC DJIBRIL</div>
-    <h1>Est-il possible de générer <span class="gradient-num">5&nbsp;à&nbsp;10&nbsp;000€</span> en <span class="kw-power">80 jours</span><br>grâce à son <span class="kw-mental">mental</span>, et d'<span class="kw-action">oublier ses problèmes</span> jusqu'à la fin de sa vie ?</h1>
+    <h1><span class="kw-power">Est-il possible</span> de générer <span class="gradient-num">5&nbsp;à&nbsp;10&nbsp;000€</span> en <span class="kw-power">80 jours</span><br>grâce à son <span class="kw-mental">mental</span>, et d'<span class="kw-action">oublier ses problèmes</span> <span class="kw-mental">jusqu'à la fin de sa vie</span> ?</h1>
     <p class="hero-sub">Sur <span class="kw-action">contrat</span>. Si on échoue : <span class="kw-power">remboursé</span> + <span class="kw-mental">1 000€</span> pour ton temps. <span class="kw-action">Zéro risque</span>.</p>
   </div>
 </section>
@@ -937,20 +937,33 @@
 <script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
 (function(){
+  // FORCE SCROLL TO TOP au load (ignorer hash anchor #booking-1 qui faisait sauter en bas)
+  if (window.location.hash) { history.replaceState(null, '', window.location.pathname + window.location.search); }
+  window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0;
+  setTimeout(() => window.scrollTo(0, 0), 50);
+  setTimeout(() => window.scrollTo(0, 0), 200);
+
   const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window) || window.matchMedia('(pointer:coarse)').matches;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isSlowDevice = (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) || (navigator.deviceMemory && navigator.deviceMemory < 4);
+  const lightMode = isMobile || reduceMotion || isSlowDevice;
 
-  if (typeof Lenis !== 'undefined' && !isMobile && !reduceMotion) {
+  // FORCE visibility immediate sur tout (avant GSAP) pour eviter blocage chargement
+  document.querySelectorAll('section, .card, .testimonial-card, .grid-3 > *, .grid-2 > *, .container > div').forEach(el => {
+    el.style.opacity = '1'; el.style.visibility = 'visible';
+  });
+
+  if (typeof Lenis !== 'undefined' && !lightMode) {
     const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
     function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   }
   const cg = document.getElementById('cursorGlow');
-  if (cg && window.matchMedia('(hover:hover)').matches && !isMobile) {
+  if (cg && window.matchMedia("(hover:hover)").matches && !lightMode) {
     document.addEventListener('mousemove', e => { cg.style.left = e.clientX+'px'; cg.style.top = e.clientY+'px'; });
   } else if (cg) { cg.style.display = 'none'; }
 
-  if (!isMobile) {
+  if (!lightMode) {
     document.querySelectorAll('.btn-pill, button').forEach(btn => {
       btn.addEventListener('mousemove', e => {
         const r = btn.getBoundingClientRect();
@@ -960,7 +973,7 @@
     });
   }
 
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !isMobile && !reduceMotion) {
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !lightMode) {
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray('section').forEach(s => {
       gsap.from(s, { opacity:0, y:60, duration:1.2, ease:'power3.out', scrollTrigger:{trigger:s, start:'top 85%', toggleActions:'play none none reverse'} });
@@ -971,7 +984,7 @@
   }
 
   // MOBILE FIX: force visibility
-  if (isMobile) {
+  if (lightMode) {
     document.querySelectorAll('section, .card, .testimonial-card, .grid-3 > *, .grid-2 > *, .container > div').forEach(el => {
       el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none'; el.style.visibility = 'visible';
     });
