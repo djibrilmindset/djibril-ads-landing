@@ -711,13 +711,42 @@
       <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true" style="height:100%;position:relative;width:100%"></div>
+          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true volume=1 endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
         </div>
       </div>
-      <div class="video-overlay">
+      <div class="video-overlay" id="vslSoundOverlay">
         <div class="sound-icon">🔊</div>
         <span>Touche pour activer le son — La vidéo joue déjà</span>
       </div>
+      <script>
+        // Force VSL Wistia to play unmuted from start, restart on refresh, unmute on first user interaction
+        window._wq = window._wq || [];
+        window._wq.push({ id: "rfemp7gpcs", onReady: function(video) {
+          try {
+            video.time(0);          // force restart at 0 on every load
+            video.volume(1.0);      // sound on
+            video.play();           // start
+            // If browser blocks unmuted autoplay, fall back to muted then unmute on interaction
+            setTimeout(function(){
+              if (video.isMuted && video.isMuted()) {
+                video.mute(); video.play();
+              }
+            }, 600);
+            var overlay = document.getElementById('vslSoundOverlay');
+            var unmuteOnce = function() {
+              try { video.unmute(); video.volume(1.0); video.play(); } catch(e){}
+              if (overlay) overlay.style.display = 'none';
+              ['click','touchstart','keydown','scroll'].forEach(function(ev){
+                document.removeEventListener(ev, unmuteOnce, true);
+              });
+            };
+            ['click','touchstart','keydown','scroll'].forEach(function(ev){
+              document.addEventListener(ev, unmuteOnce, true);
+            });
+            if (overlay) overlay.addEventListener('click', unmuteOnce);
+          } catch(e) { console.warn('vsl autoplay setup', e); }
+        }});
+      </script>
     </div>
     <div style="text-align:center;margin-top:20px;">
       <a href="#temoignages" class="btn-pill" style="background:linear-gradient(135deg,#ff2e93,#00d4ff);color:#fff;font-weight:800;">📹 VOIR LES 83+ TÉMOIGNAGES →</a>
