@@ -182,6 +182,19 @@
   .testimonials h2 .pink { color: var(--pink); font-style: italic; }
   .testimonials .sub-italic { font-family: var(--font-serif); font-style: italic; font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted); margin-bottom: 40px; }
   .testimonials-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; max-width: 1100px; margin: 0 auto; }
+  /* v2 (2026-04-26): hide testimonials extras + expand CTA pop color */
+  .testimonial-card.testimonial-hidden { display: none !important; }
+  .testimonials-expand-btn {
+    display: block; margin: 32px auto 0; padding: 16px 36px;
+    font-family: var(--font-display, 'Bricolage Grotesque', sans-serif);
+    font-weight: 800; font-size: 15px; letter-spacing: 1.2px;
+    color: #0a0a0a; background: #FFE600; border: 3px solid #0a0a0a;
+    border-radius: 999px; cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s ease;
+    box-shadow: 4px 4px 0 #0a0a0a;
+  }
+  .testimonials-expand-btn:hover { background: #ff3eb5; color: #fff; transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #0a0a0a; }
+  .testimonials-expand-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #0a0a0a; }
   /* === CARTES TÉMOIGNAGES — DESIGN v2 (sophistiqué, identique au learning-site) === */
   .testimonial-card {
     aspect-ratio: 9/16; border-radius: 14px;
@@ -819,13 +832,27 @@
 
   const grid1 = document.getElementById('testimonialsGrid');
   if (grid1) {
+    // v2 (2026-04-26): show only first 8 + expand CTA pour le reste
+    const TESTIMONIAL_INITIAL_COUNT = 8;
     grid1.innerHTML = TEMOIGNAGES_WISTIA.map((t, i) => `
-      <div class="testimonial-card reveal" data-index="${i}" style="background-image:url('${t.thumb}');">
+      <div class="testimonial-card reveal${i >= TESTIMONIAL_INITIAL_COUNT ? ' testimonial-hidden' : ''}" data-index="${i}" style="background-image:url('${t.thumb}');">
         <div class="badge">${String(i+1).padStart(2,'0')} / ${String(TEMOIGNAGES_WISTIA.length).padStart(2,'0')}</div>
         <div class="stars">★★★★★</div>
         <div class="play"></div>
       </div>
     `).join('');
+
+    // Inject expand CTA button after grid (couleur pop tres differente du reste)
+    if (TEMOIGNAGES_WISTIA.length > TESTIMONIAL_INITIAL_COUNT) {
+      const expandBtn = document.createElement('button');
+      expandBtn.className = 'testimonials-expand-btn';
+      expandBtn.innerHTML = `VOIR LES ${TEMOIGNAGES_WISTIA.length - TESTIMONIAL_INITIAL_COUNT}+ TÉMOIGNAGES ↓`;
+      expandBtn.onclick = function () {
+        grid1.querySelectorAll('.testimonial-hidden').forEach(c => c.classList.remove('testimonial-hidden'));
+        expandBtn.style.display = 'none';
+      };
+      grid1.parentNode.insertBefore(expandBtn, grid1.nextSibling);
+    }
 
     // Charge Wistia E-v1.js si pas déjà
     if (!document.querySelector('script[src*="E-v1.js"]')) {
