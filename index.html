@@ -573,7 +573,52 @@
   ::-webkit-scrollbar { width:6px; }
   ::-webkit-scrollbar-track { background:transparent; }
   ::-webkit-scrollbar-thumb { background:linear-gradient(180deg, rgba(255,46,147,0.4), rgba(0,212,255,0.4)); border-radius:3px; }
+
+  /* ============================================================
+     LIGHT THEME OVERRIDE (Brief Djibril 26-04 19:24)
+     Fond blanc, ecriture blanche -> noire, GARDE couleurs intactes
+     ============================================================ */
+  :root {
+    --bg: #ffffff;
+    --bg-2: #f6f4f9;
+    --text: #0a0410;
+    --muted: #5a4d70;
+  }
+  body { background: var(--bg); color: var(--text); }
+  header, header#header { background: rgba(255,255,255,0.92) !important; border-bottom: 1px solid rgba(10,4,16,0.08) !important; }
+  .wordmark .djibril { color: var(--text) !important; }
+  [class*="card"], section { background-color: var(--bg); }
+  .glass, .panel, .pill, .testimonial-card, .feature-card, .stat-card,
+  [class*="glass"], [class*="panel"], [class*="card"]:not(.brand-pill):not(.iridescent-pill) {
+    border-color: rgba(10,4,16,0.10) !important;
+  }
+  .glass, .panel, .testimonial-card, .feature-card, .stat-card,
+  [class*="testimonial"], [class*="feature"]:not(.feature-pill) {
+    background: rgba(10,4,16,0.025) !important;
+  }
+  .cta, .btn-cta, [class*="cta-solid"] { color: #ffffff !important; }
+  footer { background: var(--bg) !important; border-top: 1px solid rgba(10,4,16,0.10) !important; color: var(--text); }
+  .grain, [class*="grain"], [class*="noise"] { opacity: 0.04; mix-blend-mode: multiply; }
+  .photo-caption, [class*="overlay-bottom"] {
+    background: linear-gradient(transparent, rgba(255,255,255,0.92)) !important;
+    color: var(--text);
+  }
+  .matrix, .comparison, table { background: var(--bg-2) !important; color: var(--text); }
+  th, td { border-color: rgba(10,4,16,0.10) !important; }
+  .modal, .popup, [class*="modal-bg"] { background: rgba(10,4,16,0.45) !important; }
+  .modal-content, .popup-content { background: var(--bg); color: var(--text); }
+  ::selection { background: rgba(255,46,147,0.3); color: var(--text); }
 </style>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    const hdr = document.getElementById('header');
+    if (!hdr) return;
+    window.addEventListener('scroll', function(){
+      const y = window.scrollY || 0;
+      hdr.style.background = y > 50 ? 'rgba(255,255,255,0.96)' : 'rgba(255,255,255,0.92)';
+    }, { passive: true });
+  });
+</script>
 </head>
 <body>
 
