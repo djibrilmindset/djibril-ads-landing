@@ -495,8 +495,19 @@
   }
   .btn-pill:hover, button:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 12px 40px rgba(255,46,147,0.25); }
 
-  section { animation:fadeRise 1s ease-out backwards; }
-  @keyframes fadeRise { from{opacity:0; transform:translateY(30px); filter:blur(8px);} to{opacity:1; transform:translateY(0); filter:blur(0);} }
+  /* Desktop only animations */
+  @media (min-width:769px) and (hover:hover) {
+    section { animation:fadeRise 1s ease-out backwards; }
+    @keyframes fadeRise { from{opacity:0; transform:translateY(30px); filter:blur(8px);} to{opacity:1; transform:translateY(0); filter:blur(0);} }
+  }
+  /* Mobile: force tout visible */
+  @media (max-width:768px), (pointer:coarse) {
+    section, .container > div, .card { opacity:1 !important; transform:none !important; filter:none !important; animation:none !important; }
+    body::before { animation:none !important; opacity:0.2 !important; }
+    body::after { opacity:0.02 !important; }
+    .cursor-glow { display:none !important; }
+    .hero h1 { animation:none !important; -webkit-text-fill-color:#fff !important; background:none !important; color:#fff !important; }
+  }
 
   .hero h1 {
     background-image:linear-gradient(110deg, var(--text-primary,#fff) 30%, rgba(255,46,147,0.6) 50%, var(--text-primary,#fff) 70%);
@@ -926,29 +937,43 @@
 <script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
 (function(){
-  if (typeof Lenis !== 'undefined') {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window) || window.matchMedia('(pointer:coarse)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (typeof Lenis !== 'undefined' && !isMobile && !reduceMotion) {
     const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
     function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   }
   const cg = document.getElementById('cursorGlow');
-  if (cg && window.matchMedia('(hover:hover)').matches) {
+  if (cg && window.matchMedia('(hover:hover)').matches && !isMobile) {
     document.addEventListener('mousemove', e => { cg.style.left = e.clientX+'px'; cg.style.top = e.clientY+'px'; });
-  }
-  document.querySelectorAll('.btn-pill, button').forEach(btn => {
-    btn.addEventListener('mousemove', e => {
-      const r = btn.getBoundingClientRect();
-      btn.style.transform = `translate(${(e.clientX - r.left - r.width/2)*0.15}px, ${(e.clientY - r.top - r.height/2)*0.15}px)`;
+  } else if (cg) { cg.style.display = 'none'; }
+
+  if (!isMobile) {
+    document.querySelectorAll('.btn-pill, button').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        btn.style.transform = `translate(${(e.clientX - r.left - r.width/2)*0.15}px, ${(e.clientY - r.top - r.height/2)*0.15}px)`;
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
-    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
-  });
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  }
+
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !isMobile && !reduceMotion) {
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray('section').forEach(s => {
       gsap.from(s, { opacity:0, y:60, duration:1.2, ease:'power3.out', scrollTrigger:{trigger:s, start:'top 85%', toggleActions:'play none none reverse'} });
     });
     gsap.utils.toArray('.card, .testimonial-card, .grid-3 > *, .grid-2 > *').forEach((el, i) => {
       gsap.from(el, { opacity:0, y:40, duration:0.8, delay:i*0.05, ease:'power2.out', scrollTrigger:{trigger:el, start:'top 90%'} });
+    });
+  }
+
+  // MOBILE FIX: force visibility
+  if (isMobile) {
+    document.querySelectorAll('section, .card, .testimonial-card, .grid-3 > *, .grid-2 > *, .container > div').forEach(el => {
+      el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none'; el.style.visibility = 'visible';
     });
   }
 })();
