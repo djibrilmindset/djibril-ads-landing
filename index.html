@@ -592,9 +592,14 @@
   [class*="glass"], [class*="panel"], [class*="card"]:not(.brand-pill):not(.iridescent-pill) {
     border-color: rgba(10,4,16,0.10) !important;
   }
-  .glass, .panel, .testimonial-card, .feature-card, .stat-card,
-  [class*="testimonial"], [class*="feature"]:not(.feature-pill) {
-    background: rgba(10,4,16,0.025) !important;
+  /* IMPORTANT: background-COLOR (pas background) pour preserver
+     les background-image inline (Wistia testimonial thumbs) */
+  .glass, .panel, .feature-card, .stat-card,
+  [class*="feature"]:not(.feature-pill) {
+    background-color: rgba(10,4,16,0.025) !important;
+  }
+  .testimonial-card, [class*="testimonial-card"] {
+    border: 1px solid rgba(10,4,16,0.10) !important;
   }
   .cta, .btn-cta, [class*="cta-solid"] { color: #ffffff !important; }
   footer { background: var(--bg) !important; border-top: 1px solid rgba(10,4,16,0.10) !important; color: var(--text); }
@@ -608,6 +613,51 @@
   .modal, .popup, [class*="modal-bg"] { background: rgba(10,4,16,0.45) !important; }
   .modal-content, .popup-content { background: var(--bg); color: var(--text); }
   ::selection { background: rgba(255,46,147,0.3); color: var(--text); }
+
+  /* ============================================================
+     READABILITY FIX (Brief 26-04 19:42)
+     Disable shimmer h1 + kw-mute pour mots non-impactants
+     Garde couleur SEULEMENT: possible, 5 a 10 000 euros, mental, jusqu'a la fin de sa vie
+     ============================================================ */
+  .hero h1, .hero h1::after, .hero h1::before { animation: none !important; }
+  .hero h1 {
+    -webkit-text-fill-color: var(--text) !important;
+    color: var(--text) !important;
+    background: none !important;
+    background-clip: initial !important;
+    -webkit-background-clip: initial !important;
+  }
+  .hero h1 .kw-mental, .hero h1 .gradient-num {
+    background: linear-gradient(135deg, var(--pink) 0%, var(--cyan) 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    font-weight: 700 !important;
+  }
+  .hero h1 .kw-power, h1 .kw-power {
+    color: var(--cyan) !important;
+    -webkit-text-fill-color: var(--cyan) !important;
+    font-weight: 700 !important;
+    background: none !important;
+    text-shadow: 0 0 20px rgba(126,243,255,0.3);
+  }
+  .hero h1 .kw-action, h1 .kw-action {
+    color: var(--orange) !important;
+    -webkit-text-fill-color: var(--orange) !important;
+    font-weight: 700 !important;
+    background: none !important;
+  }
+  .kw-mute {
+    color: var(--text) !important;
+    -webkit-text-fill-color: var(--text) !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    font-weight: inherit !important;
+    text-shadow: none !important;
+    font-style: normal !important;
+  }
 </style>
 <script>
   document.addEventListener('DOMContentLoaded', function(){
@@ -640,7 +690,7 @@
 <section class="hero" style="padding-top:40px;">
   <div class="container">
     <div class="pastille">RDV 1-TO-1 GRATUIT AVEC DJIBRIL</div>
-    <h1><span class="kw-power">Est-il possible</span> de générer <span class="gradient-num">5&nbsp;à&nbsp;10&nbsp;000€</span> en <span class="kw-power">80 jours</span><br>grâce à son <span class="kw-mental">mental</span>, et d'<span class="kw-action">oublier ses problèmes</span> <span class="kw-mental">jusqu'à la fin de sa vie</span> ?</h1>
+    <h1><span class="kw-power">Est-il possible</span> de générer <span class="gradient-num">5&nbsp;à&nbsp;10&nbsp;000€</span> en <span class="kw-mute">80 jours</span><br>grâce à son <span class="kw-mental">mental</span>, et d'<span class="kw-mute">oublier ses problèmes</span> <span class="kw-mental">jusqu'à la fin de sa vie</span> ?</h1>
     <p class="hero-sub">Sur <span class="kw-action">contrat</span>. Si on échoue : <span class="kw-power">remboursé</span> + <span class="kw-mental">1 000€</span> pour ton temps. <span class="kw-action">Zéro risque</span>.</p>
   </div>
 </section>
