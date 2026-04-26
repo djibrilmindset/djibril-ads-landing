@@ -467,6 +467,50 @@
     .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
     body::before, .hero h1::after { animation: none !important; }
   }
+
+  /* ============ NICHE 3.0 UPGRADE (2026-04-26) ============ */
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Geist+Mono:wght@100..900&display=swap');
+
+  body::after {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.04; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1, 0 0 0 0 1, 0 0 0 0 1, 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:0.4;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,46,147,0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(0,212,255,0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(153,69,255,0.08) 0%, transparent 60%);
+    animation: meshShift 30s ease-in-out infinite alternate;
+  }
+  @keyframes meshShift { 0%{transform:scale(1) translate(0,0);} 50%{transform:scale(1.1) translate(2%,1%);} 100%{transform:scale(1.05) translate(-1%,-2%);} }
+
+  h1, .hero h1 { font-family:'Bricolage Grotesque', 'Sora', sans-serif !important; font-weight:600 !important; letter-spacing:-0.02em !important; line-height:1.05 !important; }
+  .pastille { font-family:'Geist Mono','JetBrains Mono', monospace !important; letter-spacing:0.05em; font-size:11px !important; }
+  blockquote, .quote, .testimonial-text { font-family:'EB Garamond', serif !important; font-style:italic; }
+
+  .btn-pill, button, [class*="btn"] {
+    transition:transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s !important; will-change:transform;
+  }
+  .btn-pill:hover, button:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 12px 40px rgba(255,46,147,0.25); }
+
+  section { animation:fadeRise 1s ease-out backwards; }
+  @keyframes fadeRise { from{opacity:0; transform:translateY(30px); filter:blur(8px);} to{opacity:1; transform:translateY(0); filter:blur(0);} }
+
+  .hero h1 {
+    background-image:linear-gradient(110deg, var(--text-primary,#fff) 30%, rgba(255,46,147,0.6) 50%, var(--text-primary,#fff) 70%);
+    background-size:200% 100%; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    animation:shimmer 6s ease-in-out infinite;
+  }
+  @keyframes shimmer { 0%,100%{background-position:200% 50%;} 50%{background-position:0% 50%;} }
+
+  .cursor-glow { position:fixed; width:280px; height:280px; pointer-events:none; background:radial-gradient(circle, rgba(255,46,147,0.12), transparent 70%); border-radius:50%; transform:translate(-50%,-50%); z-index:1; opacity:0; mix-blend-mode:plus-lighter; }
+  @media (hover:hover) { .cursor-glow { opacity:1; } }
+
+  ::-webkit-scrollbar { width:6px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:linear-gradient(180deg, rgba(255,46,147,0.4), rgba(0,212,255,0.4)); border-radius:3px; }
 </style>
 </head>
 <body>
@@ -875,5 +919,39 @@
   })();
 </script>
 
+<!-- ============ NICHE 3.0 JS UPGRADE (2026-04-26) ============ -->
+<div class="cursor-glow" id="cursorGlow"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+(function(){
+  if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
+  const cg = document.getElementById('cursorGlow');
+  if (cg && window.matchMedia('(hover:hover)').matches) {
+    document.addEventListener('mousemove', e => { cg.style.left = e.clientX+'px'; cg.style.top = e.clientY+'px'; });
+  }
+  document.querySelectorAll('.btn-pill, button').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      btn.style.transform = `translate(${(e.clientX - r.left - r.width/2)*0.15}px, ${(e.clientY - r.top - r.height/2)*0.15}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('section').forEach(s => {
+      gsap.from(s, { opacity:0, y:60, duration:1.2, ease:'power3.out', scrollTrigger:{trigger:s, start:'top 85%', toggleActions:'play none none reverse'} });
+    });
+    gsap.utils.toArray('.card, .testimonial-card, .grid-3 > *, .grid-2 > *').forEach((el, i) => {
+      gsap.from(el, { opacity:0, y:40, duration:0.8, delay:i*0.05, ease:'power2.out', scrollTrigger:{trigger:el, start:'top 90%'} });
+    });
+  }
+})();
+</script>
 </body>
 </html>
