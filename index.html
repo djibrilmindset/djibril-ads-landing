@@ -1111,7 +1111,7 @@ header, section, footer, main, .container, .header-inner { position: relative; z
 .kw-power,span.kw-power,h1 .kw-power,.hero h1 .kw-power,.hero-sub .kw-power{font-family:'JetBrains Mono',ui-monospace,monospace!important;font-style:normal!important;font-weight:600!important;font-size:0.78em!important;letter-spacing:0.1em!important;text-transform:uppercase!important;color:#e85d2c!important;-webkit-text-fill-color:#e85d2c!important;background:none!important;-webkit-background-clip:initial!important;background-clip:initial!important;text-shadow:none!important;border-bottom:1.5px solid #e85d2c!important;padding:0 3px 1px!important}
 .kw-action,span.kw-action,h1 .kw-action,.hero h1 .kw-action,.hero-sub .kw-action{font-family:'Playfair Display','Times New Roman',serif!important;font-style:normal!important;font-weight:900!important;color:#c73e1a!important;-webkit-text-fill-color:#c73e1a!important;background:none!important;-webkit-background-clip:initial!important;background-clip:initial!important;text-shadow:1.5px 1.5px 0 rgba(199,62,26,0.18)!important}
 .kw-mental,span.kw-mental,h1 .kw-mental,.hero h1 .kw-mental{font-family:'Instrument Serif','Playfair Display',Georgia,serif!important;font-style:italic!important;font-weight:400!important;color:#6b3a4f!important;-webkit-text-fill-color:#6b3a4f!important;background:linear-gradient(transparent 88%,rgba(107,58,79,0.5) 88%,rgba(107,58,79,0.5) 95%,transparent 95%)!important;padding:0 3px!important;text-shadow:none!important}
-.kw-mute,span.kw-mute{font-family:'Instrument Serif',Georgia,serif!important;font-style:italic!important;color:rgba(58,50,44,0.65)!important;-webkit-text-fill-color:rgba(58,50,44,0.65)!important;background:none!important;font-weight:400!important;text-shadow:none!important}
+.kw-mute,span.kw-mute{font-family:'Instrument Serif',Georgia,serif!important;font-style:italic!important;color:rgba(26,22,20,0.85)!important;-webkit-text-fill-color:rgba(26,22,20,0.85)!important;background:none!important;font-weight:400!important;text-shadow:none!important}
 section h2{font-family:'Instrument Serif',Georgia,serif!important;font-weight:400!important;font-style:italic!important;color:#1a1614!important;font-size:clamp(1.2rem,2.6vw,2rem)!important}
 section h2 .pink{color:#c73e1a!important;-webkit-text-fill-color:#c73e1a!important;font-family:'Playfair Display',Georgia,serif!important;font-style:normal!important;font-weight:900!important;background:none!important}
 a[href*="djibril-ads-landing"]{font-family:'JetBrains Mono',ui-monospace,monospace!important;font-weight:600!important;font-size:11px!important;letter-spacing:0.16em!important;text-transform:uppercase!important;background:#f3ecdf!important;background-image:none!important;color:#1a1614!important;border:1.5px solid #1a1614!important;border-radius:0!important;padding:14px 26px!important;position:relative!important;box-shadow:4px 4px 0 #c73e1a!important;text-shadow:none!important;overflow:visible!important;display:inline-block!important}
@@ -1169,7 +1169,7 @@ section h2{font-size:clamp(2rem,4.8vw,3.6rem)!important;line-height:1.12!importa
   padding:0 4px!important;text-shadow:none!important
 }
 .kw-mute,span.kw-mute{
-  color:rgba(58,50,44,0.6)!important;-webkit-text-fill-color:rgba(58,50,44,0.6)!important;
+  color:rgba(26,22,20,0.85)!important;-webkit-text-fill-color:rgba(26,22,20,0.85)!important;
   font-family:'Instrument Serif',Georgia,serif!important;font-style:italic!important;
   background:none!important;font-weight:400!important;text-shadow:none!important
 }
@@ -1179,6 +1179,13 @@ section h2{font-size:clamp(2rem,4.8vw,3.6rem)!important;line-height:1.12!importa
   font-weight:500!important;font-style:normal!important;
   background:rgba(29,138,111,0.13)!important;
   padding:1px 6px!important;border-radius:2px!important;letter-spacing:-0.01em!important
+}
+/* gradient-num DARK pour lisibilité sur fond clair (5000€ etc) */
+.gradient-num,h1 .gradient-num,.hero h1 .gradient-num{
+  background:linear-gradient(135deg,#c71e6b 0%,#1a6b8a 100%)!important;
+  -webkit-background-clip:text!important;background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;color:transparent!important;
+  font-weight:900!important;text-shadow:none!important
 }
 
 /* h2 .pink — varier en fonction du paragraphe (1er=magenta, 2e=indigo, 3e=jade, 4e=ocre, 5e=bordeaux) */
@@ -1244,11 +1251,16 @@ header,section,footer,main,.container,.header-inner,.hero,.video-section,
   box-shadow:0 0 0 3px rgba(243,236,223,0.7)!important
 }
 
-/* 5. Vidéos & cards : voile derrière pour faire ressortir */
-.video-wrapper, .testimonial-card, .compilation-video-wrapper{
+/* 5. Vidéos & cards : voile derrière pour faire ressortir (PRESERVE background-image des témoignages) */
+.video-wrapper, .compilation-video-wrapper{
   background:rgba(243,236,223,0.4)!important;
   backdrop-filter:blur(2px) saturate(1.05)!important;
   -webkit-backdrop-filter:blur(2px) saturate(1.05)!important
+}
+.testimonial-card{
+  background-color:rgba(243,236,223,0.25)!important;
+  border:2px solid rgba(26,22,20,0.25)!important;
+  box-shadow:0 0 0 1px rgba(26,22,20,0.15)!important
 }
 
 /* 6. Pastilles & CTA : fond plein pour lisibilité */
