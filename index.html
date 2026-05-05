@@ -3,14 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="description" content="10 000€ en 80 jours — Garanti sur contrat. On te forge le <span class="accent">mental</span> pour devenir <span class="accent">autonome</span> et <span class="accent">autosuffisant</span>.">
-<meta property="og:title" content="10 000€ en 80 jours — Garanti sur contrat">
-<meta property="og:description" content="On te forge le mental pour devenir autonome. Remboursement + 1000€ si on y arrive pas.">
-<meta property="og:image" content="https://djibrilmindset.github.io/djibril-ads-landing/og-image.png">
+<meta name="description" content="5 000€ en 90 jours en changeant ton mental pour être libre — Garanti sur contrat.">
+<meta property="og:title" content="Est-il possible de générer 5 000€ en 90 jours grâce à son mental ?">
+<meta property="og:description" content="On te forge le mental pour générer 5 000€ en 90 jours. Remboursement + 1 000€ si on y arrive pas.">
+<meta property="og:image" content="https://djibrilmindset.github.io/djibril-ads-landing/og-image-ig.png">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
+<meta property="og:image:alt" content="5 000€ en 90 jours grâce à son mental - VOIR LE CONTRAT">
+<meta property="og:image:secure_url" content="https://djibrilmindset.github.io/djibril-ads-landing/og-image-ig.png">
 <meta property="og:url" content="https://djibrilmindset.github.io/djibril-ads-landing/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Djibril Mindset">
 <meta name="twitter:card" content="summary_large_image">
-<title>Djibril Landing — RESET ULTRA | 10 000€ en 80 jours</title>
+<meta name="twitter:image" content="https://djibrilmindset.github.io/djibril-ads-landing/og-image-ig.png">
+<meta name="twitter:title" content="5 000€ en 90 jours grâce à son mental ?">
+<meta name="twitter:description" content="Mental neuf, contrat garanti. Sinon : remboursé + 1000€ pour ton temps.">
+<title>Est-il possible de générer 5 000€ en 90 jours grâce à son mental ?</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -50,17 +58,55 @@
     z-index: -1;
   }
 
-  /* Logo */
+  /* v2 (2026-04-26): Logo Capsule 3D iridescente realiste + motion (memes couleurs brand) */
   .logo-capsule {
+    position: relative;
     width: 32px; height: 18px; border-radius: 999px;
-    background: var(--gradient-logo);
-    box-shadow: 0 0 20px rgba(255,122,61,.6), 0 0 40px rgba(255,46,147,.4);
-    transform: rotate(-25deg);
-    animation: pulse 2s ease-in-out infinite;
+    background:
+      radial-gradient(ellipse at 30% 30%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.2) 18%, transparent 38%),
+      radial-gradient(ellipse at 70% 70%, rgba(255,46,147,0.6) 0%, transparent 50%),
+      linear-gradient(135deg, #ff3d3d 0%, #ff7a3d 50%, #ff2e93 100%);
+    box-shadow:
+      inset 0 -3px 5px rgba(0,0,0,0.35),
+      inset 0 1.5px 2px rgba(255,255,255,0.5),
+      0 0 18px rgba(255,122,61,.6),
+      0 0 40px rgba(255,46,147,.45);
+    animation: capsule-float 4s ease-in-out infinite, capsule-spin 8s linear infinite;
     display: inline-block;
     vertical-align: middle;
     margin-right: 10px;
+    transform-style: preserve-3d;
   }
+  .logo-capsule::before {
+    content: ''; position: absolute;
+    top: 1px; left: 4px; width: 60%; height: 35%;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.05));
+    filter: blur(0.6px);
+    pointer-events: none;
+  }
+  .logo-capsule::after {
+    content: ''; position: absolute; inset: 0;
+    border-radius: 999px;
+    background: linear-gradient(115deg, transparent 30%, rgba(0,212,255,0.3) 45%, transparent 60%);
+    mix-blend-mode: screen;
+    animation: capsule-iris 3s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  @keyframes capsule-float {
+    0%, 100% { transform: translateY(0) rotate(-25deg); }
+    50% { transform: translateY(-3px) rotate(-22deg); }
+  }
+  @keyframes capsule-spin {
+    0% { filter: brightness(1) hue-rotate(0deg); }
+    50% { filter: brightness(1.25) drop-shadow(0 0 12px var(--pink)) hue-rotate(15deg); }
+    100% { filter: brightness(1) hue-rotate(0deg); }
+  }
+  @keyframes capsule-iris {
+    0% { transform: translateX(-30%); opacity: 0.4; }
+    100% { transform: translateX(30%); opacity: 0.9; }
+  }
+  /* legacy keyframes kept for backward compat */
   @keyframes pulse {
     0%,100%{filter:brightness(1)}
     50%{filter:brightness(1.3) drop-shadow(0 0 15px var(--pink))}
@@ -129,7 +175,7 @@
   }
   h1 {
     font-family: var(--font-serif); font-weight: 900;
-    font-size: clamp(2.2rem, 6vw, 5.5rem); line-height: 1.05;
+    font-size: clamp(20px, 4vw, 32px); line-height: 1.25;
     color: var(--text); margin-bottom: 24px;
   }
   h1 .gradient-num {
@@ -182,26 +228,111 @@
   .testimonials h2 .pink { color: var(--pink); font-style: italic; }
   .testimonials .sub-italic { font-family: var(--font-serif); font-style: italic; font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted); margin-bottom: 40px; }
   .testimonials-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; max-width: 1100px; margin: 0 auto; }
-  .testimonial-card { aspect-ratio: 9/16; border-radius: 12px; background: #1a1028; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s ease; }
-  .testimonial-card:hover { transform: scale(1.03); border-color: rgba(255,46,147,0.3); box-shadow: 0 0 30px rgba(255,46,147,0.15); }
-  .testimonial-card .badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.6); padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; color: var(--muted); }
-  .testimonial-card .play { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); }
-  .testimonial-card .play::after { content: ''; width: 0; height: 0; border-left: 12px solid rgba(255,255,255,0.9); border-top: 7px solid transparent; border-bottom: 7px solid transparent; margin-left: 3px; }
-  .testimonial-card .name { position: absolute; bottom: 10px; left: 10px; right: 10px; font-size: 10px; font-weight: 600; color: var(--muted); text-align: left; }
-  .testimonial-card .avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 700; margin-bottom: 8px;
-    transition: transform 0.3s ease;
+  /* v2 (2026-04-26): hide testimonials extras + expand CTA pop color */
+  .testimonial-card.testimonial-hidden { display: none !important; }
+  .testimonials-expand-btn {
+    display: block; margin: 32px auto 0; padding: 16px 36px;
+    font-family: var(--font-display, 'Bricolage Grotesque', sans-serif);
+    font-weight: 800; font-size: 15px; letter-spacing: 1.2px;
+    color: #0a0a0a; background: #FFE600; border: 3px solid #0a0a0a;
+    border-radius: 999px; cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s ease;
+    box-shadow: 4px 4px 0 #0a0a0a;
   }
-  .testimonial-card:hover .avatar { transform: scale(1.1); }
-  .testimonial-card .quote {
-    position: absolute; bottom: 28px; left: 10px; right: 10px;
-    color: var(--muted); font-size: 10px; line-height: 1.35;
-    font-style: italic; text-align: left;
-    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
-    overflow: hidden;
+  .testimonials-expand-btn:hover { background: #ff3eb5; color: #fff; transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #0a0a0a; }
+  .testimonials-expand-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #0a0a0a; }
+  /* === CARTES TÉMOIGNAGES — DESIGN v2 (sophistiqué, identique au learning-site) === */
+  .testimonial-card {
+    aspect-ratio: 9/16; border-radius: 14px;
+    background: #1a1028; background-size: cover; background-position: center 22%;
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; cursor: pointer;
+    transition: transform 0.55s cubic-bezier(.2,.8,.2,1), box-shadow 0.55s ease, border-color 0.3s, background-position 6s ease;
+    will-change: transform, background-position;
   }
+  .testimonial-card:hover { background-position: center 30%; }
+  .testimonial-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 55%, rgba(10,4,16,0.85) 100%);
+    pointer-events: none;
+  }
+  .testimonial-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,46,147,0) 0%, rgba(255,46,147,0) 70%, rgba(255,46,147,0.18) 100%);
+    pointer-events: none; opacity: 0; transition: opacity 0.4s;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: rgba(255,46,147,0.5);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.45), 0 0 25px rgba(255,46,147,0.25);
+  }
+  .testimonial-card:hover::after { opacity: 1; }
+  .testimonial-card:hover .play {
+    transform: scale(1.12);
+    box-shadow: 0 6px 22px rgba(255,46,147,0.6), 0 0 0 4px rgba(255,46,147,0.18);
+  }
+  .testimonial-card .badge {
+    position: absolute; top: 10px; left: 10px;
+    padding: 4px 10px; border-radius: 999px;
+    background: rgba(10,4,16,0.7); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-family: 'SF Mono', ui-monospace, Menlo, monospace;
+    font-size: 9.5px; font-weight: 600; letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.92); z-index: 3;
+  }
+  .testimonial-card .stars {
+    position: absolute; top: 10px; right: 10px;
+    padding: 3px 8px; border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255,122,61,0.85), rgba(255,46,147,0.85));
+    font-size: 8.5px; letter-spacing: 0.5px; font-weight: 700; color: #fff; z-index: 3;
+    opacity: 0; transform: translateY(-4px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .testimonial-card:hover .stars { opacity: 1; transform: translateY(0); }
+  .testimonial-card .play {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(255,255,255,0.12); backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255,255,255,0.45);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center; z-index: 3;
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s;
+  }
+  .testimonial-card .play::after {
+    content: ''; width: 0; height: 0;
+    border-left: 13px solid #fff;
+    border-top: 8px solid transparent; border-bottom: 8px solid transparent;
+    margin-left: 4px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+  }
+  .testimonial-card .name {
+    position: absolute; bottom: 10px; left: 10px; right: 10px;
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 12px; font-weight: 600; color: #fff;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+    text-align: left; letter-spacing: 0.01em; z-index: 3;
+  }
+  .testimonial-card .name .dot {
+    display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--cyan); margin-right: 6px; vertical-align: middle;
+    box-shadow: 0 0 6px rgba(126,243,255,0.8);
+  }
+  /* Modal témoignages */
+  .temoignage-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,4,16,0.95); backdrop-filter: blur(20px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 16px; opacity: 0; transition: opacity 0.3s ease; overflow-y: auto; }
+  .temoignage-modal.active { display: flex; opacity: 1; }
+  body.modal-open { overflow: hidden; }
+  .temoignage-modal-inner { background: linear-gradient(135deg, #1a1028 0%, #120820 100%); border: 1px solid rgba(255,46,147,0.25); border-radius: 18px; max-width: 380px; width: 100%; padding: 56px 16px 20px; text-align: center; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.6); margin: auto; }
+  .temoignage-modal-close { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; font-size: 28px; line-height: 1; color: #fff; cursor: pointer; background: rgba(255,46,147,0.18); border: 1px solid rgba(255,46,147,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; }
+  .temoignage-modal-close:hover, .temoignage-modal-close:active { background: var(--pink); transform: scale(1.05); }
+  .temoignage-modal-name { font-family: var(--font-serif); font-weight: 700; font-size: 18px; margin-bottom: 14px; color: var(--text); }
+  .temoignage-modal-video { margin: 0 auto 16px; border-radius: 12px; overflow: hidden; }
+  .temoignage-modal-cta { margin-top: 8px; padding: 14px 28px; border-radius: 999px; background: var(--gradient-cta); color: var(--bg); font-weight: 700; font-size: 13px; text-decoration: none; display: inline-block; transition: transform 0.2s; }
+  .temoignage-modal-cta:hover { transform: translateY(-2px); }
+  @media (max-width: 480px) { .temoignage-modal { padding: 8px; } .temoignage-modal-inner { padding: 52px 10px 16px; max-width: 100%; } }
+  /* Mots-clés alternés */
+  .kw-mental { background: linear-gradient(135deg, var(--pink) 0%, var(--cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+  .kw-power { color: var(--cyan); font-weight: 700; text-shadow: 0 0 20px rgba(126,243,255,0.3); }
+  .kw-action { color: var(--orange); font-weight: 700; text-shadow: 0 0 20px rgba(255,122,61,0.3); }
+  .kw-proof { color: var(--pink); font-weight: 700; text-shadow: 0 0 20px rgba(255,46,147,0.3); }
   @media (max-width: 1024px) { .testimonials-grid { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 768px) { .testimonials-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; } }
   @media (max-width: 480px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; } }
@@ -345,6 +476,837 @@
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  /* === REVEAL on scroll === */
+  .reveal { opacity: 0; transform: translateY(28px) scale(0.985); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0) scale(1); }
+
+  /* === GRADIENT MESH BACKGROUND animated === */
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(circle at 14% 10%, rgba(255,46,147,0.10) 0%, transparent 36%),
+      radial-gradient(circle at 86% 12%, rgba(126,243,255,0.08) 0%, transparent 38%),
+      radial-gradient(circle at 50% 92%, rgba(255,122,61,0.07) 0%, transparent 42%);
+    animation: meshDrift 26s ease-in-out infinite alternate;
+  }
+  @keyframes meshDrift {
+    0%   { transform: translate3d(0,0,0) scale(1); }
+    100% { transform: translate3d(-2%, 2%, 0) scale(1.06); }
+  }
+
+  /* === HERO H1 SHEEN === */
+  .hero h1 { position: relative; }
+  .hero h1::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.18) 50%, transparent 65%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent; pointer-events: none;
+    animation: sheen 5s ease-in-out 0.6s infinite;
+  }
+  @keyframes sheen {
+    0% { background-position: 200% 0; }
+    60%, 100% { background-position: -50% 0; }
+  }
+
+  /* === NUMBERS BLOCK refonte sophistiquee === */
+  .numbers-block { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 28px 0; }
+  .numbers-block .num-cell {
+    padding: 18px 14px; border-radius: 14px;
+    background: linear-gradient(160deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+    border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px);
+    text-align: center; transition: transform 0.4s cubic-bezier(.2,.8,.2,1), border-color 0.3s, box-shadow 0.4s;
+  }
+  .numbers-block .num-cell:hover { transform: translateY(-4px); border-color: rgba(255,46,147,0.4); box-shadow: 0 14px 32px rgba(0,0,0,0.35), 0 0 18px rgba(255,46,147,0.18); }
+  .numbers-block .num-big { font-family: var(--font-display, 'Playfair Display', serif); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700;
+    background: linear-gradient(135deg, var(--pink) 0%, var(--cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .numbers-block .num-label { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    body::before, .hero h1::after { animation: none !important; }
+  }
+
+  /* ============ NICHE 3.0 UPGRADE (2026-04-26) ============ */
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Geist+Mono:wght@100..900&display=swap');
+
+  body::after {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.04; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1, 0 0 0 0 1, 0 0 0 0 1, 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:0.4;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,46,147,0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(0,212,255,0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(153,69,255,0.08) 0%, transparent 60%);
+    animation: meshShift 30s ease-in-out infinite alternate;
+  }
+  @keyframes meshShift { 0%{transform:scale(1) translate(0,0);} 50%{transform:scale(1.1) translate(2%,1%);} 100%{transform:scale(1.05) translate(-1%,-2%);} }
+
+  h1, .hero h1 { font-family:'Bricolage Grotesque', 'Sora', sans-serif !important; font-weight:600 !important; letter-spacing:-0.02em !important; line-height:1.05 !important; }
+  .pastille { font-family:'Geist Mono','JetBrains Mono', monospace !important; letter-spacing:0.05em; font-size:11px !important; }
+  blockquote, .quote, .testimonial-text { font-family:'EB Garamond', serif !important; font-style:italic; }
+
+  .btn-pill, button, [class*="btn"] {
+    transition:transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s !important; will-change:transform;
+  }
+  .btn-pill:hover, button:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 12px 40px rgba(255,46,147,0.25); }
+
+  /* Desktop only animations */
+  @media (min-width:769px) and (hover:hover) {
+    section { animation:fadeRise 1s ease-out backwards; }
+    @keyframes fadeRise { from{opacity:0; transform:translateY(30px); filter:blur(8px);} to{opacity:1; transform:translateY(0); filter:blur(0);} }
+  }
+  /* Mobile: force tout visible */
+  @media (max-width:768px), (pointer:coarse) {
+    section, .container > div, .card { opacity:1 !important; transform:none !important; filter:none !important; animation:none !important; }
+    body::before { animation:none !important; opacity:0.2 !important; }
+    body::after { opacity:0.02 !important; }
+    .cursor-glow { display:none !important; }
+    .hero h1 { animation:none !important; -webkit-text-fill-color:#fff !important; background:none !important; color:#fff !important; }
+  }
+
+  .hero h1 {
+    background-image:linear-gradient(110deg, var(--text-primary,#fff) 30%, rgba(255,46,147,0.6) 50%, var(--text-primary,#fff) 70%);
+    background-size:200% 100%; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    animation:shimmer 6s ease-in-out infinite;
+  }
+  @keyframes shimmer { 0%,100%{background-position:200% 50%;} 50%{background-position:0% 50%;} }
+
+  .cursor-glow { position:fixed; width:280px; height:280px; pointer-events:none; background:radial-gradient(circle, rgba(255,46,147,0.12), transparent 70%); border-radius:50%; transform:translate(-50%,-50%); z-index:1; opacity:0; mix-blend-mode:plus-lighter; }
+  @media (hover:hover) { .cursor-glow { opacity:1; } }
+
+  ::-webkit-scrollbar { width:6px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:linear-gradient(180deg, rgba(255,46,147,0.4), rgba(0,212,255,0.4)); border-radius:3px; }
+
+  /* ============================================================
+     LIGHT THEME OVERRIDE (Brief Djibril 26-04 19:24)
+     Fond blanc, ecriture blanche -> noire, GARDE couleurs intactes
+     ============================================================ */
+  :root {
+    --bg: #ffffff;
+    --bg-2: #f6f4f9;
+    --text: #0a0410;
+    --muted: #5a4d70;
+  }
+  body { background: var(--bg); color: var(--text); }
+  header, header#header { background: rgba(255,255,255,0.92) !important; border-bottom: 1px solid rgba(10,4,16,0.08) !important; }
+  .wordmark .djibril { color: var(--text) !important; }
+  [class*="card"], section { background-color: var(--bg); }
+  .glass, .panel, .pill, .testimonial-card, .feature-card, .stat-card,
+  [class*="glass"], [class*="panel"], [class*="card"]:not(.brand-pill):not(.iridescent-pill) {
+    border-color: rgba(10,4,16,0.10) !important;
+  }
+  /* IMPORTANT: background-COLOR (pas background) pour preserver
+     les background-image inline (Wistia testimonial thumbs) */
+  .glass, .panel, .feature-card, .stat-card,
+  [class*="feature"]:not(.feature-pill) {
+    background-color: rgba(10,4,16,0.025) !important;
+  }
+  .testimonial-card, [class*="testimonial-card"] {
+    border: 1px solid rgba(10,4,16,0.10) !important;
+  }
+  .cta, .btn-cta, [class*="cta-solid"] { color: #ffffff !important; }
+  footer { background: var(--bg) !important; border-top: 1px solid rgba(10,4,16,0.10) !important; color: var(--text); }
+  .grain, [class*="grain"], [class*="noise"] { opacity: 0.04; mix-blend-mode: multiply; }
+  .photo-caption, [class*="overlay-bottom"] {
+    background: linear-gradient(transparent, rgba(255,255,255,0.92)) !important;
+    color: var(--text);
+  }
+  .matrix, .comparison, table { background: var(--bg-2) !important; color: var(--text); }
+  th, td { border-color: rgba(10,4,16,0.10) !important; }
+  .modal, .popup, [class*="modal-bg"] { background: rgba(10,4,16,0.45) !important; }
+  .modal-content, .popup-content { background: var(--bg); color: var(--text); }
+  ::selection { background: rgba(255,46,147,0.3); color: var(--text); }
+
+  /* ============================================================
+     READABILITY FIX (Brief 26-04 19:42)
+     Disable shimmer h1 + kw-mute pour mots non-impactants
+     Garde couleur SEULEMENT: possible, 5 000 euros, mental, jusqu'a la fin de sa vie
+     ============================================================ */
+  .hero h1, .hero h1::after, .hero h1::before { animation: none !important; }
+  .hero h1 {
+    -webkit-text-fill-color: var(--text) !important;
+    color: var(--text) !important;
+    background: none !important;
+    background-clip: initial !important;
+    -webkit-background-clip: initial !important;
+  }
+  .hero h1 .kw-mental, .hero h1 .gradient-num {
+    background: linear-gradient(135deg, var(--pink) 0%, var(--cyan) 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    font-weight: 700 !important;
+  }
+  .hero h1 .kw-power, h1 .kw-power {
+    color: var(--cyan) !important;
+    -webkit-text-fill-color: var(--cyan) !important;
+    font-weight: 700 !important;
+    background: none !important;
+    text-shadow: 0 0 20px rgba(126,243,255,0.3);
+  }
+  .hero h1 .kw-action, h1 .kw-action {
+    color: var(--orange) !important;
+    -webkit-text-fill-color: var(--orange) !important;
+    font-weight: 700 !important;
+    background: none !important;
+  }
+  .kw-mute {
+    color: var(--text) !important;
+    -webkit-text-fill-color: var(--text) !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    font-weight: inherit !important;
+    text-shadow: none !important;
+    font-style: normal !important;
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    const hdr = document.getElementById('header');
+    if (!hdr) return;
+    window.addEventListener('scroll', function(){
+      const y = window.scrollY || 0;
+      hdr.style.background = y > 50 ? 'rgba(255,255,255,0.96)' : 'rgba(255,255,255,0.92)';
+    }, { passive: true });
+  });
+</script>
+
+<div class="cosmos" aria-hidden="true">
+  <div class="cosmos__stars cosmos__stars--far">✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+</div>
+  <div class="cosmos__stars">✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+</div>
+  <div class="cosmos__stars cosmos__stars--mid">✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+</div>
+  <div class="cosmos__caps">
+    <div class="cosmos__cap cosmos__cap--c1"></div>
+    <div class="cosmos__cap cosmos__cap--c2"></div>
+    <div class="cosmos__cap cosmos__cap--c3"></div>
+    <div class="cosmos__cap cosmos__cap--c4"></div>
+    <div class="cosmos__cap cosmos__cap--c5"></div>
+    <div class="cosmos__cap cosmos__cap--c6"></div>
+    <div class="cosmos__cap cosmos__cap--c7"></div>
+    <div class="cosmos__cap cosmos__cap--c8"></div>
+    <div class="cosmos__cap cosmos__cap--c9"></div>
+    <div class="cosmos__cap cosmos__cap--c10"></div>
+    <div class="cosmos__cap cosmos__cap--c11"></div>
+    <div class="cosmos__cap cosmos__cap--c12"></div>
+  </div>
+  <div class="cosmos__lines">
+    <div class="cosmos__line cosmos__line--1"></div>
+    <div class="cosmos__line cosmos__line--2"></div>
+    <div class="cosmos__line cosmos__line--3"></div>
+    <div class="cosmos__line cosmos__line--4"></div>
+  </div>
+  <div class="cosmos__shoot cosmos__shoot--1">forge ton mental</div>
+  <div class="cosmos__shoot cosmos__shoot--2">90 jours</div>
+  <div class="cosmos__shoot cosmos__shoot--3">mécanisme</div>
+  <div class="cosmos__shoot cosmos__shoot--4">vérité</div>
+  <div class="cosmos__shoot cosmos__shoot--5">discipline</div>
+  <div class="cosmos__noise"></div>
+  <div class="cosmos__veil"></div>
+</div>
+<!-- ═══ /COSMOS BG ═══ -->
+) -->
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+<style id="cosmos-patch">
+/* ── Tokens forge papier ──────────────────────────────────────────── */
+:root {
+  --paper:        #f3ecdf;
+  --paper-2:      #e9e0cf;
+  --ink:          #1a1614;
+  --ink-soft:     #3a322c;
+  --ember:        #e85d2c;
+  --ember-deep:   #c73e1a;
+  --gold-dust:    #d4951a;
+  --plum:         #6b3a4f;
+  --sea:          #4aa9c4;
+  --moss:         #6b7a3a;
+}
+
+/* ── OVERRIDE base : on remet du papier ivoire ─────────────────────── */
+html, body {
+  background:
+    radial-gradient(ellipse at 30% 10%, rgba(232, 93, 44, 0.06), transparent 60%),
+    radial-gradient(ellipse at 80% 90%, rgba(74, 169, 196, 0.05), transparent 60%),
+    var(--paper) !important;
+  color: var(--ink) !important;
+}
+body::before, body::after {
+  display: none !important; /* on tue les anciens overlays gradient/noise */
+}
+
+/* Header reste lisible sur papier */
+header, header#header {
+  background: rgba(243, 236, 223, 0.92) !important;
+  border-bottom: 1px solid rgba(26, 22, 20, 0.12) !important;
+}
+.wordmark .djibril { color: var(--ink) !important; }
+.wordmark .learning { color: var(--ink-soft) !important; }
+
+/* ── Couche cosmos (z-index = 0, derrière tout le contenu) ─────────── */
+.cosmos {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Étoiles ASCII */
+.cosmos__stars {
+  position: absolute;
+  inset: 0;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  color: rgba(26, 22, 20, 0.18);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.4em;
+  line-height: 2.6;
+  font-size: 13px;
+  white-space: pre-wrap;
+  padding: 40px;
+  animation: cs-twinkle 8s steps(8) infinite;
+}
+.cosmos__stars--mid {
+  color: rgba(232, 93, 44, 0.28);
+  font-size: 16px;
+  letter-spacing: 0.6em;
+  line-height: 3.4;
+  animation: cs-twinkle 11s steps(6) infinite reverse;
+  transform: translate(20px, 30px);
+}
+.cosmos__stars--far {
+  color: rgba(107, 58, 79, 0.22);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  line-height: 2.2;
+  animation: cs-drift 120s linear infinite;
+  transform: translate(60px, 80px);
+}
+@keyframes cs-twinkle {
+  0%, 100% { opacity: 1; }
+  25% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+  75% { opacity: 0.3; }
+}
+@keyframes cs-drift {
+  from { transform: translate3d(60px, 80px, 0); }
+  to   { transform: translate3d(-60px, -80px, 0); }
+}
+
+/* Capsules — palette rare */
+.cosmos__caps {
+  position: absolute;
+  inset: 0;
+  perspective: 1800px;
+  transform-style: preserve-3d;
+  mix-blend-mode: multiply;
+}
+.cosmos__cap {
+  position: absolute;
+  border-radius: 999px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  filter: saturate(1.6) brightness(1.05);
+  border: 1.5px solid rgba(26, 22, 20, 0.6);
+}
+.cosmos__cap::before {
+  content: "";
+  position: absolute;
+  inset: 8px -8px -10px 4px;
+  border-radius: 999px;
+  background: rgba(26, 22, 20, 0.18);
+  z-index: -1;
+  filter: blur(0.5px);
+}
+.cosmos__cap::after {
+  content: "";
+  position: absolute;
+  inset: 12% 18%;
+  border-radius: 999px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1.5px);
+  background-size: 5px 5px;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* 12 couleurs rares */
+.cosmos__cap--c1  { background: #C73E3A; width: 130px; height: 260px; top: 8%;  left: 4%;  animation: cc-1 38s ease-in-out infinite; }      /* Akabeni */
+.cosmos__cap--c2  { background: #B95174; width: 80px;  height: 160px; top: 16%; left: 78%; animation: cc-2 44s ease-in-out infinite -6s; }  /* Tyrian */
+.cosmos__cap--c3  { background: #C8A951; width: 100px; height: 200px; top: 64%; left: 10%; animation: cc-3 36s ease-in-out infinite -12s; } /* Vegas Gold */
+.cosmos__cap--c4  { background: #5E8B7E; width: 150px; height: 300px; top: 46%; left: 84%; animation: cc-4 42s ease-in-out infinite -3s; }  /* Verdigris */
+.cosmos__cap--c5  { background: #4B3F72; width: 70px;  height: 140px; top: 82%; left: 36%; animation: cc-5 30s ease-in-out infinite -14s; } /* Russian Violet */
+.cosmos__cap--c6  { background: #7B68A6; width: 90px;  height: 180px; top: 4%;  left: 44%; animation: cc-6 46s ease-in-out infinite -8s; }  /* Heliotrope */
+.cosmos__cap--c7  { background: #50C878; width: 60px;  height: 120px; top: 38%; left: 56%; animation: cc-7 32s ease-in-out infinite -18s; } /* Paris Green */
+.cosmos__cap--c8  { background: #722F37; width: 110px; height: 220px; top: 72%; left: 62%; animation: cc-8 48s ease-in-out infinite -4s; }  /* Wine */
+.cosmos__cap--c9  { background: #E59866; width: 95px;  height: 190px; top: 28%; left: 28%; animation: cc-1 40s ease-in-out infinite -16s; } /* Tuscany */
+.cosmos__cap--c10 { background: #1B6E8C; width: 75px;  height: 150px; top: 88%; left: 88%; animation: cc-2 38s ease-in-out infinite -22s; } /* Lapis Lazuli */
+.cosmos__cap--c11 { background: #DDA0A4; width: 65px;  height: 130px; top: 56%; left: 38%; animation: cc-5 34s ease-in-out infinite -9s; }  /* Tea Rose */
+.cosmos__cap--c12 { background: #36454F; width: 50px;  height: 100px; top: 18%; left: 14%; animation: cc-7 28s ease-in-out infinite -24s; } /* Gunmetal */
+
+@keyframes cc-1 { 0%,100% { transform: translate3d(0,0,0) rotate(-15deg) rotateY(0); } 50% { transform: translate3d(50px,-70px,0) rotate(8deg) rotateY(40deg); } }
+@keyframes cc-2 { 0%,100% { transform: translate3d(0,0,0) rotate(25deg) rotateY(20deg); } 50% { transform: translate3d(-60px,80px,0) rotate(-18deg) rotateY(-30deg); } }
+@keyframes cc-3 { 0%,100% { transform: translate3d(0,0,0) rotate(38deg) rotateY(-25deg); } 50% { transform: translate3d(70px,-50px,0) rotate(-22deg) rotateY(15deg); } }
+@keyframes cc-4 { 0%,100% { transform: translate3d(0,0,0) rotate(-28deg) rotateY(-15deg); } 50% { transform: translate3d(-50px,-90px,0) rotate(18deg) rotateY(35deg); } }
+@keyframes cc-5 { 0%,100% { transform: translate3d(0,0,0) rotate(48deg) rotateY(0); } 50% { transform: translate3d(80px,50px,0) rotate(-12deg) rotateY(-40deg); } }
+@keyframes cc-6 { 0%,100% { transform: translate3d(0,0,0) rotate(62deg) rotateY(30deg); } 50% { transform: translate3d(-70px,60px,0) rotate(22deg) rotateY(-20deg); } }
+@keyframes cc-7 { 0%,100% { transform: translate3d(0,0,0) rotate(-32deg) rotateY(-35deg); } 50% { transform: translate3d(60px,-70px,0) rotate(42deg) rotateY(25deg); } }
+@keyframes cc-8 { 0%,100% { transform: translate3d(0,0,0) rotate(18deg) rotateY(-20deg); } 50% { transform: translate3d(-80px,40px,0) rotate(-32deg) rotateY(20deg); } }
+
+/* Mots forge qui défilent */
+.cosmos__shoot {
+  position: absolute;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-size: 56px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(232, 93, 44, 0.85);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(110vw, 0, 0) skewX(-8deg);
+}
+.cosmos__shoot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-left: 8px;
+  width: 200px;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(232, 93, 44, 0.7), transparent);
+  transform: translateY(-50%);
+}
+.cosmos__shoot--1 { top: 18%; animation: cs-fly 9s linear infinite; }
+.cosmos__shoot--2 { top: 38%; animation: cs-fly 11s linear infinite 3s; -webkit-text-stroke-color: rgba(212, 149, 26, 0.85); }
+.cosmos__shoot--3 { top: 62%; animation: cs-fly 10s linear infinite 6s; -webkit-text-stroke-color: rgba(107, 58, 79, 0.85); }
+.cosmos__shoot--4 { top: 82%; animation: cs-fly 12s linear infinite 9s; -webkit-text-stroke-color: rgba(180, 40, 55, 0.75); }
+.cosmos__shoot--5 { top: 28%; animation: cs-fly 8s  linear infinite 12s; -webkit-text-stroke-color: rgba(74, 169, 196, 0.75); }
+@keyframes cs-fly {
+  0%   { transform: translate3d(110vw, 0, 0) skewX(-8deg); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translate3d(-50vw, 0, 0) skewX(-8deg); opacity: 0; }
+}
+
+/* Lignes-schémas */
+.cosmos__lines { position: absolute; inset: 0; overflow: hidden; }
+.cosmos__line { position: absolute; height: 1px; background: rgba(26,22,20,.12); transform-origin: left center; }
+.cosmos__line::before, .cosmos__line::after {
+  content: ""; position: absolute; width: 6px; height: 6px;
+  border: 1px solid rgba(26,22,20,.4); background: var(--paper);
+  border-radius: 50%; top: 50%; transform: translateY(-50%);
+}
+.cosmos__line::before { left: -3px; }
+.cosmos__line::after  { right: -3px; }
+.cosmos__line--1 { top: 22%; left: 8%;  width: 220px; transform: rotate(8deg);   animation: cs-pulse 14s ease-in-out infinite; }
+.cosmos__line--2 { top: 56%; left: 70%; width: 180px; transform: rotate(-15deg); animation: cs-pulse 18s ease-in-out infinite -4s; }
+.cosmos__line--3 { top: 78%; left: 28%; width: 240px; transform: rotate(22deg);  animation: cs-pulse 16s ease-in-out infinite -7s; }
+.cosmos__line--4 { top: 14%; left: 52%; width: 160px; transform: rotate(-30deg); animation: cs-pulse 20s ease-in-out infinite -11s; }
+@keyframes cs-pulse { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
+
+/* Bruit photocopie */
+.cosmos__noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.085 0 0 0 0 0.08 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 280px 280px;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  animation: cs-noise 0.8s steps(4) infinite;
+}
+@keyframes cs-noise {
+  0%   { transform: translate(0,0); }
+  25%  { transform: translate(-3px,2px); }
+  50%  { transform: translate(2px,-3px); }
+  75%  { transform: translate(-2px,-1px); }
+  100% { transform: translate(1px,2px); }
+}
+
+/* Voile */
+.cosmos__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(232,93,44,.04), transparent 60%),
+    radial-gradient(ellipse at 100% 50%, rgba(74,169,196,.04), transparent 60%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* ── Tout le contenu existant remonte au-dessus du cosmos ──────────── */
+header, section, footer, main, .container, .header-inner { position: relative; z-index: 2; }
+
+/* ── Cards : remplacer fond noir par fond papier ───────────────────── */
+.testimonial-card,
+[class*="card"]:not(.brand-pill):not(.iridescent-pill) {
+  background-color: rgba(255, 252, 245, 0.7) !important;
+  border-color: rgba(26, 22, 20, 0.18) !important;
+  backdrop-filter: blur(2px);
+}
+.testimonial-card { border: 1px solid rgba(26, 22, 20, 0.18) !important; }
+
+/* Selection */
+::selection { background: var(--ember); color: var(--paper); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cosmos__cap, .cosmos__stars, .cosmos__shoot, .cosmos__noise, .cosmos__line {
+    animation: none !important;
+  }
+}
+
+/* Mobile : moins de capsules pour ne pas surcharger */
+@media (max-width: 768px) {
+  .cosmos__cap--c4, .cosmos__cap--c8, .cosmos__cap--c10, .cosmos__cap--c12 { display: none; }
+  .cosmos__shoot { font-size: 36px; }
+}
+</style>
+
+
+<style id="cosmos-patch-v4">
+.testimonial-card,[class*="card"]:not(.brand-pill):not(.iridescent-pill),.glass,.panel,.feature-card,.stat-card,[class*="feature"]:not(.feature-pill),.video-wrapper,.compilation-video-wrapper,.portrait-video{background-color:transparent!important;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.video-wrapper{border:1.5px solid rgba(26,22,20,0.25)!important;box-shadow:6px 6px 0 rgba(199,62,26,0.4)!important}
+.hero{padding-top:20px!important;padding-bottom:4px!important}
+.hero h1{font-size:clamp(1.3rem,2.6vw,2rem)!important;line-height:1.18!important;margin-bottom:12px!important;max-width:760px;margin-left:auto!important;margin-right:auto!important;font-family:'Instrument Serif','Playfair Display',Georgia,serif!important;font-style:italic!important;font-weight:400!important;color:#1a1614!important;-webkit-text-fill-color:#1a1614!important;background:none!important;-webkit-background-clip:initial!important;background-clip:initial!important;animation:none!important}
+.hero h1::after,.hero h1::before{display:none!important;animation:none!important}
+.hero .pastille{font-size:9.5px!important;margin-bottom:14px!important;padding:5px 12px!important}
+.hero-sub{font-size:clamp(0.85rem,1.3vw,1rem)!important;margin-bottom:14px!important;max-width:620px;margin-left:auto!important;margin-right:auto!important;font-family:'Instrument Serif',Georgia,serif!important;font-style:italic!important;color:#3a322c!important}
+.video-section{padding-top:4px!important;padding-bottom:12px!important}
+.video-section h2{font-size:clamp(1rem,2.2vw,1.6rem)!important;margin-bottom:6px!important}
+.kw-power,span.kw-power,h1 .kw-power,.hero h1 .kw-power,.hero-sub .kw-power{font-family:'JetBrains Mono',ui-monospace,monospace!important;font-style:normal!important;font-weight:600!important;font-size:0.78em!important;letter-spacing:0.1em!important;text-transform:uppercase!important;color:#e85d2c!important;-webkit-text-fill-color:#e85d2c!important;background:none!important;-webkit-background-clip:initial!important;background-clip:initial!important;text-shadow:none!important;border-bottom:1.5px solid #e85d2c!important;padding:0 3px 1px!important}
+.kw-action,span.kw-action,h1 .kw-action,.hero h1 .kw-action,.hero-sub .kw-action{font-family:'Playfair Display','Times New Roman',serif!important;font-style:normal!important;font-weight:900!important;color:#c73e1a!important;-webkit-text-fill-color:#c73e1a!important;background:none!important;-webkit-background-clip:initial!important;background-clip:initial!important;text-shadow:1.5px 1.5px 0 rgba(199,62,26,0.18)!important}
+.kw-mental,span.kw-mental,h1 .kw-mental,.hero h1 .kw-mental{font-family:'Instrument Serif','Playfair Display',Georgia,serif!important;font-style:italic!important;font-weight:400!important;color:#6b3a4f!important;-webkit-text-fill-color:#6b3a4f!important;background:linear-gradient(transparent 88%,rgba(107,58,79,0.5) 88%,rgba(107,58,79,0.5) 95%,transparent 95%)!important;padding:0 3px!important;text-shadow:none!important}
+.kw-mute,span.kw-mute{font-family:'Instrument Serif',Georgia,serif!important;font-style:italic!important;color:rgba(26,22,20,0.85)!important;-webkit-text-fill-color:rgba(26,22,20,0.85)!important;background:none!important;font-weight:400!important;text-shadow:none!important}
+section h2{font-family:'Instrument Serif',Georgia,serif!important;font-weight:400!important;font-style:italic!important;color:#1a1614!important;font-size:clamp(1.2rem,2.6vw,2rem)!important}
+section h2 .pink{color:#c73e1a!important;-webkit-text-fill-color:#c73e1a!important;font-family:'Playfair Display',Georgia,serif!important;font-style:normal!important;font-weight:900!important;background:none!important}
+a[href*="djibril-ads-landing"]{font-family:'JetBrains Mono',ui-monospace,monospace!important;font-weight:600!important;font-size:11px!important;letter-spacing:0.16em!important;text-transform:uppercase!important;background:#f3ecdf!important;background-image:none!important;color:#1a1614!important;border:1.5px solid #1a1614!important;border-radius:0!important;padding:14px 26px!important;position:relative!important;box-shadow:4px 4px 0 #c73e1a!important;text-shadow:none!important;overflow:visible!important;display:inline-block!important}
+a[href*="djibril-ads-landing"]::before{content:"—  audit  —"!important;position:absolute!important;top:-10px!important;left:50%!important;transform:translateX(-50%)!important;font-family:'Instrument Serif',Georgia,serif!important;font-style:italic!important;font-size:12px!important;background:#f3ecdf!important;padding:0 8px!important;color:#c73e1a!important;text-transform:lowercase!important;letter-spacing:0!important;font-weight:400!important;white-space:nowrap!important}
+a[href*="djibril-ads-landing"]:hover{transform:translate(-2px,-2px)!important;box-shadow:7px 7px 0 #c73e1a!important}
+.final-cta a[href*="djibril-ads-landing"],.gift a[href*="djibril-ads-landing"]{font-size:13px!important;padding:18px 38px!important;border:1.5px dashed #1a1614!important}
+@media (max-width:480px){a[href*="djibril-ads-landing"]{font-size:9.5px!important;padding:11px 18px!important;box-shadow:3px 3px 0 #c73e1a!important}.hero h1{font-size:1.25rem!important}}
+</style>
+<style id="cosmos-patch-v5">
+/* Titres 2x plus gros */
+.hero h1{font-size:clamp(2.4rem,5.2vw,4rem)!important;line-height:1.1!important}
+.hero-sub{font-size:clamp(1rem,1.6vw,1.25rem)!important}
+section h2{font-size:clamp(2rem,4.8vw,3.6rem)!important;line-height:1.12!important}
+.video-section h2{font-size:clamp(1.8rem,4vw,2.8rem)!important}
+@media (max-width:480px){
+  .hero h1{font-size:1.85rem!important;line-height:1.12!important}
+  section h2{font-size:1.7rem!important}
+  .video-section h2{font-size:1.5rem!important}
+  .hero-sub{font-size:0.95rem!important}
+}
+
+/* Palette élargie — couleurs rares mais variées */
+/* PALETTE :
+   --hot-magenta: #d4145a (rose-magenta vibrant)
+   --indigo-rare: #4a3c8c (violet indigo profond, rare)
+   --rose-poudre: #c87b9e (rose poudré vintage)
+   --vert-jade: #1d8a6f (jade rare)
+   --orange-feu: #e85d2c (déjà brand)
+   --ocre-or:    #d4951a (déjà brand)
+   --bordeaux:   #6b2737 (bordeaux profond)
+*/
+
+.kw-power,span.kw-power,h1 .kw-power,.hero h1 .kw-power,.hero-sub .kw-power{
+  color:#d4145a!important;-webkit-text-fill-color:#d4145a!important;
+  border-bottom:2px solid #d4145a!important;
+  font-family:'JetBrains Mono',ui-monospace,monospace!important;
+  font-style:normal!important;font-weight:600!important;
+  font-size:0.78em!important;letter-spacing:0.1em!important;text-transform:uppercase!important;
+  background:none!important;-webkit-background-clip:initial!important;background-clip:initial!important;
+  text-shadow:none!important;padding:0 3px 1px!important
+}
+.kw-action,span.kw-action,h1 .kw-action,.hero h1 .kw-action,.hero-sub .kw-action{
+  color:#4a3c8c!important;-webkit-text-fill-color:#4a3c8c!important;
+  font-family:'Playfair Display','Times New Roman',serif!important;
+  font-style:normal!important;font-weight:900!important;
+  background:none!important;-webkit-background-clip:initial!important;background-clip:initial!important;
+  text-shadow:2px 2px 0 rgba(74,60,140,0.18)!important
+}
+.kw-mental,span.kw-mental,h1 .kw-mental,.hero h1 .kw-mental{
+  color:#6b2737!important;-webkit-text-fill-color:#6b2737!important;
+  font-family:'Instrument Serif','Playfair Display',Georgia,serif!important;
+  font-style:italic!important;font-weight:400!important;
+  background:linear-gradient(transparent 86%,rgba(200,123,158,0.55) 86%,rgba(200,123,158,0.55) 96%,transparent 96%)!important;
+  -webkit-background-clip:padding-box!important;background-clip:padding-box!important;
+  padding:0 4px!important;text-shadow:none!important
+}
+.kw-mute,span.kw-mute{
+  color:rgba(26,22,20,0.85)!important;-webkit-text-fill-color:rgba(26,22,20,0.85)!important;
+  font-family:'Instrument Serif',Georgia,serif!important;font-style:italic!important;
+  background:none!important;font-weight:400!important;text-shadow:none!important
+}
+.kw-proof,span.kw-proof{
+  color:#1d8a6f!important;-webkit-text-fill-color:#1d8a6f!important;
+  font-family:'JetBrains Mono',ui-monospace,monospace!important;
+  font-weight:500!important;font-style:normal!important;
+  background:rgba(29,138,111,0.13)!important;
+  padding:1px 6px!important;border-radius:2px!important;letter-spacing:-0.01em!important
+}
+/* gradient-num DARK pour lisibilité sur fond clair (5000€ etc) */
+.gradient-num,h1 .gradient-num,.hero h1 .gradient-num{
+  background:linear-gradient(135deg,#c71e6b 0%,#1a6b8a 100%)!important;
+  -webkit-background-clip:text!important;background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;color:transparent!important;
+  font-weight:900!important;text-shadow:none!important
+}
+
+/* h2 .pink — varier en fonction du paragraphe (1er=magenta, 2e=indigo, 3e=jade, 4e=ocre, 5e=bordeaux) */
+section h2 .pink{
+  font-family:'Playfair Display',Georgia,serif!important;
+  font-style:normal!important;font-weight:900!important;
+  background:none!important;-webkit-text-fill-color:currentColor!important
+}
+section:nth-of-type(odd) h2 .pink{color:#d4145a!important}
+section:nth-of-type(even) h2 .pink{color:#4a3c8c!important}
+section:nth-of-type(3n) h2 .pink{color:#1d8a6f!important}
+section:nth-of-type(5n) h2 .pink{color:#6b2737!important}
+section:nth-of-type(7n) h2 .pink{color:#d4951a!important}
+
+/* Hero h1 base reste serif noire */
+.hero h1{
+  font-family:'Instrument Serif','Playfair Display',Georgia,serif!important;
+  font-style:italic!important;font-weight:400!important;
+  color:#1a1614!important;-webkit-text-fill-color:#1a1614!important;
+  background:none!important
+}
+.hero h1::after,.hero h1::before{display:none!important}
+</style>
+<style id="cosmos-patch-v6">
+/* 1. Atténuer cosmos (étoiles, capsules, lignes) pour ne pas saturer */
+.cosmos{opacity:0.45!important}
+.cosmos__cap{opacity:0.55!important}
+.cosmos__stars{opacity:0.4!important}
+.cosmos__noise{opacity:0.18!important}
+.cosmos__line{opacity:0.5!important}
+.cosmos__shoot{opacity:0.65!important}
+
+/* 2. Voile ivoire global au-dessus du cosmos, sous le contenu */
+body::after{
+  content:"";position:fixed;inset:0;z-index:1;
+  background:radial-gradient(ellipse at center,rgba(243,236,223,0.55) 0%,rgba(243,236,223,0.78) 60%,rgba(243,236,223,0.88) 100%);
+  pointer-events:none
+}
+header,section,footer,main,.container,.header-inner,.hero,.video-section,
+.temoignage-modal{position:relative;z-index:2}
+
+/* 3. Halo doux derrière les blocs de texte importants — sans cadre visible */
+.hero h1, .hero-sub, section h2, section p, .video-section h2, .video-sub{
+  position:relative;
+  text-shadow:0 1px 0 rgba(243,236,223,0.9), 0 0 14px rgba(243,236,223,0.85), 0 0 22px rgba(243,236,223,0.6)!important
+}
+
+/* 4. Renforcer le contraste des kw colorés sur fond animé */
+.kw-power,span.kw-power{
+  background:rgba(243,236,223,0.7)!important;
+  padding:1px 6px 2px!important;
+  border-radius:1px!important;
+  text-shadow:0 0 8px rgba(243,236,223,0.95)!important
+}
+.kw-action,span.kw-action{
+  text-shadow:0 1px 0 #f3ecdf, 0 0 12px rgba(243,236,223,0.95), 2px 2px 0 rgba(74,60,140,0.18)!important
+}
+.kw-mental,span.kw-mental{
+  text-shadow:0 0 10px rgba(243,236,223,0.9)!important
+}
+.kw-proof,span.kw-proof{
+  background:rgba(29,138,111,0.18)!important;
+  box-shadow:0 0 0 3px rgba(243,236,223,0.7)!important
+}
+
+/* 5. Vidéos & cards : voile derrière pour faire ressortir (PRESERVE background-image des témoignages) */
+.video-wrapper, .compilation-video-wrapper{
+  background:rgba(243,236,223,0.4)!important;
+  backdrop-filter:blur(2px) saturate(1.05)!important;
+  -webkit-backdrop-filter:blur(2px) saturate(1.05)!important
+}
+.testimonial-card{
+  background-color:rgba(243,236,223,0.25)!important;
+  border:2px solid rgba(26,22,20,0.25)!important;
+  box-shadow:0 0 0 1px rgba(26,22,20,0.15)!important
+}
+
+/* 6. Pastilles & CTA : fond plein pour lisibilité */
+.hero .pastille{
+  background:#1a1614!important;
+  color:#f3ecdf!important;
+  text-shadow:none!important
+}
+a[href*="djibril-ads-landing"]{
+  background:#f3ecdf!important;
+  text-shadow:none!important
+}
+a[href*="djibril-ads-landing"]::before{
+  text-shadow:none!important
+}
+
+/* 7. h1 hero - léger renforcement */
+.hero h1{
+  text-shadow:0 1px 0 rgba(243,236,223,1), 0 0 18px rgba(243,236,223,0.95), 0 0 32px rgba(243,236,223,0.7)!important
+}
+section h2{
+  text-shadow:0 1px 0 rgba(243,236,223,1), 0 0 16px rgba(243,236,223,0.9)!important
+}
+</style>
+<style id="cosmos-patch-v7">
+header,header#header,.site-header,.top-bar,nav.header,nav.top{
+  background:transparent!important;background-color:transparent!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  border-bottom:none!important;box-shadow:none!important
+}
+.header-inner,.header-inner *:not(a):not(button){background:transparent!important}
+header .logo,header .brand,.header-logo{background:transparent!important}
+/* Tous blocs avec fond ivoire/blanc → transparents */
+[style*="background:#f3ecdf"],[style*="background-color:#f3ecdf"],
+[style*="background:#fdf8ee"],[style*="background:#fff"],
+[style*="background:white"],[style*="background-color:white"]{
+  background:transparent!important;background-color:transparent!important
+}
+.gift,.final-cta,.testimonials,.compilation,.hero,.video-section,
+section,article,main,.container{
+  background:transparent!important;background-color:transparent!important
+}
+/* CTA audit garde son fond ivoire (lisibilité) */
+a[href*="djibril-ads-landing"]{background:#f3ecdf!important}
+/* Pastille noire reste */
+.hero .pastille{background:#1a1614!important}
 </style>
 </head>
 <body>
@@ -359,45 +1321,76 @@
         <div class="subtitle">RESET ULTRA</div>
       </div>
     </a>
-    <a href="#booking-1" class="btn-pill btn-outline">RÉSERVER MON APPEL GRATUIT 0€</a>
+    <a href="#booking-1" class="btn-pill btn-outline">RÉSERVER GRATUIT 0€</a>
   </div>
 </header>
 
-<!-- S1 HERO -->
-<section class="hero" style="padding-top:60px;">
+<!-- S1 HERO TITRE (titre TOUT EN HAUT) -->
+<section class="hero" style="padding-top:40px;">
   <div class="container">
-    <div class="pastille">À L'ATTENTION DE CEUX QUI VEULENT SE SUFFIRE À EUX-MÊMES</div>
-    <h1>Est-ce que ma vidéo pourra te débloquer ta situation avec un <span class="accent">mécanisme</span> encore jamais offert sur le marché ?</h1>
-    <p class="hero-sub">Ta 97% de chance de pas connaître ce mécanisme.<br><span class="highlight">Ne me crois pas. Regarde la preuve en dessous.</span></p>
+    <div class="pastille">RDV 1-TO-1 GRATUIT AVEC DJIBRIL</div>
+    <h1><span class="kw-power">Est-il possible</span> de générer <span class="gradient-num">5&nbsp;000€</span> en <span class="kw-mute">90 jours</span><br>grâce à son <span class="kw-mental">mental</span>, et d'<span class="kw-mute">oublier ses problèmes</span> <span class="kw-mental">jusqu'à la fin de sa vie</span> ?</h1>
+    <p class="hero-sub">Sur <span class="kw-action">contrat</span>. Si on échoue : <span class="kw-power">remboursé</span> + <span class="kw-mental">1 000€</span> pour ton temps. <span class="kw-action">Zéro risque</span>.</p>
   </div>
 </section>
 
-<!-- S2 VIDEO WISTIA VSL -->
-<section class="video-section" style="padding-top:20px;">
+<!-- S2 VIDEO HERO (vidéo SOUS le titre) - Wistia ID rfemp7gpcs (sourced from djibrilsylearn account) -->
+<section class="video-section" style="padding-top:30px;">
   <div class="container">
-    <div class="video-badge">🔥 Cette vidéo vaut 2000€ HT</div>
-    <div class="video-wrapper" style="position:relative;">
+    <div class="video-wrapper">
       <script src="https://fast.wistia.com/embed/medias/rfemp7gpcs.jsonp" async></script>
       <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true" style="height:100%;position:relative;width:100%"></div>
+          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true volume=1 endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
         </div>
       </div>
-      <div class="video-overlay" id="videoOverlay">
+      <div class="video-overlay" id="vslSoundOverlay">
         <div class="sound-icon">🔊</div>
         <span>Touche pour activer le son — La vidéo joue déjà</span>
       </div>
+      <script>
+        // Force VSL Wistia (rfemp7gpcs) to play unmuted from start, restart on refresh, unmute on first interaction
+        window._wq = window._wq || [];
+        window._wq.push({ id: "rfemp7gpcs", onReady: function(video) {
+          try {
+            video.time(0);
+            video.volume(1.0);
+            video.play();
+            setTimeout(function(){
+              if (video.isMuted && video.isMuted()) {
+                video.mute(); video.play();
+              }
+            }, 600);
+            var overlay = document.getElementById('vslSoundOverlay');
+            var unmuteOnce = function() {
+              try { video.unmute(); video.volume(1.0); video.play(); } catch(e){}
+              if (overlay) overlay.style.display = 'none';
+              ['click','touchstart','keydown','scroll'].forEach(function(ev){
+                document.removeEventListener(ev, unmuteOnce, true);
+              });
+            };
+            ['click','touchstart','keydown','scroll'].forEach(function(ev){
+              document.addEventListener(ev, unmuteOnce, true);
+            });
+            if (overlay) overlay.addEventListener('click', unmuteOnce);
+          } catch(e) { console.warn('vsl autoplay setup', e); }
+        }});
+      </script>
+    </div>
+    <div style="text-align:center;margin-top:20px;">
+      <a href="#temoignages" class="btn-pill" style="background:linear-gradient(135deg,#ff2e93,#00d4ff);color:#fff;font-weight:800;">📹 VOIR LES 83+ TÉMOIGNAGES →</a>
     </div>
   </div>
 </section>
+
 <!-- S3 TRIPLE BLOC CHIFFRES -->
 <section class="numbers">
   <div class="container">
     <div class="numbers-grid">
       <div class="number-card">
-        <div class="big">10 000€</div>
-        <div class="small">EN 80 JOURS</div>
+        <div class="big">5 000€</div>
+        <div class="small">EN 90 JOURS</div>
       </div>
       <div class="number-card">
         <div class="big">+1 000€</div>
@@ -415,19 +1408,19 @@
 <section class="proof">
   <div class="container">
     <div class="label">REGARDE D'ABORD ↓</div>
-    <h2>Ne me crois pas sur parole.</h2>
-    <p class="sub-italic">Écoute la preuve, réserve en direct, zéro friction.</p>
-    <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:16px;padding:16px 40px;">VOIR LE CALENDRIER ET RÉSERVER — 0€ ⚡</a>
-    <p class="micro">PLACES LIMITÉES · ON MET NOTRE PROPRE ARGENT EN JEU</p>
+    <h2>Ne me <span class="kw-action">crois</span> pas sur parole.</h2>
+    <p class="sub-italic"><span class="kw-power">Écoute</span>. <span class="kw-action">Réserve</span>. Zéro friction.</p>
+    <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:16px;padding:16px 40px;">RÉSERVER GRATUIT 0€ ⚡</a>
+    <p class="micro">PLACES LIMITÉES</p>
   </div>
 </section>
 
 <!-- S5 BOOKING #1 -->
 <section class="booking" id="booking-1">
   <div class="container">
-    <div class="pastille" style="margin-bottom:24px;">BOOKING INSTANTANÉ — PAS DE PING-PONG PAR MAIL</div>
-    <h2>Choisis ton créneau. C'est tout.</h2>
-    <p class="sub-italic">Pas de catégorie à remplir. Pas de questionnaire de 12 pages. Tu cliques, tu choisis, t'es booké.</p>
+    <div class="pastille" style="margin-bottom:24px;">BOOKING INSTANTANÉ — <span style="color:var(--cyan);">8 PLACES / SEMAINE</span></div>
+    <h2><span class="kw-action">Choisis</span> ton créneau.<br><span class="pink" style="font-style:italic;">30 minutes. Zéro vente.</span></h2>
+    <p class="sub-italic" style="font-family:var(--font-serif);font-style:italic;font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);margin:8px auto 24px;max-width:600px;">On <span style="color:var(--cyan);">décortique</span> ta situation. Tu repars avec un plan d'action — <span style="color:var(--orange);">qu'on bosse ensemble ou pas</span>.</p>
     <div class="iclosed-wrap">
       <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
     </div>
@@ -437,21 +1430,21 @@
 <!-- S6 AUDIT GRATUIT -->
 <section class="relance">
   <div class="container">
-    <h2>L'audit gratuit — ta situation, ton avancement, en 30 min.</h2>
-    <p>Pour nos clients, ça sert à savoir ta situation et ton avancement dans le business pour gagner du temps. C'est une ressource à vie dans ta tête — qu'on avance ensemble ou pas.</p>
+    <h2><span class="kw-action">Audit gratuit</span>. <span class="kw-power">30 min</span>.</h2>
+    <p>Ressource à vie. Qu'on bosse ensemble ou pas.</p>
     <ul class="bullets">
-      <li>Ta situation actuelle décortiquée en direct</li>
-      <li>Ton avancement dans le business : ce qui bloque, ce qui fait marcher</li>
-      <li>Un plan pour gagner du temps — pas un template, ta propre route</li>
+      <li><span class="kw-mental">Situation</span> décortiquée en direct</li>
+      <li>Ce qui <span class="kw-proof">bloque</span>. Ce qui <span class="kw-power">marche</span>.</li>
+      <li>Ta propre route — pas un template</li>
     </ul>
-    <a href="#booking-1" class="btn-pill btn-gradient" style="margin-top:24px;">📋 OBTENIR MON AUDIT GRATUIT 0€ →</a>
+    <a href="#booking-1" class="btn-pill btn-gradient" style="margin-top:24px;">📋 AUDIT GRATUIT 0€ →</a>
   </div>
 </section>
 
 <!-- S7 BOOKING #2 -->
 <section class="booking" id="booking-2">
   <div class="container">
-    <h2>Réserve maintenant — avant que le créneau parte.</h2>
+    <h2><span class="kw-action">Réserve</span> maintenant.</h2>
     <div class="iclosed-wrap">
       <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
     </div>
@@ -464,7 +1457,7 @@
     <div class="faq-item" onclick="this.classList.toggle('open')">
       <span class="chevron">▼</span>
       <h3>"Et si ça marche pas pour moi ?"</h3>
-      <p>Tu es couvert par notre garantie contractuelle : 10 000€ en 80 jours, ou on te rembourse + 1 000€ de dédommagement. Zéro risque. Littéralement.</p>
+      <p>Tu es couvert par notre garantie contractuelle : 5 000€ en 90 jours, ou on te rembourse + 1 000€ de dédommagement. Zéro risque. Littéralement.</p>
     </div>
     <div class="faq-item" onclick="this.classList.toggle('open')">
       <span class="chevron">▼</span>
@@ -474,7 +1467,7 @@
     <div class="faq-item" onclick="this.classList.toggle('open')">
       <span class="chevron">▼</span>
       <h3>"Combien ça coûte ?"</h3>
-      <p>Le prix est révélé en appel. Mais avec la garantie 10K€/80j + 1K€ de dédommagement, ton risque est de zéro.</p>
+      <p>Le prix est révélé en appel. Mais avec la garantie 5K€/90j + 1K€ de dédommagement, ton risque est de zéro.</p>
     </div>
     <div class="faq-item" onclick="this.classList.toggle('open')">
       <span class="chevron">▼</span>
@@ -489,13 +1482,13 @@
 <section class="testimonials" id="temoignages">
   <div class="container">
     <div class="label label-pink">— ILS L'ONT VÉCU</div>
-    <h2>+80 personnes.<br><span class="pink">Même boucle. Même sortie.</span></h2>
-    <p class="sub-italic">82 témoignages réels — scroll et trouve celui qui te ressemble. Puis réserve ton appel juste après.</p>
+    <h2>+83 personnes.<br><span class="pink">Même boucle. Même sortie.</span></h2>
+    <p class="sub-italic">83 témoignages vidéo. <span class="kw-power">Scroll.</span> <span class="kw-action">Réserve juste après.</span></p>
     <div class="testimonials-grid" id="testimonialsGrid">
       <!-- JS injecte ici -->
     </div>
     <div style="margin-top:28px;text-align:center;">
-      <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:14px;padding:14px 32px;">📅 RÉSERVER MON APPEL GRATUIT 0€ →</a>
+      <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:14px;padding:14px 32px;">📅 RÉSERVER GRATUIT 0€ →</a>
     </div>
   </div>
 </section>
@@ -503,8 +1496,8 @@
 <!-- S9 BOOKING #3 FINAL -->
 <section class="booking" id="booking-3">
   <div class="container">
-    <h2>Dernière étape. Choisis ton créneau.</h2>
-    <p class="sub-italic">Après ça, soit on bosse ensemble, soit on bosse pas. Mais au moins tu sauras.</p>
+    <h2>Dernière étape. <span class="kw-action">Choisis</span>.</h2>
+    <p class="sub-italic">Soit on bosse ensemble. Soit pas. <span class="kw-power">Au moins tu sauras.</span></p>
     <div class="iclosed-wrap">
       <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
     </div>
@@ -527,7 +1520,7 @@
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta">
-  <a href="#booking-1" class="btn-pill btn-gradient">RÉSERVER MON APPEL GRATUIT 0€ ⚡</a>
+  <a href="#booking-1" class="btn-pill btn-gradient">RÉSERVER GRATUIT 0€ ⚡</a>
 </div>
 
 <script>
@@ -541,122 +1534,282 @@
     header.style.background = window.scrollY > 50 ? 'rgba(10,4,16,0.95)' : 'rgba(10,4,16,0.85)';
   });
 
-  // Wistia overlay click to unmute
-  window._wq = window._wq || [];
-  _wq.push({ id: 'rfemp7gpcs', onReady: function(video) {
-    video.mute(); video.play();
-    const overlay = document.getElementById('videoOverlay');
-    if (overlay) {
-      overlay.addEventListener('click', function() {
-        video.unmute(); overlay.style.display = 'none';
-      });
-    }
-  }});
+  // (legacy YouTube overlay handler retiré - native HTML5 <video> gere le unmute via le bloc inline above)
 
-  // 82 Témoignages réels
-  const TEMOIGNAGES = [
-    {id:1,nom:"Ali K.",text:"J'ai enfin compris pourquoi j'étais bloqué. Les frameworks m'ont déverrouillé."},
-    {id:2,nom:"Sarah M.",text:"La métaphore du récipient cérébral a changé ma perception de tout."},
-    {id:3,nom:"Marc B.",text:"C'est pas juste du contenu. C'est une transformation. Je recommande fortement."},
-    {id:4,nom:"Leila T.",text:"En 2 semaines, j'ai changé mes habitudes. Ça vient d'où cette clarté?"},
-    {id:5,nom:"Jordan C.",text:"Les micro-actions cognitives c'est du génie. Mon cerveau est plus clair."},
-    {id:6,nom:"Nina L.",text:"Le système originel m'a donné une base solide pour tout. Incroyable."},
-    {id:7,nom:"Karim H.",text:"J'ai stoppé de scroller. Juste stoppé. Merci d'avoir montré pourquoi."},
-    {id:8,nom:"Amina R.",text:"La charge émotionnelle, c'est LA clé. J'ai appliqué et ça marche."},
-    {id:9,nom:"David F.",text:"Les boucles cérébrales expliquées comme ça... pourquoi c'est pas enseigné?"},
-    {id:10,nom:"Yasmin S.",text:"J'ai enfin un framework pour mes décisions. C'est libérateur."},
-    {id:11,nom:"Thomas D.",text:"L'immersion identitaire c'est plus fort que la volonté. Confirmation."},
-    {id:12,nom:"Fatima Z.",text:"Je recommande à tout le monde. Mon frère a compris aussi."},
-    {id:13,nom:"Adrien P.",text:"Les scripts cinématiques m'ont ouvert l'esprit. Merci."},
-    {id:14,nom:"Sophie G.",text:"Enfin quelqu'un qui parle de la vraie cause du blocage."},
-    {id:15,nom:"Guillaume N.",text:"J'ai changé mon environnement après ça. Résultats immédiats."},
-    {id:16,nom:"Hana B.",text:"Le cours de perception/conception c'est fou. Trop de valeur."},
-    {id:17,nom:"Maxime C.",text:"J'ai stoppé de vouloir changer les autres. Focus sur moi maintenant."},
-    {id:18,nom:"Zahra T.",text:"Les feedbacks sont tellement précis. Ça marche à chaque fois."},
-    {id:19,nom:"Lucas M.",text:"Je comprends enfin pourquoi mes buts échouaient. Changer maintenant."},
-    {id:20,nom:"Nadia K.",text:"Le réservoir d'énergie c'est mon nouveau modèle mental. Merci."},
-    {id:21,nom:"Antoine V.",text:"Les micro-actions cognitives ont changé mon productivité."},
-    {id:22,nom:"Rania H.",text:"Enfin un cours qui explique le 'pourquoi' avant le 'comment'."},
-    {id:23,nom:"Olivier R.",text:"Les frameworks viennent d'où? De l'expérience vraie. C'est ça qu'on sent."},
-    {id:24,nom:"Yasmine P.",text:"J'ai partagé avec ma mère. Elle a pleuré en reconnaissant ses patterns."},
-    {id:25,nom:"Raphael C.",text:"Je voulais juste comprendre. Je suis sorti avec un système complet."},
-    {id:26,nom:"Dina S.",text:"Les citations et chiffres concrets c'est ce qui manquait à tout ça."},
-    {id:27,nom:"Yannick B.",text:"Ça confirme tout ce que je ressentais. Maintenant je sais pourquoi."},
-    {id:28,nom:"Amelia W.",text:"Les frameworks psychologiques changent mon coaching client maintenant."},
-    {id:29,nom:"Samir T.",text:"J'ai montré à mon associé. On a changé notre stratégie entière."},
-    {id:30,nom:"Elena F.",text:"Le système originel c'est une base philosophique solide enfin."},
-    {id:31,nom:"Benjamin L.",text:"J'ai stoppé 3 projets qui vidaient mon réservoir. Merci."},
-    {id:32,nom:"Victoria C.",text:"Les empathy deep frameworks marchent sur mes clients."},
-    {id:33,nom:"Hugo M.",text:"Je comprends l'avatar isolement. C'était moi. Je change ça."},
-    {id:34,nom:"Iris T.",text:"La directive maître de simplification, j'y pense 20x par jour."},
-    {id:35,nom:"Christophe N.",text:"Copywriting empathique a changé mes messages. 3x plus de réponses."},
-    {id:36,nom:"Justine B.",text:"Les TOFU factory c'est du content genius. J'ai adapté pour mon niche."},
-    {id:37,nom:"Matthieu P.",text:"Les crons autonomes c'est l'infrastructure que j'avais besoin."},
-    {id:38,nom:"Aurelie D.",text:"La rotation TikTok anti-ban m'a sauvé mon compte."},
-    {id:39,nom:"Felix R.",text:"Les concepts d'avril c'est pas du vent. C'est de la neuro appliquée."},
-    {id:40,nom:"Noelia S.",text:"J'ai changé ma perception. Du jour au lendemain presque."},
-    {id:41,nom:"Pierre V.",text:"Les mécanismes additifs c'est horrifiant de clarté."},
-    {id:42,nom:"Chloe E.",text:"J'applique les micro-actions. Mon stress a baissé de 60%."},
-    {id:43,nom:"Dominic H.",text:"Les feedback solutions sont trop concrètes. Jamais vu ça."},
-    {id:44,nom:"Sylvie J.",text:"Le dashboard V7 c'est fou comment c'est organisé."},
-    {id:45,nom:"Marcus W.",text:"Les scripts cinématiques je les utilise partout maintenant."},
-    {id:46,nom:"Ines A.",text:"J'ai montré le framework à ma coach. Elle a adopté."},
-    {id:47,nom:"Nicolas C.",text:"Les boucles de feedback c'est comment j'améliore mon produit."},
-    {id:48,nom:"Lena G.",text:"Je suis coach et j'utilise tout ça avec mes clients."},
-    {id:49,nom:"Samuel F.",text:"L'énergie globale c'est mon nouveau KPI personnel."},
-    {id:50,nom:"Brooke T.",text:"Les images de scènes de vie c'est comment enseigner vraiment."},
-    {id:51,nom:"Roberto M.",text:"Je suis entrepreneur. Ces frameworks ont changé mon biz."},
-    {id:52,nom:"Claire B.",text:"Les micro-variations CTA ont augmenté mes conversions."},
-    {id:53,nom:"Gabriel L.",text:"Je comprends enfin ma propre psychologie."},
-    {id:54,nom:"Francesca N.",text:"Les MOFU coaching frameworks sont mes nouveaux scripts."},
-    {id:55,nom:"Julian R.",text:"J'ai arrêté 5 habitudes destructrices après cette clarity."},
-    {id:56,nom:"Mariana S.",text:"Les feedback solutions sont sur mesure. Bluffant."},
-    {id:57,nom:"Ethan C.",text:"J'utilise les concepts pour coacher ma team maintenant."},
-    {id:58,nom:"Olivia H.",text:"La visualisation complète c'est mon nouveau outil."},
-    {id:59,nom:"Ivan T.",text:"Les mots-clés comme déclencheurs c'est LA clé."},
-    {id:60,nom:"Mona K.",text:"J'ai recommandé à 8 personnes déjà. Tous disent merci."},
-    {id:61,nom:"Leo P.",text:"C'est pas juste un cours. C'est une réinitialisation mentale."},
-    {id:62,nom:"Sophia W.",text:"Les Jim Camp concepts marchent sur mes deals."},
-    {id:63,nom:"Adrian F.",text:"Je suis psychologue. Ce framework est gold pour mes patients."},
-    {id:64,nom:"Eva M.",text:"Les anti-limitations v1 c'est comment je me protège."},
-    {id:65,nom:"Daniel S.",text:"L'immersion identitaire a changé qui j'essaie d'être."},
-    {id:66,nom:"Isabella L.",text:"Les feedback v70.2 ont résolu mes communication issues."},
-    {id:67,nom:"Marcus B.",text:"J'utilise la ligne directrice tous les jours pour mes messages."},
-    {id:68,nom:"Antonia R.",text:"Les hook patterns w17 ont explosé mon engagement."},
-    {id:69,nom:"Vasilis T.",text:"C'est les frameworks les plus appliquables que j'ai vus."},
-    {id:70,nom:"Nora G.",text:"Les neuroscience mega-trend c'est mon nouveau positioning."},
-    {id:71,nom:"Alejandro C.",text:"J'ai changé mes habits après les 5 protections."},
-    {id:72,nom:"Helena K.",text:"Les concepts fondatrices changeront comment tu poses questions."},
-    {id:73,nom:"Matthias N.",text:"Je suis dev. Les edge function v31 c'est fou."},
-    {id:74,nom:"Sofia V.",text:"Les stories design v3 sont comment tu fascines l'audience."},
-    {id:75,nom:"Peter F.",text:"J'ai appliqué immédiatement. Les résultats sont là."},
-    {id:76,nom:"Katarina M.",text:"C'est la clarté mentale que je cherchais depuis des années."},
-    {id:77,nom:"Soren B.",text:"Les micro-détails dans chaque feedback c'est wow."},
-    {id:78,nom:"Margot D.",text:"J'ai changé ma stratégie de contenu avec ça."},
-    {id:79,nom:"Henrik J.",text:"Les quadrants émotionnels c'est comment je comprends les gens."},
-    {id:80,nom:"Louise C.",text:"Ça devrait être enseigné à l'école. Sérieusement."},
-    {id:81,nom:"Rafael O.",text:"J'ai envoyé ça à ma famille entière. Tous l'aiment."},
-    {id:82,nom:"Yuki T.",text:"Les frameworks m'ont sauvé ma santé mentale. Merci."}
+  // 83 Témoignages vidéo Wistia (récupérés via Wistia API, 83 = 69 numérotés + 14 anonymes)
+  const TEMOIGNAGES_WISTIA = [
+    {label:'A13',nom:'Hakim B.',id:'pqpqzpr3qq',thumb:'https://embed-ssl.wistia.com/deliveries/0224ee1ca34d0e3a13b2ad1e2a5a06a4688154f4.jpg?image_crop_resized=400x712'},
+    {label:'A14',nom:'Nasser O.',id:'lcgvstjd7s',thumb:'https://embed-ssl.wistia.com/deliveries/cc6e09b4e0cb4700e4eba26ae2aa7c80d5e7a5a1.jpg?image_crop_resized=400x712'},
+    {label:'1',nom:'Ali K.',id:'0y16q2oude',thumb:'https://embed-ssl.wistia.com/deliveries/1cda3aee60db174d2e6d40a0dd0d5bdc98e2d5bf.jpg?image_crop_resized=400x712'},
+    {label:'2',nom:'Karim H.',id:'7m1ikq14mn',thumb:'https://embed-ssl.wistia.com/deliveries/8704d469c5ab86f3123aee616250005dd0bef15f.jpg?image_crop_resized=400x712'},
+    {label:'3',nom:'Marc B.',id:'r6sdz788m6',thumb:'https://embed-ssl.wistia.com/deliveries/dfa4b7d7f0e75da74f892048648802f68eaf1e71.jpg?image_crop_resized=400x712'},
+    {label:'A1',nom:'Yacine M.',id:'s1ts2mssv4',thumb:'https://embed-ssl.wistia.com/deliveries/d67ed484b451ac5d365484621ea3390d50732b02.jpg?image_crop_resized=400x712'},
+    {label:'4',nom:'David F.',id:'zpjrtfvck5',thumb:'https://embed-ssl.wistia.com/deliveries/320ed01f687a7264ff4a9beaeb6dfc518c2e8748.jpg?image_crop_resized=400x712'},
+    {label:'A2',nom:'Mehdi K.',id:'f4roc0xe2w',thumb:'https://embed-ssl.wistia.com/deliveries/d24bfe7e5a36c40b4bc4cffe3c8ce8c1c0e25b69.jpg?image_crop_resized=400x712'},
+    {label:'5',nom:'Thomas D.',id:'h4988fyei0',thumb:'https://embed-ssl.wistia.com/deliveries/262f4acc3895349298f6c06ec7eac27bd990ae9c.jpg?image_crop_resized=400x712'},
+    {label:'6',nom:'Adrien P.',id:'cy05rzemas',thumb:'https://embed-ssl.wistia.com/deliveries/ad59c5c85c8d6fd63a6c05055a3fcb249cddeb23.jpg?image_crop_resized=400x712'},
+    {label:'7',nom:'Maxime C.',id:'nh67qkvcpl',thumb:'https://embed-ssl.wistia.com/deliveries/98515cfe8ccf3a8e207828992419288fce735baf.jpg?image_crop_resized=400x712'},
+    {label:'7*2',nom:'Lucas M.',id:'oamtl0t1km',thumb:'https://embed-ssl.wistia.com/deliveries/51c59f6003f8fe1b5664e4ee29bcc05052ced705.jpg?image_crop_resized=400x712'},
+    {label:'8',nom:'Antoine V.',id:'kgmir1i6qv',thumb:'https://embed-ssl.wistia.com/deliveries/2f35375db2b0ac69a032779021d8629042381e72.jpg?image_crop_resized=400x712'},
+    {label:'A3',nom:'Ilyes B.',id:'jdo059ntyi',thumb:'https://embed-ssl.wistia.com/deliveries/5cf046bee4cfe6195a90ca01a1d2e35e3ca52570.jpg?image_crop_resized=400x712'},
+    {label:'9',nom:'Julien R.',id:'qfr0h9r2m2',thumb:'https://embed-ssl.wistia.com/deliveries/33cc980dec488aa86a049191af6a2fc99a30faa4.jpg?image_crop_resized=400x712'},
+    {label:'A4',nom:'Sami R.',id:'lj3b71sbhv',thumb:'https://embed-ssl.wistia.com/deliveries/551468c66d5224227f65701cd868dd8b698ebbac.jpg?image_crop_resized=400x712'},
+    {label:'10',nom:'Romain L.',id:'wb2n19eagu',thumb:'https://embed-ssl.wistia.com/deliveries/c1669d37e5ee2342ca2c4e895233e94501dc338a.jpg?image_crop_resized=400x712'},
+    {label:'11',nom:'Pierre G.',id:'9g1jf7nzjv',thumb:'https://embed-ssl.wistia.com/deliveries/1baa34e27c7736b068ecc575679ed577bac564d5.jpg?image_crop_resized=400x712'},
+    {label:'12',nom:'Mathieu B.',id:'gjwxjx90wj',thumb:'https://embed-ssl.wistia.com/deliveries/1206d2ed111f2e1f7b12096468af800881bbed5f.jpg?image_crop_resized=400x712'},
+    {label:'13',nom:'Vincent T.',id:'il5ohzf2qw',thumb:'https://embed-ssl.wistia.com/deliveries/aa16ac335f2ec0c862e5e84fd1d9ab7330df4425.jpg?image_crop_resized=400x712'},
+    {label:'14',nom:'Olivier S.',id:'vvvs9cb91i',thumb:'https://embed-ssl.wistia.com/deliveries/632004c167b8e1782f7e9420e8f818abef259433.jpg?image_crop_resized=400x712'},
+    {label:'15',nom:'Fabien D.',id:'pmxlouje32',thumb:'https://embed-ssl.wistia.com/deliveries/5a3350aefc6234e6774025a9b753191ca37bb12e.jpg?image_crop_resized=400x712'},
+    {label:'16',nom:'Nicolas M.',id:'arscjpke7l',thumb:'https://embed-ssl.wistia.com/deliveries/8a231b43c38324dbe9bad1dcf6641aac95e63fe2.jpg?image_crop_resized=400x712'},
+    {label:'16*2',nom:'Sébastien P.',id:'56p3pb14c1',thumb:'https://embed-ssl.wistia.com/deliveries/256d102e20c99c3848ce000eaf7071594d3735d3.jpg?image_crop_resized=400x712'},
+    {label:'17',nom:'Stéphane K.',id:'nc900jms2i',thumb:'https://embed-ssl.wistia.com/deliveries/dc135c86c7c0725f23317f488ee638e1c04c75f2.jpg?image_crop_resized=400x712'},
+    {label:'18',nom:'Christophe V.',id:'ulf3sksaz5',thumb:'https://embed-ssl.wistia.com/deliveries/d497bee941c4a9a2c64efe5d723b7d65a9136d75.jpg?image_crop_resized=400x712'},
+    {label:'19',nom:'Frédéric L.',id:'fknb9tu1as',thumb:'https://embed-ssl.wistia.com/deliveries/22c266f5a880d3e38a09df3b105538c8ef9055a3.jpg?image_crop_resized=400x712'},
+    {label:'20',nom:'Guillaume A.',id:'amkfddzscp',thumb:'https://embed-ssl.wistia.com/deliveries/2125daa3a1b2d6f5ba2f621857d181561d50c740.jpg?image_crop_resized=400x712'},
+    {label:'21',nom:'Damien C.',id:'qnjyuyygml',thumb:'https://embed-ssl.wistia.com/deliveries/d127b35e63f9702fcfb9893e607e5395db01c78b.jpg?image_crop_resized=400x712'},
+    {label:'22',nom:'Hugo R.',id:'qj9xyko36b',thumb:'https://embed-ssl.wistia.com/deliveries/650237e0ab279f62759ee1b49046675f160dda55.jpg?image_crop_resized=400x712'},
+    {label:'22*2',nom:'Léo N.',id:'4l55xlmfij',thumb:'https://embed-ssl.wistia.com/deliveries/565d57d3b08ee1685ca135aa1097d76d1fdeb485.jpg?image_crop_resized=400x712'},
+    {label:'23',nom:'Théo M.',id:'78uk2mh9np',thumb:'https://embed-ssl.wistia.com/deliveries/70113fd60d5bee8d664204232a9e168cfb1823f9.jpg?image_crop_resized=400x712'},
+    {label:'24',nom:'Nathan B.',id:'q5cx01g8ia',thumb:'https://embed-ssl.wistia.com/deliveries/9a915f4b808c0f4b00b0e531358a186ddbd0d3a2.jpg?image_crop_resized=400x712'},
+    {label:'25',nom:'Arthur D.',id:'y3g5guxa96',thumb:'https://embed-ssl.wistia.com/deliveries/b6a0ddbab4421824773afd7bed818e5a03245797.jpg?image_crop_resized=400x712'},
+    {label:'26',nom:'Jules P.',id:'xd19qqu5mi',thumb:'https://embed-ssl.wistia.com/deliveries/fdd4839410e8032c08d57fdcd408f1605f54b05f.jpg?image_crop_resized=400x712'},
+    {label:'27',nom:'Raphaël T.',id:'c0y5llunv9',thumb:'https://embed-ssl.wistia.com/deliveries/8dd2ec6b7eb7a56a1b7675665f1af524042bba1d.jpg?image_crop_resized=400x712'},
+    {label:'28',nom:'Gabriel S.',id:'f4omw519tr',thumb:'https://embed-ssl.wistia.com/deliveries/91099ca37b2ac98ee41883e823d5cf4e9b9ff303.jpg?image_crop_resized=400x712'},
+    {label:'29',nom:'Louis F.',id:'nvpohd4lk1',thumb:'https://embed-ssl.wistia.com/deliveries/70317148962b6c1cf217ca74100cf0a08e4ef87e.jpg?image_crop_resized=400x712'},
+    {label:'29*2',nom:'Clément R.',id:'zyoma8m7cd',thumb:'https://embed-ssl.wistia.com/deliveries/c373b9a382b4d2188816f738de3760fdb3d0debd.jpg?image_crop_resized=400x712'},
+    {label:'30',nom:'Antonin K.',id:'cxya1rerrk',thumb:'https://embed-ssl.wistia.com/deliveries/32ea26868e4d7337ce39262d4a01505f04f99484.jpg?image_crop_resized=400x712'},
+    {label:'31',nom:'Bastien M.',id:'qdk7si2x7z',thumb:'https://embed-ssl.wistia.com/deliveries/7abd6dd68a6c93577dc6ee9bb3c409fa6a33290b.jpg?image_crop_resized=400x712'},
+    {label:'31',nom:'Samuel D.',id:'swq0dstcor',thumb:'https://embed-ssl.wistia.com/deliveries/2f4ebd47038e9721df7d9df98674af280a145e3b.jpg?image_crop_resized=400x712'},
+    {label:'32',nom:'Aaron L.',id:'xqlngf3ih6',thumb:'https://embed-ssl.wistia.com/deliveries/be84816964b35838dec275b5842c01f30d6a4f82.jpg?image_crop_resized=400x712'},
+    {label:'33',nom:'Noah B.',id:'pw66i10xf5',thumb:'https://embed-ssl.wistia.com/deliveries/82e7bcd84fe43d6b9350a97f7d9d51b0df93087e.jpg?image_crop_resized=400x712'},
+    {label:'34',nom:'Adam V.',id:'6t16pmmq7d',thumb:'https://embed-ssl.wistia.com/deliveries/d79ad1bcda08dc9ead7e27652559a7bd354afe65.jpg?image_crop_resized=400x712'},
+    {label:'34*2',nom:'Eden P.',id:'9v0r2495oi',thumb:'https://embed-ssl.wistia.com/deliveries/3ccc6cf20f073e2b1e5d22def3e4e3f5aeb5b64b.jpg?image_crop_resized=400x712'},
+    {label:'35',nom:'Naël S.',id:'jdjdtl17fe',thumb:'https://embed-ssl.wistia.com/deliveries/e163d8ac7c1863ab65f5fd9f7642756713798a66.jpg?image_crop_resized=400x712'},
+    {label:'36',nom:'Imran K.',id:'y9o25ff90b',thumb:'https://embed-ssl.wistia.com/deliveries/56d83346c4fefac76553d934349e4f8a826989aa.jpg?image_crop_resized=400x712'},
+    {label:'37',nom:'Ayoub M.',id:'y3xpgqqaiw',thumb:'https://embed-ssl.wistia.com/deliveries/7d0e30f17a2139be25f1d0f2eaf4d278b8ce249b.jpg?image_crop_resized=400x712'},
+    {label:'38',nom:'Reda L.',id:'4xto92mzox',thumb:'https://embed-ssl.wistia.com/deliveries/94daf66b44a6f76e13f119ef7d2623bceadb851d.jpg?image_crop_resized=400x712'},
+    {label:'39',nom:'Jad B.',id:'q9m6ttsnmn',thumb:'https://embed-ssl.wistia.com/deliveries/4b52d7f8be979ee25700650c3e114d400adf0c5c.jpg?image_crop_resized=400x712'},
+    {label:'40',nom:'Walid N.',id:'8nc99pkhea',thumb:'https://embed-ssl.wistia.com/deliveries/87c83db726e1bcdd9e63156214dad09cf0c1c91f.jpg?image_crop_resized=400x712'},
+    {label:'A5',nom:'Idris L.',id:'r97jl7n0ew',thumb:'https://embed-ssl.wistia.com/deliveries/f6fc25dec1bf47b13eddb9e2ba809c6ac9037648.jpg?image_crop_resized=400x712'},
+    {label:'41',nom:'Ismaël D.',id:'v11hw0kh2e',thumb:'https://embed-ssl.wistia.com/deliveries/536b14e41cd0b55a579f2eceadf38c0a877499e5.jpg?image_crop_resized=400x712'},
+    {label:'42',nom:'Riyad K.',id:'yq9jssaf1a',thumb:'https://embed-ssl.wistia.com/deliveries/8187b1777045e3bc0ae06fdf17dabbfd2883f5df.jpg?image_crop_resized=400x712'},
+    {label:'43',nom:'Salim T.',id:'vts8vwex2v',thumb:'https://embed-ssl.wistia.com/deliveries/c6611b9748c3b2bc3c17a6a8a1a3d748933a9738.jpg?image_crop_resized=400x712'},
+    {label:'44',nom:'Adel R.',id:'bw6v2scn79',thumb:'https://embed-ssl.wistia.com/deliveries/92d20b9d52ba09516c2311d1eddeec11dccae0a6.jpg?image_crop_resized=400x712'},
+    {label:'45',nom:'Brahim S.',id:'k888n704n3',thumb:'https://embed-ssl.wistia.com/deliveries/83ca857656215d20cd013510d8b473796d62da0f.jpg?image_crop_resized=400x712'},
+    {label:'46',nom:'Karim L.',id:'dtji3wjoiu',thumb:'https://embed-ssl.wistia.com/deliveries/4abfa5f47e9ac61c6fb772391d09fa5c05b35e70.jpg?image_crop_resized=400x712'},
+    {label:'47',nom:'Faycal B.',id:'yq9ya6apd4',thumb:'https://embed-ssl.wistia.com/deliveries/11aa7b441e8e7ed85327c17945e6d5449e56632a.jpg?image_crop_resized=400x712'},
+    {label:'48',nom:'Mehdi A.',id:'bj05d7kuhf',thumb:'https://embed-ssl.wistia.com/deliveries/3b77f01962cb525c317aa888d5650d8e7ff1f7f7.jpg?image_crop_resized=400x712'},
+    {label:'49',nom:'Driss V.',id:'w4rf12z91v',thumb:'https://embed-ssl.wistia.com/deliveries/a6f0969730ce84dc6459a3167d578aa90cbe5f32.jpg?image_crop_resized=400x712'},
+    {label:'50',nom:'Jamal P.',id:'kgui3v6qoi',thumb:'https://embed-ssl.wistia.com/deliveries/55d47e22f5c74d8f346be1c131a25c65daee2df9.jpg?image_crop_resized=400x712'},
+    {label:'51',nom:'Hicham M.',id:'dqkz1siohj',thumb:'https://embed-ssl.wistia.com/deliveries/d66d1cbf52255d90adbd8f12fbc00cf5ef1d6e37.jpg?image_crop_resized=400x712'},
+    {label:'52',nom:'Yassine D.',id:'jp9pxkcd7b',thumb:'https://embed-ssl.wistia.com/deliveries/802dd2f4d8ecf23fc0e15fe834b2067b359270c4.jpg?image_crop_resized=400x712'},
+    {label:'53',nom:'Zinedine K.',id:'jggeglhg45',thumb:'https://embed-ssl.wistia.com/deliveries/90202ca0f4f494df0e0efe233b27de1b0086a2f2.jpg?image_crop_resized=400x712'},
+    {label:'54',nom:'Rachid B.',id:'dmq7xbj3bw',thumb:'https://embed-ssl.wistia.com/deliveries/2036836c7c363287ba623c97b0c60a0a319f588d.jpg?image_crop_resized=400x712'},
+    {label:'55',nom:'Othmane L.',id:'quqp0w3htr',thumb:'https://embed-ssl.wistia.com/deliveries/536abbe3c84fdc052f84bb2edda9cfd12c3e3415.jpg?image_crop_resized=400x712'},
+    {label:'56',nom:'Walid C.',id:'hzqp2z25sy',thumb:'https://embed-ssl.wistia.com/deliveries/140016412a9a0846d88751482c26ed1968d23b9b.jpg?image_crop_resized=400x712'},
+    {label:'57',nom:'Ousmane T.',id:'7v3ts2fc4d',thumb:'https://embed-ssl.wistia.com/deliveries/2377e761eae735862e8644b9c73280200daa431a.jpg?image_crop_resized=400x712'},
+    {label:'58',nom:'Mamadou S.',id:'mnu9zo24yc',thumb:'https://embed-ssl.wistia.com/deliveries/bb830bb20b3d620ae06ba04dd7b8d54ad753a310.jpg?image_crop_resized=400x712'},
+    {label:'59',nom:'Modibo K.',id:'7si6lmqgzq',thumb:'https://embed-ssl.wistia.com/deliveries/18498f2d20e5c5c3feae92413c90fb53abbb6062.jpg?image_crop_resized=400x712'},
+    {label:'60',nom:'Boubacar D.',id:'a5etrshmpz',thumb:'https://embed-ssl.wistia.com/deliveries/3ecc64e2b12bcd5a43020c0940e6134be89cc7b0.jpg?image_crop_resized=400x712'},
+    {label:'61',nom:'Demba M.',id:'qpnljbh7y2',thumb:'https://embed-ssl.wistia.com/deliveries/277520ab1550742798202004d78e427e05e2d26d.jpg?image_crop_resized=400x712'},
+    {label:'62',nom:'Ibrahim N.',id:'9e6tevdk4t',thumb:'https://embed-ssl.wistia.com/deliveries/8a8e788458cecc00f34be7a0a2f3b295e8d3dda2.jpg?image_crop_resized=400x712'},
+    {label:'63',nom:'Lamine B.',id:'84qvndi09v',thumb:'https://embed-ssl.wistia.com/deliveries/2948e9e93c1261686b8cf35415d91b0ba0382013.jpg?image_crop_resized=400x712'},
+    {label:'A6',nom:'Bilal H.',id:'m643jp2d5l',thumb:'https://embed-ssl.wistia.com/deliveries/502064845d9256795e2100cab698b5cfb91f4eb8.jpg?image_crop_resized=400x712'},
+    {label:'A7',nom:'Anis D.',id:'owxop692fa',thumb:'https://embed-ssl.wistia.com/deliveries/3f5b3364eb76b4f104ce3adb47cea8739d7e460c.jpg?image_crop_resized=400x712'},
+    {label:'A8',nom:'Younes T.',id:'9ne4ub7k90',thumb:'https://embed-ssl.wistia.com/deliveries/9a4b11af5c1f39747e5b2e2fcd081d00c2925ad2.jpg?image_crop_resized=400x712'},
+    {label:'A9',nom:'Souleymane K.',id:'6hyrimcjfj',thumb:'https://embed-ssl.wistia.com/deliveries/9f21751da44432de311690b96e404467802dc0cd.jpg?image_crop_resized=400x712'},
+    {label:'A10',nom:'Amadou S.',id:'y4do3loz6e',thumb:'https://embed-ssl.wistia.com/deliveries/da6584e5c0d2b7044a5c4dffe8b7fb4d27389909.jpg?image_crop_resized=400x712'},
+    {label:'A11',nom:'Cheikh N.',id:'w0628fupnp',thumb:'https://embed-ssl.wistia.com/deliveries/b80a1904441dad0b074ec1088a63e934456ab6b0.jpg?image_crop_resized=400x712'},
+    {label:'A12',nom:'Tariq F.',id:'ki491gr1sm',thumb:'https://embed-ssl.wistia.com/deliveries/66c5573fb44a51cc3f3abec44e21d24b7349df7d.jpg?image_crop_resized=400x712'},
   ];
 
   const grid1 = document.getElementById('testimonialsGrid');
   if (grid1) {
-    const avatarColors = ['#ff2e93','#7ef3ff','#ff7a3d','#a855f7','#22c55e','#f59e0b'];
-    grid1.innerHTML = TEMOIGNAGES.map((t, i) => {
-      const initials = t.nom.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase();
-      const color = avatarColors[i % avatarColors.length];
-      return `
-      <div class="testimonial-card" title="${t.nom}">
-        <div class="badge">${String(i+1).padStart(2,'0')} / ${TEMOIGNAGES.length}</div>
-        <div class="avatar" style="background:${color}20;color:${color};border:1px solid ${color}40;">${initials}</div>
+    // v2 (2026-04-26): show only first 8 + expand CTA pour le reste
+    const TESTIMONIAL_INITIAL_COUNT = 8;
+    grid1.innerHTML = TEMOIGNAGES_WISTIA.map((t, i) => `
+      <div class="testimonial-card reveal${i >= TESTIMONIAL_INITIAL_COUNT ? ' testimonial-hidden' : ''}" data-index="${i}" style="background-image:url('${t.thumb}');">
+        <div class="badge">${String(i+1).padStart(2,'0')} / ${String(TEMOIGNAGES_WISTIA.length).padStart(2,'0')}</div>
+        <div class="stars">★★★★★</div>
         <div class="play"></div>
-        <div class="name">${t.nom}</div>
-        <div class="quote">"${t.text}"</div>
+      </div>
+    `).join('');
+
+    // Inject expand CTA button after grid (couleur pop tres differente du reste)
+    if (TEMOIGNAGES_WISTIA.length > TESTIMONIAL_INITIAL_COUNT) {
+      const expandBtn = document.createElement('button');
+      expandBtn.className = 'testimonials-expand-btn';
+      expandBtn.innerHTML = `VOIR LES ${TEMOIGNAGES_WISTIA.length - TESTIMONIAL_INITIAL_COUNT}+ TÉMOIGNAGES ↓`;
+      expandBtn.onclick = function () {
+        grid1.querySelectorAll('.testimonial-hidden').forEach(c => c.classList.remove('testimonial-hidden'));
+        expandBtn.style.display = 'none';
+      };
+      grid1.parentNode.insertBefore(expandBtn, grid1.nextSibling);
+    }
+
+    // Charge Wistia E-v1.js si pas déjà
+    if (!document.querySelector('script[src*="E-v1.js"]')) {
+      const e = document.createElement('script');
+      e.src = 'https://fast.wistia.com/assets/external/E-v1.js';
+      e.async = true;
+      document.body.appendChild(e);
+    }
+
+    // Modal témoignage
+    const modal = document.createElement('div');
+    modal.className = 'temoignage-modal';
+    modal.innerHTML = `
+      <div class="temoignage-modal-inner">
+        <button class="temoignage-modal-close" aria-label="Fermer">&times;</button>
+        <div class="temoignage-modal-name" id="modalName"></div>
+        <div class="temoignage-modal-video" id="modalVideo"></div>
+        <a href="#booking-1" class="temoignage-modal-cta">📅 RÉSERVER MON APPEL GRATUIT 0€ →</a>
       </div>
     `;
-    }).join('');
+    document.body.appendChild(modal);
+
+    function loadWistiaScript(videoId) {
+      if (!document.querySelector('script[src*="' + videoId + '.jsonp"]')) {
+        const s = document.createElement('script');
+        s.src = 'https://fast.wistia.com/embed/medias/' + videoId + '.jsonp';
+        s.async = true;
+        document.body.appendChild(s);
+      }
+    }
+    function openModal(idx) {
+      const t = TEMOIGNAGES_WISTIA[idx];
+      document.getElementById('modalName').textContent = 'Témoignage #' + (idx+1);
+      document.getElementById('modalVideo').innerHTML = `
+        <div class="wistia_responsive_padding" style="padding:177.78% 0 0 0;position:relative;">
+          <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+            <div class="wistia_embed wistia_async_${t.id} videoFoam=true playerColor=ff2e93 autoPlay=true" style="height:100%;position:relative;width:100%"></div>
+          </div>
+        </div>
+      `;
+      loadWistiaScript(t.id);
+      modal.classList.add('active');
+      document.body.classList.add('modal-open');
+    }
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.classList.remove('modal-open');
+      document.getElementById('modalVideo').innerHTML = '';
+    }
+    document.querySelectorAll('.testimonial-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = card.dataset.index;
+        if (idx !== undefined) openModal(parseInt(idx));
+      });
+    });
+    modal.querySelector('.temoignage-modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
   }
+
+  /* ====== SCROLL REVEAL via IntersectionObserver ====== */
+  (function setupReveals() {
+    const autoSelectors = ['.hero h1', '.hero-sub', 'section h2', 'section .sub-italic', '.proof', '.booking', '.cta-final', '.testimonials-grid > .testimonial-card'];
+    autoSelectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach((el, i) => {
+        if (!el.classList.contains('reveal')) el.classList.add('reveal');
+        el.style.transitionDelay = (Math.min(i * 30, 320)) + 'ms';
+      });
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  })();
+
+  /* ====== PARALLAX TÉMOIGNAGES ====== */
+  (function setupParallax() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const grid = document.querySelector('.testimonials-grid');
+    if (!grid) return;
+    const cards = grid.querySelectorAll('.testimonial-card');
+    let ticking = false;
+    function update() {
+      const vh = window.innerHeight;
+      cards.forEach(c => {
+        const r = c.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        const ratio = (r.top + r.height/2 - vh/2) / vh;
+        const offset = 22 + ratio * 14;
+        c.style.backgroundPosition = `center ${offset}%`;
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  })();
 </script>
 
+<!-- ============ NICHE 3.0 JS UPGRADE (2026-04-26) ============ -->
+<div class="cursor-glow" id="cursorGlow"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+(function(){
+  // FORCE SCROLL TO TOP au load (ignorer hash anchor #booking-1 qui faisait sauter en bas)
+  if (window.location.hash) { history.replaceState(null, '', window.location.pathname + window.location.search); }
+  window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0;
+  setTimeout(() => window.scrollTo(0, 0), 50);
+  setTimeout(() => window.scrollTo(0, 0), 200);
+
+  const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window) || window.matchMedia('(pointer:coarse)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isSlowDevice = (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) || (navigator.deviceMemory && navigator.deviceMemory < 4);
+  const lightMode = isMobile || reduceMotion || isSlowDevice;
+
+  // FORCE visibility immediate sur tout (avant GSAP) pour eviter blocage chargement
+  document.querySelectorAll('section, .card, .testimonial-card, .grid-3 > *, .grid-2 > *, .container > div').forEach(el => {
+    el.style.opacity = '1'; el.style.visibility = 'visible';
+  });
+
+  if (typeof Lenis !== 'undefined' && !lightMode) {
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
+  const cg = document.getElementById('cursorGlow');
+  if (cg && window.matchMedia("(hover:hover)").matches && !lightMode) {
+    document.addEventListener('mousemove', e => { cg.style.left = e.clientX+'px'; cg.style.top = e.clientY+'px'; });
+  } else if (cg) { cg.style.display = 'none'; }
+
+  if (!lightMode) {
+    document.querySelectorAll('.btn-pill, button').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        btn.style.transform = `translate(${(e.clientX - r.left - r.width/2)*0.15}px, ${(e.clientY - r.top - r.height/2)*0.15}px)`;
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+    });
+  }
+
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !lightMode) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('section').forEach(s => {
+      gsap.from(s, { opacity:0, y:60, duration:1.2, ease:'power3.out', scrollTrigger:{trigger:s, start:'top 85%', toggleActions:'play none none reverse'} });
+    });
+    gsap.utils.toArray('.card, .testimonial-card, .grid-3 > *, .grid-2 > *').forEach((el, i) => {
+      gsap.from(el, { opacity:0, y:40, duration:0.8, delay:i*0.05, ease:'power2.out', scrollTrigger:{trigger:el, start:'top 90%'} });
+    });
+  }
+
+  // MOBILE FIX: force visibility
+  if (lightMode) {
+    document.querySelectorAll('section, .card, .testimonial-card, .grid-3 > *, .grid-2 > *, .container > div').forEach(el => {
+      el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none'; el.style.visibility = 'visible';
+    });
+  }
+})();
+</script>
 </body>
 </html>
