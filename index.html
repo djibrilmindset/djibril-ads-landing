@@ -324,7 +324,8 @@
   .temoignage-modal-close { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; font-size: 28px; line-height: 1; color: #fff; cursor: pointer; background: rgba(255,46,147,0.18); border: 1px solid rgba(255,46,147,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; }
   .temoignage-modal-close:hover, .temoignage-modal-close:active { background: var(--pink); transform: scale(1.05); }
   .temoignage-modal-name { font-family: var(--font-serif); font-weight: 700; font-size: 18px; margin-bottom: 14px; color: var(--text); }
-  .temoignage-modal-video { margin: 0 auto 16px; border-radius: 12px; overflow: hidden; }
+  .temoignage-modal-video { position: relative; margin: 0 auto 16px; border-radius: 12px; overflow: hidden; aspect-ratio: 9/16; max-height: 70vh; }
+  .temoignage-modal-video iframe { width: 100%; height: 100%; border: 0; }
   .temoignage-modal-cta { margin-top: 8px; padding: 14px 28px; border-radius: 999px; background: var(--gradient-cta); color: var(--bg); font-weight: 700; font-size: 13px; text-decoration: none; display: inline-block; transition: transform 0.2s; }
   .temoignage-modal-cta:hover { transform: translateY(-2px); }
   @media (max-width: 480px) { .temoignage-modal { padding: 8px; } .temoignage-modal-inner { padding: 52px 10px 16px; max-width: 100%; } }
@@ -1680,7 +1681,7 @@ a[href*="djibril-ads-landing"]{background:#f3ecdf!important}
       const t = TEMOIGNAGES_WISTIA[idx];
       document.getElementById('modalName').textContent = 'Témoignage #' + (idx+1);
       document.getElementById('modalVideo').innerHTML = `
-        <iframe src="https://fast.wistia.net/embed/iframe/${t.id}?autoPlay=true&playerColor=ff2e93" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="100%" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+        <iframe src="https://fast.wistia.net/embed/iframe/${t.id}?autoPlay=true&playerColor=ff2e93" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:100%;border:0;display:block;"></iframe>
       `;
       modal.classList.add('active');
       document.body.classList.add('modal-open');
