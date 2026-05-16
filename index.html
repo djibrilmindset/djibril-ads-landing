@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="5 000€ en 90 jours en changeant ton mental pour être libre — Garanti sur contrat.">
 <meta property="og:title" content="Est-il possible de générer 5 000€ en 90 jours grâce à son mental ?">
 <meta property="og:description" content="On te forge le mental pour générer 5 000€ en 90 jours. Remboursement + 1 000€ si on y arrive pas.">
@@ -400,7 +400,11 @@
     border: 1px solid rgba(255,255,255,0.08);
     background: rgba(255,255,255,0.02);
   }
-  .iclosed-widget { width: 100%; height: 620px; border: none; }
+  .iclosed-widget { width: 100%; height: 780px; min-height: 760px; border: none; display: block; }
+  .iclosed-fallback { display: block; text-align: center; margin: 16px auto 0; font-size: 13px; color: var(--muted); max-width: 600px; }
+  .iclosed-fallback a { color: var(--cyan); text-decoration: underline; font-weight: 600; }
+  .booking-cta-card { max-width: 700px; margin: 0 auto; padding: 40px 24px; border-radius: 20px; background: linear-gradient(135deg, rgba(255,46,147,0.08) 0%, rgba(126,243,255,0.06) 100%); border: 1px solid rgba(255,255,255,0.08); }
+  .booking-cta-card .btn-pill { font-size: 17px; padding: 20px 44px; }
 
   /* S6 RELANCE */
   .relance { text-align: center; }
@@ -462,7 +466,7 @@
   /* Responsive */
   @media (max-width: 768px) {
     .numbers-grid { grid-template-columns: 1fr; }
-    .iclosed-widget { height: 720px; }
+    .iclosed-widget { height: calc(100vh - 120px); min-height: 640px; max-height: 1000px; }
     .sticky-cta { display: flex; }
     header { height: 64px; }
     body { padding-bottom: 70px; }
@@ -1425,6 +1429,7 @@ a[href*="djibril-ads-landing"]{background:#f3ecdf!important}
     <div class="iclosed-wrap">
       <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
     </div>
+    <p class="iclosed-fallback">📱 Le calendrier ne charge pas ? <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" target="_blank" rel="noopener">Ouvre-le en plein écran ici →</a></p>
   </div>
 </section>
 
@@ -1442,12 +1447,14 @@ a[href*="djibril-ads-landing"]{background:#f3ecdf!important}
   </div>
 </section>
 
-<!-- S7 BOOKING #2 -->
+<!-- S7 BOOKING #2 — CTA Card (1 seul iframe = 0 conflit state) -->
 <section class="booking" id="booking-2">
   <div class="container">
-    <h2><span class="kw-action">Réserve</span> maintenant.</h2>
-    <div class="iclosed-wrap">
-      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
+    <div class="booking-cta-card">
+      <h2><span class="kw-action">Réserve</span> maintenant.</h2>
+      <p class="sub-italic" style="margin-bottom:32px;">8 places / semaine. <span class="pink">Premier arrivé, premier servi.</span></p>
+      <a href="#booking-1" class="btn-pill btn-gradient">⚡ CHOISIR MON CRÉNEAU →</a>
+      <p class="iclosed-fallback">ou <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" target="_blank" rel="noopener">ouvre directement le calendrier en plein écran</a></p>
     </div>
   </div>
 </section>
@@ -1494,13 +1501,14 @@ a[href*="djibril-ads-landing"]{background:#f3ecdf!important}
   </div>
 </section>
 
-<!-- S9 BOOKING #3 FINAL -->
+<!-- S9 BOOKING #3 FINAL — CTA Card (1 seul iframe = 0 conflit state) -->
 <section class="booking" id="booking-3">
   <div class="container">
-    <h2>Dernière étape. <span class="kw-action">Choisis</span>.</h2>
-    <p class="sub-italic">Soit on bosse ensemble. Soit pas. <span class="kw-power">Au moins tu sauras.</span></p>
-    <div class="iclosed-wrap">
-      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
+    <div class="booking-cta-card">
+      <h2>Dernière étape. <span class="kw-action">Choisis</span>.</h2>
+      <p class="sub-italic" style="margin-bottom:32px;">Soit on bosse ensemble. Soit pas. <span class="kw-power">Au moins tu sauras.</span></p>
+      <a href="#booking-1" class="btn-pill btn-gradient">📅 RÉSERVER 30 MIN GRATUIT →</a>
+      <p class="iclosed-fallback">ou <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" target="_blank" rel="noopener">ouvre directement le calendrier en plein écran</a></p>
     </div>
   </div>
 </section>
