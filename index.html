@@ -1550,22 +1550,25 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
         window._wq = window._wq || [];
         window._wq.push({ id: "rfemp7gpcs", onReady: function(video) {
           var overlay = document.getElementById('vslSoundOverlay');
-          // autoplay MUET garanti (seul autorise par les navigateurs sans clic)
-          try { video.play(); } catch(e){}
-          function enableSound() {
+          var EVTS = ['pointerdown','touchstart','mousedown','keydown','click'];
+          function showInvite(s){ if (overlay) overlay.style.display = s ? 'flex' : 'none'; }
+          function enableSound(){
             try { video.unmute(); video.volume(1.0); video.play(); } catch(e){}
-            document.removeEventListener('click', enableSound, true);
-            document.removeEventListener('touchstart', enableSound, true);
-            document.removeEventListener('keydown', enableSound, true);
+            EVTS.forEach(function(ev){ document.removeEventListener(ev, enableSound, true); });
           }
-          // 1er contact n'importe ou sur la page -> le son demarre (geste utilisateur = autorise)
-          document.addEventListener('click', enableSound, true);
-          document.addEventListener('touchstart', enableSound, true);
-          document.addEventListener('keydown', enableSound, true);
-          // l'invite "clique pour le son" suit l'etat reel du son (visible tant que muet)
-          try {
-            video.bind('mutechange', function(isMuted) { if (overlay) overlay.style.display = isMuted ? 'flex' : 'none'; });
-          } catch(e){}
+          // 1) demarrage muet fiable (jamais fige) PUIS on TENTE le son direct tout de suite :
+          //    pour les visiteurs "de confiance" (deja engages sur le domaine) le navigateur l'autorise -> son auto
+          try { video.play(); } catch(e){}
+          try { video.unmute(); video.volume(1.0); } catch(e){}
+          // 2) si le navigateur a refuse le son -> invite voyante + le 1er micro-geste l'allume
+          //    (sur mobile la 1re touche d'ecran pour scroller suffit = son quasi immediat)
+          setTimeout(function(){
+            var muted = true; try { muted = video.isMuted(); } catch(e){}
+            if (muted) { showInvite(true); EVTS.forEach(function(ev){ document.addEventListener(ev, enableSound, true); }); }
+            else { showInvite(false); }
+          }, 500);
+          // l'invite suit l'etat reel du son
+          try { video.bind('mutechange', function(m){ showInvite(m); }); } catch(e){}
         }});
       </script>
     </div>
