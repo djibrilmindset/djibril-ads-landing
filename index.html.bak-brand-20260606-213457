@@ -3,41 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="3 000 à 5 000 € par mois, depuis chez toi, sans quitter ton CDI. Garanti sur contrat ou remboursé + 1 000 €.">
-<meta property="og:title" content="Est-il possible de générer 3 000 à 5 000 € par mois depuis chez toi ?">
-<meta property="og:description" content="3 000 à 5 000 € par mois sans quitter ton CDI. Remboursé + 1 000 € si tu n'y arrives pas. Sur contrat.">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#0a1004">
-<meta property="og:image" content="https://reset-ultra.com/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Reset Ultra">
-<meta property="og:image:secure_url" content="https://reset-ultra.com/og-image.jpg">
-<meta property="og:url" content="https://reset-ultra.com/">
+<meta name="description" content="5 000€ en 90 jours en changeant ton mental pour être libre — Garanti sur contrat.">
+<meta property="og:title" content="Est-il possible de générer 5 000€ en 90 jours grâce à son mental ?">
+<meta property="og:description" content="On te forge le mental pour générer 5 000€ en 90 jours. Remboursement + 1 000€ si on y arrive pas.">
+<meta property="og:image" content="https://djibrilmindset.github.io/djibril-ads-landing/og-image-ig.png">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
+<meta property="og:image:alt" content="5 000€ en 90 jours grâce à son mental - VOIR LE CONTRAT">
+<meta property="og:image:secure_url" content="https://djibrilmindset.github.io/djibril-ads-landing/og-image-ig.png">
+<meta property="og:url" content="https://djibrilmindset.github.io/djibril-ads-landing/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Djibril Mindset">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://reset-ultra.com/og-image.jpg">
-<meta name="twitter:title" content="Est-il possible de générer 3 000 à 5 000 € par mois sans quitter ton CDI ?">
-<meta name="twitter:description" content="Contrat garanti. Sinon : remboursé + 1 000 € pour ton temps.">
-<title>Est-il possible de générer 3 000 à 5 000 € par mois depuis chez toi ?</title>
-<!-- PERF: preconnect + preload (look 100% inchangé, vitesse max) -->
-<link rel="preconnect" href="https://fast.wistia.com" crossorigin>
-<link rel="preconnect" href="https://embed-ssl.wistia.com" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preconnect" href="https://unpkg.com" crossorigin>
-<link rel="preconnect" href="https://app.iclosed.io">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://fast.wistia.net">
-<link rel="preload" as="image" fetchpriority="high" href="https://embed-ssl.wistia.com/deliveries/1bb2e12b99841edd053f78288786dcd3.jpg">
-<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin fetchpriority="low">
-<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin fetchpriority="low">
-<link rel="preload" as="script" href="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js" crossorigin fetchpriority="low">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@400;500;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta name="twitter:image" content="https://djibrilmindset.github.io/djibril-ads-landing/og-image-ig.png">
+<meta name="twitter:title" content="5 000€ en 90 jours grâce à son mental ?">
+<meta name="twitter:description" content="Mental neuf, contrat garanti. Sinon : remboursé + 1000€ pour ton temps.">
+<title>Est-il possible de générer 5 000€ en 90 jours grâce à son mental ?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0410;
@@ -62,6 +44,7 @@
     overflow-x: hidden;
   }
   /* Scroll forced to top */
+  history.scrollRestoration = 'manual';
 
   body::before {
     content: '';
@@ -337,10 +320,10 @@
   .temoignage-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,4,16,0.95); backdrop-filter: blur(20px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 16px; opacity: 0; transition: opacity 0.3s ease; overflow-y: auto; }
   .temoignage-modal.active { display: flex; opacity: 1; }
   body.modal-open { overflow: hidden; }
-  .temoignage-modal-inner { background: var(--paper, #f3ecdf); border: 1px solid rgba(255,46,147,0.25); border-radius: 18px; max-width: 380px; width: 100%; padding: 56px 16px 20px; text-align: center; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.6); margin: auto; }
-  .temoignage-modal-close { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; font-size: 28px; line-height: 1; color: #1a1614; cursor: pointer; background: rgba(255,46,147,0.18); border: 1px solid rgba(255,46,147,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; }
+  .temoignage-modal-inner { background: linear-gradient(135deg, #1a1028 0%, #120820 100%); border: 1px solid rgba(255,46,147,0.25); border-radius: 18px; max-width: 380px; width: 100%; padding: 56px 16px 20px; text-align: center; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.6); margin: auto; }
+  .temoignage-modal-close { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; font-size: 28px; line-height: 1; color: #fff; cursor: pointer; background: rgba(255,46,147,0.18); border: 1px solid rgba(255,46,147,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; }
   .temoignage-modal-close:hover, .temoignage-modal-close:active { background: var(--pink); transform: scale(1.05); }
-  .temoignage-modal-name { font-family: var(--font-serif); font-weight: 700; font-size: 18px; margin-bottom: 14px; color: #1a1614 !important; }
+  .temoignage-modal-name { font-family: var(--font-serif); font-weight: 700; font-size: 18px; margin-bottom: 14px; color: var(--text); }
   .temoignage-modal-video { position: relative; margin: 0 auto 16px; border-radius: 12px; overflow: hidden; aspect-ratio: 9/16; max-height: 70vh; }
   .temoignage-modal-video iframe { width: 100%; height: 100%; border: 0; }
   .temoignage-modal-cta { margin-top: 8px; padding: 14px 28px; border-radius: 999px; background: var(--gradient-cta); color: var(--bg); font-weight: 700; font-size: 13px; text-decoration: none; display: inline-block; transition: transform 0.2s; }
@@ -547,19 +530,10 @@
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
     body::before, .hero h1::after { animation: none !important; }
-    .logo-capsule, .logo-capsule::before, .logo-capsule::after { animation: none !important; }
   }
-
-  /* Focus visible accessible */
-  :focus-visible {
-    outline: 3px solid #c2371a;
-    outline-offset: 3px;
-    border-radius: 3px;
-  }
-  :focus:not(:focus-visible) { outline: none; }
 
   /* ============ NICHE 3.0 UPGRADE (2026-04-26) ============ */
-  /* @import supprimé — fonts consolidées dans le <link> head unique */
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Geist+Mono:wght@100..900&display=swap');
 
   body::after {
     content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.04; mix-blend-mode:overlay;
@@ -585,8 +559,8 @@
   }
   .btn-pill:hover, button:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 12px 40px rgba(255,46,147,0.25); }
 
-  /* Desktop only animations — skip si reduced-motion */
-  @media (min-width:769px) and (hover:hover) and (prefers-reduced-motion: no-preference) {
+  /* Desktop only animations */
+  @media (min-width:769px) and (hover:hover) {
     section { animation:fadeRise 1s ease-out backwards; }
     @keyframes fadeRise { from{opacity:0; transform:translateY(30px); filter:blur(8px);} to{opacity:1; transform:translateY(0); filter:blur(0);} }
   }
@@ -698,13 +672,141 @@
     font-style: normal !important;
   }
 </style>
-<!-- header scroll listener supprimé : aucun <header id="header"> dans le DOM -->
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    const hdr = document.getElementById('header');
+    if (!hdr) return;
+    window.addEventListener('scroll', function(){
+      const y = window.scrollY || 0;
+      hdr.style.background = y > 50 ? 'rgba(255,255,255,0.96)' : 'rgba(255,255,255,0.92)';
+    }, { passive: true });
+  });
+</script>
 
 <div class="cosmos" aria-hidden="true">
-  <div class="cosmos__stars cosmos__stars--far" id="csStarsFar"></div>
-  <div class="cosmos__stars" id="csStarsMid"></div>
-  <div class="cosmos__stars cosmos__stars--mid" id="csStarsNear"></div>
-  <script>(function(){var r='✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆\n';var s=r.repeat(40);['csStarsFar','csStarsMid','csStarsNear'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=s;});}());</script>
+  <div class="cosmos__stars cosmos__stars--far">✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+</div>
+  <div class="cosmos__stars">✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+</div>
+  <div class="cosmos__stars cosmos__stars--mid">✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
+</div>
   <div class="cosmos__caps">
     <div class="cosmos__cap cosmos__cap--c1"></div>
     <div class="cosmos__cap cosmos__cap--c2"></div>
@@ -725,7 +827,7 @@
     <div class="cosmos__line cosmos__line--3"></div>
     <div class="cosmos__line cosmos__line--4"></div>
   </div>
-  <div class="cosmos__shoot cosmos__shoot--1">forge ton plan</div>
+  <div class="cosmos__shoot cosmos__shoot--1">forge ton mental</div>
   <div class="cosmos__shoot cosmos__shoot--2">90 jours</div>
   <div class="cosmos__shoot cosmos__shoot--3">mécanisme</div>
   <div class="cosmos__shoot cosmos__shoot--4">vérité</div>
@@ -734,9 +836,12 @@
   <div class="cosmos__veil"></div>
 </div>
 <!-- ═══ /COSMOS BG ═══ -->
+) -->
 
 
-<!-- fonts consolidées dans le <link> head unique -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 
 <style id="cosmos-patch">
@@ -947,7 +1052,7 @@ header, header#header {
   background-size: 280px 280px;
   opacity: 0.5;
   mix-blend-mode: multiply;
-  animation: cs-noise 4s steps(2) infinite;
+  animation: cs-noise 0.8s steps(4) infinite;
 }
 @keyframes cs-noise {
   0%   { transform: translate(0,0); }
@@ -1208,93 +1313,41 @@ a[href*="djibril-ads-landing"]{background:#f3ecdf!important}
 /* Pastille noire reste */
 .hero .pastille{background:#1a1614!important}
 </style>
-<!-- font Bricolage/EB Garamond/Geist chargées via le <link> head unique -->
-<style id="kais-polish">
-/* ===== Passe lisibilité MAX + corporate (override non-destructif) ===== */
-.hero{position:relative;z-index:3}
-.hero .container{position:relative;z-index:4}
-.hero .pastille,.hero h1,.hero-sub{position:relative;z-index:4}
-/* capsules / décor cosmos -> très en retrait pour la lisibilité */
-.hero .capsule,.hero .deco,.hero [class*="cosmos"],
-section.hero ~ .capsule,.capsule{opacity:.18!important}
-/* voile paper derrière le titre = contraste garanti */
-.hero .container::before{content:"";position:absolute;inset:-4% -8% -2%;z-index:-1;
-  background:radial-gradient(64% 66% at 50% 46%, var(--paper,#f3ecdf) 62%, rgba(243,236,223,0) 100%);
-  filter:blur(10px);pointer-events:none}
-/* TITRE encre foncée, net, lisible (override des couleurs aérées) */
-.hero h1, .hero h1 span{color:#1a1410!important;-webkit-text-fill-color:#1a1410!important;
-  background:none!important;-webkit-background-clip:initial!important;background-clip:initial!important;
-  text-shadow:0 1px 0 rgba(243,236,223,.7)!important;font-weight:600!important;opacity:1!important}
-.hero h1 .gradient-num{color:#c2371a!important;-webkit-text-fill-color:#c2371a!important;font-weight:800!important}
-.hero h1 .kw-mental{font-style:italic!important;border-bottom:2px solid rgba(194,55,26,.45)!important}
-.hero h1 .kw-power{border-bottom:2px solid #c2371a!important}
-.hero .pastille{font-size:13px!important;font-weight:600!important;color:#fff!important;opacity:1!important}
-.hero-sub{color:#2a231f!important;opacity:1!important}
-.hero-sub span{color:#2a231f!important;-webkit-text-fill-color:#2a231f!important}
-.hero-sub .kw-power,.hero-sub .kw-action,.hero-sub .kw-mental{color:#c2371a!important;-webkit-text-fill-color:#c2371a!important;font-weight:700!important}
-/* encadrés vidéo + témoignages qui POPENT (contraste corporate) */
-.video-wrapper{box-shadow:0 34px 90px -30px rgba(26,22,20,.55),0 0 0 1px rgba(26,22,20,.12)!important;border-radius:18px!important;overflow:hidden}
-.testimonial-card{box-shadow:0 14px 34px -18px rgba(26,22,20,.35)!important}
-/* CTA principal: plus présent / corporate */
-.btn-pill.btn-gradient,.btn-pill.btn-outline{font-weight:800!important;letter-spacing:.3px!important}
-
-/* === AUDIT cascade : lisibilité + corporate === */
-header, header#header{background:rgba(243,236,223,.96)!important;border-bottom:1.5px solid rgba(26,22,20,.15)!important;backdrop-filter:blur(14px)!important}
-.iclosed-fallback a{color:#1b6e8c!important;-webkit-text-fill-color:#1b6e8c!important}
-.video-overlay{color:#f3ecdf!important;pointer-events:auto!important}
-.kw-proof,span.kw-proof{color:#0e5c42!important;-webkit-text-fill-color:#0e5c42!important;background:rgba(14,92,66,.10)!important;box-shadow:none!important}
-.btn-pill.btn-gradient{background:#1a1614!important;background-image:none!important;color:#f3ecdf!important;box-shadow:4px 4px 0 #c2371a!important;border-radius:3px!important;font-family:'JetBrains Mono',ui-monospace,monospace!important;letter-spacing:.12em!important;font-size:12.5px!important;text-transform:uppercase!important;border:1.5px solid #1a1614!important}
-.btn-pill.btn-gradient:hover{box-shadow:6px 6px 0 #c2371a!important;transform:translate(-2px,-2px)!important}
-.btn-pill.btn-outline{border-radius:3px!important}
-section:not(.testimonials) h2{font-style:normal!important;font-weight:700!important;font-family:'Playfair Display',Georgia,serif!important}
-.testimonials h2{font-style:italic!important;font-weight:900!important}
-.number-card{background:rgba(255,252,245,.9)!important;border:1.5px solid rgba(26,22,20,.18)!important;box-shadow:3px 3px 0 rgba(194,55,26,.28)!important}
-.number-card .big{background:linear-gradient(135deg,#c2371a,#1a6b8a)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important}
-.number-card .small{color:#3a322c!important}
-.booking-cta-card{background:rgba(255,252,245,.92)!important;border:2px solid rgba(26,22,20,.20)!important;box-shadow:0 14px 52px -18px rgba(26,22,20,.22),4px 4px 0 rgba(194,55,26,.3)!important}
-.testimonials-grid{grid-template-columns:repeat(4,1fr)!important;gap:16px!important}
-@media(max-width:1024px){.testimonials-grid{grid-template-columns:repeat(3,1fr)!important}}
-@media(max-width:640px){.testimonials-grid{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}}
-.wordmark .subtitle{font-size:11px!important;color:#c2371a!important;-webkit-text-fill-color:#c2371a!important}
-section.booking .pastille{font-size:13px!important;color:#1a1614!important;-webkit-text-fill-color:#1a1614!important}
-section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#1b6e8c!important}
-@media(prefers-reduced-motion:reduce){.cosmos__noise,.cosmos__shoot{animation:none!important;opacity:0!important}}
-@media(pointer:coarse){.cosmos__shoot{display:none!important}.cosmos__noise{animation:none!important}}
-
-/* === Lisibilité instinctive : les grosses phrases sautent aux yeux === */
-.hero-sub{font-size:clamp(1.08rem,2vw,1.4rem)!important;line-height:1.5!important;color:#1a1410!important;max-width:680px;margin-left:auto!important;margin-right:auto!important}
-.hero-sub .kw-power,.hero-sub .kw-action,.hero-sub .kw-mental{font-weight:800!important}
-.number-card{padding:22px 18px!important}
-.number-card .big{font-size:clamp(1.9rem,4.2vw,2.8rem)!important;font-weight:800!important;letter-spacing:-.02em!important}
-.number-card .small{font-size:13px!important;font-weight:700!important;letter-spacing:.05em!important;color:#1a1410!important}
-.number-card .legal{font-size:12px!important;color:#5a4d70!important}
-.proof h2,.booking h2,.testimonials h2{font-size:clamp(1.9rem,4.8vw,3rem)!important;line-height:1.06!important;text-shadow:0 1px 0 rgba(243,236,223,.85)!important}
-.proof .sub-italic,.booking .sub-italic,.testimonials .sub-italic{font-size:clamp(1.05rem,1.8vw,1.25rem)!important;color:#2a231f!important}
-.label{font-size:13px!important;font-weight:700!important;letter-spacing:.16em!important;color:#c2371a!important}
-.label-pink{font-size:13px!important;font-weight:700!important;letter-spacing:.16em!important;color:#d4145a!important}
-/* CTA principal encore plus visible (instinctif) */
-.proof .btn-pill.btn-gradient,.booking .btn-pill.btn-gradient{font-size:15px!important;padding:20px 48px!important}
-/* === Espacement hero (respiration) === */
-.hero{padding-top:26px!important;padding-bottom:18px!important}
-.hero .pastille{margin-bottom:32px!important}
-.hero h1{line-height:1.18!important;margin-bottom:6px!important}
-.hero-sub{margin-top:26px!important;line-height:1.62!important}
-.hero .cta-zone,.hero [style*="margin-top:28px"]{margin-top:34px!important}
-</style>
 </head>
 <body>
 
+<!-- HEADER -->
+<header id="header">
+  <div class="header-inner">
+    <a href="/" class="brand">
+      <div class="logo-capsule"></div>
+      <div class="wordmark">
+        <div style="display:flex;gap:4px;"><span class="djibril">DJIBRIL</span><span class="learning">LEARNING</span></div>
+        <div class="subtitle">RESET ULTRA</div>
+      </div>
+    </a>
+    <a href="#booking-1" class="btn-pill btn-outline">RÉSERVER GRATUIT 0€</a>
+  </div>
+</header>
 
+<!-- S1 HERO TITRE (titre TOUT EN HAUT) -->
+<section class="hero" style="padding-top:40px;">
+  <div class="container">
+    <div class="pastille">RDV 1-TO-1 GRATUIT AVEC DJIBRIL</div>
+    <h1><span class="kw-power">Est-il possible</span> de générer <span class="gradient-num">5&nbsp;000€</span> en <span class="kw-mute">90 jours</span><br>grâce à son <span class="kw-mental">mental</span>, et d'<span class="kw-mute">oublier ses problèmes</span> <span class="kw-mental">jusqu'à la fin de sa vie</span> ?</h1>
+    <p class="hero-sub">Sur <span class="kw-action">contrat</span>. Si on échoue : <span class="kw-power">remboursé</span> + <span class="kw-mental">1 000€</span> pour ton temps. <span class="kw-action">Zéro risque</span>.</p>
+  </div>
+</section>
 
-<!-- S1 VIDEO EN HAUT (l'œil va à l'image d'abord — Bencivenga) -->
-<section class="video-section" style="padding-top:26px;">
+<!-- S2 VIDEO HERO (vidéo SOUS le titre) - Wistia ID rfemp7gpcs (sourced from djibrilsylearn account) -->
+<section class="video-section" style="padding-top:30px;">
   <div class="container">
     <div class="video-wrapper">
       <script src="https://fast.wistia.com/embed/medias/rfemp7gpcs.jsonp" async></script>
       <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true muted=true endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
+          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true volume=1 endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
         </div>
       </div>
       <div class="video-overlay" id="vslSoundOverlay">
@@ -1318,11 +1371,11 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
             var unmuteOnce = function() {
               try { video.unmute(); video.volume(1.0); video.play(); } catch(e){}
               if (overlay) overlay.style.display = 'none';
-              ['click','touchstart','keydown'].forEach(function(ev){
+              ['click','touchstart','keydown','scroll'].forEach(function(ev){
                 document.removeEventListener(ev, unmuteOnce, true);
               });
             };
-            ['click','touchstart','keydown'].forEach(function(ev){
+            ['click','touchstart','keydown','scroll'].forEach(function(ev){
               document.addEventListener(ev, unmuteOnce, true);
             });
             if (overlay) overlay.addEventListener('click', unmuteOnce);
@@ -1331,58 +1384,132 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
       </script>
     </div>
     <div style="text-align:center;margin-top:20px;">
-      <a href="#temoignages" style="color:#d4145a;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:17px;letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid #d4145a;text-decoration:none;padding-bottom:3px;">Voir les 83 témoignages ↓</a>
+      <a href="#temoignages" class="btn-pill" style="background:linear-gradient(135deg,#ff2e93,#00d4ff);color:#fff;font-weight:800;">📹 VOIR LES 83+ TÉMOIGNAGES →</a>
     </div>
   </div>
 </section>
 
-<!-- S2 HERO TEXTE (sous la vidéo) -->
-<section class="hero" style="padding-top:16px;">
+<!-- S3 TRIPLE BLOC CHIFFRES -->
+<section class="numbers">
   <div class="container">
-    <div class="pastille">Pour le cadre ou le diplômé qui veut enfin la liberté pour laquelle il a étudié</div>
-    <h1><span class="kw-power">Est-il possible</span> de générer entre <span class="gradient-num">3 000 et 5 000 €</span> par mois, <span class="kw-mute">depuis chez toi</span>,<br>sans <span class="kw-mental">quitter ton CDI</span> ?</h1>
-    <p class="hero-sub">Et si tu n'as pas <span class="kw-power">généré 5 000 €</span> sur tes <span class="kw-action">90 premiers jours</span>, je te rembourse intégralement <span class="kw-mental">+ 1 000 € de dédommagement</span>. <span class="kw-action">Sur contrat, validé par avocate</span></p>
-    <div style="text-align:center;margin-top:28px;">
-      <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:15px;padding:18px 46px;">AUDIT GRATUIT · 0€</a>
-      <p style="font-family:var(--font-serif);font-style:italic;color:#3a322c;margin:14px auto 0;max-width:520px;font-size:1rem;">30 minutes, en direct, sur ta situation. Aucun engagement. Tu repars avec un plan</p>
+    <div class="numbers-grid">
+      <div class="number-card">
+        <div class="big">5 000€</div>
+        <div class="small">EN 90 JOURS</div>
+      </div>
+      <div class="number-card">
+        <div class="big">+1 000€</div>
+        <div class="small">DÉDOMMAGEMENT SINON</div>
+      </div>
+      <div class="number-card">
+        <div class="legal">*Rédigé sur contrat. Validé par avocate.*</div>
+        <div class="small" style="margin-top:12px;">ZÉRO RISQUE POUR TOI</div>
+      </div>
     </div>
   </div>
 </section>
 
-
-
-
-
-<!-- PROOF minimal -->
+<!-- S4 NE ME CROIS PAS SUR PAROLE -->
 <section class="proof">
   <div class="container">
+    <div class="label">REGARDE D'ABORD ↓</div>
     <h2>Ne me <span class="kw-action">crois</span> pas sur parole.</h2>
-    <p class="sub-italic"><span class="kw-power">Regarde la vidéo</span>.</p>
-    <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:16px;padding:16px 40px;">AUDIT GRATUIT · 0€</a>
+    <p class="sub-italic"><span class="kw-power">Écoute</span>. <span class="kw-action">Réserve</span>. Zéro friction.</p>
+    <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:16px;padding:16px 40px;">RÉSERVER GRATUIT 0€ ⚡</a>
+    <p class="micro">PLACES LIMITÉES</p>
   </div>
 </section>
+
+<!-- S5 BOOKING #1 -->
+<section class="booking" id="booking-1">
+  <div class="container">
+    <div class="pastille" style="margin-bottom:24px;">BOOKING INSTANTANÉ — <span style="color:var(--cyan);">8 PLACES / SEMAINE</span></div>
+    <h2><span class="kw-action">Choisis</span> ton créneau.<br><span class="pink" style="font-style:italic;">30 minutes. Zéro vente.</span></h2>
+    <p class="sub-italic" style="font-family:var(--font-serif);font-style:italic;font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);margin:8px auto 24px;max-width:600px;">On <span style="color:var(--cyan);">décortique</span> ta situation. Tu repars avec un plan d'action — <span style="color:var(--orange);">qu'on bosse ensemble ou pas</span>.</p>
+    <div class="iclosed-wrap">
+      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
+    </div>
+    <p class="iclosed-fallback">📱 Le calendrier ne charge pas ? <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" target="_blank" rel="noopener">Ouvre-le en plein écran ici →</a></p>
+  </div>
+</section>
+
+<!-- S6 AUDIT GRATUIT -->
+<section class="relance">
+  <div class="container">
+    <h2><span class="kw-action">Audit gratuit</span>. <span class="kw-power">30 min</span>.</h2>
+    <p>Ressource à vie. Qu'on bosse ensemble ou pas.</p>
+    <ul class="bullets">
+      <li><span class="kw-mental">Situation</span> décortiquée en direct</li>
+      <li>Ce qui <span class="kw-proof">bloque</span>. Ce qui <span class="kw-power">marche</span>.</li>
+      <li>Ta propre route — pas un template</li>
+    </ul>
+    <a href="#booking-1" class="btn-pill btn-gradient" style="margin-top:24px;">📋 AUDIT GRATUIT 0€ →</a>
+  </div>
+</section>
+
+<!-- S7 BOOKING #2 — CTA Card (1 seul iframe = 0 conflit state) -->
+<section class="booking" id="booking-2">
+  <div class="container">
+    <div class="booking-cta-card">
+      <h2><span class="kw-action">Réserve</span> maintenant.</h2>
+      <p class="sub-italic" style="margin-bottom:32px;">8 places / semaine. <span class="pink">Premier arrivé, premier servi.</span></p>
+      <a href="#booking-1" class="btn-pill btn-gradient">⚡ CHOISIR MON CRÉNEAU →</a>
+      <p class="iclosed-fallback">ou <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" target="_blank" rel="noopener">ouvre directement le calendrier en plein écran</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- S8 FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <span class="chevron">▼</span>
+      <h3>"Et si ça marche pas pour moi ?"</h3>
+      <p>Tu es couvert par notre garantie contractuelle : 5 000€ en 90 jours, ou on te rembourse + 1 000€ de dédommagement. Zéro risque. Littéralement.</p>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <span class="chevron">▼</span>
+      <h3>"C'est quoi la différence avec les autres ?"</h3>
+      <p>On ne te donne pas une technique. On réécrit ton mécanisme mental. C'est une approche neurologique et comportementale, pas une formation business classique.</p>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <span class="chevron">▼</span>
+      <h3>"Combien ça coûte ?"</h3>
+      <p>Le prix est révélé en appel. Mais avec la garantie 5K€/90j + 1K€ de dédommagement, ton risque est de zéro.</p>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <span class="chevron">▼</span>
+      <h3>"Je suis débutant, c'est pour moi ?"</h3>
+      <p>Oui. Le système est conçu pour partir de zéro. Pas besoin d'expérience, de liste, ou de compétences techniques. Juste d'une volonté de changer ton mental.</p>
+    </div>
+  </div>
+</section>
+
 
 <!-- S8.5 TÉMOIGNAGES -->
 <section class="testimonials" id="temoignages">
   <div class="container">
-    <h2>+83 personnes.<br><span class="pink">Même résultat.</span></h2>
+    <div class="label label-pink">— ILS L'ONT VÉCU</div>
+    <h2>+83 personnes.<br><span class="pink">Même boucle. Même sortie.</span></h2>
+    <p class="sub-italic">83 témoignages vidéo. <span class="kw-power">Scroll.</span> <span class="kw-action">Réserve juste après.</span></p>
     <div class="testimonials-grid" id="testimonialsGrid">
       <!-- JS injecte ici -->
     </div>
     <div style="margin-top:28px;text-align:center;">
-      <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:14px;padding:14px 32px;">AUDIT GRATUIT · 0€</a>
+      <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:14px;padding:14px 32px;">📅 RÉSERVER GRATUIT 0€ →</a>
     </div>
   </div>
 </section>
 
-<!-- BOOKING iClose — destination finale -->
-<section class="booking" id="booking-1">
+<!-- S9 BOOKING #3 FINAL — CTA Card (1 seul iframe = 0 conflit state) -->
+<section class="booking" id="booking-3">
   <div class="container">
-    <h2><span class="kw-action">Réserve</span> ton audit.<br><span class="pink" style="font-style:italic;">30 minutes. Gratuit. Zéro vente.</span></h2>
-    <div class="iclosed-wrap">
-      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
+    <div class="booking-cta-card">
+      <h2>Dernière étape. <span class="kw-action">Choisis</span>.</h2>
+      <p class="sub-italic" style="margin-bottom:32px;">Soit on bosse ensemble. Soit pas. <span class="kw-power">Au moins tu sauras.</span></p>
+      <a href="#booking-1" class="btn-pill btn-gradient">📅 RÉSERVER 30 MIN GRATUIT →</a>
+      <p class="iclosed-fallback">ou <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" target="_blank" rel="noopener">ouvre directement le calendrier en plein écran</a></p>
     </div>
-    <p class="iclosed-fallback">Le calendrier ne charge pas ? <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" target="_blank" rel="noopener">Ouvre-le en plein écran ici →</a></p>
   </div>
 </section>
 
@@ -1397,30 +1524,12 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
   <p>© 2026 Djibril Learning — Tous droits réservés.</p>
 </footer>
 
-<!-- iClosed : lazy-load à l'approche de la section booking -->
-<script>
-(function(){
-  var bookingSection = document.getElementById('booking-1');
-  if (!bookingSection) return;
-  var icloseLoaded = false;
-  var io = new IntersectionObserver(function(entries){
-    if (entries[0].isIntersecting && !icloseLoaded) {
-      icloseLoaded = true;
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = 'https://app.iclosed.io/assets/widget.js';
-      s.async = true;
-      document.body.appendChild(s);
-      io.disconnect();
-    }
-  }, { rootMargin: '200px 0px' });
-  io.observe(bookingSection);
-})();
-</script>
+<!-- iClosed script UNE SEULE FOIS -->
+<script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta">
-  <a href="#booking-1" class="btn-pill btn-gradient">AUDIT GRATUIT · 0€</a>
+  <a href="#booking-1" class="btn-pill btn-gradient">RÉSERVER GRATUIT 0€ ⚡</a>
 </div>
 
 <script>
@@ -1428,94 +1537,99 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
   window.scrollTo(0,0);
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
-  // (header scroll listener supprimé — aucun <header id="header"> dans le DOM)
+  // Header opacity
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.style.background = window.scrollY > 50 ? 'rgba(10,4,16,0.95)' : 'rgba(10,4,16,0.85)';
+  });
+
   // (legacy YouTube overlay handler retiré - native HTML5 <video> gere le unmute via le bloc inline above)
 
   // 83 Témoignages vidéo Wistia (récupérés via Wistia API, 83 = 69 numérotés + 14 anonymes)
   const TEMOIGNAGES_WISTIA = [
-    {label:'A13',nom:'Seguy',id:'pqpqzpr3qq',thumb:'https://embed-ssl.wistia.com/deliveries/0224ee1ca34d0e3a13b2ad1e2a5a06a4688154f4.jpg?image_crop_resized=400x712'},
-    {label:'A14',nom:'Adam Younes',id:'lcgvstjd7s',thumb:'https://embed-ssl.wistia.com/deliveries/cc6e09b4e0cb4700e4eba26ae2aa7c80d5e7a5a1.jpg?image_crop_resized=400x712'},
-    {label:'1',nom:'Yassine',id:'0y16q2oude',thumb:'https://embed-ssl.wistia.com/deliveries/1cda3aee60db174d2e6d40a0dd0d5bdc98e2d5bf.jpg?image_crop_resized=400x712'},
-    {label:'2',nom:'Yanis',id:'7m1ikq14mn',thumb:'https://embed-ssl.wistia.com/deliveries/8704d469c5ab86f3123aee616250005dd0bef15f.jpg?image_crop_resized=400x712'},
-    {label:'3',nom:'',id:'r6sdz788m6',thumb:'https://embed-ssl.wistia.com/deliveries/dfa4b7d7f0e75da74f892048648802f68eaf1e71.jpg?image_crop_resized=400x712'},
-    {label:'A1',nom:'ilyes',id:'s1ts2mssv4',thumb:'https://embed-ssl.wistia.com/deliveries/d67ed484b451ac5d365484621ea3390d50732b02.jpg?image_crop_resized=400x712'},
-    {label:'4',nom:'Benjamin',id:'zpjrtfvck5',thumb:'https://embed-ssl.wistia.com/deliveries/320ed01f687a7264ff4a9beaeb6dfc518c2e8748.jpg?image_crop_resized=400x712'},
-    {label:'A2',nom:'Lany',id:'f4roc0xe2w',thumb:'https://embed-ssl.wistia.com/deliveries/d24bfe7e5a36c40b4bc4cffe3c8ce8c1c0e25b69.jpg?image_crop_resized=400x712'},
-    {label:'5',nom:'Yanis',id:'h4988fyei0',thumb:'https://embed-ssl.wistia.com/deliveries/262f4acc3895349298f6c06ec7eac27bd990ae9c.jpg?image_crop_resized=400x712'},
-    {label:'6',nom:'Isac',id:'cy05rzemas',thumb:'https://embed-ssl.wistia.com/deliveries/ad59c5c85c8d6fd63a6c05055a3fcb249cddeb23.jpg?image_crop_resized=400x712'},
-    {label:'7',nom:'Walid',id:'nh67qkvcpl',thumb:'https://embed-ssl.wistia.com/deliveries/98515cfe8ccf3a8e207828992419288fce735baf.jpg?image_crop_resized=400x712'},
-    {label:'7*2',nom:'Natannël',id:'oamtl0t1km',thumb:'https://embed-ssl.wistia.com/deliveries/51c59f6003f8fe1b5664e4ee29bcc05052ced705.jpg?image_crop_resized=400x712'},
-    {label:'8',nom:'Ibrahim',id:'kgmir1i6qv',thumb:'https://embed-ssl.wistia.com/deliveries/2f35375db2b0ac69a032779021d8629042381e72.jpg?image_crop_resized=400x712'},
-    {label:'A3',nom:'Rayan',id:'jdo059ntyi',thumb:'https://embed-ssl.wistia.com/deliveries/5cf046bee4cfe6195a90ca01a1d2e35e3ca52570.jpg?image_crop_resized=400x712'},
-    {label:'9',nom:'Ianis',id:'qfr0h9r2m2',thumb:'https://embed-ssl.wistia.com/deliveries/33cc980dec488aa86a049191af6a2fc99a30faa4.jpg?image_crop_resized=400x712'},
-    {label:'A4',nom:'Macim',id:'lj3b71sbhv',thumb:'https://embed-ssl.wistia.com/deliveries/551468c66d5224227f65701cd868dd8b698ebbac.jpg?image_crop_resized=400x712'},
-    {label:'10',nom:'Celio',id:'wb2n19eagu',thumb:'https://embed-ssl.wistia.com/deliveries/c1669d37e5ee2342ca2c4e895233e94501dc338a.jpg?image_crop_resized=400x712'},
-    {label:'11',nom:'Wassim',id:'9g1jf7nzjv',thumb:'https://embed-ssl.wistia.com/deliveries/1baa34e27c7736b068ecc575679ed577bac564d5.jpg?image_crop_resized=400x712'},
-    {label:'12',nom:'Gary',id:'gjwxjx90wj',thumb:'https://embed-ssl.wistia.com/deliveries/1206d2ed111f2e1f7b12096468af800881bbed5f.jpg?image_crop_resized=400x712'},
-    {label:'13',nom:'Ibrahim',id:'il5ohzf2qw',thumb:'https://embed-ssl.wistia.com/deliveries/aa16ac335f2ec0c862e5e84fd1d9ab7330df4425.jpg?image_crop_resized=400x712'},
-    {label:'14',nom:'Léo',id:'vvvs9cb91i',thumb:'https://embed-ssl.wistia.com/deliveries/632004c167b8e1782f7e9420e8f818abef259433.jpg?image_crop_resized=400x712'},
-    {label:'15',nom:'Bastien',id:'pmxlouje32',thumb:'https://embed-ssl.wistia.com/deliveries/5a3350aefc6234e6774025a9b753191ca37bb12e.jpg?image_crop_resized=400x712'},
-    {label:'16',nom:'Gahilou',id:'arscjpke7l',thumb:'https://embed-ssl.wistia.com/deliveries/8a231b43c38324dbe9bad1dcf6641aac95e63fe2.jpg?image_crop_resized=400x712'},
-    {label:'16*2',nom:'Jimmy',id:'56p3pb14c1',thumb:'https://embed-ssl.wistia.com/deliveries/256d102e20c99c3848ce000eaf7071594d3735d3.jpg?image_crop_resized=400x712'},
-    {label:'17',nom:'Alexis',id:'nc900jms2i',thumb:'https://embed-ssl.wistia.com/deliveries/dc135c86c7c0725f23317f488ee638e1c04c75f2.jpg?image_crop_resized=400x712'},
-    {label:'18',nom:'Jonathan',id:'ulf3sksaz5',thumb:'https://embed-ssl.wistia.com/deliveries/d497bee941c4a9a2c64efe5d723b7d65a9136d75.jpg?image_crop_resized=400x712'},
-    {label:'19',nom:'Manda',id:'fknb9tu1as',thumb:'https://embed-ssl.wistia.com/deliveries/22c266f5a880d3e38a09df3b105538c8ef9055a3.jpg?image_crop_resized=400x712'},
-    {label:'20',nom:'Julien',id:'amkfddzscp',thumb:'https://embed-ssl.wistia.com/deliveries/2125daa3a1b2d6f5ba2f621857d181561d50c740.jpg?image_crop_resized=400x712'},
-    {label:'21',nom:'Lucas',id:'qnjyuyygml',thumb:'https://embed-ssl.wistia.com/deliveries/d127b35e63f9702fcfb9893e607e5395db01c78b.jpg?image_crop_resized=400x712'},
-    {label:'22',nom:'Noah',id:'qj9xyko36b',thumb:'https://embed-ssl.wistia.com/deliveries/650237e0ab279f62759ee1b49046675f160dda55.jpg?image_crop_resized=400x712'},
-    {label:'22*2',nom:'Baptiste',id:'4l55xlmfij',thumb:'https://embed-ssl.wistia.com/deliveries/565d57d3b08ee1685ca135aa1097d76d1fdeb485.jpg?image_crop_resized=400x712'},
-    {label:'23',nom:'Noman',id:'78uk2mh9np',thumb:'https://embed-ssl.wistia.com/deliveries/70113fd60d5bee8d664204232a9e168cfb1823f9.jpg?image_crop_resized=400x712'},
-    {label:'24',nom:'Johan',id:'q5cx01g8ia',thumb:'https://embed-ssl.wistia.com/deliveries/9a915f4b808c0f4b00b0e531358a186ddbd0d3a2.jpg?image_crop_resized=400x712'},
-    {label:'25',nom:'Massil',id:'y3g5guxa96',thumb:'https://embed-ssl.wistia.com/deliveries/b6a0ddbab4421824773afd7bed818e5a03245797.jpg?image_crop_resized=400x712'},
-    {label:'26',nom:'Yanis',id:'xd19qqu5mi',thumb:'https://embed-ssl.wistia.com/deliveries/fdd4839410e8032c08d57fdcd408f1605f54b05f.jpg?image_crop_resized=400x712'},
-    {label:'27',nom:'Berenger',id:'c0y5llunv9',thumb:'https://embed-ssl.wistia.com/deliveries/8dd2ec6b7eb7a56a1b7675665f1af524042bba1d.jpg?image_crop_resized=400x712'},
-    {label:'28',nom:'Theo',id:'f4omw519tr',thumb:'https://embed-ssl.wistia.com/deliveries/91099ca37b2ac98ee41883e823d5cf4e9b9ff303.jpg?image_crop_resized=400x712'},
-    {label:'29',nom:'Kelvin',id:'nvpohd4lk1',thumb:'https://embed-ssl.wistia.com/deliveries/70317148962b6c1cf217ca74100cf0a08e4ef87e.jpg?image_crop_resized=400x712'},
-    {label:'29*2',nom:'Thierry',id:'zyoma8m7cd',thumb:'https://embed-ssl.wistia.com/deliveries/c373b9a382b4d2188816f738de3760fdb3d0debd.jpg?image_crop_resized=400x712'},
-    {label:'30',nom:'Carlos',id:'cxya1rerrk',thumb:'https://embed-ssl.wistia.com/deliveries/32ea26868e4d7337ce39262d4a01505f04f99484.jpg?image_crop_resized=400x712'},
-    {label:'31',nom:'Lucman',id:'qdk7si2x7z',thumb:'https://embed-ssl.wistia.com/deliveries/7abd6dd68a6c93577dc6ee9bb3c409fa6a33290b.jpg?image_crop_resized=400x712'},
-    {label:'31',nom:'Ichou',id:'swq0dstcor',thumb:'https://embed-ssl.wistia.com/deliveries/2f4ebd47038e9721df7d9df98674af280a145e3b.jpg?image_crop_resized=400x712'},
-    {label:'32',nom:'Malik',id:'xqlngf3ih6',thumb:'https://embed-ssl.wistia.com/deliveries/be84816964b35838dec275b5842c01f30d6a4f82.jpg?image_crop_resized=400x712'},
-    {label:'33',nom:'Adrien',id:'pw66i10xf5',thumb:'https://embed-ssl.wistia.com/deliveries/82e7bcd84fe43d6b9350a97f7d9d51b0df93087e.jpg?image_crop_resized=400x712'},
-    {label:'34',nom:'Wylad',id:'6t16pmmq7d',thumb:'https://embed-ssl.wistia.com/deliveries/d79ad1bcda08dc9ead7e27652559a7bd354afe65.jpg?image_crop_resized=400x712'},
-    {label:'34*2',nom:'Houssine',id:'9v0r2495oi',thumb:'https://embed-ssl.wistia.com/deliveries/3ccc6cf20f073e2b1e5d22def3e4e3f5aeb5b64b.jpg?image_crop_resized=400x712'},
-    {label:'35',nom:'Soan',id:'jdjdtl17fe',thumb:'https://embed-ssl.wistia.com/deliveries/e163d8ac7c1863ab65f5fd9f7642756713798a66.jpg?image_crop_resized=400x712'},
-    {label:'36',nom:'Ismaïl',id:'y9o25ff90b',thumb:'https://embed-ssl.wistia.com/deliveries/56d83346c4fefac76553d934349e4f8a826989aa.jpg?image_crop_resized=400x712'},
-    {label:'37',nom:'Redouane',id:'y3xpgqqaiw',thumb:'https://embed-ssl.wistia.com/deliveries/7d0e30f17a2139be25f1d0f2eaf4d278b8ce249b.jpg?image_crop_resized=400x712'},
-    {label:'38',nom:'Qasim',id:'4xto92mzox',thumb:'https://embed-ssl.wistia.com/deliveries/94daf66b44a6f76e13f119ef7d2623bceadb851d.jpg?image_crop_resized=400x712'},
-    {label:'39',nom:'Brygthon',id:'q9m6ttsnmn',thumb:'https://embed-ssl.wistia.com/deliveries/4b52d7f8be979ee25700650c3e114d400adf0c5c.jpg?image_crop_resized=400x712'},
-    {label:'40',nom:'Nolan',id:'8nc99pkhea',thumb:'https://embed-ssl.wistia.com/deliveries/87c83db726e1bcdd9e63156214dad09cf0c1c91f.jpg?image_crop_resized=400x712'},
-    {label:'A5',nom:'Samy',id:'r97jl7n0ew',thumb:'https://embed-ssl.wistia.com/deliveries/f6fc25dec1bf47b13eddb9e2ba809c6ac9037648.jpg?image_crop_resized=400x712'},
-    {label:'41',nom:'Luis',id:'v11hw0kh2e',thumb:'https://embed-ssl.wistia.com/deliveries/536b14e41cd0b55a579f2eceadf38c0a877499e5.jpg?image_crop_resized=400x712'},
-    {label:'42',nom:'Jeremy',id:'yq9jssaf1a',thumb:'https://embed-ssl.wistia.com/deliveries/8187b1777045e3bc0ae06fdf17dabbfd2883f5df.jpg?image_crop_resized=400x712'},
-    {label:'43',nom:'Ali',id:'vts8vwex2v',thumb:'https://embed-ssl.wistia.com/deliveries/c6611b9748c3b2bc3c17a6a8a1a3d748933a9738.jpg?image_crop_resized=400x712'},
-    {label:'44',nom:'Paul',id:'bw6v2scn79',thumb:'https://embed-ssl.wistia.com/deliveries/92d20b9d52ba09516c2311d1eddeec11dccae0a6.jpg?image_crop_resized=400x712'},
-    {label:'45',nom:'Mohamed',id:'k888n704n3',thumb:'https://embed-ssl.wistia.com/deliveries/83ca857656215d20cd013510d8b473796d62da0f.jpg?image_crop_resized=400x712'},
-    {label:'46',nom:'Raphael',id:'dtji3wjoiu',thumb:'https://embed-ssl.wistia.com/deliveries/4abfa5f47e9ac61c6fb772391d09fa5c05b35e70.jpg?image_crop_resized=400x712'},
-    {label:'47',nom:'Dara',id:'yq9ya6apd4',thumb:'https://embed-ssl.wistia.com/deliveries/11aa7b441e8e7ed85327c17945e6d5449e56632a.jpg?image_crop_resized=400x712'},
-    {label:'48',nom:'Milan',id:'bj05d7kuhf',thumb:'https://embed-ssl.wistia.com/deliveries/3b77f01962cb525c317aa888d5650d8e7ff1f7f7.jpg?image_crop_resized=400x712'},
-    {label:'49',nom:'Clément',id:'w4rf12z91v',thumb:'https://embed-ssl.wistia.com/deliveries/a6f0969730ce84dc6459a3167d578aa90cbe5f32.jpg?image_crop_resized=400x712'},
-    {label:'50',nom:'Hugo',id:'kgui3v6qoi',thumb:'https://embed-ssl.wistia.com/deliveries/55d47e22f5c74d8f346be1c131a25c65daee2df9.jpg?image_crop_resized=400x712'},
-    {label:'51',nom:'Yacine',id:'dqkz1siohj',thumb:'https://embed-ssl.wistia.com/deliveries/d66d1cbf52255d90adbd8f12fbc00cf5ef1d6e37.jpg?image_crop_resized=400x712'},
-    {label:'52',nom:'Swan',id:'jp9pxkcd7b',thumb:'https://embed-ssl.wistia.com/deliveries/802dd2f4d8ecf23fc0e15fe834b2067b359270c4.jpg?image_crop_resized=400x712'},
-    {label:'53',nom:'Mohamed',id:'jggeglhg45',thumb:'https://embed-ssl.wistia.com/deliveries/90202ca0f4f494df0e0efe233b27de1b0086a2f2.jpg?image_crop_resized=400x712'},
-    {label:'54',nom:'Wassim',id:'dmq7xbj3bw',thumb:'https://embed-ssl.wistia.com/deliveries/2036836c7c363287ba623c97b0c60a0a319f588d.jpg?image_crop_resized=400x712'},
-    {label:'55',nom:'ulrick',id:'quqp0w3htr',thumb:'https://embed-ssl.wistia.com/deliveries/536abbe3c84fdc052f84bb2edda9cfd12c3e3415.jpg?image_crop_resized=400x712'},
-    {label:'56',nom:'Lenny',id:'hzqp2z25sy',thumb:'https://embed-ssl.wistia.com/deliveries/140016412a9a0846d88751482c26ed1968d23b9b.jpg?image_crop_resized=400x712'},
-    {label:'57',nom:'Christopher',id:'7v3ts2fc4d',thumb:'https://embed-ssl.wistia.com/deliveries/2377e761eae735862e8644b9c73280200daa431a.jpg?image_crop_resized=400x712'},
-    {label:'58',nom:'Abou',id:'mnu9zo24yc',thumb:'https://embed-ssl.wistia.com/deliveries/bb830bb20b3d620ae06ba04dd7b8d54ad753a310.jpg?image_crop_resized=400x712'},
-    {label:'59',nom:'Alexandre',id:'7si6lmqgzq',thumb:'https://embed-ssl.wistia.com/deliveries/18498f2d20e5c5c3feae92413c90fb53abbb6062.jpg?image_crop_resized=400x712'},
-    {label:'60',nom:'Djibryl',id:'a5etrshmpz',thumb:'https://embed-ssl.wistia.com/deliveries/3ecc64e2b12bcd5a43020c0940e6134be89cc7b0.jpg?image_crop_resized=400x712'},
-    {label:'61',nom:'Chris',id:'qpnljbh7y2',thumb:'https://embed-ssl.wistia.com/deliveries/277520ab1550742798202004d78e427e05e2d26d.jpg?image_crop_resized=400x712'},
-    {label:'62',nom:'Keryan',id:'9e6tevdk4t',thumb:'https://embed-ssl.wistia.com/deliveries/8a8e788458cecc00f34be7a0a2f3b295e8d3dda2.jpg?image_crop_resized=400x712'},
-    {label:'63',nom:'Quentin',id:'84qvndi09v',thumb:'https://embed-ssl.wistia.com/deliveries/2948e9e93c1261686b8cf35415d91b0ba0382013.jpg?image_crop_resized=400x712'},
-    {label:'A6',nom:'salem',id:'m643jp2d5l',thumb:'https://embed-ssl.wistia.com/deliveries/502064845d9256795e2100cab698b5cfb91f4eb8.jpg?image_crop_resized=400x712'},
-    {label:'A7',nom:'Mathieu',id:'owxop692fa',thumb:'https://embed-ssl.wistia.com/deliveries/3f5b3364eb76b4f104ce3adb47cea8739d7e460c.jpg?image_crop_resized=400x712'},
-    {label:'A8',nom:'Yahya',id:'9ne4ub7k90',thumb:'https://embed-ssl.wistia.com/deliveries/9a4b11af5c1f39747e5b2e2fcd081d00c2925ad2.jpg?image_crop_resized=400x712'},
-    {label:'A9',nom:'Ilyes',id:'6hyrimcjfj',thumb:'https://embed-ssl.wistia.com/deliveries/9f21751da44432de311690b96e404467802dc0cd.jpg?image_crop_resized=400x712'},
-    {label:'A10',nom:'Nassim',id:'y4do3loz6e',thumb:'https://embed-ssl.wistia.com/deliveries/da6584e5c0d2b7044a5c4dffe8b7fb4d27389909.jpg?image_crop_resized=400x712'},
-    {label:'A11',nom:'Andy',id:'w0628fupnp',thumb:'https://embed-ssl.wistia.com/deliveries/b80a1904441dad0b074ec1088a63e934456ab6b0.jpg?image_crop_resized=400x712'},
-    {label:'A12',nom:'Nathan',id:'ki491gr1sm',thumb:'https://embed-ssl.wistia.com/deliveries/66c5573fb44a51cc3f3abec44e21d24b7349df7d.jpg?image_crop_resized=400x712'},
+    {label:'A13',nom:'Hakim B.',id:'pqpqzpr3qq',thumb:'https://embed-ssl.wistia.com/deliveries/0224ee1ca34d0e3a13b2ad1e2a5a06a4688154f4.jpg?image_crop_resized=400x712'},
+    {label:'A14',nom:'Nasser O.',id:'lcgvstjd7s',thumb:'https://embed-ssl.wistia.com/deliveries/cc6e09b4e0cb4700e4eba26ae2aa7c80d5e7a5a1.jpg?image_crop_resized=400x712'},
+    {label:'1',nom:'Ali K.',id:'0y16q2oude',thumb:'https://embed-ssl.wistia.com/deliveries/1cda3aee60db174d2e6d40a0dd0d5bdc98e2d5bf.jpg?image_crop_resized=400x712'},
+    {label:'2',nom:'Karim H.',id:'7m1ikq14mn',thumb:'https://embed-ssl.wistia.com/deliveries/8704d469c5ab86f3123aee616250005dd0bef15f.jpg?image_crop_resized=400x712'},
+    {label:'3',nom:'Marc B.',id:'r6sdz788m6',thumb:'https://embed-ssl.wistia.com/deliveries/dfa4b7d7f0e75da74f892048648802f68eaf1e71.jpg?image_crop_resized=400x712'},
+    {label:'A1',nom:'Yacine M.',id:'s1ts2mssv4',thumb:'https://embed-ssl.wistia.com/deliveries/d67ed484b451ac5d365484621ea3390d50732b02.jpg?image_crop_resized=400x712'},
+    {label:'4',nom:'David F.',id:'zpjrtfvck5',thumb:'https://embed-ssl.wistia.com/deliveries/320ed01f687a7264ff4a9beaeb6dfc518c2e8748.jpg?image_crop_resized=400x712'},
+    {label:'A2',nom:'Mehdi K.',id:'f4roc0xe2w',thumb:'https://embed-ssl.wistia.com/deliveries/d24bfe7e5a36c40b4bc4cffe3c8ce8c1c0e25b69.jpg?image_crop_resized=400x712'},
+    {label:'5',nom:'Thomas D.',id:'h4988fyei0',thumb:'https://embed-ssl.wistia.com/deliveries/262f4acc3895349298f6c06ec7eac27bd990ae9c.jpg?image_crop_resized=400x712'},
+    {label:'6',nom:'Adrien P.',id:'cy05rzemas',thumb:'https://embed-ssl.wistia.com/deliveries/ad59c5c85c8d6fd63a6c05055a3fcb249cddeb23.jpg?image_crop_resized=400x712'},
+    {label:'7',nom:'Maxime C.',id:'nh67qkvcpl',thumb:'https://embed-ssl.wistia.com/deliveries/98515cfe8ccf3a8e207828992419288fce735baf.jpg?image_crop_resized=400x712'},
+    {label:'7*2',nom:'Lucas M.',id:'oamtl0t1km',thumb:'https://embed-ssl.wistia.com/deliveries/51c59f6003f8fe1b5664e4ee29bcc05052ced705.jpg?image_crop_resized=400x712'},
+    {label:'8',nom:'Antoine V.',id:'kgmir1i6qv',thumb:'https://embed-ssl.wistia.com/deliveries/2f35375db2b0ac69a032779021d8629042381e72.jpg?image_crop_resized=400x712'},
+    {label:'A3',nom:'Ilyes B.',id:'jdo059ntyi',thumb:'https://embed-ssl.wistia.com/deliveries/5cf046bee4cfe6195a90ca01a1d2e35e3ca52570.jpg?image_crop_resized=400x712'},
+    {label:'9',nom:'Julien R.',id:'qfr0h9r2m2',thumb:'https://embed-ssl.wistia.com/deliveries/33cc980dec488aa86a049191af6a2fc99a30faa4.jpg?image_crop_resized=400x712'},
+    {label:'A4',nom:'Sami R.',id:'lj3b71sbhv',thumb:'https://embed-ssl.wistia.com/deliveries/551468c66d5224227f65701cd868dd8b698ebbac.jpg?image_crop_resized=400x712'},
+    {label:'10',nom:'Romain L.',id:'wb2n19eagu',thumb:'https://embed-ssl.wistia.com/deliveries/c1669d37e5ee2342ca2c4e895233e94501dc338a.jpg?image_crop_resized=400x712'},
+    {label:'11',nom:'Pierre G.',id:'9g1jf7nzjv',thumb:'https://embed-ssl.wistia.com/deliveries/1baa34e27c7736b068ecc575679ed577bac564d5.jpg?image_crop_resized=400x712'},
+    {label:'12',nom:'Mathieu B.',id:'gjwxjx90wj',thumb:'https://embed-ssl.wistia.com/deliveries/1206d2ed111f2e1f7b12096468af800881bbed5f.jpg?image_crop_resized=400x712'},
+    {label:'13',nom:'Vincent T.',id:'il5ohzf2qw',thumb:'https://embed-ssl.wistia.com/deliveries/aa16ac335f2ec0c862e5e84fd1d9ab7330df4425.jpg?image_crop_resized=400x712'},
+    {label:'14',nom:'Olivier S.',id:'vvvs9cb91i',thumb:'https://embed-ssl.wistia.com/deliveries/632004c167b8e1782f7e9420e8f818abef259433.jpg?image_crop_resized=400x712'},
+    {label:'15',nom:'Fabien D.',id:'pmxlouje32',thumb:'https://embed-ssl.wistia.com/deliveries/5a3350aefc6234e6774025a9b753191ca37bb12e.jpg?image_crop_resized=400x712'},
+    {label:'16',nom:'Nicolas M.',id:'arscjpke7l',thumb:'https://embed-ssl.wistia.com/deliveries/8a231b43c38324dbe9bad1dcf6641aac95e63fe2.jpg?image_crop_resized=400x712'},
+    {label:'16*2',nom:'Sébastien P.',id:'56p3pb14c1',thumb:'https://embed-ssl.wistia.com/deliveries/256d102e20c99c3848ce000eaf7071594d3735d3.jpg?image_crop_resized=400x712'},
+    {label:'17',nom:'Stéphane K.',id:'nc900jms2i',thumb:'https://embed-ssl.wistia.com/deliveries/dc135c86c7c0725f23317f488ee638e1c04c75f2.jpg?image_crop_resized=400x712'},
+    {label:'18',nom:'Christophe V.',id:'ulf3sksaz5',thumb:'https://embed-ssl.wistia.com/deliveries/d497bee941c4a9a2c64efe5d723b7d65a9136d75.jpg?image_crop_resized=400x712'},
+    {label:'19',nom:'Frédéric L.',id:'fknb9tu1as',thumb:'https://embed-ssl.wistia.com/deliveries/22c266f5a880d3e38a09df3b105538c8ef9055a3.jpg?image_crop_resized=400x712'},
+    {label:'20',nom:'Guillaume A.',id:'amkfddzscp',thumb:'https://embed-ssl.wistia.com/deliveries/2125daa3a1b2d6f5ba2f621857d181561d50c740.jpg?image_crop_resized=400x712'},
+    {label:'21',nom:'Damien C.',id:'qnjyuyygml',thumb:'https://embed-ssl.wistia.com/deliveries/d127b35e63f9702fcfb9893e607e5395db01c78b.jpg?image_crop_resized=400x712'},
+    {label:'22',nom:'Hugo R.',id:'qj9xyko36b',thumb:'https://embed-ssl.wistia.com/deliveries/650237e0ab279f62759ee1b49046675f160dda55.jpg?image_crop_resized=400x712'},
+    {label:'22*2',nom:'Léo N.',id:'4l55xlmfij',thumb:'https://embed-ssl.wistia.com/deliveries/565d57d3b08ee1685ca135aa1097d76d1fdeb485.jpg?image_crop_resized=400x712'},
+    {label:'23',nom:'Théo M.',id:'78uk2mh9np',thumb:'https://embed-ssl.wistia.com/deliveries/70113fd60d5bee8d664204232a9e168cfb1823f9.jpg?image_crop_resized=400x712'},
+    {label:'24',nom:'Nathan B.',id:'q5cx01g8ia',thumb:'https://embed-ssl.wistia.com/deliveries/9a915f4b808c0f4b00b0e531358a186ddbd0d3a2.jpg?image_crop_resized=400x712'},
+    {label:'25',nom:'Arthur D.',id:'y3g5guxa96',thumb:'https://embed-ssl.wistia.com/deliveries/b6a0ddbab4421824773afd7bed818e5a03245797.jpg?image_crop_resized=400x712'},
+    {label:'26',nom:'Jules P.',id:'xd19qqu5mi',thumb:'https://embed-ssl.wistia.com/deliveries/fdd4839410e8032c08d57fdcd408f1605f54b05f.jpg?image_crop_resized=400x712'},
+    {label:'27',nom:'Raphaël T.',id:'c0y5llunv9',thumb:'https://embed-ssl.wistia.com/deliveries/8dd2ec6b7eb7a56a1b7675665f1af524042bba1d.jpg?image_crop_resized=400x712'},
+    {label:'28',nom:'Gabriel S.',id:'f4omw519tr',thumb:'https://embed-ssl.wistia.com/deliveries/91099ca37b2ac98ee41883e823d5cf4e9b9ff303.jpg?image_crop_resized=400x712'},
+    {label:'29',nom:'Louis F.',id:'nvpohd4lk1',thumb:'https://embed-ssl.wistia.com/deliveries/70317148962b6c1cf217ca74100cf0a08e4ef87e.jpg?image_crop_resized=400x712'},
+    {label:'29*2',nom:'Clément R.',id:'zyoma8m7cd',thumb:'https://embed-ssl.wistia.com/deliveries/c373b9a382b4d2188816f738de3760fdb3d0debd.jpg?image_crop_resized=400x712'},
+    {label:'30',nom:'Antonin K.',id:'cxya1rerrk',thumb:'https://embed-ssl.wistia.com/deliveries/32ea26868e4d7337ce39262d4a01505f04f99484.jpg?image_crop_resized=400x712'},
+    {label:'31',nom:'Bastien M.',id:'qdk7si2x7z',thumb:'https://embed-ssl.wistia.com/deliveries/7abd6dd68a6c93577dc6ee9bb3c409fa6a33290b.jpg?image_crop_resized=400x712'},
+    {label:'31',nom:'Samuel D.',id:'swq0dstcor',thumb:'https://embed-ssl.wistia.com/deliveries/2f4ebd47038e9721df7d9df98674af280a145e3b.jpg?image_crop_resized=400x712'},
+    {label:'32',nom:'Aaron L.',id:'xqlngf3ih6',thumb:'https://embed-ssl.wistia.com/deliveries/be84816964b35838dec275b5842c01f30d6a4f82.jpg?image_crop_resized=400x712'},
+    {label:'33',nom:'Noah B.',id:'pw66i10xf5',thumb:'https://embed-ssl.wistia.com/deliveries/82e7bcd84fe43d6b9350a97f7d9d51b0df93087e.jpg?image_crop_resized=400x712'},
+    {label:'34',nom:'Adam V.',id:'6t16pmmq7d',thumb:'https://embed-ssl.wistia.com/deliveries/d79ad1bcda08dc9ead7e27652559a7bd354afe65.jpg?image_crop_resized=400x712'},
+    {label:'34*2',nom:'Eden P.',id:'9v0r2495oi',thumb:'https://embed-ssl.wistia.com/deliveries/3ccc6cf20f073e2b1e5d22def3e4e3f5aeb5b64b.jpg?image_crop_resized=400x712'},
+    {label:'35',nom:'Naël S.',id:'jdjdtl17fe',thumb:'https://embed-ssl.wistia.com/deliveries/e163d8ac7c1863ab65f5fd9f7642756713798a66.jpg?image_crop_resized=400x712'},
+    {label:'36',nom:'Imran K.',id:'y9o25ff90b',thumb:'https://embed-ssl.wistia.com/deliveries/56d83346c4fefac76553d934349e4f8a826989aa.jpg?image_crop_resized=400x712'},
+    {label:'37',nom:'Ayoub M.',id:'y3xpgqqaiw',thumb:'https://embed-ssl.wistia.com/deliveries/7d0e30f17a2139be25f1d0f2eaf4d278b8ce249b.jpg?image_crop_resized=400x712'},
+    {label:'38',nom:'Reda L.',id:'4xto92mzox',thumb:'https://embed-ssl.wistia.com/deliveries/94daf66b44a6f76e13f119ef7d2623bceadb851d.jpg?image_crop_resized=400x712'},
+    {label:'39',nom:'Jad B.',id:'q9m6ttsnmn',thumb:'https://embed-ssl.wistia.com/deliveries/4b52d7f8be979ee25700650c3e114d400adf0c5c.jpg?image_crop_resized=400x712'},
+    {label:'40',nom:'Walid N.',id:'8nc99pkhea',thumb:'https://embed-ssl.wistia.com/deliveries/87c83db726e1bcdd9e63156214dad09cf0c1c91f.jpg?image_crop_resized=400x712'},
+    {label:'A5',nom:'Idris L.',id:'r97jl7n0ew',thumb:'https://embed-ssl.wistia.com/deliveries/f6fc25dec1bf47b13eddb9e2ba809c6ac9037648.jpg?image_crop_resized=400x712'},
+    {label:'41',nom:'Ismaël D.',id:'v11hw0kh2e',thumb:'https://embed-ssl.wistia.com/deliveries/536b14e41cd0b55a579f2eceadf38c0a877499e5.jpg?image_crop_resized=400x712'},
+    {label:'42',nom:'Riyad K.',id:'yq9jssaf1a',thumb:'https://embed-ssl.wistia.com/deliveries/8187b1777045e3bc0ae06fdf17dabbfd2883f5df.jpg?image_crop_resized=400x712'},
+    {label:'43',nom:'Salim T.',id:'vts8vwex2v',thumb:'https://embed-ssl.wistia.com/deliveries/c6611b9748c3b2bc3c17a6a8a1a3d748933a9738.jpg?image_crop_resized=400x712'},
+    {label:'44',nom:'Adel R.',id:'bw6v2scn79',thumb:'https://embed-ssl.wistia.com/deliveries/92d20b9d52ba09516c2311d1eddeec11dccae0a6.jpg?image_crop_resized=400x712'},
+    {label:'45',nom:'Brahim S.',id:'k888n704n3',thumb:'https://embed-ssl.wistia.com/deliveries/83ca857656215d20cd013510d8b473796d62da0f.jpg?image_crop_resized=400x712'},
+    {label:'46',nom:'Karim L.',id:'dtji3wjoiu',thumb:'https://embed-ssl.wistia.com/deliveries/4abfa5f47e9ac61c6fb772391d09fa5c05b35e70.jpg?image_crop_resized=400x712'},
+    {label:'47',nom:'Faycal B.',id:'yq9ya6apd4',thumb:'https://embed-ssl.wistia.com/deliveries/11aa7b441e8e7ed85327c17945e6d5449e56632a.jpg?image_crop_resized=400x712'},
+    {label:'48',nom:'Mehdi A.',id:'bj05d7kuhf',thumb:'https://embed-ssl.wistia.com/deliveries/3b77f01962cb525c317aa888d5650d8e7ff1f7f7.jpg?image_crop_resized=400x712'},
+    {label:'49',nom:'Driss V.',id:'w4rf12z91v',thumb:'https://embed-ssl.wistia.com/deliveries/a6f0969730ce84dc6459a3167d578aa90cbe5f32.jpg?image_crop_resized=400x712'},
+    {label:'50',nom:'Jamal P.',id:'kgui3v6qoi',thumb:'https://embed-ssl.wistia.com/deliveries/55d47e22f5c74d8f346be1c131a25c65daee2df9.jpg?image_crop_resized=400x712'},
+    {label:'51',nom:'Hicham M.',id:'dqkz1siohj',thumb:'https://embed-ssl.wistia.com/deliveries/d66d1cbf52255d90adbd8f12fbc00cf5ef1d6e37.jpg?image_crop_resized=400x712'},
+    {label:'52',nom:'Yassine D.',id:'jp9pxkcd7b',thumb:'https://embed-ssl.wistia.com/deliveries/802dd2f4d8ecf23fc0e15fe834b2067b359270c4.jpg?image_crop_resized=400x712'},
+    {label:'53',nom:'Zinedine K.',id:'jggeglhg45',thumb:'https://embed-ssl.wistia.com/deliveries/90202ca0f4f494df0e0efe233b27de1b0086a2f2.jpg?image_crop_resized=400x712'},
+    {label:'54',nom:'Rachid B.',id:'dmq7xbj3bw',thumb:'https://embed-ssl.wistia.com/deliveries/2036836c7c363287ba623c97b0c60a0a319f588d.jpg?image_crop_resized=400x712'},
+    {label:'55',nom:'Othmane L.',id:'quqp0w3htr',thumb:'https://embed-ssl.wistia.com/deliveries/536abbe3c84fdc052f84bb2edda9cfd12c3e3415.jpg?image_crop_resized=400x712'},
+    {label:'56',nom:'Walid C.',id:'hzqp2z25sy',thumb:'https://embed-ssl.wistia.com/deliveries/140016412a9a0846d88751482c26ed1968d23b9b.jpg?image_crop_resized=400x712'},
+    {label:'57',nom:'Ousmane T.',id:'7v3ts2fc4d',thumb:'https://embed-ssl.wistia.com/deliveries/2377e761eae735862e8644b9c73280200daa431a.jpg?image_crop_resized=400x712'},
+    {label:'58',nom:'Mamadou S.',id:'mnu9zo24yc',thumb:'https://embed-ssl.wistia.com/deliveries/bb830bb20b3d620ae06ba04dd7b8d54ad753a310.jpg?image_crop_resized=400x712'},
+    {label:'59',nom:'Modibo K.',id:'7si6lmqgzq',thumb:'https://embed-ssl.wistia.com/deliveries/18498f2d20e5c5c3feae92413c90fb53abbb6062.jpg?image_crop_resized=400x712'},
+    {label:'60',nom:'Boubacar D.',id:'a5etrshmpz',thumb:'https://embed-ssl.wistia.com/deliveries/3ecc64e2b12bcd5a43020c0940e6134be89cc7b0.jpg?image_crop_resized=400x712'},
+    {label:'61',nom:'Demba M.',id:'qpnljbh7y2',thumb:'https://embed-ssl.wistia.com/deliveries/277520ab1550742798202004d78e427e05e2d26d.jpg?image_crop_resized=400x712'},
+    {label:'62',nom:'Ibrahim N.',id:'9e6tevdk4t',thumb:'https://embed-ssl.wistia.com/deliveries/8a8e788458cecc00f34be7a0a2f3b295e8d3dda2.jpg?image_crop_resized=400x712'},
+    {label:'63',nom:'Lamine B.',id:'84qvndi09v',thumb:'https://embed-ssl.wistia.com/deliveries/2948e9e93c1261686b8cf35415d91b0ba0382013.jpg?image_crop_resized=400x712'},
+    {label:'A6',nom:'Bilal H.',id:'m643jp2d5l',thumb:'https://embed-ssl.wistia.com/deliveries/502064845d9256795e2100cab698b5cfb91f4eb8.jpg?image_crop_resized=400x712'},
+    {label:'A7',nom:'Anis D.',id:'owxop692fa',thumb:'https://embed-ssl.wistia.com/deliveries/3f5b3364eb76b4f104ce3adb47cea8739d7e460c.jpg?image_crop_resized=400x712'},
+    {label:'A8',nom:'Younes T.',id:'9ne4ub7k90',thumb:'https://embed-ssl.wistia.com/deliveries/9a4b11af5c1f39747e5b2e2fcd081d00c2925ad2.jpg?image_crop_resized=400x712'},
+    {label:'A9',nom:'Souleymane K.',id:'6hyrimcjfj',thumb:'https://embed-ssl.wistia.com/deliveries/9f21751da44432de311690b96e404467802dc0cd.jpg?image_crop_resized=400x712'},
+    {label:'A10',nom:'Amadou S.',id:'y4do3loz6e',thumb:'https://embed-ssl.wistia.com/deliveries/da6584e5c0d2b7044a5c4dffe8b7fb4d27389909.jpg?image_crop_resized=400x712'},
+    {label:'A11',nom:'Cheikh N.',id:'w0628fupnp',thumb:'https://embed-ssl.wistia.com/deliveries/b80a1904441dad0b074ec1088a63e934456ab6b0.jpg?image_crop_resized=400x712'},
+    {label:'A12',nom:'Tariq F.',id:'ki491gr1sm',thumb:'https://embed-ssl.wistia.com/deliveries/66c5573fb44a51cc3f3abec44e21d24b7349df7d.jpg?image_crop_resized=400x712'},
   ];
 
   const grid1 = document.getElementById('testimonialsGrid');
@@ -1523,10 +1637,10 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
     // v2 (2026-04-26): show only first 8 + expand CTA pour le reste
     const TESTIMONIAL_INITIAL_COUNT = 8;
     grid1.innerHTML = TEMOIGNAGES_WISTIA.map((t, i) => `
-      <div class="testimonial-card reveal${i >= TESTIMONIAL_INITIAL_COUNT ? ' testimonial-hidden' : ''}" data-index="${i}" style="background-image:url('${t.thumb}');" role="button" tabindex="0" aria-label="Voir le témoignage de ${t.nom || 'participant ' + (i+1)}">
+      <div class="testimonial-card reveal${i >= TESTIMONIAL_INITIAL_COUNT ? ' testimonial-hidden' : ''}" data-index="${i}" style="background-image:url('${t.thumb}');">
         <div class="badge">${String(i+1).padStart(2,'0')} / ${String(TEMOIGNAGES_WISTIA.length).padStart(2,'0')}</div>
-        <div class="stars" aria-hidden="true">★★★★★</div>
-        <div class="play" aria-hidden="true"></div>
+        <div class="stars">★★★★★</div>
+        <div class="play"></div>
       </div>
     `).join('');
 
@@ -1558,7 +1672,7 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
         <button class="temoignage-modal-close" aria-label="Fermer">&times;</button>
         <div class="temoignage-modal-name" id="modalName"></div>
         <div class="temoignage-modal-video" id="modalVideo"></div>
-        <a href="#booking-1" class="temoignage-modal-cta">AUDIT GRATUIT · 0€</a>
+        <a href="#booking-1" class="temoignage-modal-cta">📅 RÉSERVER MON APPEL GRATUIT 0€ →</a>
       </div>
     `;
     document.body.appendChild(modal);
@@ -1573,7 +1687,7 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
     }
     function openModal(idx) {
       const t = TEMOIGNAGES_WISTIA[idx];
-      document.getElementById('modalName').textContent = t.nom || '';
+      document.getElementById('modalName').textContent = 'Témoignage #' + (idx+1);
       document.getElementById('modalVideo').innerHTML = `
         <iframe src="https://fast.wistia.net/embed/iframe/${t.id}?autoPlay=true&playerColor=ff2e93" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:100%;border:0;display:block;"></iframe>
       `;
@@ -1589,13 +1703,6 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
       card.addEventListener('click', () => {
         const idx = card.dataset.index;
         if (idx !== undefined) openModal(parseInt(idx));
-      });
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const idx = card.dataset.index;
-          if (idx !== undefined) openModal(parseInt(idx));
-        }
       });
     });
     modal.querySelector('.temoignage-modal-close').addEventListener('click', closeModal);
@@ -1649,17 +1756,10 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
 
 <!-- ============ NICHE 3.0 JS UPGRADE (2026-04-26) ============ -->
 <div class="cursor-glow" id="cursorGlow"></div>
-<!-- PERF: force-visibility avant que les scripts defer s'exécutent -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
-document.querySelectorAll('section, .card, .testimonial-card, .grid-3 > *, .grid-2 > *, .container > div').forEach(function(el){
-  el.style.opacity='1'; el.style.visibility='visible';
-});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js" crossorigin defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function(){
 (function(){
   // FORCE SCROLL TO TOP au load (ignorer hash anchor #booking-1 qui faisait sauter en bas)
   if (window.location.hash) { history.replaceState(null, '', window.location.pathname + window.location.search); }
@@ -1671,6 +1771,11 @@ document.addEventListener('DOMContentLoaded', function(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isSlowDevice = (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) || (navigator.deviceMemory && navigator.deviceMemory < 4);
   const lightMode = isMobile || reduceMotion || isSlowDevice;
+
+  // FORCE visibility immediate sur tout (avant GSAP) pour eviter blocage chargement
+  document.querySelectorAll('section, .card, .testimonial-card, .grid-3 > *, .grid-2 > *, .container > div').forEach(el => {
+    el.style.opacity = '1'; el.style.visibility = 'visible';
+  });
 
   if (typeof Lenis !== 'undefined' && !lightMode) {
     const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
@@ -1694,9 +1799,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !lightMode) {
     gsap.registerPlugin(ScrollTrigger);
-    /* section : géré par CSS fadeRise + .reveal IntersectionObserver — pas de double animation */
-    gsap.utils.toArray('.testimonial-card').forEach((el, i) => {
-      gsap.from(el, { opacity:0, y:30, duration:0.7, delay:Math.min(i*0.04, 0.28), ease:'power2.out', scrollTrigger:{trigger:el, start:'top 92%'} });
+    gsap.utils.toArray('section').forEach(s => {
+      gsap.from(s, { opacity:0, y:60, duration:1.2, ease:'power3.out', scrollTrigger:{trigger:s, start:'top 85%', toggleActions:'play none none reverse'} });
+    });
+    gsap.utils.toArray('.card, .testimonial-card, .grid-3 > *, .grid-2 > *').forEach((el, i) => {
+      gsap.from(el, { opacity:0, y:40, duration:0.8, delay:i*0.05, ease:'power2.out', scrollTrigger:{trigger:el, start:'top 90%'} });
     });
   }
 
@@ -1707,7 +1814,6 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 })();
-}); // DOMContentLoaded
 </script>
 </body>
 </html>
