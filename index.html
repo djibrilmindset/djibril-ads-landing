@@ -1465,9 +1465,10 @@ section.hero ~ .capsule,.capsule{opacity:.18!important}
 /* === AUDIT cascade : lisibilité + corporate === */
 header, header#header{background:rgba(243,236,223,.96)!important;border-bottom:1.5px solid rgba(26,22,20,.15)!important;backdrop-filter:blur(14px)!important}
 .iclosed-fallback a{color:#1b6e8c!important;-webkit-text-fill-color:#1b6e8c!important}
-.video-overlay{color:#fff!important;pointer-events:auto!important;cursor:pointer;background:linear-gradient(transparent,rgba(10,4,16,0.82))!important;padding:48px 16px 18px!important}
+.video-overlay{position:absolute!important;inset:0!important;display:flex!important;align-items:flex-end!important;justify-content:center!important;background:transparent!important;padding:0!important;color:#fff!important;pointer-events:auto!important;cursor:pointer}
+.video-overlay .vsl-prompt{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:linear-gradient(transparent,rgba(10,4,16,0.85));padding:48px 16px 18px}
 .video-overlay span{font-family:'JetBrains Mono',ui-monospace,monospace!important;font-size:13px!important;font-weight:700!important;letter-spacing:.08em!important;text-transform:uppercase}
-.video-overlay .sound-icon{width:38px!important;height:38px!important;font-size:17px!important;animation:vslSoundPulse 1.6s ease-in-out infinite}
+.video-overlay .sound-icon{width:38px!important;height:38px!important;font-size:17px!important;animation:vslSoundPulse 1.6s ease-in-out infinite;flex:0 0 auto}
 @keyframes vslSoundPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,46,147,.55)}50%{transform:scale(1.08);box-shadow:0 0 0 10px rgba(255,46,147,0)}}
 .kw-proof,span.kw-proof{color:#0e5c42!important;-webkit-text-fill-color:#0e5c42!important;background:rgba(14,92,66,.10)!important;box-shadow:none!important}
 .btn-pill.btn-gradient{background:#1a1614!important;background-image:none!important;color:#f3ecdf!important;box-shadow:4px 4px 0 #c2371a!important;border-radius:3px!important;font-family:'JetBrains Mono',ui-monospace,monospace!important;letter-spacing:.12em!important;font-size:12.5px!important;text-transform:uppercase!important;border:1.5px solid #1a1614!important}
@@ -1539,35 +1540,33 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
       <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true muted=true endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
+          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true muted=true playsinline=true endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
         </div>
       </div>
       <div class="video-overlay" id="vslSoundOverlay">
-        <div class="sound-icon">🔊</div>
-        <span>Clique pour activer le son</span>
+        <div class="vsl-prompt"><div class="sound-icon">🔊</div><span>Clique pour activer le son</span></div>
       </div>
       <script>
         window._wq = window._wq || [];
         window._wq.push({ id: "rfemp7gpcs", onReady: function(video) {
           var overlay = document.getElementById('vslSoundOverlay');
-          var EVTS = ['pointerdown','touchstart','mousedown','keydown','click'];
+          function isMuted(){ try { return video.isMuted(); } catch(e){ return true; } }
           function showInvite(s){ if (overlay) overlay.style.display = s ? 'flex' : 'none'; }
-          function enableSound(){
-            // au 1er clic : la video repart du DEBUT et le son demarre avec elle
-            try { video.time(0); video.unmute(); video.volume(1.0); video.play(); } catch(e){}
-            EVTS.forEach(function(ev){ document.removeEventListener(ev, enableSound, true); });
+          function enableSound(e){
+            if (!isMuted()) return;                 // son deja actif -> ne pas relancer (anti-restart sur clics suivants)
+            if (e && e.cancelable) e.preventDefault();
+            // tap = la video repart du DEBUT et le son demarre avec elle
+            try { video.time(0); video.unmute(); video.volume(1.0); video.play(); } catch(err){}
           }
-          // 1) demarrage muet fiable (jamais fige) PUIS on TENTE le son direct tout de suite :
-          //    pour les visiteurs "de confiance" (deja engages sur le domaine) le navigateur l'autorise -> son auto
+          // 1) demarrage muet fiable (jamais fige) PUIS tentative son direct (visiteurs deja engages -> son auto)
           try { video.play(); } catch(e){}
           try { video.unmute(); video.volume(1.0); } catch(e){}
-          // 2) si le navigateur a refuse le son -> invite voyante + le 1er micro-geste l'allume
-          //    (sur mobile la 1re touche d'ecran pour scroller suffit = son quasi immediat)
-          setTimeout(function(){
-            var muted = true; try { muted = video.isMuted(); } catch(e){}
-            if (muted) { showInvite(true); EVTS.forEach(function(ev){ document.addEventListener(ev, enableSound, true); }); }
-            else { showInvite(false); }
-          }, 500);
+          // 2) si le navigateur garde le son coupe -> invite. Le son s'active au TAP sur la video.
+          setTimeout(function(){ showInvite(isMuted()); }, 500);
+          // TAP sur la video (overlay plein cadre) OU clic intentionnel ailleurs = son.
+          // Important mobile : on n'ecoute PAS touchstart/pointerdown (sinon le scroll declenche le son).
+          if (overlay) { overlay.addEventListener('click', enableSound); overlay.addEventListener('touchend', enableSound, { passive:false }); }
+          document.addEventListener('click', enableSound);
           // l'invite suit l'etat reel du son
           try { video.bind('mutechange', function(m){ showInvite(m); }); } catch(e){}
         }});
