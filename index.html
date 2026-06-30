@@ -1553,7 +1553,8 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
           var EVTS = ['pointerdown','touchstart','mousedown','keydown','click'];
           function showInvite(s){ if (overlay) overlay.style.display = s ? 'flex' : 'none'; }
           function enableSound(){
-            try { video.unmute(); video.volume(1.0); video.play(); } catch(e){}
+            // au 1er clic : la video repart du DEBUT et le son demarre avec elle
+            try { video.time(0); video.unmute(); video.volume(1.0); video.play(); } catch(e){}
             EVTS.forEach(function(ev){ document.removeEventListener(ev, enableSound, true); });
           }
           // 1) demarrage muet fiable (jamais fige) PUIS on TENTE le son direct tout de suite :
@@ -1574,7 +1575,6 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
     </div>
     <div style="text-align:center;margin-top:26px;">
       <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:15px;padding:18px 46px;">AUDIT GRATUIT · 0€</a>
-      <p style="font-family:var(--font-serif);font-style:italic;color:#3a322c;margin:14px auto 0;max-width:520px;font-size:1rem;">30 minutes, en direct, sur ta situation. Aucun engagement. Tu repars avec un plan</p>
     </div>
     <div style="text-align:center;margin-top:16px;">
       <a href="#temoignages" style="color:#d4145a;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:17px;letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid #d4145a;text-decoration:none;padding-bottom:3px;">Voir les 83 témoignages ↓</a>
@@ -1590,7 +1590,6 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
 <section class="proof">
   <div class="container">
     <h2>Ne me <span class="kw-action">crois</span> pas sur parole.</h2>
-    <p class="sub-italic"><span class="kw-power">Regarde la vidéo</span>.</p>
     <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:16px;padding:16px 40px;">AUDIT GRATUIT · 0€</a>
   </div>
 </section>
@@ -1611,7 +1610,7 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
 <!-- BOOKING iClose — destination finale -->
 <section class="booking" id="booking-1">
   <div class="container">
-    <h2><span class="kw-action">Réserve</span> ton audit.<br><span class="pink" style="font-style:italic;">30 minutes. Gratuit. Zéro vente.</span></h2>
+    <h2><span class="pink" style="font-style:italic;">30 minutes. Gratuit.</span></h2>
     <div class="iclosed-wrap">
       <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
     </div>
