@@ -1465,7 +1465,10 @@ section.hero ~ .capsule,.capsule{opacity:.18!important}
 /* === AUDIT cascade : lisibilité + corporate === */
 header, header#header{background:rgba(243,236,223,.96)!important;border-bottom:1.5px solid rgba(26,22,20,.15)!important;backdrop-filter:blur(14px)!important}
 .iclosed-fallback a{color:#1b6e8c!important;-webkit-text-fill-color:#1b6e8c!important}
-.video-overlay{color:#f3ecdf!important;pointer-events:auto!important}
+.video-overlay{color:#fff!important;pointer-events:auto!important;cursor:pointer;background:linear-gradient(transparent,rgba(10,4,16,0.82))!important;padding:48px 16px 18px!important}
+.video-overlay span{font-family:'JetBrains Mono',ui-monospace,monospace!important;font-size:13px!important;font-weight:700!important;letter-spacing:.08em!important;text-transform:uppercase}
+.video-overlay .sound-icon{width:38px!important;height:38px!important;font-size:17px!important;animation:vslSoundPulse 1.6s ease-in-out infinite}
+@keyframes vslSoundPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,46,147,.55)}50%{transform:scale(1.08);box-shadow:0 0 0 10px rgba(255,46,147,0)}}
 .kw-proof,span.kw-proof{color:#0e5c42!important;-webkit-text-fill-color:#0e5c42!important;background:rgba(14,92,66,.10)!important;box-shadow:none!important}
 .btn-pill.btn-gradient{background:#1a1614!important;background-image:none!important;color:#f3ecdf!important;box-shadow:4px 4px 0 #c2371a!important;border-radius:3px!important;font-family:'JetBrains Mono',ui-monospace,monospace!important;letter-spacing:.12em!important;font-size:12.5px!important;text-transform:uppercase!important;border:1.5px solid #1a1614!important}
 .btn-pill.btn-gradient:hover{box-shadow:6px 6px 0 #c2371a!important;transform:translate(-2px,-2px)!important}
@@ -1536,31 +1539,33 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
       <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
+          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true muted=true endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
         </div>
       </div>
       <div class="video-overlay" id="vslSoundOverlay">
         <div class="sound-icon">🔊</div>
-        <span>Touche pour activer le son</span>
+        <span>Clique pour activer le son</span>
       </div>
       <script>
         window._wq = window._wq || [];
         window._wq.push({ id: "rfemp7gpcs", onReady: function(video) {
+          var overlay = document.getElementById('vslSoundOverlay');
+          // autoplay MUET garanti (seul autorise par les navigateurs sans clic)
+          try { video.play(); } catch(e){}
+          function enableSound() {
+            try { video.unmute(); video.volume(1.0); video.play(); } catch(e){}
+            document.removeEventListener('click', enableSound, true);
+            document.removeEventListener('touchstart', enableSound, true);
+            document.removeEventListener('keydown', enableSound, true);
+          }
+          // 1er contact n'importe ou sur la page -> le son demarre (geste utilisateur = autorise)
+          document.addEventListener('click', enableSound, true);
+          document.addEventListener('touchstart', enableSound, true);
+          document.addEventListener('keydown', enableSound, true);
+          // l'invite "clique pour le son" suit l'etat reel du son (visible tant que muet)
           try {
-            video.time(0); video.volume(1.0); video.play();
-            // tente le son ; si bloque par le navigateur (video pas en lecture) -> lecture muette forcee
-            setTimeout(function(){ try { if (!video.state || video.state() !== 'playing') { video.mute(); video.play(); } } catch(e){} }, 800);
-            // si le son a marche direct -> cacher l'invite
-            setTimeout(function(){ try { if (video.isMuted && !video.isMuted() && video.state && video.state()==='playing') { var o=document.getElementById('vslSoundOverlay'); if(o) o.style.display='none'; } } catch(e){} }, 1500);
-            var overlay = document.getElementById('vslSoundOverlay');
-            var unmuteOnce = function() {
-              try { video.unmute(); video.volume(1.0); video.play(); } catch(e){}
-              if (overlay) overlay.style.display = 'none';
-              ['click','touchstart','keydown'].forEach(function(ev){ document.removeEventListener(ev, unmuteOnce, true); });
-            };
-            ['click','touchstart','keydown'].forEach(function(ev){ document.addEventListener(ev, unmuteOnce, true); });
-            if (overlay) overlay.addEventListener('click', unmuteOnce);
-          } catch(e) { console.warn('vsl', e); }
+            video.bind('mutechange', function(isMuted) { if (overlay) overlay.style.display = isMuted ? 'flex' : 'none'; });
+          } catch(e){}
         }});
       </script>
     </div>
