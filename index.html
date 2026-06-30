@@ -1748,12 +1748,23 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
     // v2 (2026-04-26): show only first 8 + expand CTA pour le reste
     const TESTIMONIAL_INITIAL_COUNT = 8;
     grid1.innerHTML = TEMOIGNAGES_WISTIA.map((t, i) => `
-      <div class="testimonial-card reveal${i >= TESTIMONIAL_INITIAL_COUNT ? ' testimonial-hidden' : ''}" data-index="${i}" style="background-image:url('${t.thumb}');" role="button" tabindex="0" aria-label="Voir le témoignage de ${t.nom || 'participant ' + (i+1)}">
+      <div class="testimonial-card reveal${i >= TESTIMONIAL_INITIAL_COUNT ? ' testimonial-hidden' : ''}" data-index="${i}" data-thumb="${t.thumb}" role="button" tabindex="0" aria-label="Voir le témoignage de ${t.nom || 'participant ' + (i+1)}">
         <div class="badge">${String(i+1).padStart(2,'0')} / ${String(TEMOIGNAGES_WISTIA.length).padStart(2,'0')}</div>
         <div class="stars" aria-hidden="true">★★★★★</div>
         <div class="play" aria-hidden="true"></div>
       </div>
     `).join('');
+
+    // LAZY THUMBS (deterministe, robuste) : sans background-image inline, le preload-scanner
+    // ne prefetch plus les 75 cartes cachees -> ~2 Mo economises au 1er rendu.
+    // On charge la vignette des 8 cartes visibles tout de suite, le reste seulement au clic "voir plus".
+    function setThumb(c) {
+      if (c.dataset.thumb) {
+        c.style.backgroundImage = "url('" + c.dataset.thumb + "')";
+        c.removeAttribute('data-thumb');
+      }
+    }
+    grid1.querySelectorAll('.testimonial-card:not(.testimonial-hidden)').forEach(setThumb);
 
     // Inject expand CTA button after grid (couleur pop tres differente du reste)
     if (TEMOIGNAGES_WISTIA.length > TESTIMONIAL_INITIAL_COUNT) {
@@ -1761,7 +1772,7 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
       expandBtn.className = 'testimonials-expand-btn';
       expandBtn.innerHTML = `VOIR LES ${TEMOIGNAGES_WISTIA.length - TESTIMONIAL_INITIAL_COUNT}+ TÉMOIGNAGES ↓`;
       expandBtn.onclick = function () {
-        grid1.querySelectorAll('.testimonial-hidden').forEach(c => c.classList.remove('testimonial-hidden'));
+        grid1.querySelectorAll('.testimonial-hidden').forEach(function (c) { c.classList.remove('testimonial-hidden'); setThumb(c); });
         expandBtn.style.display = 'none';
       };
       grid1.parentNode.insertBefore(expandBtn, grid1.nextSibling);
