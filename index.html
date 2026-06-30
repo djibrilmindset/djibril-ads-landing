@@ -28,10 +28,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://fast.wistia.net">
 <link rel="preload" as="image" fetchpriority="high" href="https://embed-ssl.wistia.com/deliveries/1bb2e12b99841edd053f78288786dcd3.jpg">
-<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin>
-<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin>
-<link rel="preload" as="script" href="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin fetchpriority="low">
+<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin fetchpriority="low">
+<link rel="preload" as="script" href="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js" crossorigin fetchpriority="low">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@400;500;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0410;
@@ -541,10 +542,19 @@
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
     body::before, .hero h1::after { animation: none !important; }
+    .logo-capsule, .logo-capsule::before, .logo-capsule::after { animation: none !important; }
   }
 
+  /* Focus visible accessible */
+  :focus-visible {
+    outline: 3px solid #c2371a;
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  :focus:not(:focus-visible) { outline: none; }
+
   /* ============ NICHE 3.0 UPGRADE (2026-04-26) ============ */
-  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Geist+Mono:wght@100..900&display=swap');
+  /* @import supprimé — fonts consolidées dans le <link> head unique */
 
   body::after {
     content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.04; mix-blend-mode:overlay;
@@ -570,8 +580,8 @@
   }
   .btn-pill:hover, button:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 12px 40px rgba(255,46,147,0.25); }
 
-  /* Desktop only animations */
-  @media (min-width:769px) and (hover:hover) {
+  /* Desktop only animations — skip si reduced-motion */
+  @media (min-width:769px) and (hover:hover) and (prefers-reduced-motion: no-preference) {
     section { animation:fadeRise 1s ease-out backwards; }
     @keyframes fadeRise { from{opacity:0; transform:translateY(30px); filter:blur(8px);} to{opacity:1; transform:translateY(0); filter:blur(0);} }
   }
@@ -683,141 +693,13 @@
     font-style: normal !important;
   }
 </style>
-<script>
-  document.addEventListener('DOMContentLoaded', function(){
-    const hdr = document.getElementById('header');
-    if (!hdr) return;
-    window.addEventListener('scroll', function(){
-      const y = window.scrollY || 0;
-      hdr.style.background = y > 50 ? 'rgba(255,255,255,0.96)' : 'rgba(255,255,255,0.92)';
-    }, { passive: true });
-  });
-</script>
+<!-- header scroll listener supprimé : aucun <header id="header"> dans le DOM -->
 
 <div class="cosmos" aria-hidden="true">
-  <div class="cosmos__stars cosmos__stars--far">✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-</div>
-  <div class="cosmos__stars">✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-</div>
-  <div class="cosmos__stars cosmos__stars--mid">✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆
-</div>
+  <div class="cosmos__stars cosmos__stars--far" id="csStarsFar"></div>
+  <div class="cosmos__stars" id="csStarsMid"></div>
+  <div class="cosmos__stars cosmos__stars--mid" id="csStarsNear"></div>
+  <script>(function(){var r='✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆\n';var s=r.repeat(40);['csStarsFar','csStarsMid','csStarsNear'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=s;});}());</script>
   <div class="cosmos__caps">
     <div class="cosmos__cap cosmos__cap--c1"></div>
     <div class="cosmos__cap cosmos__cap--c2"></div>
@@ -849,9 +731,7 @@
 <!-- ═══ /COSMOS BG ═══ -->
 
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- fonts consolidées dans le <link> head unique -->
 
 
 <style id="cosmos-patch">
@@ -1062,7 +942,7 @@ header, header#header {
   background-size: 280px 280px;
   opacity: 0.5;
   mix-blend-mode: multiply;
-  animation: cs-noise 0.8s steps(4) infinite;
+  animation: cs-noise 4s steps(2) infinite;
 }
 @keyframes cs-noise {
   0%   { transform: translate(0,0); }
@@ -1323,7 +1203,7 @@ a[href*="djibril-ads-landing"]{background:#f3ecdf!important}
 /* Pastille noire reste */
 .hero .pastille{background:#1a1614!important}
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+<!-- font Bricolage/EB Garamond/Geist chargées via le <link> head unique -->
 <style id="kais-polish">
 /* ===== Passe lisibilité MAX + corporate (override non-destructif) ===== */
 .hero{position:relative;z-index:3}
@@ -1409,7 +1289,7 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
       <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true volume=1 endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
+          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true muted=true endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
         </div>
       </div>
       <div class="video-overlay" id="vslSoundOverlay">
@@ -1512,8 +1392,26 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
   <p>© 2026 Djibril Learning — Tous droits réservés.</p>
 </footer>
 
-<!-- iClosed script UNE SEULE FOIS -->
-<script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
+<!-- iClosed : lazy-load à l'approche de la section booking -->
+<script>
+(function(){
+  var bookingSection = document.getElementById('booking-1');
+  if (!bookingSection) return;
+  var icloseLoaded = false;
+  var io = new IntersectionObserver(function(entries){
+    if (entries[0].isIntersecting && !icloseLoaded) {
+      icloseLoaded = true;
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = 'https://app.iclosed.io/assets/widget.js';
+      s.async = true;
+      document.body.appendChild(s);
+      io.disconnect();
+    }
+  }, { rootMargin: '200px 0px' });
+  io.observe(bookingSection);
+})();
+</script>
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta">
@@ -1525,12 +1423,7 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
   window.scrollTo(0,0);
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
-  // Header opacity
-  const header = document.getElementById('header');
-  if (header) window.addEventListener('scroll', () => {
-    header.style.background = window.scrollY > 50 ? 'rgba(243,236,223,0.97)' : 'rgba(243,236,223,0.92)';
-  });
-
+  // (header scroll listener supprimé — aucun <header id="header"> dans le DOM)
   // (legacy YouTube overlay handler retiré - native HTML5 <video> gere le unmute via le bloc inline above)
 
   // 83 Témoignages vidéo Wistia (récupérés via Wistia API, 83 = 69 numérotés + 14 anonymes)
@@ -1625,10 +1518,10 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
     // v2 (2026-04-26): show only first 8 + expand CTA pour le reste
     const TESTIMONIAL_INITIAL_COUNT = 8;
     grid1.innerHTML = TEMOIGNAGES_WISTIA.map((t, i) => `
-      <div class="testimonial-card reveal${i >= TESTIMONIAL_INITIAL_COUNT ? ' testimonial-hidden' : ''}" data-index="${i}" style="background-image:url('${t.thumb}');">
+      <div class="testimonial-card reveal${i >= TESTIMONIAL_INITIAL_COUNT ? ' testimonial-hidden' : ''}" data-index="${i}" style="background-image:url('${t.thumb}');" role="button" tabindex="0" aria-label="Voir le témoignage de ${t.nom || 'participant ' + (i+1)}">
         <div class="badge">${String(i+1).padStart(2,'0')} / ${String(TEMOIGNAGES_WISTIA.length).padStart(2,'0')}</div>
-        <div class="stars">★★★★★</div>
-        <div class="play"></div>
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <div class="play" aria-hidden="true"></div>
       </div>
     `).join('');
 
@@ -1692,6 +1585,13 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
         const idx = card.dataset.index;
         if (idx !== undefined) openModal(parseInt(idx));
       });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const idx = card.dataset.index;
+          if (idx !== undefined) openModal(parseInt(idx));
+        }
+      });
     });
     modal.querySelector('.temoignage-modal-close').addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
@@ -1744,10 +1644,17 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
 
 <!-- ============ NICHE 3.0 JS UPGRADE (2026-04-26) ============ -->
 <div class="cursor-glow" id="cursorGlow"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+<!-- PERF: force-visibility avant que les scripts defer s'exécutent -->
 <script>
+document.querySelectorAll('section, .card, .testimonial-card, .grid-3 > *, .grid-2 > *, .container > div').forEach(function(el){
+  el.style.opacity='1'; el.style.visibility='visible';
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js" crossorigin defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
 (function(){
   // FORCE SCROLL TO TOP au load (ignorer hash anchor #booking-1 qui faisait sauter en bas)
   if (window.location.hash) { history.replaceState(null, '', window.location.pathname + window.location.search); }
@@ -1759,11 +1666,6 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isSlowDevice = (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) || (navigator.deviceMemory && navigator.deviceMemory < 4);
   const lightMode = isMobile || reduceMotion || isSlowDevice;
-
-  // FORCE visibility immediate sur tout (avant GSAP) pour eviter blocage chargement
-  document.querySelectorAll('section, .card, .testimonial-card, .grid-3 > *, .grid-2 > *, .container > div').forEach(el => {
-    el.style.opacity = '1'; el.style.visibility = 'visible';
-  });
 
   if (typeof Lenis !== 'undefined' && !lightMode) {
     const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
@@ -1787,11 +1689,9 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
 
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !lightMode) {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray('section').forEach(s => {
-      gsap.from(s, { opacity:0, y:60, duration:1.2, ease:'power3.out', scrollTrigger:{trigger:s, start:'top 85%', toggleActions:'play none none reverse'} });
-    });
-    gsap.utils.toArray('.card, .testimonial-card, .grid-3 > *, .grid-2 > *').forEach((el, i) => {
-      gsap.from(el, { opacity:0, y:40, duration:0.8, delay:i*0.05, ease:'power2.out', scrollTrigger:{trigger:el, start:'top 90%'} });
+    /* section : géré par CSS fadeRise + .reveal IntersectionObserver — pas de double animation */
+    gsap.utils.toArray('.testimonial-card').forEach((el, i) => {
+      gsap.from(el, { opacity:0, y:30, duration:0.7, delay:Math.min(i*0.04, 0.28), ease:'power2.out', scrollTrigger:{trigger:el, start:'top 92%'} });
     });
   }
 
@@ -1802,6 +1702,7 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
     });
   }
 })();
+}); // DOMContentLoaded
 </script>
 </body>
 </html>
