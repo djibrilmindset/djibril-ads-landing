@@ -1286,8 +1286,18 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
 
 
 
-<!-- S1 VIDEO EN HAUT (l'œil va à l'image d'abord — Bencivenga) -->
-<section class="video-section" style="padding-top:26px;">
+<!-- S1 HERO TITRE (en haut) -->
+<section class="hero" style="padding-top:30px;">
+  <div class="container">
+    <div class="pastille">Salarié ou barber qui cherche un revenu complémentaire</div>
+    <h1><span class="kw-power">Est-il possible</span> de générer entre <span class="gradient-num">3 000 et 5 000 €</span> par mois, <span class="kw-mute">depuis chez soi</span>,<br>grâce au <span class="kw-mental">business le plus vieux d'internet</span> ?</h1>
+    <p class="hero-sub">Et si tu n'as pas fait <span class="kw-power">5 000 €</span> sur les <span class="kw-action">90 prochains jours</span>, je te rembourse <span class="kw-mental">(sur contrat)</span></p>
+    <p style="text-align:center;font-family:var(--font-serif);font-style:italic;color:#3a322c;font-size:1.08rem;margin:24px auto 0;max-width:640px;">Ne me crois pas. Clique sur la vidéo avant de réserver ton appel</p>
+  </div>
+</section>
+
+<!-- S2 VIDEO (sous le titre) -->
+<section class="video-section" style="padding-top:12px;">
   <div class="container">
     <div class="video-wrapper">
       <script src="https://fast.wistia.com/embed/medias/rfemp7gpcs.jsonp" async></script>
@@ -1295,56 +1305,12 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
           <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true muted=true endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
-        </div>
-      </div>
-      <div class="video-overlay" id="vslSoundOverlay">
-        <div class="sound-icon">🔊</div>
-        <span>Touche pour activer le son — La vidéo joue déjà</span>
-      </div>
-      <script>
-        // Force VSL Wistia (rfemp7gpcs) to play unmuted from start, restart on refresh, unmute on first interaction
-        window._wq = window._wq || [];
-        window._wq.push({ id: "rfemp7gpcs", onReady: function(video) {
-          try {
-            video.time(0);
-            video.volume(1.0);
-            video.play();
-            setTimeout(function(){
-              if (video.isMuted && video.isMuted()) {
-                video.mute(); video.play();
-              }
-            }, 600);
-            var overlay = document.getElementById('vslSoundOverlay');
-            var unmuteOnce = function() {
-              try { video.unmute(); video.volume(1.0); video.play(); } catch(e){}
-              if (overlay) overlay.style.display = 'none';
-              ['click','touchstart','keydown'].forEach(function(ev){
-                document.removeEventListener(ev, unmuteOnce, true);
-              });
-            };
-            ['click','touchstart','keydown'].forEach(function(ev){
-              document.addEventListener(ev, unmuteOnce, true);
-            });
-            if (overlay) overlay.addEventListener('click', unmuteOnce);
-          } catch(e) { console.warn('vsl autoplay setup', e); }
-        }});
-      </script>
-    </div>
-    <div style="text-align:center;margin-top:20px;">
-      <a href="#temoignages" style="color:#d4145a;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:17px;letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid #d4145a;text-decoration:none;padding-bottom:3px;">Voir les 83 témoignages ↓</a>
-    </div>
-  </div>
-</section>
-
-<!-- S2 HERO TEXTE (sous la vidéo) -->
-<section class="hero" style="padding-top:16px;">
-  <div class="container">
-    <div class="pastille">Pour le cadre ou le diplômé qui veut enfin la liberté pour laquelle il a étudié</div>
-    <h1><span class="kw-power">Est-il possible</span> de générer entre <span class="gradient-num">3 000 et 5 000 €</span> par mois, <span class="kw-mute">depuis chez toi</span>,<br>sans <span class="kw-mental">quitter ton CDI</span> ?</h1>
-    <p class="hero-sub">Et si tu n'as pas <span class="kw-power">généré 5 000 €</span> sur tes <span class="kw-action">90 premiers jours</span>, je te rembourse intégralement <span class="kw-mental">+ 1 000 € de dédommagement</span>. <span class="kw-action">Sur contrat, validé par avocate</span></p>
-    <div style="text-align:center;margin-top:28px;">
+    <div style="text-align:center;margin-top:26px;">
       <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:15px;padding:18px 46px;">AUDIT GRATUIT · 0€</a>
       <p style="font-family:var(--font-serif);font-style:italic;color:#3a322c;margin:14px auto 0;max-width:520px;font-size:1rem;">30 minutes, en direct, sur ta situation. Aucun engagement. Tu repars avec un plan</p>
+    </div>
+    <div style="text-align:center;margin-top:16px;">
+      <a href="#temoignages" style="color:#d4145a;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:17px;letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid #d4145a;text-decoration:none;padding-bottom:3px;">Voir les 83 témoignages ↓</a>
     </div>
   </div>
 </section>
