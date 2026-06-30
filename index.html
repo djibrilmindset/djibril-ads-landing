@@ -1466,6 +1466,7 @@ section.hero ~ .capsule,.capsule{opacity:.18!important}
 header, header#header{background:rgba(243,236,223,.96)!important;border-bottom:1.5px solid rgba(26,22,20,.15)!important;backdrop-filter:blur(14px)!important}
 .iclosed-fallback a{color:#1b6e8c!important;-webkit-text-fill-color:#1b6e8c!important}
 .video-overlay{position:absolute!important;inset:0!important;display:flex!important;align-items:flex-end!important;justify-content:center!important;background:transparent!important;padding:0!important;color:#fff!important;pointer-events:auto!important;cursor:pointer}
+.video-overlay.vsl-hidden{display:none!important}
 .video-overlay .vsl-prompt{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:linear-gradient(transparent,rgba(10,4,16,0.85));padding:48px 16px 18px}
 .video-overlay span{font-family:'JetBrains Mono',ui-monospace,monospace!important;font-size:13px!important;font-weight:700!important;letter-spacing:.08em!important;text-transform:uppercase}
 .video-overlay .sound-icon{width:38px!important;height:38px!important;font-size:17px!important;animation:vslSoundPulse 1.6s ease-in-out infinite;flex:0 0 auto}
@@ -1551,12 +1552,13 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
         window._wq.push({ id: "rfemp7gpcs", onReady: function(video) {
           var overlay = document.getElementById('vslSoundOverlay');
           function isMuted(){ try { return video.isMuted(); } catch(e){ return true; } }
-          function showInvite(s){ if (overlay) overlay.style.display = s ? 'flex' : 'none'; }
+          function showInvite(s){ if (overlay) overlay.classList.toggle('vsl-hidden', !s); }
           function enableSound(e){
             if (!isMuted()) return;                 // son deja actif -> ne pas relancer (anti-restart sur clics suivants)
             if (e && e.cancelable) e.preventDefault();
             // tap = la video repart du DEBUT et le son demarre avec elle
             try { video.time(0); video.unmute(); video.volume(1.0); video.play(); } catch(err){}
+            showInvite(false);                      // cacher l'invite TOUT DE SUITE au clic (pas seulement via mutechange)
           }
           // 1) demarrage muet fiable (jamais fige) PUIS tentative son direct (visiteurs deja engages -> son auto)
           try { video.play(); } catch(e){}
