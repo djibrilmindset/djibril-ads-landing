@@ -1496,6 +1496,17 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
 @media (prefers-reduced-motion:reduce){ .cosmos__noise{animation:none!important} }
 .sticky-cta{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))!important}
 .testimonial-card .play{width:56px!important;height:56px!important;touch-action:manipulation;cursor:pointer}
+
+/* bande de preuve haut de page (demande Djibril 2026-07-02) */
+.proof-strip{display:flex;align-items:center;justify-content:center;gap:14px;width:fit-content;margin:18px auto 0;padding:10px 22px 10px 12px;background:rgba(255,252,245,.9);border:2px solid rgba(26,22,20,.22);border-radius:999px;text-decoration:none;box-shadow:0 10px 30px -16px rgba(26,22,20,.35),3px 3px 0 rgba(194,55,26,.35);transition:transform .2s ease-out,box-shadow .2s ease-out}
+.proof-strip:hover{transform:translateY(-2px);box-shadow:0 14px 36px -16px rgba(26,22,20,.4),3px 3px 0 rgba(194,55,26,.45)}
+.proof-strip:focus-visible{outline:3px solid #aef02f;outline-offset:3px}
+.ps-avatars{display:flex}
+.ps-avatars span{width:42px;height:42px;border-radius:50%;background-size:cover;background-position:center 18%;border:2px solid #f3ecdf;box-shadow:0 2px 8px rgba(26,22,20,.35)}
+.ps-avatars span+span{margin-left:-13px}
+.ps-label{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:#1a1614;white-space:nowrap}
+.ps-label strong{color:#d4145a;font-weight:700}
+@media(max-width:480px){.proof-strip{gap:10px;padding:8px 14px 8px 10px}.ps-avatars span{width:36px;height:36px}.ps-avatars span+span{margin-left:-12px}.ps-label{font-size:10.5px;white-space:normal;max-width:170px;line-height:1.35}}
 </style>
 </head>
 <body>
@@ -1509,6 +1520,18 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
     <h1><span class="kw-power">Est-il possible</span> de générer entre <span class="gradient-num">3 000 et 5 000 €</span> par mois, <span class="kw-mute">depuis chez soi</span>,<br>grâce au <span class="kw-hook">business le plus vieux d'internet</span> ?</h1>
     <p class="hero-sub">Et si tu n'as pas fait <span class="kw-power">5 000 €</span> sur les <span class="kw-action">90 prochains jours</span>, je te rembourse <span class="kw-mental">(sur contrat)</span></p>
     <p style="text-align:center;font-family:var(--font-serif);font-style:italic;color:#3a322c;font-size:1.08rem;margin:24px auto 0;max-width:640px;">Ne me crois pas. Clique sur la vidéo avant de réserver ton appel</p>
+    <!-- PREUVE VISIBLE DES LE HAUT : bande 83 temoignages (clic -> section) -->
+    <a href="#temoignages" class="proof-strip reveal" aria-label="83 témoignages vidéo, voir la section témoignages">
+      <span class="ps-avatars" aria-hidden="true">
+        <span style="background-image:url('https://embed-ssl.wistia.com/deliveries/0224ee1ca34d0e3a13b2ad1e2a5a06a4688154f4.jpg?image_crop_resized=96x96')"></span>
+        <span style="background-image:url('https://embed-ssl.wistia.com/deliveries/cc6e09b4e0cb4700e4eba26ae2aa7c80d5e7a5a1.jpg?image_crop_resized=96x96')"></span>
+        <span style="background-image:url('https://embed-ssl.wistia.com/deliveries/1cda3aee60db174d2e6d40a0dd0d5bdc98e2d5bf.jpg?image_crop_resized=96x96')"></span>
+        <span style="background-image:url('https://embed-ssl.wistia.com/deliveries/8704d469c5ab86f3123aee616250005dd0bef15f.jpg?image_crop_resized=96x96')"></span>
+        <span style="background-image:url('https://embed-ssl.wistia.com/deliveries/dfa4b7d7f0e75da74f892048648802f68eaf1e71.jpg?image_crop_resized=96x96')"></span>
+        <span style="background-image:url('https://embed-ssl.wistia.com/deliveries/d67ed484b451ac5d365484621ea3390d50732b02.jpg?image_crop_resized=96x96')"></span>
+      </span>
+      <span class="ps-label"><strong>83 témoignages vidéo</strong>&nbsp;· vérifie par toi-même&nbsp;↓</span>
+    </a>
   </div>
 </section>
 
@@ -1558,7 +1581,8 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
         window.addEventListener('load', function(){
           setTimeout(function(){
             var d=document.querySelector('.wistia_embed.wistia_async_a6lpysw4s4');
-            if (d && !d.querySelector('iframe')) {
+            // pas seulement iframe : Wistia rend parfois <video> direct (inline) — un embed MORT = 0 enfant
+            if (d && !d.querySelector('iframe,video') && d.children.length===0) {
               var o=document.getElementById('vslSoundOverlay'); if(o) o.classList.add('vsl-hidden');
               var fb=document.createElement('div');
               fb.style.cssText='text-align:center;margin:16px auto 0;font-size:14px;color:#3a322c;padding:18px;background:rgba(255,252,245,.9);border:1px solid rgba(26,22,20,.18);border-radius:12px;max-width:520px;';
