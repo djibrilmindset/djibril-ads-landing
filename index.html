@@ -1613,7 +1613,10 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
   <div class="container">
     <h2><span class="pink" style="font-style:italic;">30 minutes. Gratuit.</span></h2>
     <div class="iclosed-wrap">
-      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril"></div>
+      <!-- iClosed inline widget begin -->
+      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril" style="width: 100%; height: 620px"></div>
+      <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
+      <!-- iClosed inline widget end -->
     </div>
     <p class="iclosed-fallback">Le calendrier ne charge pas ? <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" target="_blank" rel="noopener">Ouvre-le en plein écran ici →</a></p>
   </div>
@@ -1630,26 +1633,7 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
   <p>© 2026 Djibril Learning — Tous droits réservés.</p>
 </footer>
 
-<!-- iClosed : lazy-load à l'approche de la section booking -->
-<script>
-(function(){
-  var bookingSection = document.getElementById('booking-1');
-  if (!bookingSection) return;
-  var icloseLoaded = false;
-  var io = new IntersectionObserver(function(entries){
-    if (entries[0].isIntersecting && !icloseLoaded) {
-      icloseLoaded = true;
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = 'https://app.iclosed.io/assets/widget.js';
-      s.async = true;
-      document.body.appendChild(s);
-      io.disconnect();
-    }
-  }, { rootMargin: '200px 0px' });
-  io.observe(bookingSection);
-})();
-</script>
+<!-- iClosed chargé directement via le bloc widget officiel dans la section booking (widget.js async) -->
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta">
