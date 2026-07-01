@@ -2,9 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Est-il possible de générer 3 000 à 5 000 € par mois depuis chez toi grâce au business le plus vieux d'internet ? Garanti sur contrat ou remboursé + 1 000 €.">
-<link rel="canonical" href="https://djibrilmindset.github.io/djibril-ads-landing/">
 <meta property="og:title" content="Est-il possible de générer 3 000 à 5 000 € par mois grâce au business le plus vieux d'internet ?">
 <meta property="og:description" content="3 000 à 5 000 € par mois depuis chez toi grâce au business le plus vieux d'internet. Remboursé + 1 000 € si tu n'y arrives pas. Sur contrat.">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -29,10 +28,14 @@
 <link rel="preconnect" href="https://fast.wistia.com" crossorigin>
 <link rel="preconnect" href="https://embed-ssl.wistia.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://app.iclosed.io">
 <link rel="dns-prefetch" href="https://fast.wistia.net">
+<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin fetchpriority="low">
+<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin fetchpriority="low">
+<link rel="preload" as="script" href="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js" crossorigin fetchpriority="low">
 <!-- PERF: polices SELF-HOSTED (same-origin Cloudflare/GitHub, 0 dependance Google Fonts) -->
-<link rel="preload" as="font" type="font/woff2" href="fonts/instrument-serif-italic-400-latin.woff2" crossorigin fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" href="fonts/instrument-serif-italic-400-latin.woff2" crossorigin>
 <style id="self-fonts">
 @font-face {
   font-family: 'Instrument Serif';
@@ -208,6 +211,22 @@
   font-weight: 900;
   font-display: swap;
   src: url(fonts/playfair-display-italic-900-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/playfair-display-normal-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/playfair-display-normal-400-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -709,6 +728,18 @@
   .reveal.visible { opacity: 1; transform: translateY(0) scale(1); }
 
   /* === GRADIENT MESH BACKGROUND animated === */
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(circle at 14% 10%, rgba(255,46,147,0.10) 0%, transparent 36%),
+      radial-gradient(circle at 86% 12%, rgba(126,243,255,0.08) 0%, transparent 38%),
+      radial-gradient(circle at 50% 92%, rgba(255,122,61,0.07) 0%, transparent 42%);
+    animation: meshDrift 26s ease-in-out infinite alternate;
+  }
+  @keyframes meshDrift {
+    0%   { transform: translate3d(0,0,0) scale(1); }
+    100% { transform: translate3d(-2%, 2%, 0) scale(1.06); }
+  }
 
   /* === HERO H1 SHEEN === */
   .hero h1 { position: relative; }
@@ -1140,7 +1171,7 @@ header, header#header {
   background-size: 280px 280px;
   opacity: 0.5;
   mix-blend-mode: multiply;
-  animation: cs-noise 8s steps(2) infinite;
+  animation: cs-noise 4s steps(2) infinite;
 }
 @keyframes cs-noise {
   0%   { transform: translate(0,0); }
@@ -1487,16 +1518,6 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
 .hero-sub{margin-top:26px!important;line-height:1.62!important}
 .hero .cta-zone,.hero [style*="margin-top:28px"]{margin-top:34px!important}
 </style>
-<style id="audit-0701">
-/* audit 2026-07-01 : fluidite mobile + tap targets — rendu desktop inchange */
-@media (max-width:768px){
-  header,.sticky-cta,.testimonial-card .badge,.testimonial-card .play,.temoignage-modal{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-  .cosmos__noise{animation:none!important}
-}
-@media (prefers-reduced-motion:reduce){ .cosmos__noise{animation:none!important} }
-.sticky-cta{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))!important}
-.testimonial-card .play{width:56px!important;height:56px!important;touch-action:manipulation;cursor:pointer}
-</style>
 </head>
 <body>
 
@@ -1516,11 +1537,11 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
 <section class="video-section" style="padding-top:12px;">
   <div class="container">
     <div class="video-wrapper">
-      <script src="https://fast.wistia.com/embed/medias/gr1t4jokli.jsonp" async></script>
+      <script src="https://fast.wistia.com/embed/medias/rfemp7gpcs.jsonp" async></script>
       <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div class="wistia_embed wistia_async_gr1t4jokli seo=true videoFoam=true autoPlay=true muted=true playsinline=true endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
+          <div class="wistia_embed wistia_async_rfemp7gpcs seo=true videoFoam=true autoPlay=true muted=true playsinline=true endVideoBehavior=reset playerColor=ff2e93" style="height:100%;position:relative;width:100%"></div>
         </div>
       </div>
       <div class="video-overlay" id="vslSoundOverlay">
@@ -1528,19 +1549,16 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
       </div>
       <script>
         window._wq = window._wq || [];
-        window._wq.push({ id: "gr1t4jokli", onReady: function(video) {
+        window._wq.push({ id: "rfemp7gpcs", onReady: function(video) {
           var overlay = document.getElementById('vslSoundOverlay');
           function isMuted(){ try { return video.isMuted(); } catch(e){ return true; } }
           function showInvite(s){ if (overlay) overlay.classList.toggle('vsl-hidden', !s); }
           function enableSound(e){
             if (!isMuted()) return;                 // son deja actif -> ne pas relancer (anti-restart sur clics suivants)
-            // GARDE-FOU CONVERSION : un clic sur lien/bouton/CTA navigue TOUJOURS, jamais capture par le son
-            if (e && e.target && e.target.closest && e.target.closest('a, button, [role="button"], input, textarea, select')) return;
             if (e && e.cancelable) e.preventDefault();
             // tap = la video repart du DEBUT et le son demarre avec elle
             try { video.time(0); video.unmute(); video.volume(1.0); video.play(); } catch(err){}
             showInvite(false);                      // cacher l'invite TOUT DE SUITE au clic (pas seulement via mutechange)
-            document.removeEventListener('click', enableSound); // cleanup : listener global inutile une fois le son actif
           }
           // 1) demarrage muet fiable (jamais fige) PUIS tentative son direct (visiteurs deja engages -> son auto)
           try { video.play(); } catch(e){}
@@ -1554,19 +1572,6 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
           // l'invite suit l'etat reel du son
           try { video.bind('mutechange', function(m){ showInvite(m); }); } catch(e){}
         }});
-        // FALLBACK : Wistia jamais charge (CDN down/adblock) -> message + CTA, le funnel booking survit
-        window.addEventListener('load', function(){
-          setTimeout(function(){
-            var d=document.querySelector('.wistia_embed.wistia_async_gr1t4jokli');
-            if (d && !d.querySelector('iframe')) {
-              var o=document.getElementById('vslSoundOverlay'); if(o) o.classList.add('vsl-hidden');
-              var fb=document.createElement('div');
-              fb.style.cssText='text-align:center;margin:16px auto 0;font-size:14px;color:#3a322c;padding:18px;background:rgba(255,252,245,.9);border:1px solid rgba(26,22,20,.18);border-radius:12px;max-width:520px;';
-              fb.innerHTML='<p style="margin:0;">Vid\u00e9o indisponible pour le moment. <a href="#booking-1" style="color:#1b6e8c;text-decoration:underline;font-weight:700;">R\u00e9serve ton audit gratuit \u2192</a></p>';
-              var w=d.closest('.video-wrapper'); if(w&&w.parentNode) w.parentNode.insertBefore(fb,w.nextSibling);
-            }
-          },7000);
-        });
       </script>
     </div>
     <div style="text-align:center;margin-top:26px;">
@@ -1609,11 +1614,11 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
     <h2><span class="pink" style="font-style:italic;">30 minutes. Gratuit.</span></h2>
     <div class="iclosed-wrap">
       <!-- iClosed inline widget begin -->
-      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/brand" title="Djibril Learning" style="width: 100%; height: 620px"></div>
+      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" title="Djibril" style="width: 100%; height: 620px"></div>
       <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
       <!-- iClosed inline widget end -->
     </div>
-    <p class="iclosed-fallback">Le calendrier ne charge pas ? <a href="https://app.iclosed.io/e/djibrilsylearning/brand" target="_blank" rel="noopener">Ouvre-le en plein écran ici →</a></p>
+    <p class="iclosed-fallback">Le calendrier ne charge pas ? <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1" target="_blank" rel="noopener">Ouvre-le en plein écran ici →</a></p>
   </div>
 </section>
 
@@ -1786,11 +1791,19 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
     `;
     document.body.appendChild(modal);
 
+    function loadWistiaScript(videoId) {
+      if (!document.querySelector('script[src*="' + videoId + '.jsonp"]')) {
+        const s = document.createElement('script');
+        s.src = 'https://fast.wistia.com/embed/medias/' + videoId + '.jsonp';
+        s.async = true;
+        document.body.appendChild(s);
+      }
+    }
     function openModal(idx) {
       const t = TEMOIGNAGES_WISTIA[idx];
       document.getElementById('modalName').textContent = t.nom || '';
       document.getElementById('modalVideo').innerHTML = `
-        <iframe src="https://fast.wistia.net/embed/iframe/${t.id}?autoPlay=true&playerColor=ff2e93" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:0;display:block;"></iframe>
+        <iframe src="https://fast.wistia.net/embed/iframe/${t.id}?autoPlay=true&playerColor=ff2e93" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:100%;border:0;display:block;"></iframe>
       `;
       modal.classList.add('active');
       document.body.classList.add('modal-open');
@@ -1798,9 +1811,7 @@ section.booking .pastille span{color:#1b6e8c!important;-webkit-text-fill-color:#
     function closeModal() {
       modal.classList.remove('active');
       document.body.classList.remove('modal-open');
-      var oldIframe = document.querySelector('#modalVideo iframe');
-      if (oldIframe) { oldIframe.src = ''; oldIframe.remove(); }
-      document.getElementById('modalVideo').textContent = '';
+      document.getElementById('modalVideo').innerHTML = '';
     }
     document.querySelectorAll('.testimonial-card').forEach(card => {
       card.addEventListener('click', () => {
@@ -1872,8 +1883,9 @@ document.querySelectorAll('section, .card, .testimonial-card, .grid-3 > *, .grid
   el.style.opacity='1'; el.style.visibility='visible';
 });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js" crossorigin defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
 (function(){
