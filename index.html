@@ -1537,6 +1537,52 @@ html,body{overflow-x:clip} /* couches cosmos decoratives depassaient de ~17px (s
 .fl-sep{color:rgba(26,22,20,.4)}
 @media(max-width:900px){.trust-bar{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.trust-bar{grid-template-columns:1fr;gap:10px}.ct-card{padding:20px 18px}.ct-num{font-size:24px;min-width:36px}}
+
+/* ===== TOUCH-KIT (recherche crypto 2026 : Family/Phantom/Fey/Rainbow/Cosmos) ===== */
+:root{--ease-quint:cubic-bezier(.22,1,.36,1);--ease-io:cubic-bezier(.65,0,.35,1)}
+.btn-pill.btn-gradient{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn-pill.btn-gradient:active{transform:translate(2px,2px)!important;box-shadow:0 0 0 #c2371a!important;transition-duration:60ms!important}
+/* sheen auto : seul mouvement autonome, attire l'oeil (et le doigt mobile) */
+.btn-pill.btn-gradient::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(243,236,223,.32) 50%,transparent 60%);transform:translateX(-130%);animation:ctaSheen 6.5s cubic-bezier(.4,0,.2,1) infinite;pointer-events:none}
+@keyframes ctaSheen{0%,78%{transform:translateX(-130%)}92%,100%{transform:translateX(130%)}}
+/* label roll anti-objection */
+.btn-pill .track{display:grid;overflow:hidden}
+.btn-pill .track>span{grid-area:1/1;white-space:nowrap;transition:transform .5s cubic-bezier(.76,0,.24,1)}
+.btn-pill .track>span:last-child{transform:translateY(115%)}
+.btn-pill:hover .track>span:first-child{transform:translateY(-115%)}
+.btn-pill:hover .track>span:last-child{transform:translateY(0)}
+/* sparks recompense au clic */
+.spark{position:fixed;width:6px;height:6px;border-radius:50%;background:#c6f53a;border:1px solid #1a1614;pointer-events:none;z-index:9999;animation:spark .55s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes spark{to{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0}}
+/* ===== CONTRAT : beam lime + lecture stabilo ===== */
+@property --angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+.ct-card{position:relative;contain:paint}
+.ct-card::before{content:"";position:absolute;inset:-2px;border-radius:20px;z-index:-1;background:conic-gradient(from var(--angle),transparent 0 70%,#c6f53a 85%,transparent 100%)}
+.ct-card.in-view::before{animation:ctBeam 5.5s linear infinite}
+@keyframes ctBeam{to{--angle:360deg}}
+.ct-card:hover .ct-row{opacity:.5;transition:opacity .35s var(--ease-quint)}
+.ct-card .ct-row:hover{opacity:1}
+.ct-num{background:linear-gradient(rgba(198,245,58,.85),rgba(174,240,47,.85)) no-repeat 0 78%/0% 42%;transition:background-size .35s var(--ease-quint);padding:0 4px;margin-left:-4px}
+.ct-row:hover .ct-num,.ct-row.is-focus .ct-num{background-size:100% 42%}
+.ct-row.is-focus{opacity:1!important}
+/* ===== TRUST BAR : lavis lime qui suit la main + structure au hover ===== */
+.tb-item{position:relative;overflow:hidden;cursor:default;transition:transform .25s var(--ease-quint),border-color .15s,box-shadow .25s var(--ease-quint)}
+.tb-item::after{content:"";position:absolute;inset:0;opacity:0;background:radial-gradient(200px circle at var(--mx,50%) var(--my,50%),rgba(198,245,58,.14),transparent 65%);transition:opacity .3s;pointer-events:none}
+.tb-item:hover{transform:translateY(-3px);border-color:rgba(26,22,20,.4);box-shadow:0 14px 34px -16px rgba(26,22,20,.4)}
+.tb-item:hover::after{opacity:1}
+.tb-item:active{transform:translateY(0) scale(.98);transition-duration:80ms}
+/* ===== BANDE 83 : avatars qui s'eventaillent + compteur ===== */
+.count{font-variant-numeric:tabular-nums;display:inline-block;min-width:2ch;text-align:right}
+.proof-strip .ps-avatars span{transition:transform .3s var(--ease-quint)}
+.proof-strip:hover .ps-avatars span:nth-child(odd){transform:translateY(-3px) rotate(-4deg)}
+.proof-strip:hover .ps-avatars span:nth-child(even){transform:translateY(2px) rotate(4deg)}
+.proof-strip:active{transform:scale(.98)}
+/* lien voir 83 : fleche qui plonge */
+a[href="#temoignages"] { transition:color .15s }
+.eyebrow-arrow{display:inline-block;transition:transform .3s var(--ease-quint)}
+a[href="#temoignages"]:hover .eyebrow-arrow{transform:translateY(3px)}
+@media(prefers-reduced-motion:reduce){.btn-pill.btn-gradient::after,.ct-card.in-view::before{animation:none!important}.spark{display:none}}
+@media(hover:none){.ct-card:hover .ct-row{opacity:1}}
 </style>
 </head>
 <body>
@@ -1560,7 +1606,7 @@ html,body{overflow-x:clip} /* couches cosmos decoratives depassaient de ~17px (s
         <span style="background-image:url('https://embed-ssl.wistia.com/deliveries/dfa4b7d7f0e75da74f892048648802f68eaf1e71.jpg?image_crop_resized=96x96')"></span>
         <span style="background-image:url('https://embed-ssl.wistia.com/deliveries/d67ed484b451ac5d365484621ea3390d50732b02.jpg?image_crop_resized=96x96')"></span>
       </span>
-      <span class="ps-label"><strong>83 témoignages vidéo</strong>&nbsp;· vérifie par toi-même&nbsp;↓</span>
+      <span class="ps-label"><strong><span class="count" data-n="83">83</span> témoignages vidéo</strong>&nbsp;· vérifie par toi-même&nbsp;↓</span>
     </a>
   </div>
 </section>
@@ -1624,10 +1670,10 @@ html,body{overflow-x:clip} /* couches cosmos decoratives depassaient de ~17px (s
       </script>
     </div>
     <div style="text-align:center;margin-top:26px;">
-      <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:15px;padding:18px 46px;">AUDIT GRATUIT · 0€</a>
+      <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:15px;padding:18px 46px;"><span class="track"><span>AUDIT GRATUIT · 0€</span><span aria-hidden="true">30 MIN · ZÉRO ENGAGEMENT</span></span></a>
     </div>
     <div style="text-align:center;margin-top:16px;">
-      <a href="#temoignages" style="color:#d4145a;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:17px;letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid #d4145a;text-decoration:none;padding-bottom:3px;">Voir les 83 témoignages ↓</a>
+      <a href="#temoignages" style="color:#d4145a;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:17px;letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid #d4145a;text-decoration:none;padding-bottom:3px;">Voir les 83 témoignages <span class="eyebrow-arrow">↓</span></a>
     </div>
     <!-- BARRE DE CONFIANCE B2B (courte, coloree) -->
     <div class="trust-bar reveal" aria-label="Garanties et preuves">
@@ -1647,7 +1693,7 @@ html,body{overflow-x:clip} /* couches cosmos decoratives depassaient de ~17px (s
 <section class="proof">
   <div class="container">
     <h2>Ne me <span class="kw-action">crois</span> pas sur parole.</h2>
-    <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:16px;padding:16px 40px;">AUDIT GRATUIT · 0€</a>
+    <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:16px;padding:16px 40px;"><span class="track"><span>AUDIT GRATUIT · 0€</span><span aria-hidden="true">30 MIN · ZÉRO ENGAGEMENT</span></span></a>
   </div>
 </section>
 
@@ -1660,7 +1706,7 @@ html,body{overflow-x:clip} /* couches cosmos decoratives depassaient de ~17px (s
       <!-- JS injecte ici -->
     </div>
     <div style="margin-top:28px;text-align:center;">
-      <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:14px;padding:14px 32px;">AUDIT GRATUIT · 0€</a>
+      <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:14px;padding:14px 32px;"><span class="track"><span>AUDIT GRATUIT · 0€</span><span aria-hidden="true">30 MIN · ZÉRO ENGAGEMENT</span></span></a>
     </div>
   </div>
 </section>
@@ -2006,6 +2052,49 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 })();
 }); // DOMContentLoaded
+</script>
+<script>
+(function(){
+  var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var FINE=matchMedia('(hover:hover) and (pointer:fine)').matches&&!RM;
+  /* beam contrat : actif seulement a l'ecran */
+  var ct=document.querySelector('.ct-card');
+  if(ct&&'IntersectionObserver'in window){
+    new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('in-view',e.isIntersecting)})},{threshold:.2}).observe(ct);
+    if(!FINE){document.querySelectorAll('.ct-row').forEach(function(r){
+      new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('is-focus',e.isIntersecting)})},{rootMargin:'-42% 0px -42% 0px'}).observe(r)})}
+  }
+  /* compteur 83 */
+  var cn=document.querySelector('.count');
+  if(cn&&!RM&&'IntersectionObserver'in window){
+    var N=parseInt(cn.dataset.n||'83',10);cn.textContent='0';
+    new IntersectionObserver(function(es,o){if(!es[0].isIntersecting)return;o.disconnect();
+      var t0=performance.now(),D=1300;
+      (function f(n){var t=Math.min((n-t0)/D,1);cn.textContent=Math.round(N*(1-Math.pow(2,-10*t)));if(t<1)requestAnimationFrame(f)})(t0);
+    },{threshold:.5}).observe(cn);
+  }
+  /* lavis trust bar : 1 listener parent, rects cachees, 1 rAF */
+  if(FINE){var tb=document.querySelector('.trust-bar');
+    if(tb){var caps=[].slice.call(tb.querySelectorAll('.tb-item')),rects=null,raf;
+      var cache=function(){rects=caps.map(function(c){return c.getBoundingClientRect()})};
+      addEventListener('scroll',function(){rects=null},{passive:true});addEventListener('resize',function(){rects=null});
+      tb.addEventListener('pointermove',function(e){cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){
+        if(!rects)cache();
+        caps.forEach(function(c,i){var r=rects[i];c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')})})});
+    }}
+  /* sparks au clic CTA (recompense, une fois) */
+  document.querySelectorAll('.btn-pill.btn-gradient').forEach(function(b){
+    b.addEventListener('click',function(ev){
+      if(RM)return;
+      for(var i=0;i<7;i++){var sp=document.createElement('span');sp.className='spark';
+        var a=(i/7)*Math.PI*2+Math.random()*.5,d=28+Math.random()*24;
+        sp.style.left=ev.clientX+'px';sp.style.top=ev.clientY+'px';
+        sp.style.setProperty('--tx',Math.cos(a)*d+'px');sp.style.setProperty('--ty',Math.sin(a)*d+'px');
+        document.body.appendChild(sp);
+        sp.addEventListener('animationend',function(){this.remove()});}
+    });
+  });
+})();
 </script>
 </body>
 </html>
