@@ -1545,6 +1545,9 @@ html,body{overflow-x:clip} /* couches cosmos decoratives depassaient de ~17px (s
 /* sheen auto : seul mouvement autonome, attire l'oeil (et le doigt mobile) */
 .btn-pill.btn-gradient::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(243,236,223,.32) 50%,transparent 60%);transform:translateX(-130%);animation:ctaSheen 6.5s cubic-bezier(.4,0,.2,1) infinite;pointer-events:none}
 @keyframes ctaSheen{0%,78%{transform:translateX(-130%)}92%,100%{transform:translateX(130%)}}
+.proof .btn-pill.btn-gradient::after{animation-delay:1.6s}
+.testimonials .btn-pill.btn-gradient::after{animation-delay:3.2s}
+.sticky-cta .btn-pill.btn-gradient::after{animation-delay:4.8s}
 /* label roll anti-objection */
 .btn-pill .track{display:grid;overflow:hidden}
 .btn-pill .track>span{grid-area:1/1;white-space:nowrap;transition:transform .5s cubic-bezier(.76,0,.24,1)}
@@ -1557,7 +1560,7 @@ html,body{overflow-x:clip} /* couches cosmos decoratives depassaient de ~17px (s
 /* ===== CONTRAT : beam lime + lecture stabilo ===== */
 @property --angle{syntax:"<angle>";initial-value:0deg;inherits:false}
 .ct-card{position:relative;contain:paint}
-.ct-card::before{content:"";position:absolute;inset:-2px;border-radius:20px;z-index:-1;background:conic-gradient(from var(--angle),transparent 0 70%,#c6f53a 85%,transparent 100%)}
+.ct-card::before{content:"";position:absolute;inset:-2px;border-radius:20px;z-index:-1;background:conic-gradient(from var(--angle,0deg),transparent 0 70%,#c6f53a 85%,transparent 100%)}
 .ct-card.in-view::before{animation:ctBeam 5.5s linear infinite}
 @keyframes ctBeam{to{--angle:360deg}}
 .ct-card:hover .ct-row{opacity:.5;transition:opacity .35s var(--ease-quint)}
