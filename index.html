@@ -1613,6 +1613,24 @@ a[href="#temoignages"]:hover .eyebrow-arrow{transform:translateY(3px)}
 .tb-item:hover{border-left-width:10px}
 .tb-item:hover .tb-small{letter-spacing:.14em;transition:letter-spacing .25s cubic-bezier(.22,1,.36,1)}
 @media(prefers-reduced-motion:reduce){.ps-avatars span{animation:none!important}.btn-pill.btn-gradient::before{animation:none!important;opacity:0!important}}
+
+/* ===== CTA LOUD (demande Djibril) : audit = LIME petant, temoignages = ROSE magenta ===== */
+.btn-pill.btn-gradient{background:linear-gradient(135deg,#c6f53a,#aef02f)!important;background-image:linear-gradient(135deg,#c6f53a,#aef02f)!important;color:#1a1614!important;border:2px solid #1a1614!important;box-shadow:4px 4px 0 #1a1614!important;animation:ctaBreath 3.2s ease-in-out infinite}
+.btn-pill.btn-gradient:hover{box-shadow:6px 6px 0 #1a1614!important}
+.btn-pill.btn-gradient:active{box-shadow:0 0 0 #1a1614!important}
+@keyframes ctaBreath{0%,100%{outline:0px solid rgba(198,245,58,0)}50%{outline:6px solid rgba(198,245,58,.35)}}
+.cta-temoins{position:relative;overflow:hidden;display:inline-block;background:linear-gradient(135deg,#ff2e93,#d4145a);color:#fffcf5;border:2px solid #1a1614;border-radius:3px;box-shadow:4px 4px 0 #1a1614;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:13.5px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:16px 34px;transition:transform .15s cubic-bezier(.2,.9,.3,1.3),box-shadow .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;animation:ctaBreathRose 3.2s ease-in-out infinite 1.6s}
+.cta-temoins:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #1a1614}
+.cta-temoins:active{transform:translate(2px,2px);box-shadow:0 0 0 #1a1614;transition-duration:60ms}
+.cta-temoins:focus-visible{outline:3px solid #ff2e93;outline-offset:3px}
+.cta-temoins::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,252,245,.35) 50%,transparent 60%);transform:translateX(-130%);animation:ctaSheen 6.5s cubic-bezier(.4,0,.2,1) infinite 2.4s;pointer-events:none}
+@keyframes ctaBreathRose{0%,100%{outline:0px solid rgba(255,46,147,0)}50%{outline:6px solid rgba(255,46,147,.3)}}
+.cta-temoins .eyebrow-arrow{display:inline-block;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.cta-temoins:hover .eyebrow-arrow{transform:translateY(3px)}
+.tb-go{display:inline-block;margin-top:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:10px;letter-spacing:.12em;color:#fffcf5;background:linear-gradient(135deg,#ff2e93,#d4145a);border:1px solid #1a1614;border-radius:3px;padding:4px 10px;width:fit-content}
+a.tb-item{text-decoration:none;cursor:pointer}
+a.tb-item:hover .tb-go{transform:translateY(1px)}
+@media(prefers-reduced-motion:reduce){.btn-pill.btn-gradient,.cta-temoins{animation:none!important}.cta-temoins::after{animation:none!important}}
 </style>
 </head>
 <body>
@@ -1703,13 +1721,13 @@ a[href="#temoignages"]:hover .eyebrow-arrow{transform:translateY(3px)}
       <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:15px;padding:18px 46px;"><span class="track"><span>AUDIT GRATUIT · 0€</span><span aria-hidden="true">30 MIN · ZÉRO ENGAGEMENT</span></span></a>
     </div>
     <div style="text-align:center;margin-top:16px;">
-      <a href="#temoignages" style="color:#d4145a;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:17px;letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid #d4145a;text-decoration:none;padding-bottom:3px;">Voir les 83 témoignages <span class="eyebrow-arrow">↓</span></a>
+      <a href="#temoignages" class="cta-temoins">Voir les 83 témoignages <span class="eyebrow-arrow">↓</span></a>
     </div>
     <!-- BARRE DE CONFIANCE B2B (courte, coloree) -->
     <div class="trust-bar reveal" aria-label="Garanties et preuves">
       <div class="tb-item tb-rose"><span class="tb-big">5 000 € sur 90 jours</span><span class="tb-small">Garantie sur contrat</span></div>
       <div class="tb-item tb-teal"><span class="tb-big">Rédigé par avocate</span><span class="tb-small">Contrat de garantie</span></div>
-      <div class="tb-item tb-lime"><span class="tb-big">83 résultats filmés</span><span class="tb-small">Vérifiables en vidéo</span></div>
+      <a href="#temoignages" class="tb-item tb-lime" aria-label="Voir les 83 témoignages vidéo"><span class="tb-big">83 résultats filmés</span><span class="tb-small">Vérifiables en vidéo</span><span class="tb-go">VOIR LES TÉMOIGNAGES ↓</span></a>
       <div class="tb-item tb-ember"><span class="tb-big">Audit 30 minutes</span><span class="tb-small">Réservation sécurisée</span></div>
     </div>
   </div>
@@ -1723,6 +1741,9 @@ a[href="#temoignages"]:hover .eyebrow-arrow{transform:translateY(3px)}
 <section class="proof">
   <div class="container">
     <h2>Ne me <span class="kw-action">crois</span> pas sur parole.</h2>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;align-items:center;margin-bottom:4px;">
+      <a href="#temoignages" class="cta-temoins">Voir les 83 témoignages <span class="eyebrow-arrow">↓</span></a>
+    </div>
     <a href="#booking-1" class="btn-pill btn-gradient" style="font-size:16px;padding:16px 40px;"><span class="track"><span>AUDIT GRATUIT · 0€</span><span aria-hidden="true">30 MIN · ZÉRO ENGAGEMENT</span></span></a>
   </div>
 </section>
@@ -2089,7 +2110,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var FINE=matchMedia('(hover:hover) and (pointer:fine)').matches&&!RM;
   if(!FINE) return;
   /* magnetic CTA : attraction douce vers le curseur (amplitude sobre 6px) */
-  document.querySelectorAll('.btn-pill.btn-gradient').forEach(function(b){
+  document.querySelectorAll('.btn-pill.btn-gradient,.cta-temoins').forEach(function(b){
     b.addEventListener('pointermove',function(e){
       var r=b.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/r.width,dy=(e.clientY-r.top-r.height/2)/r.height;
       b.style.transform='translate('+(-2+dx*6).toFixed(1)+'px,'+(-2+dy*4).toFixed(1)+'px)';
