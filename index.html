@@ -1686,7 +1686,8 @@ a.tb-item:hover .tb-go{transform:translateY(1px)}
             if (e && e.cancelable) e.preventDefault();
             // tap = la video repart du DEBUT et le son demarre avec elle
             try { video.time(0); video.unmute(); video.volume(1.0); video.play(); } catch(err){}
-            showInvite(false);                      // cacher l'invite TOUT DE SUITE au clic (pas seulement via mutechange)
+            showInvite(false);
+            if(window.ruTrack)ruTrack('sound_on',{},true);                      // cacher l'invite TOUT DE SUITE au clic (pas seulement via mutechange)
             document.removeEventListener('click', enableSound); // cleanup : listener global inutile une fois le son actif
           }
           // 1) demarrage muet fiable (jamais fige) PUIS tentative son direct (visiteurs deja engages -> son auto)
@@ -1700,6 +1701,12 @@ a.tb-item:hover .tb-go{transform:translateY(1px)}
           document.addEventListener('click', enableSound);
           // l'invite suit l'etat reel du son
           try { video.bind('mutechange', function(m){ showInvite(m); }); } catch(e){}
+          try { video.bind('percentwatchedchanged', function(p){
+            if(!window.ruTrack) return;
+            if(p>=0.25)ruTrack('watch_25',{},true);
+            if(p>=0.5)ruTrack('watch_50',{},true);
+            if(p>=0.9)ruTrack('watch_90',{},true);
+          }); } catch(e){}
         }});
         // FALLBACK : Wistia jamais charge (CDN down/adblock) -> message + CTA, le funnel booking survit
         window.addEventListener('load', function(){
@@ -2124,6 +2131,48 @@ document.addEventListener('DOMContentLoaded', function(){
     });
     c.addEventListener('pointerleave',function(){c.classList.remove('tilting');c.style.transform='';});
   });
+})();
+</script>
+<script>
+/* tracking anonyme premiere partie (Supabase, zero PII, zero cookie tiers) */
+(function(){
+  var SB='https://nbnbsljqtolzzuqnkyae.supabase.co/rest/v1/site_events?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ibmJzbGpxdG9senp1cW5reWFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzODk2MDYsImV4cCI6MjA4Mzk2NTYwNn0.0Io_TLbntyxYeUUcv_krbcl4txHp6wSwdMy_BzORmV4';
+  var SITE='reset-ultra';
+  try{
+    var q=new URLSearchParams(location.search);
+    var sid=sessionStorage.getItem('ru_sid');
+    if(!sid){sid=Date.now().toString(36)+Math.random().toString(36).slice(2,8);sessionStorage.setItem('ru_sid',sid);}
+    ['utm_source','utm_medium','utm_content'].forEach(function(k){if(q.get(k))sessionStorage.setItem('ru_'+k,q.get(k));});
+    var U={s:sessionStorage.getItem('ru_utm_source')||'',m:sessionStorage.getItem('ru_utm_medium')||'',c:sessionStorage.getItem('ru_utm_content')||''};
+    var dev=matchMedia('(max-width:768px)').matches?'mobile':'desktop';
+    var once={};
+    window.ruTrack=function(ev,props,unique){
+      if(unique){if(once[ev])return;once[ev]=1;}
+      var b=JSON.stringify({site:SITE,session_id:sid,event:ev,props:props||{},utm_source:U.s,utm_medium:U.m,utm_content:U.c,referrer:(document.referrer||'').slice(0,300),path:location.pathname,device:dev});
+      try{navigator.sendBeacon(SB,new Blob([b],{type:'application/json'}));}catch(e){}
+    };
+    ruTrack('page_view',{},true);
+    /* scroll 50% */
+    var s50=false;
+    addEventListener('scroll',function(){
+      if(s50)return;
+      if((scrollY+innerHeight)/document.documentElement.scrollHeight>0.5){s50=true;ruTrack('scroll_50',{},true);}
+    },{passive:true});
+    /* clics CTA audit */
+    document.addEventListener('click',function(e){
+      var b=e.target&&e.target.closest&&e.target.closest('.btn-pill.btn-gradient');
+      if(b)ruTrack('cta_click',{zone:(b.closest('section')||{}).className||'sticky'});
+      var t=e.target&&e.target.closest&&e.target.closest('.testimonial-card');
+      if(t)ruTrack('testimonial_open',{i:t.dataset.index});
+      var ps=e.target&&e.target.closest&&e.target.closest('.proof-strip');
+      if(ps)ruTrack('proofstrip_click',{},true);
+    },true);
+    /* arrivee sur le booking */
+    if('IntersectionObserver'in window){
+      var bk=document.getElementById('booking-1');
+      if(bk)new IntersectionObserver(function(es,o){if(es[0].isIntersecting){ruTrack('booking_view',{},true);o.disconnect();}},{threshold:.3}).observe(bk);
+    }
+  }catch(e){}
 })();
 </script>
 </body>

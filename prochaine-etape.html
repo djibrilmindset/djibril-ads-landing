@@ -62,5 +62,13 @@ footer{position:relative;z-index:1;text-align:center;padding:24px;font-family:'J
 <p class="other">→ <a href="appel-booke.html">Revenir à la confirmation d'appel</a></p>
 </main>
 <footer>© 2026 Djibril Learning · SIRET 977974005 · <a href="mailto:djibrillsylearn@gmail.com" style="color:inherit">djibrillsylearn@gmail.com</a> · <a href="/" style="color:inherit">reset-ultra.com</a></footer>
+<script>
+(function(){var SB='https://nbnbsljqtolzzuqnkyae.supabase.co/rest/v1/site_events?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ibmJzbGpxdG9senp1cW5reWFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzODk2MDYsImV4cCI6MjA4Mzk2NTYwNn0.0Io_TLbntyxYeUUcv_krbcl4txHp6wSwdMy_BzORmV4';
+var sid=sessionStorage.getItem('ru_sid')||(Date.now().toString(36)+Math.random().toString(36).slice(2,8));sessionStorage.setItem('ru_sid',sid);
+function T(ev){try{navigator.sendBeacon(SB,new Blob([JSON.stringify({site:'reset-ultra',session_id:sid,event:ev,path:location.pathname,device:matchMedia('(max-width:768px)').matches?'mobile':'desktop',utm_source:sessionStorage.getItem('ru_utm_source')||'',utm_content:sessionStorage.getItem('ru_utm_content')||''})],{type:'application/json'}));}catch(e){}}
+T('page_view');
+document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href*="wa.me"]');if(a)T('wa_click');},true);
+})();
+</script>
 </body>
 </html>
