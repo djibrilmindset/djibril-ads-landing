@@ -1629,6 +1629,32 @@ a[href="#temoignages"]:hover .eyebrow-arrow{transform:translateY(3px)}
 .cosmos__caps>.cosmos__cap:nth-of-type(15){background-image:url(pills/pill-cyan.webp)!important;--bolt:#38e1ff;--bda:6.3s;--bdd:2.9s}
 .cosmos__caps>.cosmos__cap:nth-of-type(16){background-image:url(pills/pill-lime.webp)!important;--bolt:#c6f53a;--bda:6.7s;--bdd:3.7s}
 @media(prefers-reduced-motion:reduce){.cosmos__cap::before,.cosmos__cap::after{animation:none!important;opacity:0!important}}
+
+/* ===== FX v2 : un cran au-dessus (magnetic CTA, spotlight contrat, pulse avatars, tilt cartes) ===== */
+.btn-pill.btn-gradient{will-change:transform}
+.btn-pill.btn-gradient .track>span{will-change:transform}
+/* trace lumineuse au survol : un arc lime fait le tour du bouton une fois */
+.btn-pill.btn-gradient::before{content:"";position:absolute;inset:-3px;border-radius:6px;padding:2px;background:conic-gradient(from var(--tr,0deg),transparent 0 82%,#c6f53a 92%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;pointer-events:none}
+@supports (background:conic-gradient(from 0deg,red,blue)){
+.btn-pill.btn-gradient:hover::before{opacity:1;animation:ctaTrace .9s cubic-bezier(.22,1,.36,1) 1}}
+@property --tr{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes ctaTrace{from{--tr:0deg}to{--tr:360deg}}
+/* spotlight contrat : halo doux qui suit la lecture */
+.ct-card::after{content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;background:radial-gradient(300px circle at var(--sx,50%) var(--sy,30%),rgba(198,245,58,.10),transparent 60%);transition:opacity .35s;pointer-events:none;z-index:0}
+.ct-card:hover::after{opacity:1}
+.ct-row{position:relative;z-index:1}
+/* vague de pulse autonome dans la bande d'avatars (vit aussi sur mobile) */
+@keyframes psWave{0%,86%,100%{transform:translateY(0)}90%{transform:translateY(-4px)}94%{transform:translateY(1px)}}
+.ps-avatars span{animation:psWave 7.2s cubic-bezier(.22,1,.36,1) infinite}
+.ps-avatars span:nth-child(2){animation-delay:.12s}.ps-avatars span:nth-child(3){animation-delay:.24s}.ps-avatars span:nth-child(4){animation-delay:.36s}.ps-avatars span:nth-child(5){animation-delay:.48s}.ps-avatars span:nth-child(6){animation-delay:.6s}
+/* tilt 3D subtil des cartes temoignages (desktop fin uniquement, via JS FINE) */
+.testimonial-card{transform-style:preserve-3d;will-change:transform}
+.testimonial-card.tilting{transition:transform .12s linear}
+.testimonial-card:not(:hover){transition:transform .5s cubic-bezier(.22,1,.36,1)}
+/* trust bar : bordure coloree qui s'epaissit + micro respiration des labels */
+.tb-item:hover{border-left-width:10px}
+.tb-item:hover .tb-small{letter-spacing:.14em;transition:letter-spacing .25s cubic-bezier(.22,1,.36,1)}
+@media(prefers-reduced-motion:reduce){.ps-avatars span{animation:none!important}.btn-pill.btn-gradient::before{animation:none!important;opacity:0!important}}
 </style>
 </head>
 <body>
@@ -2103,42 +2129,28 @@ document.addEventListener('DOMContentLoaded', function(){
 (function(){
   var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var FINE=matchMedia('(hover:hover) and (pointer:fine)').matches&&!RM;
-  /* beam contrat : actif seulement a l'ecran */
-  var ct=document.querySelector('.ct-card');
-  if(ct&&'IntersectionObserver'in window){
-    new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('in-view',e.isIntersecting)})},{threshold:.2}).observe(ct);
-    if(!FINE){document.querySelectorAll('.ct-row').forEach(function(r){
-      new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('is-focus',e.isIntersecting)})},{rootMargin:'-42% 0px -42% 0px'}).observe(r)})}
-  }
-  /* compteur 83 */
-  var cn=document.querySelector('.count');
-  if(cn&&!RM&&'IntersectionObserver'in window){
-    var N=parseInt(cn.dataset.n||'83',10);cn.textContent='0';
-    new IntersectionObserver(function(es,o){if(!es[0].isIntersecting)return;o.disconnect();
-      var t0=performance.now(),D=1300;
-      (function f(n){var t=Math.min((n-t0)/D,1);cn.textContent=Math.round(N*(1-Math.pow(2,-10*t)));if(t<1)requestAnimationFrame(f)})(t0);
-    },{threshold:.5}).observe(cn);
-  }
-  /* lavis trust bar : 1 listener parent, rects cachees, 1 rAF */
-  if(FINE){var tb=document.querySelector('.trust-bar');
-    if(tb){var caps=[].slice.call(tb.querySelectorAll('.tb-item')),rects=null,raf;
-      var cache=function(){rects=caps.map(function(c){return c.getBoundingClientRect()})};
-      addEventListener('scroll',function(){rects=null},{passive:true});addEventListener('resize',function(){rects=null});
-      tb.addEventListener('pointermove',function(e){cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){
-        if(!rects)cache();
-        caps.forEach(function(c,i){var r=rects[i];c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')})})});
-    }}
-  /* sparks au clic CTA (recompense, une fois) */
+  if(!FINE) return;
+  /* magnetic CTA : attraction douce vers le curseur (amplitude sobre 6px) */
   document.querySelectorAll('.btn-pill.btn-gradient').forEach(function(b){
-    b.addEventListener('click',function(ev){
-      if(RM)return;
-      for(var i=0;i<7;i++){var sp=document.createElement('span');sp.className='spark';
-        var a=(i/7)*Math.PI*2+Math.random()*.5,d=28+Math.random()*24;
-        sp.style.left=ev.clientX+'px';sp.style.top=ev.clientY+'px';
-        sp.style.setProperty('--tx',Math.cos(a)*d+'px');sp.style.setProperty('--ty',Math.sin(a)*d+'px');
-        document.body.appendChild(sp);
-        sp.addEventListener('animationend',function(){this.remove()});}
+    b.addEventListener('pointermove',function(e){
+      var r=b.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/r.width,dy=(e.clientY-r.top-r.height/2)/r.height;
+      b.style.transform='translate('+(-2+dx*6).toFixed(1)+'px,'+(-2+dy*4).toFixed(1)+'px)';
     });
+    b.addEventListener('pointerleave',function(){b.style.transform='';});
+  });
+  /* spotlight contrat suit le curseur */
+  var ct=document.querySelector('.ct-card');
+  if(ct){ct.addEventListener('pointermove',function(e){
+    var r=ct.getBoundingClientRect();
+    ct.style.setProperty('--sx',(e.clientX-r.left)+'px');ct.style.setProperty('--sy',(e.clientY-r.top)+'px');});}
+  /* tilt 3D subtil cartes temoignages (3.5deg max) */
+  document.querySelectorAll('.testimonial-card').forEach(function(c){
+    c.addEventListener('pointermove',function(e){
+      var r=c.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/r.width,dy=(e.clientY-r.top-r.height/2)/r.height;
+      c.classList.add('tilting');
+      c.style.transform='translateY(-4px) rotate(var(--r,1deg)) scale(1.015) perspective(700px) rotateX('+(-dy*3.5).toFixed(2)+'deg) rotateY('+(dx*3.5).toFixed(2)+'deg)';
+    });
+    c.addEventListener('pointerleave',function(){c.classList.remove('tilting');c.style.transform='';});
   });
 })();
 </script>
