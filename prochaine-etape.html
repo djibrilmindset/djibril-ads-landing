@@ -1637,11 +1637,29 @@ a.tb-item:hover .tb-go{transform:translateY(1px)}
 section .container{max-width:760px}
 .ty-step{font-size:clamp(1.02rem,2.4vw,1.28rem)!important;line-height:1.5!important;margin:0 auto 6px;max-width:34ch}
 .ty-step + .ty-step{margin-top:16px}
-.ty-stamp{display:inline-block;font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#c2371a;border:1.5px solid rgba(199,62,26,.4);border-radius:4px;padding:4px 10px;margin-bottom:12px}
+.ty-stamp{display:inline-block;font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1.5px solid;border-radius:4px;padding:4px 10px;margin-bottom:12px}
 .ty-cta-wrap{margin-top:22px;text-align:center}
-.ty-legal{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.04em;color:#3a322c;margin-top:14px}
-.ty-legal a{color:#c2371a;text-decoration:none;border-bottom:1.5px solid #c2371a;white-space:nowrap}
+.ty-legal{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.04em;margin-top:14px}
+.ty-legal a{text-decoration:none;border-bottom:1.5px solid;white-space:nowrap}
 .video-wrapper{position:relative;margin:20px auto 0;max-width:720px}
+</style>
+<style id="theme-pink">
+body{background:#f5aecb!important}
+body::before{background:radial-gradient(circle at 20% 20%,rgba(120,80,170,.18),transparent 42%),radial-gradient(circle at 82% 78%,rgba(46,36,112,.13),transparent 44%),radial-gradient(circle at 50% 55%,rgba(15,107,82,.07),transparent 62%)!important;opacity:.55!important}
+.cosmos__veil{background:radial-gradient(ellipse at 50% 0%,rgba(46,36,112,.05),transparent 60%),radial-gradient(ellipse at 100% 50%,rgba(15,107,82,.04),transparent 60%)!important}
+body .hero h1,body .hero h1 *:not(.kw-power):not(.kw-action):not(.kw-mental),h1,section p,.ty-step{color:#1a1614!important;-webkit-text-fill-color:#1a1614!important}
+body .hero h1{background:none!important}
+.kw-power,span.kw-power,section .kw-power,.hero h1 .kw-power,.hero-sub .kw-power{color:#08432f!important;-webkit-text-fill-color:#08432f!important;border-bottom-color:#08432f!important;background:none!important}
+.kw-action,span.kw-action,section .kw-action,.hero h1 .kw-action,.hero-sub .kw-action{color:#2e2470!important;-webkit-text-fill-color:#2e2470!important;text-shadow:1.5px 1.5px 0 rgba(15,69,80,.28)!important;background:none!important}
+.kw-mental,span.kw-mental,section .kw-mental,.hero h1 .kw-mental{color:#0f4550!important;-webkit-text-fill-color:#0f4550!important;background:linear-gradient(transparent 58%,rgba(15,69,80,.28) 58%,rgba(15,69,80,.28) 92%,transparent 92%)!important;border-bottom:none!important}
+.ty-stamp{color:#2e2470!important;border-color:#2e2470!important}
+.ty-legal{color:#1a1614!important}
+.ty-legal a{color:#2e2470!important;border-bottom-color:#2e2470!important}
+.btn-pill.btn-gradient{background:#1fbf63!important;background-image:none!important;color:#04140a!important;border:1.5px solid #063d1f!important;box-shadow:4px 4px 0 #063d1f!important;border-radius:3px!important}
+.btn-pill.btn-gradient:hover{box-shadow:6px 6px 0 #063d1f!important;transform:translate(-2px,-2px)!important}
+.btn-pill.btn-gradient:active{box-shadow:0 0 0 #063d1f!important;transform:translate(2px,2px)!important}
+.btn-pill.btn-gradient::after{background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.42) 50%,transparent 60%)!important}
+.video-wrapper{box-shadow:6px 6px 0 #2e2470!important;border:1.5px solid #1a1614!important}
 </style>
 </head>
 <body>
@@ -1655,7 +1673,7 @@ section .container{max-width:760px}
     <div class="pastille">Avant ton appel · Reset Ultra</div>
     <h1>Prochaine étape :</h1>
     <p class="ty-step">Envoie le <span class="kw-power">mot clef</span> dans le groupe WhatsApp pour bénéficier de <span class="kw-mental">notre garantie des « 1 000 euros OFFERTS »</span>.</p>
-    <div class="ty-cta-wrap"><a class="btn-pill btn-gradient" href="https://wa.me/33766026708?text="><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:1.15em;height:1.15em;vertical-align:-.2em;margin-right:.5em"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.5-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.4-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1 2.1-1 2.2 0 .2.7 2.7 2.6 4.3 2.6 2.3 4.1 2.5 4.9 2.5.5 0 1.6-.2 1.8-1 .2-.5.2-1 .1-1.1 0-.1-.2-.2-.5-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.9 14.9c-.8 1.2-2 2.1-3.5 2.4a8.2 8.2 0 0 1-6.3-1.1l-.4-.3-3 .8.8-2.9-.3-.5A8.3 8.3 0 1 1 12 20.3c-1.5 0-3-.4-4.2-1.1"/></svg>Rejoindre le groupe WhatsApp</a></div>
+    <div class="ty-cta-wrap"><a class="btn-pill btn-gradient" href="https://wa.me/33766026708?text=voici%20le%20mot%20cl%C3%A9%20%3A%20"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:1.15em;height:1.15em;vertical-align:-.2em;margin-right:.5em"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.5-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.4-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1 2.1-1 2.2 0 .2.7 2.7 2.6 4.3 2.6 2.3 4.1 2.5 4.9 2.5.5 0 1.6-.2 1.8-1 .2-.5.2-1 .1-1.1 0-.1-.2-.2-.5-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.9 14.9c-.8 1.2-2 2.1-3.5 2.4a8.2 8.2 0 0 1-6.3-1.1l-.4-.3-3 .8.8-2.9-.3-.5A8.3 8.3 0 1 1 12 20.3c-1.5 0-3-.4-4.2-1.1"/></svg>Rejoindre le groupe WhatsApp</a></div>
   </div>
 </section>
 <section class="video-section" style="padding-top:18px;text-align:center">
@@ -1666,8 +1684,11 @@ section .container{max-width:760px}
       <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div id="vslOnce" class="wistia_embed wistia_async_87y86ger8w seo=false videoFoam=true playbar=false playbackRateControl=false settingsControl=false contextMenu=false playerColor=c2371a" style="height:100%;position:relative;width:100%"></div>
+          <div id="vslOnce" class="wistia_embed wistia_async_87y86ger8w seo=false videoFoam=true autoPlay=true muted=true playsinline=true playbar=false playbackRateControl=false settingsControl=false contextMenu=false playerColor=2e2470" style="height:100%;position:relative;width:100%"></div>
         </div>
+      </div>
+      <div class="video-overlay" id="vslSoundOverlay">
+        <div class="vsl-prompt"><div class="sound-icon">&#128266;</div><span>Clique pour activer le son</span></div>
       </div>
     </div>
     <p class="ty-step" style="margin-top:22px"><span class="kw-power">Attention</span> : la vidéo est <span class="kw-mental">disponible une seule fois</span>. Tu ne pourras ni revenir en arrière ni avancer &mdash; installe-toi dans un endroit calme avant de la lancer.</p>
@@ -1693,18 +1714,35 @@ section .container{max-width:760px}
 </footer>
 <script>
 (function(){
-  var KEY='ru_vsl_once_87y86ger8w';
-  function lock(){
-    var w=document.getElementById('vslOnce'); if(!w) return;
-    var d=document.createElement('div'); d.className='ty-lock';
-    d.setAttribute('style','position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#1a1614;color:#f3ecdf;font-family:\'JetBrains Mono\',monospace;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:20px');
+  var KEY='ru_vsl_once_87y86ger8w';var engaged=false,locked=false;
+  try{locked=localStorage.getItem(KEY)==='1';}catch(e){}
+  function showLock(){
+    var w=document.querySelector('.video-wrapper'); if(!w||document.getElementById('tyLock'))return;
+    var ov=document.getElementById('vslSoundOverlay'); if(ov)ov.style.display='none';
+    var d=document.createElement('div'); d.id='tyLock';
+    d.setAttribute('style','position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#1a1614;color:#f3ecdf;font-family:\'JetBrains Mono\',monospace;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:20px');
     d.innerHTML='<span style="font-size:26px">\uD83D\uDD12</span>Vid\u00e9o d\u00e9j\u00e0 visionn\u00e9e<span style="opacity:.7;font-size:11px;text-transform:none;letter-spacing:0">Elle n\'\u00e9tait disponible qu\'une seule fois</span>';
-    w.parentNode.appendChild(d);
+    w.appendChild(d);
   }
-  try{ if(localStorage.getItem(KEY)==='1'){ lock(); return; } }catch(e){}
+  if(locked){ if(document.readyState!=="loading")setTimeout(showLock,300); else document.addEventListener("DOMContentLoaded",function(){setTimeout(showLock,300)}); }
   window._wq=window._wq||[];
   window._wq.push({id:'87y86ger8w',onReady:function(video){
-    video.bind('end',function(){ try{localStorage.setItem(KEY,'1');}catch(e){} });
+    var ov=document.getElementById('vslSoundOverlay');
+    function isMuted(){try{return video.isMuted()}catch(e){return true}}
+    function invite(s){if(ov)ov.classList.toggle('vsl-hidden',!s)}
+    if(locked){try{video.pause()}catch(e){} showLock(); return;}
+    function enableSound(e){
+      if(!isMuted())return;
+      if(e&&e.target&&e.target.closest&&e.target.closest("a,button,[role=button]"))return;
+      try{video.time(0);video.unmute();video.volume(1.0);video.play();}catch(err){}
+      engaged=true; invite(false); if(window.ruTrack)ruTrack("sound_on");
+    }
+    try{video.play();}catch(e){}
+    try{video.unmute();video.volume(1.0);}catch(e){}
+    setTimeout(function(){invite(isMuted());},500);
+    if(ov){ov.addEventListener('click',enableSound);ov.addEventListener('touchend',enableSound,{passive:true});}
+    document.addEventListener('click',enableSound);
+    video.bind('end',function(){ if(engaged){try{localStorage.setItem(KEY,'1');}catch(e){}} });
   }});
 })();
 </script>
@@ -1713,7 +1751,7 @@ section .container{max-width:760px}
 var SB='https://nbnbsljqtolzzuqnkyae.supabase.co/rest/v1/site_events';var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ibmJzbGpxdG9senp1cW5reWFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzODk2MDYsImV4cCI6MjA4Mzk2NTYwNn0.0Io_TLbntyxYeUUcv_krbcl4txHp6wSwdMy_BzORmV4';
 var sid=sessionStorage.ruSid||(sessionStorage.ruSid=(Date.now().toString(36)+Math.random().toString(36).slice(2,8)));
 var q=new URLSearchParams(location.search);
-window.ruTrack=function(ev,p,f){try{var b=JSON.stringify({site:'reset-ultra',session_id:sid,event:ev,props:p||{},utm_source:q.get('utm_source'),utm_medium:q.get('utm_medium'),utm_content:q.get('utm_content'),referrer:document.referrer.slice(0,180),path:location.pathname,device:innerWidth<768?'mobile':'desktop'});navigator.sendBeacon(SB+'?apikey='+KEY,new Blob([b],{type:'application/json'}))}catch(e){}};
+window.ruTrack=function(ev,p){try{var b=JSON.stringify({site:'reset-ultra',session_id:sid,event:ev,props:p||{},utm_source:q.get('utm_source'),utm_medium:q.get('utm_medium'),utm_content:q.get('utm_content'),referrer:document.referrer.slice(0,180),path:location.pathname,device:innerWidth<768?'mobile':'desktop'});navigator.sendBeacon(SB+'?apikey='+KEY,new Blob([b],{type:'application/json'}))}catch(e){}};
 ruTrack('page_view');
 document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventListener('click',function(){ruTrack('wa_click')})});
 }catch(e){}})();
