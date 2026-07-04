@@ -1813,11 +1813,17 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
       svg.setAttribute('viewBox','0 0 '+W+' '+H);
       var vL=v.left+sx,vR=v.right+sx,vB=v.bottom+sy,bL=b.left+sx,bR=b.right+sx,bT=b.top+sy;
       function y(dy){return dy-top;}
-      var s1x=vL+18,s2x=vR-18,sY=y(vB-2),e1x=bL+30,e2x=bR-30,eY=y(bT+4);
-      function d(sX,eX,dir){var c1x=sX+dir*2,c1y=sY+(eY-sY)*0.56,c2x=eX-dir*30,c2y=eY-(eY-sY)*0.14;return 'M '+sX+' '+sY+' C '+c1x+' '+c1y+' '+c2x+' '+c2y+' '+eX+' '+eY;}
-      var d1=d(s1x,e1x,-1),d2=d(s2x,e2x,1);
-      function head(eX){var h=16;return 'M '+(eX-h)+' '+(eY-h)+' L '+eX+' '+eY+' L '+(eX+h)+' '+(eY-h);}
-      svg.innerHTML='<path class="vc-line" d="'+d1+'"/><path class="vc-line" d="'+d2+'"/><path class="vc-flow" d="'+d1+'"/><path class="vc-flow" d="'+d2+'"/><path class="vc-head" d="'+head(e1x)+'"/><path class="vc-head" d="'+head(e2x)+'"/>';
+      // Boîte de texte à ÉVITER (dernier bloc .ty-step = "Envoie Appel Réservé...") mesurée en direct
+      var steps=document.querySelectorAll('.ty-step'),txt=steps.length?steps[steps.length-1]:null,kL,kR,kT,kB;
+      if(txt){var kk=txt.getBoundingClientRect();kL=kk.left+sx;kR=kk.right+sx;kT=kk.top+sy;kB=kk.bottom+sy;}else{kL=bL;kR=bR;kT=bT-46;kB=bT-6;}
+      var m=32,laneL=Math.max(8,kL-m),laneR=Math.min(W-8,kR+m);
+      var sLx=vL+20,sRx=vR-20,sY=y(vB-2),eLx=bL+28,eRx=bR-28,eY=y(bT+4);
+      var tLy=y(kT)-6,bLy=y(kB)+8;
+      // S(coin vidéo) -> couloir vertical DANS LA MARGE (hors texte) -> crochet sur le bouton, sous le texte
+      var d1='M '+sLx+' '+sY+' C '+sLx+' '+(sY+14)+' '+laneL+' '+(tLy-16)+' '+laneL+' '+tLy+' L '+laneL+' '+bLy+' C '+laneL+' '+(bLy+16)+' '+(eLx-22)+' '+(eY-10)+' '+eLx+' '+eY;
+      var d2='M '+sRx+' '+sY+' C '+sRx+' '+(sY+14)+' '+laneR+' '+(tLy-16)+' '+laneR+' '+tLy+' L '+laneR+' '+bLy+' C '+laneR+' '+(bLy+16)+' '+(eRx+22)+' '+(eY-10)+' '+eRx+' '+eY;
+      function head(eX){var h=15;return 'M '+(eX-h)+' '+(eY-h)+' L '+eX+' '+eY+' L '+(eX+h)+' '+(eY-h);}
+      svg.innerHTML='<path class="vc-line" d="'+d1+'"/><path class="vc-line" d="'+d2+'"/><path class="vc-flow" d="'+d1+'"/><path class="vc-flow" d="'+d2+'"/><path class="vc-head" d="'+head(eLx)+'"/><path class="vc-head" d="'+head(eRx)+'"/>';
     }catch(e){}
   }
   window.__vslDraw=draw;
