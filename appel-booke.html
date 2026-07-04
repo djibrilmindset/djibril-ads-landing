@@ -1839,18 +1839,22 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
   var p=new URLSearchParams(location.search);
   function get(n){n=n.toLowerCase();var it=p.keys(),k;while(!(k=it.next()).done){if(k.value.toLowerCase()===n)return p.get(k.value);}return null;}
   var startRaw=get('event_start_time')||get('start_time')||get('event_start');
-  if(!startRaw)return;
-  var tz=get('timezone')||'Europe/Paris',d=new Date(startRaw);
-  if(isNaN(d.getTime()))return;
-  var jour,heure;
-  try{jour=new Intl.DateTimeFormat('fr-FR',{timeZone:tz,weekday:'long',day:'numeric',month:'long'}).format(d);heure=new Intl.DateTimeFormat('fr-FR',{timeZone:tz,hour:'2-digit',minute:'2-digit',hour12:false}).format(d).replace(':','h');}
-  catch(e){jour=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long'}).format(d);heure=new Intl.DateTimeFormat('fr-FR',{hour:'2-digit',minute:'2-digit',hour12:false}).format(d).replace(':','h');}
-  var label=jour.charAt(0).toUpperCase()+jour.slice(1)+' à '+heure;
-  var msg='Appel Réservé ✅\nJour et heure de mon rendez-vous : '+label;
+  var name=get('invitee_full_name')||get('invitee_name')||get('full_name')||get('name')||get('iclosedName');
+  if(name){name=name.trim();}
+  if(!startRaw&&!name)return;
+  var label='';
+  if(startRaw){var d=new Date(startRaw);if(!isNaN(d.getTime())){var tz=get('timezone')||'Europe/Paris',jour,heure;
+    try{jour=new Intl.DateTimeFormat('fr-FR',{timeZone:tz,weekday:'long',day:'numeric',month:'long'}).format(d);heure=new Intl.DateTimeFormat('fr-FR',{timeZone:tz,hour:'2-digit',minute:'2-digit',hour12:false}).format(d).replace(':','h');}
+    catch(e){jour=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long'}).format(d);heure=new Intl.DateTimeFormat('fr-FR',{hour:'2-digit',minute:'2-digit',hour12:false}).format(d).replace(':','h');}
+    label=jour.charAt(0).toUpperCase()+jour.slice(1)+' à '+heure;}}
+  var lines=['Appel Réservé ✅'];
+  if(name)lines.push('Nom : '+name);
+  lines.push('Jour et heure de mon rendez-vous : '+label);
+  var msg=lines.join('\n');
   var href='https://wa.me/33766026708?text='+encodeURIComponent(msg);
   document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.setAttribute('href',href);});
   var auto=document.querySelector('.ty-auto');
-  if(auto){auto.innerHTML='<span class="ty-auto-ico">✅</span> <strong>Tout est déjà prêt.</strong> Ton créneau ('+label+') est déjà écrit dans le message. Tu cliques, WhatsApp s\'ouvre, t\'as juste à envoyer.';}
+  if(auto){var quoi=(name&&label)?'Ton nom et ton créneau ('+label+') sont déjà écrits':name?'Ton nom est déjà écrit':label?'Ton créneau ('+label+') est déjà écrit':'Ton message est déjà pré-écrit';auto.innerHTML='<span class="ty-auto-ico">✅</span> <strong>Tout est déjà prêt.</strong> '+quoi+' dans le message. Tu cliques, WhatsApp s\'ouvre, t\'as juste à envoyer.';}
   if(window.__vslDraw)window.__vslDraw();
 }catch(e){}})();
 </script>
