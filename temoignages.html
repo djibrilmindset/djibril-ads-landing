@@ -91,18 +91,8 @@ body::before {
 .wordmark .learning { font-weight:400; font-size:11px; letter-spacing:3px; color:var(--mauve); text-transform:uppercase; font-family:var(--sans); }
 .topbar__tag { font-family:var(--mono); font-weight:600; font-size:10px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; }
 
-/* Bandeau compteur — LE message de la page, halo blanc signature du site */
-.banner { text-align:center; margin:34px auto 6px; padding:0 20px; }
-.banner__txt {
-  font-family:var(--serif); font-style:italic; font-weight:400;
-  font-size:clamp(2rem, 5.4vw, 3.4rem); line-height:1.1; color:var(--ink);
-  text-shadow:var(--halo);
-}
-.banner__txt strong { font-family:var(--display); font-style:normal; font-weight:900; color:#7a1f2b; }
-.banner__sub {
-  font-family:var(--mono); font-weight:600; font-size:12px; letter-spacing:0.22em;
-  text-transform:uppercase; color:var(--gold-hi); margin-top:10px;
-}
+/* Titre uniquement pour lecteurs d'écran + SEO (zéro friction visuelle) */
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 
 /* ── CTA YouTube (or, comme les boutons du site) ──────────────── */
 .btn-gold {
@@ -208,10 +198,7 @@ body::before {
     <span class="topbar__tag">Reset&nbsp;Ultra</span>
   </header>
 
-  <div class="banner">
-    <h1 class="banner__txt"><strong>+83</strong> résultats clients</h1>
-    <div class="banner__sub">en vidéo, à visage découvert&nbsp;↓</div>
-  </div>
+  <h1 class="sr-only">+83 témoignages clients — Reset Ultra</h1>
 
   
 <a class="cta-yt reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
