@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>+83 Témoignages Clients — Reset Ultra</title>
-<meta name="description" content="+83 résultats clients filmés, à visage découvert. Aucune mise en scène. Et toute la méthode, gratuite, sur la chaîne YouTube Djibril.Learning.">
+<meta name="description" content="+83 résultats clients filmés, à visage découvert. Et toute la méthode, gratuite, sur la chaîne YouTube Djibril.Learning.">
 <link rel="canonical" href="https://reset-ultra.com/temoignages">
 <meta property="og:type" content="website">
 <meta property="og:title" content="+83 Témoignages Clients — Reset Ultra">
@@ -20,84 +20,61 @@
 <link rel="preload" href="fonts/instrument-serif-italic-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/playfair-display-normal-900-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/jetbrains-mono-normal-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="space-bg.webp" as="image" type="image/webp">
 <style>
 @font-face { font-family:'Instrument Serif'; font-style:italic; font-weight:400; font-display:swap; src:url('fonts/instrument-serif-italic-400-latin.woff2') format('woff2'); }
-@font-face { font-family:'Instrument Serif'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/instrument-serif-normal-400-latin.woff2') format('woff2'); }
 @font-face { font-family:'Playfair Display'; font-style:normal; font-weight:900; font-display:swap; src:url('fonts/playfair-display-normal-900-latin.woff2') format('woff2'); }
 @font-face { font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/inter-normal-400-latin.woff2') format('woff2'); }
 @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/jetbrains-mono-normal-600-latin.woff2') format('woff2'); }
 
 :root {
-  --paper:#f3ecdf; --paper-2:#e9e0cf; --ink:#1a1614; --ink-soft:#3a322c;
-  --ember:#e85d2c; --crimson:#c73e1a; --crimson-text:#b53814; --gold:#d4951a; --gold-text:#8a6210; --plum:#6b3a4f;
-  --indigo:#4a3c8c; --jade:#1d8a6f; --sea:#4aa9c4;
+  --bg:#3d2733; --card-a:rgba(26,15,21,.9); --card-b:rgba(12,7,11,.94);
+  --ivory:#f4ecdd; --ink:#1a1614; --gold:#e0b84e; --gold-hi:#e6c258; --mauve:#c9b3c0;
+  --btn-ink:#241812;
   --serif:'Instrument Serif', Georgia, serif;
   --display:'Playfair Display', Georgia, serif;
   --mono:'JetBrains Mono', ui-monospace, monospace;
   --sans:'Inter', -apple-system, sans-serif;
+  --halo:0 0 2px #fff, 0 0 4px #fff, 0 0 9px #fff, 0 0 15px rgba(255,255,255,1), 0 0 27px rgba(255,255,255,.93), 0 0 44px rgba(255,255,255,.6);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
-html, body {
-  background:
-    radial-gradient(ellipse at 30% 10%, rgba(232,93,44,0.06), transparent 60%),
-    radial-gradient(ellipse at 80% 90%, rgba(74,169,196,0.05), transparent 60%),
-    var(--paper);
-  color:var(--ink);
-  font-family:var(--sans);
-  line-height:1.6;
-  overflow-x:hidden;
+html, body { background:var(--bg); color:var(--ivory); font-family:var(--sans); line-height:1.6; overflow-x:hidden; }
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(ellipse at 50% -4%, rgba(120,80,98,.5), rgba(61,39,51,0) 60%),
+             linear-gradient(180deg, rgba(20,12,16,.35), rgba(61,39,51,0) 25%, rgba(20,12,16,.5) 100%);
 }
 
-/* ── Cosmos (fond, identique au site — version atténuée v6) ───── */
-.cosmos { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; opacity:0.45; }
-.cosmos__stars {
-  position:absolute; inset:0; font-family:var(--serif); font-style:italic;
-  color:rgba(26,22,20,0.18); user-select:none; letter-spacing:0.4em; line-height:2.6;
-  font-size:13px; white-space:pre-wrap; padding:40px; animation:cs-twinkle 8s steps(8) infinite; opacity:0.4;
-}
-.cosmos__stars--mid { color:rgba(232,93,44,0.28); font-size:16px; letter-spacing:0.6em; line-height:3.4; animation:cs-twinkle 11s steps(6) infinite reverse; transform:translate(20px,30px); }
-.cosmos__stars--far { color:rgba(107,58,79,0.22); font-size:11px; letter-spacing:0.3em; line-height:2.2; animation:cs-drift 120s linear infinite; transform:translate(60px,80px); }
-@keyframes cs-twinkle { 0%,100%{opacity:1} 25%{opacity:.4} 50%{opacity:.8} 75%{opacity:.3} }
-@keyframes cs-drift { from{transform:translate3d(60px,80px,0)} to{transform:translate3d(-60px,-80px,0)} }
-.cosmos__caps { position:absolute; inset:0; perspective:1800px; transform-style:preserve-3d; mix-blend-mode:multiply; }
-.cosmos__cap { position:absolute; border-radius:999px; transform-style:preserve-3d; will-change:transform; filter:saturate(1.6) brightness(1.05); border:1.5px solid rgba(26,22,20,0.6); opacity:0.55; }
-.cosmos__cap::before { content:""; position:absolute; inset:8px -8px -10px 4px; border-radius:999px; background:rgba(26,22,20,0.18); z-index:-1; filter:blur(0.5px); }
-.cosmos__cap::after { content:""; position:absolute; inset:12% 18%; border-radius:999px; background-image:radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1.5px); background-size:5px 5px; mix-blend-mode:screen; pointer-events:none; }
-.cosmos__cap--c1 { background:#C73E3A; width:130px; height:260px; top:8%;  left:4%;  animation:cc-1 38s ease-in-out infinite; }
-.cosmos__cap--c2 { background:#B95174; width:80px;  height:160px; top:16%; left:78%; animation:cc-2 44s ease-in-out infinite -6s; }
-.cosmos__cap--c3 { background:#C8A951; width:100px; height:200px; top:64%; left:10%; animation:cc-3 36s ease-in-out infinite -12s; }
-.cosmos__cap--c4 { background:#5E8B7E; width:150px; height:300px; top:46%; left:84%; animation:cc-4 42s ease-in-out infinite -3s; }
-.cosmos__cap--c5 { background:#4B3F72; width:70px;  height:140px; top:82%; left:36%; animation:cc-5 30s ease-in-out infinite -14s; }
-.cosmos__cap--c6 { background:#7B68A6; width:70px;  height:140px; top:-5%; left:62%; animation:cc-6 46s ease-in-out infinite -8s; }
-@keyframes cc-1 { 0%,100%{transform:translate3d(0,0,0) rotate(-15deg) rotateY(0)} 50%{transform:translate3d(50px,-70px,0) rotate(8deg) rotateY(40deg)} }
-@keyframes cc-2 { 0%,100%{transform:translate3d(0,0,0) rotate(25deg) rotateY(20deg)} 50%{transform:translate3d(-60px,80px,0) rotate(-18deg) rotateY(-30deg)} }
-@keyframes cc-3 { 0%,100%{transform:translate3d(0,0,0) rotate(38deg) rotateY(-25deg)} 50%{transform:translate3d(70px,-50px,0) rotate(-22deg) rotateY(15deg)} }
-@keyframes cc-4 { 0%,100%{transform:translate3d(0,0,0) rotate(-28deg) rotateY(-15deg)} 50%{transform:translate3d(-50px,-90px,0) rotate(18deg) rotateY(35deg)} }
-@keyframes cc-5 { 0%,100%{transform:translate3d(0,0,0) rotate(48deg) rotateY(0)} 50%{transform:translate3d(80px,50px,0) rotate(-12deg) rotateY(-40deg)} }
-@keyframes cc-6 { 0%,100%{transform:translate3d(0,0,0) rotate(62deg) rotateY(30deg)} 50%{transform:translate3d(-70px,60px,0) rotate(22deg) rotateY(-20deg)} }
-.cosmos__noise {
-  position:absolute; inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.085 0 0 0 0 0.08 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:280px 280px; opacity:0.18; mix-blend-mode:multiply; animation:cs-noise 8s steps(2) infinite;
-}
-@keyframes cs-noise { 0%{transform:translate(0,0)} 25%{transform:translate(-3px,2px)} 50%{transform:translate(2px,-3px)} 75%{transform:translate(-2px,-1px)} 100%{transform:translate(1px,2px)} }
+/* ── Galaxy (fond identique au site live) ─────────────────────── */
+.galaxy { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; background:#241620; }
+.galaxy .sky { position:absolute; inset:-9%; background:url(space-bg.webp) center/cover no-repeat; transform:scale(1.06); animation:skyb 50s ease-in-out infinite alternate; }
+.galaxy .tw { position:absolute; inset:0; background:radial-gradient(3px 3px at 61% 75%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(4px 4px at 61% 69%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(4px 4px at 28% 27%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(4px 4px at 64% 84%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(3px 3px at 27% 16%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(2px 2px at 42% 22%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(2px 2px at 72% 92%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(3px 3px at 80% 54%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(2px 2px at 87% 82%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(4px 4px at 83% 5%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(2px 2px at 12% 11%,#fff,rgba(255,255,255,.5) 30%,transparent 60%); animation:gtw 5.5s ease-in-out infinite; }
+@keyframes skyb { from{transform:scale(1.05)} to{transform:scale(1.12)} }
+@keyframes gtw { 0%,100%{opacity:.45} 50%{opacity:1} }
 
-/* ── Voile ivoire au-dessus du cosmos, sous le contenu (v6) ───── */
-body::after {
-  content:""; position:fixed; inset:0; z-index:1;
-  background:radial-gradient(ellipse at center, rgba(243,236,223,0.55) 0%, rgba(243,236,223,0.78) 60%, rgba(243,236,223,0.88) 100%);
-  pointer-events:none;
+/* ── Gélules 3D (assets webp du site) ─────────────────────────── */
+.pill3d { position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; perspective:1400px; }
+.pill3d b { position:absolute; display:block; filter:drop-shadow(0 0 18px rgba(0,0,0,.32)) drop-shadow(0 0 24px rgba(188,200,225,.16)) blur(calc(var(--blur,0px) + .6px)) saturate(.66) contrast(.88) brightness(.93); will-change:transform; animation:p3drift var(--dur,26s) ease-in-out infinite; }
+.pill3d b i { position:absolute; inset:0; display:block; background-position:center; background-size:contain; background-repeat:no-repeat; will-change:transform; animation:p3spin var(--spin,80s) linear infinite; }
+@keyframes p3drift { 0%{transform:translate(0,0) scale(1)} 50%{transform:translate(var(--dx,12px),var(--dy,-12px)) scale(1.05)} 100%{transform:translate(0,0) scale(1)} }
+@keyframes p3spin { to{transform:rotate(360deg)} }
+.p3-0 { top:5%; left:3%; width:142px; height:142px; } .p3-0 i { background-image:url(pills/pill-or.webp); }
+.p3-1 { top:44%; left:1%; width:78px; height:78px; } .p3-1 i { background-image:url(pills/pill-violet.webp); }
+.p3-2 { bottom:8%; left:4%; width:110px; height:110px; } .p3-2 i { background-image:url(pills/pill-vert.webp); }
+.p3-3 { top:9%; right:3%; width:106px; height:106px; } .p3-3 i { background-image:url(pills/pill-bleu.webp); }
+.p3-4 { top:52%; right:2%; width:140px; height:140px; } .p3-4 i { background-image:url(pills/pill-cuivre.webp); }
+.p3-5 { bottom:13%; right:5%; width:82px; height:82px; } .p3-5 i { background-image:url(pills/pill-violet.webp); }
+@media (max-width:820px) {
+  .pill3d .m-hide { display:none; }
+  .p3-0 { width:96px; height:96px; top:2%; left:-6%; }
+  .p3-5 { width:90px; height:90px; bottom:3%; right:-6%; }
 }
 
-/* ── Contenu au-dessus du voile ───────────────────────────────── */
+/* ── Contenu ──────────────────────────────────────────────────── */
 .wrap { position:relative; z-index:2; }
 
-/* Header brand (non cliquable, transparent v7) */
-.topbar {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:18px 24px; background:transparent;
-}
+.topbar { display:flex; align-items:center; justify-content:space-between; padding:18px 24px; }
 .brand { display:flex; align-items:center; gap:10px; }
 .logo-capsule {
   position:relative; width:32px; height:18px; border-radius:999px; display:inline-block;
@@ -110,135 +87,101 @@ body::after {
 }
 @keyframes capsule-float { 0%,100%{transform:translateY(0) rotate(-25deg)} 50%{transform:translateY(-3px) rotate(-22deg)} }
 .wordmark { display:flex; flex-direction:column; line-height:1.1; }
-.wordmark .djibril { font-weight:800; font-size:16px; letter-spacing:2px; color:var(--ink); font-family:var(--sans); }
-.wordmark .learning { font-weight:400; font-size:11px; letter-spacing:3px; color:var(--ink-soft); text-transform:uppercase; font-family:var(--sans); }
-.topbar__tag { font-family:var(--mono); font-weight:600; font-size:10px; letter-spacing:0.2em; color:var(--crimson); text-transform:uppercase; }
+.wordmark .djibril { font-weight:800; font-size:16px; letter-spacing:2px; color:var(--ivory); font-family:var(--sans); }
+.wordmark .learning { font-weight:400; font-size:11px; letter-spacing:3px; color:var(--mauve); text-transform:uppercase; font-family:var(--sans); }
+.topbar__tag { font-family:var(--mono); font-weight:600; font-size:10px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; }
 
-/* Hero */
-.hero { text-align:center; padding:64px 20px 8px; }
-.hero__eyebrow {
-  display:inline-block; font-family:var(--mono); font-weight:600; font-size:12px;
-  letter-spacing:0.18em; text-transform:uppercase; color:var(--crimson-text);
-  border-bottom:1.5px solid var(--ember); padding:0 3px 2px; margin-bottom:18px;
-}
-.hero h1 {
-  font-family:var(--serif); font-style:italic; font-weight:400;
-  font-size:clamp(1.9rem, 4.6vw, 3.2rem); line-height:1.14; color:var(--ink);
-  max-width:720px; margin:0 auto 10px;
-  text-shadow:0 1px 0 rgba(243,236,223,1), 0 0 18px rgba(243,236,223,0.95), 0 0 32px rgba(243,236,223,0.7);
-}
-.hero h1 strong { font-family:var(--display); font-style:normal; font-weight:900; color:var(--crimson); text-shadow:1.5px 1.5px 0 rgba(199,62,26,0.18); }
-.hero__sub { font-family:var(--serif); font-style:italic; font-size:clamp(0.95rem, 1.5vw, 1.15rem); color:var(--ink-soft); text-shadow:0 1px 0 rgba(243,236,223,0.9), 0 0 14px rgba(243,236,223,0.85); }
-.hero__eyebrow, .t-card__name, .banner__txt { text-shadow:0 1px 0 rgba(243,236,223,0.9), 0 0 14px rgba(243,236,223,0.85); }
-
-/* ── CTA YouTube ──────────────────────────────────────────────── */
-.cta-yt {
-  display:block; position:relative; text-decoration:none; text-align:center;
-  background:var(--paper); border:1.5px solid var(--ink); color:var(--ink);
-  transition:transform .18s ease, box-shadow .18s ease;
-}
-.cta-yt:focus-visible { outline:3px solid var(--crimson); outline-offset:4px; }
-.cta-yt__label {
-  position:absolute; top:-11px; left:50%; transform:translateX(-50%);
-  font-family:var(--serif); font-style:italic; font-size:13px; color:var(--crimson);
-  background:var(--paper); padding:0 10px; white-space:nowrap;
-}
-.cta-yt--big {
-  max-width:520px; margin:42px auto; padding:30px 26px 26px;
-  box-shadow:6px 6px 0 var(--crimson);
-}
-.cta-yt--big:hover { transform:translate(-2px,-2px); box-shadow:9px 9px 0 var(--crimson); }
-.cta-yt--big:active { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--crimson); }
-.cta-yt__row { display:flex; align-items:center; justify-content:center; gap:16px; }
-.yt-badge { flex:none; filter:drop-shadow(2px 2px 0 rgba(26,22,20,0.25)); }
-.cta-yt__stack { display:flex; flex-direction:column; align-items:flex-start; text-align:left; }
-.cta-yt__kicker { font-family:var(--mono); font-weight:600; font-size:10px; letter-spacing:0.3em; color:var(--ink-soft); text-transform:uppercase; }
-.cta-yt__name { font-family:var(--serif); font-style:italic; font-size:clamp(1.5rem, 3vw, 2rem); line-height:1.15; color:var(--ink); }
-.cta-yt__line {
-  display:inline-block; margin-top:18px; font-family:var(--mono); font-weight:600;
-  font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--paper);
-  background:var(--ink); padding:12px 22px;
-}
-.cta-yt--big:hover .cta-yt__line { background:var(--crimson); }
-
-.cta-yt--band {
-  max-width:420px; margin:38px auto; padding:20px 18px 16px;
-  border-style:dashed; box-shadow:4px 4px 0 var(--ink);
-}
-.cta-yt--band:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--crimson); }
-.cta-yt--band:active { transform:translate(1px,1px); box-shadow:2px 2px 0 var(--ink); }
-.cta-yt__line--band { margin-top:0; background:none; color:var(--ink); padding:0; border-bottom:1.5px solid var(--crimson); padding-bottom:2px; }
-.cta-yt--band:hover .cta-yt__line--band { color:var(--crimson); background:none; }
-
-/* Bandeau compteur */
-.banner {
-  text-align:center; margin:56px auto 34px; padding:0 20px;
-}
+/* Bandeau compteur — LE message de la page, halo blanc signature du site */
+.banner { text-align:center; margin:34px auto 6px; padding:0 20px; }
 .banner__txt {
-  font-family:var(--display); font-weight:900; font-size:clamp(1.5rem, 3.6vw, 2.6rem);
-  color:var(--ink); letter-spacing:0.01em;
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(2rem, 5.4vw, 3.4rem); line-height:1.1; color:var(--ink);
+  text-shadow:var(--halo);
 }
-.banner__txt em { font-family:var(--serif); font-style:italic; font-weight:400; color:var(--crimson); }
-.banner__rule { width:72px; height:3px; background:var(--crimson); margin:14px auto 0; }
+.banner__txt strong { font-family:var(--display); font-style:normal; font-weight:900; color:#7a1f2b; }
+.banner__sub {
+  font-family:var(--mono); font-weight:600; font-size:12px; letter-spacing:0.22em;
+  text-transform:uppercase; color:var(--gold-hi); margin-top:10px;
+}
 
-/* ── Cartes témoignages ───────────────────────────────────────── */
-.t-list { max-width:440px; margin:0 auto; padding:0 20px 20px; }
-.t-card { margin:0 0 46px; }
-.t-card__head { display:flex; align-items:baseline; gap:12px; margin-bottom:10px; padding:0 2px; flex-wrap:wrap; }
-.t-card__num { font-family:var(--mono); font-weight:600; font-size:12px; letter-spacing:0.14em; color:var(--gold-text); margin-right:6px; vertical-align:2px; }
-.t-card__name { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.35rem, 2.4vw, 1.7rem); color:var(--ink); line-height:1.1; }
+/* ── CTA YouTube (or, comme les boutons du site) ──────────────── */
+.btn-gold {
+  display:inline-block; font-family:var(--mono); font-weight:600; font-size:13px;
+  letter-spacing:0.14em; text-transform:uppercase; color:var(--btn-ink);
+  background:#e0a91c; background-image:linear-gradient(135deg,#f4c93e,#c9901a);
+  border:1.5px solid #3a2a08; border-radius:999px; padding:14px 28px;
+  box-shadow:4px 4px 0 #241812, 0 0 26px rgba(240,190,50,.4);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn-gold--sm { font-size:12px; padding:11px 22px; }
+.cta-yt {
+  display:block; max-width:400px; margin:26px auto 8px; padding:24px 22px;
+  text-align:center; text-decoration:none;
+  background:linear-gradient(var(--card-a), var(--card-b));
+  border-radius:22px;
+  box-shadow:0 0 0 3px rgba(255,255,255,.9), 0 0 34px rgba(255,255,255,.55), 0 18px 44px -20px rgba(0,0,0,.35);
+  transition:transform .18s ease;
+}
+.cta-yt:hover { transform:translateY(-3px); }
+.cta-yt:hover .btn-gold, .cta-band:hover .btn-gold { box-shadow:6px 6px 0 #241812, 0 0 26px rgba(240,190,50,.4); transform:translate(-2px,-2px); }
+.cta-yt:active .btn-gold, .cta-band:active .btn-gold { box-shadow:0 0 0 #241812; transform:translate(2px,2px); }
+.cta-yt:focus-visible, .cta-band:focus-visible { outline:3px solid var(--gold); outline-offset:4px; }
+.cta-yt__row { display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:16px; }
+.yt-badge { flex:none; filter:drop-shadow(0 2px 6px rgba(0,0,0,.5)); }
+.cta-yt__name { font-family:var(--serif); font-style:italic; font-size:clamp(1.5rem, 3vw, 1.9rem); color:var(--ivory); }
+.cta-band { display:flex; align-items:center; justify-content:center; gap:14px; margin:36px auto; text-decoration:none; }
+
+/* ── Cartes témoignages (miniatures PETITES, noms ULTRA visibles) ── */
+.t-list { max-width:340px; margin:22px auto 0; padding:0 20px 10px; }
+.t-card { margin:0 0 40px; }
+.t-card__head { text-align:center; margin-bottom:10px; }
+.t-card__name {
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(1.5rem, 2.8vw, 1.85rem); color:var(--ink); line-height:1.15;
+  text-shadow:var(--halo);
+}
+.t-card__num { font-family:var(--mono); font-weight:600; font-size:12px; letter-spacing:0.14em; color:#5a4210; vertical-align:4px; margin-right:4px; }
 .t-card__res {
-  font-family:var(--display); font-weight:900; font-size:0.95rem; color:var(--crimson-text);
-  background:linear-gradient(transparent 82%, rgba(199,62,26,0.28) 82%, rgba(199,62,26,0.28) 96%, transparent 96%);
-  padding:0 4px;
+  display:inline-block; margin-top:6px; font-family:var(--display); font-weight:900;
+  font-size:0.95rem; color:var(--btn-ink);
+  background:linear-gradient(135deg,#f4c93e,#c9901a); border-radius:999px; padding:3px 14px;
+  box-shadow:0 0 18px rgba(240,190,50,.35);
 }
 .t-card__video {
-  position:relative; aspect-ratio:9/16; border:1.5px solid var(--ink); border-radius:10px;
-  overflow:hidden; cursor:pointer; background:var(--paper-2);
-  box-shadow:5px 5px 0 var(--shadow, var(--crimson));
-  transition:transform .18s ease, box-shadow .18s ease;
+  position:relative; aspect-ratio:9/16; border-radius:16px;
+  overflow:hidden; cursor:pointer; background:linear-gradient(var(--card-a), var(--card-b));
+  box-shadow:0 0 0 3px rgba(255,255,255,.9), 0 0 34px rgba(255,255,255,.45), 0 18px 44px -20px rgba(0,0,0,.35);
+  transition:transform .18s ease;
 }
-.t-card__video:hover { transform:translate(-2px,-2px); box-shadow:8px 8px 0 var(--shadow, var(--crimson)); }
-.t-card__video:focus-visible { outline:3px solid var(--crimson); outline-offset:3px; }
+.t-card__video:hover { transform:translateY(-3px); }
+.t-card__video:focus-visible { outline:3px solid var(--gold); outline-offset:4px; }
 .t-card__video img { width:100%; height:100%; object-fit:cover; display:block; }
 .t-card__video iframe { width:100%; height:100%; border:0; display:block; }
 .t-card__video.playing { cursor:default; }
 .t-card__play {
   position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  width:72px; height:72px; border-radius:50%;
-  background:var(--paper); border:1.5px solid var(--ink);
-  box-shadow:3px 3px 0 rgba(26,22,20,0.4);
+  width:64px; height:64px; border-radius:50%;
+  background:linear-gradient(135deg,#f4c93e,#c9901a); border:1.5px solid #3a2a08;
+  box-shadow:0 4px 18px rgba(0,0,0,.45), 0 0 26px rgba(240,190,50,.5);
   transition:transform .18s ease;
 }
 .t-card__play::after {
-  content:''; position:absolute; top:50%; left:54%; transform:translate(-50%,-50%);
-  border-left:22px solid var(--crimson); border-top:14px solid transparent; border-bottom:14px solid transparent;
+  content:''; position:absolute; top:50%; left:55%; transform:translate(-50%,-50%);
+  border-left:20px solid var(--btn-ink); border-top:12px solid transparent; border-bottom:12px solid transparent;
 }
-.t-card__video:hover .t-card__play { transform:translate(-50%,-50%) scale(1.08); }
-.t-card__tag {
-  position:absolute; bottom:12px; left:50%; transform:translateX(-50%);
-  font-family:var(--mono); font-weight:600; font-size:9.5px; letter-spacing:0.2em;
-  color:var(--ink); background:rgba(243,236,223,0.92); border:1px solid rgba(26,22,20,0.5);
-  padding:4px 10px; white-space:nowrap;
-}
-.t-card__video.playing .t-card__play, .t-card__video.playing .t-card__tag { display:none; }
+.t-card__video:hover .t-card__play { transform:translate(-50%,-50%) scale(1.1); }
+.t-card__video.playing .t-card__play { display:none; }
 
-/* Footer */
-.footer { text-align:center; padding:44px 20px 60px; }
-.footer__txt { font-family:var(--mono); font-weight:600; font-size:10px; letter-spacing:0.22em; color:var(--ink-soft); text-transform:uppercase; }
+.footer { text-align:center; padding:40px 20px 56px; }
+.footer__txt { font-family:var(--mono); font-weight:600; font-size:10px; letter-spacing:0.22em; color:var(--mauve); text-transform:uppercase; }
 
-/* Reveal */
 .reveal { opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease; }
 .reveal.in { opacity:1; transform:translateY(0); }
 
-@media (max-width:768px) {
-  .cosmos__cap--c1, .cosmos__cap--c4 { display:none; }
-}
 @media (max-width:480px) {
-  .hero { padding-top:44px; }
-  .cta-yt--big { margin:32px 16px; }
-  .t-list { padding:0 14px 10px; }
-  .t-card { margin-bottom:38px; }
+  .t-list { max-width:300px; padding:0 16px 4px; }
+  .t-card { margin-bottom:34px; }
+  .cta-yt { margin:22px 24px 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { animation:none !important; transition:none !important; }
@@ -249,21 +192,8 @@ body::after {
 <body>
 <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
 
-<div class="cosmos" aria-hidden="true">
-  <div class="cosmos__stars cosmos__stars--far" id="csStarsFar"></div>
-  <div class="cosmos__stars" id="csStarsMid"></div>
-  <div class="cosmos__stars cosmos__stars--mid" id="csStarsNear"></div>
-  <div class="cosmos__caps">
-    <div class="cosmos__cap cosmos__cap--c1"></div>
-    <div class="cosmos__cap cosmos__cap--c2"></div>
-    <div class="cosmos__cap cosmos__cap--c3"></div>
-    <div class="cosmos__cap cosmos__cap--c4"></div>
-    <div class="cosmos__cap cosmos__cap--c5"></div>
-    <div class="cosmos__cap cosmos__cap--c6"></div>
-  </div>
-  <div class="cosmos__noise"></div>
-</div>
-<script>(function(){var r='✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆   ✦   ·   ✧   ⋆\n';var s=r.repeat(40);['csStarsFar','csStarsMid','csStarsNear'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=s;});}());</script>
+<div class="galaxy" aria-hidden="true"><span class="sky"></span><span class="tw"></span></div>
+<div class="pill3d" aria-hidden="true"><b class="p3-0" style="--dx:12px;--dy:-11px;--dur:25s;--spin:82s;--blur:0.6px;opacity:0.8"><i></i></b><b class="p3-1 m-hide" style="--dx:11px;--dy:-10px;--dur:27s;--spin:70s;--blur:3.4px;opacity:0.3"><i></i></b><b class="p3-2 m-hide" style="--dx:12px;--dy:-12px;--dur:29s;--spin:76s;--blur:1.8px;opacity:0.54"><i></i></b><b class="p3-3 m-hide" style="--dx:-11px;--dy:-10px;--dur:31s;--spin:96s;--blur:1.8px;opacity:0.54"><i></i></b><b class="p3-4 m-hide" style="--dx:-12px;--dy:-11px;--dur:24s;--spin:84s;--blur:0.6px;opacity:0.8"><i></i></b><b class="p3-5" style="--dx:-11px;--dy:-12px;--dur:33s;--spin:90s;--blur:3.0px;opacity:0.34"><i></i></b></div>
 
 <div class="wrap">
 
@@ -278,33 +208,23 @@ body::after {
     <span class="topbar__tag">Reset&nbsp;Ultra</span>
   </header>
 
-  <section class="hero">
-    <span class="hero__eyebrow">+83 résultats filmés</span>
-    <h1>Ne me crois pas.<br><strong>Regarde-les.</strong></h1>
-    <p class="hero__sub">Des clients réels, à visage découvert.</p>
-  </section>
+  <div class="banner">
+    <h1 class="banner__txt"><strong>+83</strong> résultats clients</h1>
+    <div class="banner__sub">en vidéo, à visage découvert&nbsp;↓</div>
+  </div>
 
   
-<a class="cta-yt cta-yt--big reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— la chaîne —</span>
+<a class="cta-yt reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
   <span class="cta-yt__row">
-    <svg class="yt-badge" width="52" height="36" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg>
-    <span class="cta-yt__stack">
-      <span class="cta-yt__kicker">YOUTUBE</span>
-      <span class="cta-yt__name">Djibril.Learning</span>
-    </span>
+    <svg class="yt-badge" width="52" height="37" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg>
+    <span class="cta-yt__name">Djibril.Learning</span>
   </span>
-  <span class="cta-yt__line">Regarder la chaîne YouTube&nbsp;&nbsp;→</span>
+  <span class="btn-gold">La chaîne YouTube&nbsp;&nbsp;→</span>
 </a>
-
-  <div class="banner reveal">
-    <div class="banner__txt">+83 <em>résultats clients</em> :</div>
-    <div class="banner__rule"></div>
-  </div>
 
   <main class="t-list">
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°01</span> Adam Younes</h2>
     <span class="t-card__res">40K en 4 mois</span>
@@ -312,11 +232,10 @@ body::after {
   <div class="t-card__video" data-wid="lcgvstjd7s" role="button" tabindex="0" aria-label="Lire le témoignage de Adam Younes (n°1)">
     <img src="https://embed-ssl.wistia.com/deliveries/cc6e09b4e0cb4700e4eba26ae2aa7c80d5e7a5a1.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°02</span> Yassine</h2>
     <span class="t-card__res">de 5K à 15K</span>
@@ -324,11 +243,10 @@ body::after {
   <div class="t-card__video" data-wid="0y16q2oude" role="button" tabindex="0" aria-label="Lire le témoignage de Yassine (n°2)">
     <img src="https://embed-ssl.wistia.com/deliveries/1cda3aee60db174d2e6d40a0dd0d5bdc98e2d5bf.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°03</span> Yanis</h2>
     <span class="t-card__res">10K/mois</span>
@@ -336,11 +254,10 @@ body::after {
   <div class="t-card__video" data-wid="7m1ikq14mn" role="button" tabindex="0" aria-label="Lire le témoignage de Yanis (n°3)">
     <img src="https://embed-ssl.wistia.com/deliveries/8704d469c5ab86f3123aee616250005dd0bef15f.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°04</span> Benjamin</h2>
     <span class="t-card__res">5K/mois</span>
@@ -348,11 +265,10 @@ body::after {
   <div class="t-card__video" data-wid="zpjrtfvck5" role="button" tabindex="0" aria-label="Lire le témoignage de Benjamin (n°4)">
     <img src="https://embed-ssl.wistia.com/deliveries/320ed01f687a7264ff4a9beaeb6dfc518c2e8748.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°05</span> Yanis</h2>
     
@@ -360,11 +276,10 @@ body::after {
   <div class="t-card__video" data-wid="h4988fyei0" role="button" tabindex="0" aria-label="Lire le témoignage de Yanis (n°5)">
     <img src="https://embed-ssl.wistia.com/deliveries/262f4acc3895349298f6c06ec7eac27bd990ae9c.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°06</span> Isac</h2>
     
@@ -372,11 +287,10 @@ body::after {
   <div class="t-card__video" data-wid="cy05rzemas" role="button" tabindex="0" aria-label="Lire le témoignage de Isac (n°6)">
     <img src="https://embed-ssl.wistia.com/deliveries/ad59c5c85c8d6fd63a6c05055a3fcb249cddeb23.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°07</span> Walid</h2>
     
@@ -384,16 +298,14 @@ body::after {
   <div class="t-card__video" data-wid="nh67qkvcpl" role="button" tabindex="0" aria-label="Lire le témoignage de Walid (n°7)">
     <img src="https://embed-ssl.wistia.com/deliveries/98515cfe8ccf3a8e207828992419288fce735baf.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<a class="cta-yt cta-yt--band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— la suite —</span>
-  <span class="cta-yt__row"><svg class="yt-badge" width="32" height="22" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="cta-yt__line cta-yt__line--band">JE DOCUMENTE TOUT SUR YOUTUBE&nbsp;&nbsp;→</span></span>
+<a class="cta-band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
+  <svg class="yt-badge" width="34" height="24" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="btn-gold btn-gold--sm">Plus de vidéos&nbsp;&nbsp;→</span>
 </a>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°08</span> Natannël</h2>
     
@@ -401,11 +313,10 @@ body::after {
   <div class="t-card__video" data-wid="oamtl0t1km" role="button" tabindex="0" aria-label="Lire le témoignage de Natannël (n°8)">
     <img src="https://embed-ssl.wistia.com/deliveries/51c59f6003f8fe1b5664e4ee29bcc05052ced705.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°09</span> Ibrahim</h2>
     
@@ -413,11 +324,10 @@ body::after {
   <div class="t-card__video" data-wid="kgmir1i6qv" role="button" tabindex="0" aria-label="Lire le témoignage de Ibrahim (n°9)">
     <img src="https://embed-ssl.wistia.com/deliveries/2f35375db2b0ac69a032779021d8629042381e72.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°10</span> Ilyes</h2>
     
@@ -425,11 +335,10 @@ body::after {
   <div class="t-card__video" data-wid="6hyrimcjfj" role="button" tabindex="0" aria-label="Lire le témoignage de Ilyes (n°10)">
     <img src="https://embed-ssl.wistia.com/deliveries/9f21751da44432de311690b96e404467802dc0cd.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°11</span> Ianis</h2>
     
@@ -437,11 +346,10 @@ body::after {
   <div class="t-card__video" data-wid="qfr0h9r2m2" role="button" tabindex="0" aria-label="Lire le témoignage de Ianis (n°11)">
     <img src="https://embed-ssl.wistia.com/deliveries/33cc980dec488aa86a049191af6a2fc99a30faa4.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°12</span> Celio</h2>
     
@@ -449,11 +357,10 @@ body::after {
   <div class="t-card__video" data-wid="wb2n19eagu" role="button" tabindex="0" aria-label="Lire le témoignage de Celio (n°12)">
     <img src="https://embed-ssl.wistia.com/deliveries/c1669d37e5ee2342ca2c4e895233e94501dc338a.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°13</span> Wassim</h2>
     
@@ -461,11 +368,10 @@ body::after {
   <div class="t-card__video" data-wid="9g1jf7nzjv" role="button" tabindex="0" aria-label="Lire le témoignage de Wassim (n°13)">
     <img src="https://embed-ssl.wistia.com/deliveries/1baa34e27c7736b068ecc575679ed577bac564d5.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°14</span> Gary</h2>
     
@@ -473,16 +379,14 @@ body::after {
   <div class="t-card__video" data-wid="gjwxjx90wj" role="button" tabindex="0" aria-label="Lire le témoignage de Gary (n°14)">
     <img src="https://embed-ssl.wistia.com/deliveries/1206d2ed111f2e1f7b12096468af800881bbed5f.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<a class="cta-yt cta-yt--band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— gratuit —</span>
-  <span class="cta-yt__row"><svg class="yt-badge" width="32" height="22" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="cta-yt__line cta-yt__line--band">PLUS DE CONTENU ? LA CHAÎNE&nbsp;&nbsp;→</span></span>
+<a class="cta-band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
+  <svg class="yt-badge" width="34" height="24" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="btn-gold btn-gold--sm">La chaîne YouTube&nbsp;&nbsp;→</span>
 </a>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°15</span> Ibrahim</h2>
     
@@ -490,11 +394,10 @@ body::after {
   <div class="t-card__video" data-wid="il5ohzf2qw" role="button" tabindex="0" aria-label="Lire le témoignage de Ibrahim (n°15)">
     <img src="https://embed-ssl.wistia.com/deliveries/aa16ac335f2ec0c862e5e84fd1d9ab7330df4425.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°16</span> Léo</h2>
     
@@ -502,11 +405,10 @@ body::after {
   <div class="t-card__video" data-wid="vvvs9cb91i" role="button" tabindex="0" aria-label="Lire le témoignage de Léo (n°16)">
     <img src="https://embed-ssl.wistia.com/deliveries/632004c167b8e1782f7e9420e8f818abef259433.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°17</span> Bastien</h2>
     
@@ -514,11 +416,10 @@ body::after {
   <div class="t-card__video" data-wid="pmxlouje32" role="button" tabindex="0" aria-label="Lire le témoignage de Bastien (n°17)">
     <img src="https://embed-ssl.wistia.com/deliveries/5a3350aefc6234e6774025a9b753191ca37bb12e.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°18</span> Gahilou</h2>
     
@@ -526,11 +427,10 @@ body::after {
   <div class="t-card__video" data-wid="arscjpke7l" role="button" tabindex="0" aria-label="Lire le témoignage de Gahilou (n°18)">
     <img src="https://embed-ssl.wistia.com/deliveries/8a231b43c38324dbe9bad1dcf6641aac95e63fe2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°19</span> Jimmy</h2>
     
@@ -538,11 +438,10 @@ body::after {
   <div class="t-card__video" data-wid="56p3pb14c1" role="button" tabindex="0" aria-label="Lire le témoignage de Jimmy (n°19)">
     <img src="https://embed-ssl.wistia.com/deliveries/256d102e20c99c3848ce000eaf7071594d3735d3.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°20</span> Alexis</h2>
     
@@ -550,11 +449,10 @@ body::after {
   <div class="t-card__video" data-wid="nc900jms2i" role="button" tabindex="0" aria-label="Lire le témoignage de Alexis (n°20)">
     <img src="https://embed-ssl.wistia.com/deliveries/dc135c86c7c0725f23317f488ee638e1c04c75f2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°21</span> Jonathan</h2>
     
@@ -562,16 +460,14 @@ body::after {
   <div class="t-card__video" data-wid="ulf3sksaz5" role="button" tabindex="0" aria-label="Lire le témoignage de Jonathan (n°21)">
     <img src="https://embed-ssl.wistia.com/deliveries/d497bee941c4a9a2c64efe5d723b7d65a9136d75.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<a class="cta-yt cta-yt--band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— chaque semaine —</span>
-  <span class="cta-yt__row"><svg class="yt-badge" width="32" height="22" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="cta-yt__line cta-yt__line--band">REJOINS LA CHAÎNE YOUTUBE&nbsp;&nbsp;→</span></span>
+<a class="cta-band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
+  <svg class="yt-badge" width="34" height="24" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="btn-gold btn-gold--sm">Rejoins la chaîne&nbsp;&nbsp;→</span>
 </a>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°22</span> Manda</h2>
     
@@ -579,11 +475,10 @@ body::after {
   <div class="t-card__video" data-wid="fknb9tu1as" role="button" tabindex="0" aria-label="Lire le témoignage de Manda (n°22)">
     <img src="https://embed-ssl.wistia.com/deliveries/22c266f5a880d3e38a09df3b105538c8ef9055a3.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°23</span> Julien</h2>
     
@@ -591,11 +486,10 @@ body::after {
   <div class="t-card__video" data-wid="amkfddzscp" role="button" tabindex="0" aria-label="Lire le témoignage de Julien (n°23)">
     <img src="https://embed-ssl.wistia.com/deliveries/2125daa3a1b2d6f5ba2f621857d181561d50c740.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°24</span> Lucas</h2>
     
@@ -603,11 +497,10 @@ body::after {
   <div class="t-card__video" data-wid="qnjyuyygml" role="button" tabindex="0" aria-label="Lire le témoignage de Lucas (n°24)">
     <img src="https://embed-ssl.wistia.com/deliveries/d127b35e63f9702fcfb9893e607e5395db01c78b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°25</span> Noah</h2>
     
@@ -615,11 +508,10 @@ body::after {
   <div class="t-card__video" data-wid="qj9xyko36b" role="button" tabindex="0" aria-label="Lire le témoignage de Noah (n°25)">
     <img src="https://embed-ssl.wistia.com/deliveries/650237e0ab279f62759ee1b49046675f160dda55.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°26</span> Baptiste</h2>
     
@@ -627,11 +519,10 @@ body::after {
   <div class="t-card__video" data-wid="4l55xlmfij" role="button" tabindex="0" aria-label="Lire le témoignage de Baptiste (n°26)">
     <img src="https://embed-ssl.wistia.com/deliveries/565d57d3b08ee1685ca135aa1097d76d1fdeb485.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°27</span> Noman</h2>
     
@@ -639,11 +530,10 @@ body::after {
   <div class="t-card__video" data-wid="78uk2mh9np" role="button" tabindex="0" aria-label="Lire le témoignage de Noman (n°27)">
     <img src="https://embed-ssl.wistia.com/deliveries/70113fd60d5bee8d664204232a9e168cfb1823f9.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°28</span> Johan</h2>
     
@@ -651,16 +541,14 @@ body::after {
   <div class="t-card__video" data-wid="q5cx01g8ia" role="button" tabindex="0" aria-label="Lire le témoignage de Johan (n°28)">
     <img src="https://embed-ssl.wistia.com/deliveries/9a915f4b808c0f4b00b0e531358a186ddbd0d3a2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<a class="cta-yt cta-yt--band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— la méthode —</span>
-  <span class="cta-yt__row"><svg class="yt-badge" width="32" height="22" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="cta-yt__line cta-yt__line--band">TOUT EST EXPLIQUÉ EN VIDÉO&nbsp;&nbsp;→</span></span>
+<a class="cta-band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
+  <svg class="yt-badge" width="34" height="24" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="btn-gold btn-gold--sm">Tout est sur YouTube&nbsp;&nbsp;→</span>
 </a>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°29</span> Massil</h2>
     
@@ -668,11 +556,10 @@ body::after {
   <div class="t-card__video" data-wid="y3g5guxa96" role="button" tabindex="0" aria-label="Lire le témoignage de Massil (n°29)">
     <img src="https://embed-ssl.wistia.com/deliveries/b6a0ddbab4421824773afd7bed818e5a03245797.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°30</span> Yanis</h2>
     
@@ -680,11 +567,10 @@ body::after {
   <div class="t-card__video" data-wid="xd19qqu5mi" role="button" tabindex="0" aria-label="Lire le témoignage de Yanis (n°30)">
     <img src="https://embed-ssl.wistia.com/deliveries/fdd4839410e8032c08d57fdcd408f1605f54b05f.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°31</span> Berenger</h2>
     
@@ -692,11 +578,10 @@ body::after {
   <div class="t-card__video" data-wid="c0y5llunv9" role="button" tabindex="0" aria-label="Lire le témoignage de Berenger (n°31)">
     <img src="https://embed-ssl.wistia.com/deliveries/8dd2ec6b7eb7a56a1b7675665f1af524042bba1d.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°32</span> Theo</h2>
     
@@ -704,11 +589,10 @@ body::after {
   <div class="t-card__video" data-wid="f4omw519tr" role="button" tabindex="0" aria-label="Lire le témoignage de Theo (n°32)">
     <img src="https://embed-ssl.wistia.com/deliveries/91099ca37b2ac98ee41883e823d5cf4e9b9ff303.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°33</span> Kelvin</h2>
     
@@ -716,11 +600,10 @@ body::after {
   <div class="t-card__video" data-wid="nvpohd4lk1" role="button" tabindex="0" aria-label="Lire le témoignage de Kelvin (n°33)">
     <img src="https://embed-ssl.wistia.com/deliveries/70317148962b6c1cf217ca74100cf0a08e4ef87e.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°34</span> Thierry</h2>
     
@@ -728,11 +611,10 @@ body::after {
   <div class="t-card__video" data-wid="zyoma8m7cd" role="button" tabindex="0" aria-label="Lire le témoignage de Thierry (n°34)">
     <img src="https://embed-ssl.wistia.com/deliveries/c373b9a382b4d2188816f738de3760fdb3d0debd.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°35</span> Carlos</h2>
     
@@ -740,16 +622,14 @@ body::after {
   <div class="t-card__video" data-wid="cxya1rerrk" role="button" tabindex="0" aria-label="Lire le témoignage de Carlos (n°35)">
     <img src="https://embed-ssl.wistia.com/deliveries/32ea26868e4d7337ce39262d4a01505f04f99484.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<a class="cta-yt cta-yt--band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— la suite —</span>
-  <span class="cta-yt__row"><svg class="yt-badge" width="32" height="22" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="cta-yt__line cta-yt__line--band">JE DOCUMENTE TOUT SUR YOUTUBE&nbsp;&nbsp;→</span></span>
+<a class="cta-band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
+  <svg class="yt-badge" width="34" height="24" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="btn-gold btn-gold--sm">Plus de vidéos&nbsp;&nbsp;→</span>
 </a>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°36</span> Lucman</h2>
     
@@ -757,11 +637,10 @@ body::after {
   <div class="t-card__video" data-wid="qdk7si2x7z" role="button" tabindex="0" aria-label="Lire le témoignage de Lucman (n°36)">
     <img src="https://embed-ssl.wistia.com/deliveries/7abd6dd68a6c93577dc6ee9bb3c409fa6a33290b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°37</span> Ichou</h2>
     
@@ -769,11 +648,10 @@ body::after {
   <div class="t-card__video" data-wid="swq0dstcor" role="button" tabindex="0" aria-label="Lire le témoignage de Ichou (n°37)">
     <img src="https://embed-ssl.wistia.com/deliveries/2f4ebd47038e9721df7d9df98674af280a145e3b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°38</span> Malik</h2>
     
@@ -781,11 +659,10 @@ body::after {
   <div class="t-card__video" data-wid="xqlngf3ih6" role="button" tabindex="0" aria-label="Lire le témoignage de Malik (n°38)">
     <img src="https://embed-ssl.wistia.com/deliveries/be84816964b35838dec275b5842c01f30d6a4f82.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°39</span> Adrien</h2>
     
@@ -793,11 +670,10 @@ body::after {
   <div class="t-card__video" data-wid="pw66i10xf5" role="button" tabindex="0" aria-label="Lire le témoignage de Adrien (n°39)">
     <img src="https://embed-ssl.wistia.com/deliveries/82e7bcd84fe43d6b9350a97f7d9d51b0df93087e.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°40</span> Wylad</h2>
     
@@ -805,11 +681,10 @@ body::after {
   <div class="t-card__video" data-wid="6t16pmmq7d" role="button" tabindex="0" aria-label="Lire le témoignage de Wylad (n°40)">
     <img src="https://embed-ssl.wistia.com/deliveries/d79ad1bcda08dc9ead7e27652559a7bd354afe65.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°41</span> Houssine</h2>
     
@@ -817,11 +692,10 @@ body::after {
   <div class="t-card__video" data-wid="9v0r2495oi" role="button" tabindex="0" aria-label="Lire le témoignage de Houssine (n°41)">
     <img src="https://embed-ssl.wistia.com/deliveries/3ccc6cf20f073e2b1e5d22def3e4e3f5aeb5b64b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°42</span> Soan</h2>
     
@@ -829,16 +703,14 @@ body::after {
   <div class="t-card__video" data-wid="jdjdtl17fe" role="button" tabindex="0" aria-label="Lire le témoignage de Soan (n°42)">
     <img src="https://embed-ssl.wistia.com/deliveries/e163d8ac7c1863ab65f5fd9f7642756713798a66.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<a class="cta-yt cta-yt--band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— gratuit —</span>
-  <span class="cta-yt__row"><svg class="yt-badge" width="32" height="22" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="cta-yt__line cta-yt__line--band">PLUS DE CONTENU ? LA CHAÎNE&nbsp;&nbsp;→</span></span>
+<a class="cta-band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
+  <svg class="yt-badge" width="34" height="24" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="btn-gold btn-gold--sm">La chaîne YouTube&nbsp;&nbsp;→</span>
 </a>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°43</span> Ismaïl</h2>
     
@@ -846,11 +718,10 @@ body::after {
   <div class="t-card__video" data-wid="y9o25ff90b" role="button" tabindex="0" aria-label="Lire le témoignage de Ismaïl (n°43)">
     <img src="https://embed-ssl.wistia.com/deliveries/56d83346c4fefac76553d934349e4f8a826989aa.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°44</span> Redouane</h2>
     
@@ -858,11 +729,10 @@ body::after {
   <div class="t-card__video" data-wid="y3xpgqqaiw" role="button" tabindex="0" aria-label="Lire le témoignage de Redouane (n°44)">
     <img src="https://embed-ssl.wistia.com/deliveries/7d0e30f17a2139be25f1d0f2eaf4d278b8ce249b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°45</span> Qasim</h2>
     
@@ -870,11 +740,10 @@ body::after {
   <div class="t-card__video" data-wid="4xto92mzox" role="button" tabindex="0" aria-label="Lire le témoignage de Qasim (n°45)">
     <img src="https://embed-ssl.wistia.com/deliveries/94daf66b44a6f76e13f119ef7d2623bceadb851d.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°46</span> Brygthon</h2>
     
@@ -882,11 +751,10 @@ body::after {
   <div class="t-card__video" data-wid="q9m6ttsnmn" role="button" tabindex="0" aria-label="Lire le témoignage de Brygthon (n°46)">
     <img src="https://embed-ssl.wistia.com/deliveries/4b52d7f8be979ee25700650c3e114d400adf0c5c.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°47</span> Nolan</h2>
     
@@ -894,11 +762,10 @@ body::after {
   <div class="t-card__video" data-wid="8nc99pkhea" role="button" tabindex="0" aria-label="Lire le témoignage de Nolan (n°47)">
     <img src="https://embed-ssl.wistia.com/deliveries/87c83db726e1bcdd9e63156214dad09cf0c1c91f.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°48</span> Samy</h2>
     
@@ -906,11 +773,10 @@ body::after {
   <div class="t-card__video" data-wid="r97jl7n0ew" role="button" tabindex="0" aria-label="Lire le témoignage de Samy (n°48)">
     <img src="https://embed-ssl.wistia.com/deliveries/f6fc25dec1bf47b13eddb9e2ba809c6ac9037648.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°49</span> Luis</h2>
     
@@ -918,16 +784,14 @@ body::after {
   <div class="t-card__video" data-wid="v11hw0kh2e" role="button" tabindex="0" aria-label="Lire le témoignage de Luis (n°49)">
     <img src="https://embed-ssl.wistia.com/deliveries/536b14e41cd0b55a579f2eceadf38c0a877499e5.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<a class="cta-yt cta-yt--band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— chaque semaine —</span>
-  <span class="cta-yt__row"><svg class="yt-badge" width="32" height="22" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="cta-yt__line cta-yt__line--band">REJOINS LA CHAÎNE YOUTUBE&nbsp;&nbsp;→</span></span>
+<a class="cta-band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
+  <svg class="yt-badge" width="34" height="24" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="btn-gold btn-gold--sm">Rejoins la chaîne&nbsp;&nbsp;→</span>
 </a>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°50</span> Jeremy</h2>
     
@@ -935,11 +799,10 @@ body::after {
   <div class="t-card__video" data-wid="yq9jssaf1a" role="button" tabindex="0" aria-label="Lire le témoignage de Jeremy (n°50)">
     <img src="https://embed-ssl.wistia.com/deliveries/8187b1777045e3bc0ae06fdf17dabbfd2883f5df.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°51</span> Ali</h2>
     
@@ -947,11 +810,10 @@ body::after {
   <div class="t-card__video" data-wid="vts8vwex2v" role="button" tabindex="0" aria-label="Lire le témoignage de Ali (n°51)">
     <img src="https://embed-ssl.wistia.com/deliveries/c6611b9748c3b2bc3c17a6a8a1a3d748933a9738.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°52</span> Paul</h2>
     
@@ -959,11 +821,10 @@ body::after {
   <div class="t-card__video" data-wid="bw6v2scn79" role="button" tabindex="0" aria-label="Lire le témoignage de Paul (n°52)">
     <img src="https://embed-ssl.wistia.com/deliveries/92d20b9d52ba09516c2311d1eddeec11dccae0a6.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°53</span> Mohamed</h2>
     
@@ -971,11 +832,10 @@ body::after {
   <div class="t-card__video" data-wid="k888n704n3" role="button" tabindex="0" aria-label="Lire le témoignage de Mohamed (n°53)">
     <img src="https://embed-ssl.wistia.com/deliveries/83ca857656215d20cd013510d8b473796d62da0f.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°54</span> Raphael</h2>
     
@@ -983,11 +843,10 @@ body::after {
   <div class="t-card__video" data-wid="dtji3wjoiu" role="button" tabindex="0" aria-label="Lire le témoignage de Raphael (n°54)">
     <img src="https://embed-ssl.wistia.com/deliveries/4abfa5f47e9ac61c6fb772391d09fa5c05b35e70.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°55</span> Dara</h2>
     
@@ -995,11 +854,10 @@ body::after {
   <div class="t-card__video" data-wid="yq9ya6apd4" role="button" tabindex="0" aria-label="Lire le témoignage de Dara (n°55)">
     <img src="https://embed-ssl.wistia.com/deliveries/11aa7b441e8e7ed85327c17945e6d5449e56632a.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°56</span> Milan</h2>
     
@@ -1007,16 +865,14 @@ body::after {
   <div class="t-card__video" data-wid="bj05d7kuhf" role="button" tabindex="0" aria-label="Lire le témoignage de Milan (n°56)">
     <img src="https://embed-ssl.wistia.com/deliveries/3b77f01962cb525c317aa888d5650d8e7ff1f7f7.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<a class="cta-yt cta-yt--band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— la méthode —</span>
-  <span class="cta-yt__row"><svg class="yt-badge" width="32" height="22" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="cta-yt__line cta-yt__line--band">TOUT EST EXPLIQUÉ EN VIDÉO&nbsp;&nbsp;→</span></span>
+<a class="cta-band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
+  <svg class="yt-badge" width="34" height="24" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="btn-gold btn-gold--sm">Tout est sur YouTube&nbsp;&nbsp;→</span>
 </a>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°57</span> Clément</h2>
     
@@ -1024,11 +880,10 @@ body::after {
   <div class="t-card__video" data-wid="w4rf12z91v" role="button" tabindex="0" aria-label="Lire le témoignage de Clément (n°57)">
     <img src="https://embed-ssl.wistia.com/deliveries/a6f0969730ce84dc6459a3167d578aa90cbe5f32.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°58</span> Hugo</h2>
     
@@ -1036,11 +891,10 @@ body::after {
   <div class="t-card__video" data-wid="kgui3v6qoi" role="button" tabindex="0" aria-label="Lire le témoignage de Hugo (n°58)">
     <img src="https://embed-ssl.wistia.com/deliveries/55d47e22f5c74d8f346be1c131a25c65daee2df9.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°59</span> Yacine</h2>
     
@@ -1048,11 +902,10 @@ body::after {
   <div class="t-card__video" data-wid="dqkz1siohj" role="button" tabindex="0" aria-label="Lire le témoignage de Yacine (n°59)">
     <img src="https://embed-ssl.wistia.com/deliveries/d66d1cbf52255d90adbd8f12fbc00cf5ef1d6e37.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°60</span> Swan</h2>
     
@@ -1060,11 +913,10 @@ body::after {
   <div class="t-card__video" data-wid="jp9pxkcd7b" role="button" tabindex="0" aria-label="Lire le témoignage de Swan (n°60)">
     <img src="https://embed-ssl.wistia.com/deliveries/802dd2f4d8ecf23fc0e15fe834b2067b359270c4.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°61</span> Mohamed</h2>
     
@@ -1072,11 +924,10 @@ body::after {
   <div class="t-card__video" data-wid="jggeglhg45" role="button" tabindex="0" aria-label="Lire le témoignage de Mohamed (n°61)">
     <img src="https://embed-ssl.wistia.com/deliveries/90202ca0f4f494df0e0efe233b27de1b0086a2f2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°62</span> Wassim</h2>
     
@@ -1084,11 +935,10 @@ body::after {
   <div class="t-card__video" data-wid="dmq7xbj3bw" role="button" tabindex="0" aria-label="Lire le témoignage de Wassim (n°62)">
     <img src="https://embed-ssl.wistia.com/deliveries/2036836c7c363287ba623c97b0c60a0a319f588d.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°63</span> Ulrick</h2>
     
@@ -1096,16 +946,14 @@ body::after {
   <div class="t-card__video" data-wid="quqp0w3htr" role="button" tabindex="0" aria-label="Lire le témoignage de Ulrick (n°63)">
     <img src="https://embed-ssl.wistia.com/deliveries/536abbe3c84fdc052f84bb2edda9cfd12c3e3415.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<a class="cta-yt cta-yt--band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— la suite —</span>
-  <span class="cta-yt__row"><svg class="yt-badge" width="32" height="22" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="cta-yt__line cta-yt__line--band">JE DOCUMENTE TOUT SUR YOUTUBE&nbsp;&nbsp;→</span></span>
+<a class="cta-band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
+  <svg class="yt-badge" width="34" height="24" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="btn-gold btn-gold--sm">Plus de vidéos&nbsp;&nbsp;→</span>
 </a>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°64</span> Christopher</h2>
     
@@ -1113,11 +961,10 @@ body::after {
   <div class="t-card__video" data-wid="7v3ts2fc4d" role="button" tabindex="0" aria-label="Lire le témoignage de Christopher (n°64)">
     <img src="https://embed-ssl.wistia.com/deliveries/2377e761eae735862e8644b9c73280200daa431a.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°65</span> Lenny</h2>
     
@@ -1125,11 +972,10 @@ body::after {
   <div class="t-card__video" data-wid="hzqp2z25sy" role="button" tabindex="0" aria-label="Lire le témoignage de Lenny (n°65)">
     <img src="https://embed-ssl.wistia.com/deliveries/140016412a9a0846d88751482c26ed1968d23b9b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°66</span> Abou</h2>
     
@@ -1137,11 +983,10 @@ body::after {
   <div class="t-card__video" data-wid="mnu9zo24yc" role="button" tabindex="0" aria-label="Lire le témoignage de Abou (n°66)">
     <img src="https://embed-ssl.wistia.com/deliveries/bb830bb20b3d620ae06ba04dd7b8d54ad753a310.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°67</span> Alexandre</h2>
     
@@ -1149,11 +994,10 @@ body::after {
   <div class="t-card__video" data-wid="7si6lmqgzq" role="button" tabindex="0" aria-label="Lire le témoignage de Alexandre (n°67)">
     <img src="https://embed-ssl.wistia.com/deliveries/18498f2d20e5c5c3feae92413c90fb53abbb6062.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°68</span> Djibryl</h2>
     
@@ -1161,11 +1005,10 @@ body::after {
   <div class="t-card__video" data-wid="a5etrshmpz" role="button" tabindex="0" aria-label="Lire le témoignage de Djibryl (n°68)">
     <img src="https://embed-ssl.wistia.com/deliveries/3ecc64e2b12bcd5a43020c0940e6134be89cc7b0.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°69</span> Chris</h2>
     
@@ -1173,11 +1016,10 @@ body::after {
   <div class="t-card__video" data-wid="qpnljbh7y2" role="button" tabindex="0" aria-label="Lire le témoignage de Chris (n°69)">
     <img src="https://embed-ssl.wistia.com/deliveries/277520ab1550742798202004d78e427e05e2d26d.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°70</span> Keryan</h2>
     
@@ -1185,16 +1027,14 @@ body::after {
   <div class="t-card__video" data-wid="9e6tevdk4t" role="button" tabindex="0" aria-label="Lire le témoignage de Keryan (n°70)">
     <img src="https://embed-ssl.wistia.com/deliveries/8a8e788458cecc00f34be7a0a2f3b295e8d3dda2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<a class="cta-yt cta-yt--band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— gratuit —</span>
-  <span class="cta-yt__row"><svg class="yt-badge" width="32" height="22" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="cta-yt__line cta-yt__line--band">PLUS DE CONTENU ? LA CHAÎNE&nbsp;&nbsp;→</span></span>
+<a class="cta-band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
+  <svg class="yt-badge" width="34" height="24" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="btn-gold btn-gold--sm">La chaîne YouTube&nbsp;&nbsp;→</span>
 </a>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°71</span> Quentin</h2>
     
@@ -1202,11 +1042,10 @@ body::after {
   <div class="t-card__video" data-wid="84qvndi09v" role="button" tabindex="0" aria-label="Lire le témoignage de Quentin (n°71)">
     <img src="https://embed-ssl.wistia.com/deliveries/2948e9e93c1261686b8cf35415d91b0ba0382013.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°72</span> Salem</h2>
     
@@ -1214,11 +1053,10 @@ body::after {
   <div class="t-card__video" data-wid="m643jp2d5l" role="button" tabindex="0" aria-label="Lire le témoignage de Salem (n°72)">
     <img src="https://embed-ssl.wistia.com/deliveries/502064845d9256795e2100cab698b5cfb91f4eb8.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°73</span> Mathieu</h2>
     
@@ -1226,11 +1064,10 @@ body::after {
   <div class="t-card__video" data-wid="owxop692fa" role="button" tabindex="0" aria-label="Lire le témoignage de Mathieu (n°73)">
     <img src="https://embed-ssl.wistia.com/deliveries/3f5b3364eb76b4f104ce3adb47cea8739d7e460c.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°74</span> Yahya</h2>
     
@@ -1238,11 +1075,10 @@ body::after {
   <div class="t-card__video" data-wid="9ne4ub7k90" role="button" tabindex="0" aria-label="Lire le témoignage de Yahya (n°74)">
     <img src="https://embed-ssl.wistia.com/deliveries/9a4b11af5c1f39747e5b2e2fcd081d00c2925ad2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°75</span> Macim</h2>
     
@@ -1250,11 +1086,10 @@ body::after {
   <div class="t-card__video" data-wid="lj3b71sbhv" role="button" tabindex="0" aria-label="Lire le témoignage de Macim (n°75)">
     <img src="https://embed-ssl.wistia.com/deliveries/551468c66d5224227f65701cd868dd8b698ebbac.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°76</span> Nassim</h2>
     
@@ -1262,11 +1097,10 @@ body::after {
   <div class="t-card__video" data-wid="y4do3loz6e" role="button" tabindex="0" aria-label="Lire le témoignage de Nassim (n°76)">
     <img src="https://embed-ssl.wistia.com/deliveries/da6584e5c0d2b7044a5c4dffe8b7fb4d27389909.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°77</span> Andy</h2>
     
@@ -1274,16 +1108,14 @@ body::after {
   <div class="t-card__video" data-wid="w0628fupnp" role="button" tabindex="0" aria-label="Lire le témoignage de Andy (n°77)">
     <img src="https://embed-ssl.wistia.com/deliveries/b80a1904441dad0b074ec1088a63e934456ab6b0.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<a class="cta-yt cta-yt--band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— chaque semaine —</span>
-  <span class="cta-yt__row"><svg class="yt-badge" width="32" height="22" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="cta-yt__line cta-yt__line--band">REJOINS LA CHAÎNE YOUTUBE&nbsp;&nbsp;→</span></span>
+<a class="cta-band reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
+  <svg class="yt-badge" width="34" height="24" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg><span class="btn-gold btn-gold--sm">Rejoins la chaîne&nbsp;&nbsp;→</span>
 </a>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°78</span> Nathan</h2>
     
@@ -1291,11 +1123,10 @@ body::after {
   <div class="t-card__video" data-wid="ki491gr1sm" role="button" tabindex="0" aria-label="Lire le témoignage de Nathan (n°78)">
     <img src="https://embed-ssl.wistia.com/deliveries/66c5573fb44a51cc3f3abec44e21d24b7349df7d.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°79</span> Seguy</h2>
     
@@ -1303,11 +1134,10 @@ body::after {
   <div class="t-card__video" data-wid="pqpqzpr3qq" role="button" tabindex="0" aria-label="Lire le témoignage de Seguy (n°79)">
     <img src="https://embed-ssl.wistia.com/deliveries/0224ee1ca34d0e3a13b2ad1e2a5a06a4688154f4.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#d4951a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°80</span> Ilyes</h2>
     
@@ -1315,11 +1145,10 @@ body::after {
   <div class="t-card__video" data-wid="s1ts2mssv4" role="button" tabindex="0" aria-label="Lire le témoignage de Ilyes (n°80)">
     <img src="https://embed-ssl.wistia.com/deliveries/d67ed484b451ac5d365484621ea3390d50732b02.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#c73e1a">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°81</span> Lany</h2>
     
@@ -1327,11 +1156,10 @@ body::after {
   <div class="t-card__video" data-wid="f4roc0xe2w" role="button" tabindex="0" aria-label="Lire le témoignage de Lany (n°81)">
     <img src="https://embed-ssl.wistia.com/deliveries/d24bfe7e5a36c40b4bc4cffe3c8ce8c1c0e25b69.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#4a3c8c">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°82</span> Rayan</h2>
     
@@ -1339,11 +1167,10 @@ body::after {
   <div class="t-card__video" data-wid="jdo059ntyi" role="button" tabindex="0" aria-label="Lire le témoignage de Rayan (n°82)">
     <img src="https://embed-ssl.wistia.com/deliveries/5cf046bee4cfe6195a90ca01a1d2e35e3ca52570.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
 
-<article class="t-card reveal" style="--shadow:#1d8a6f">
+<article class="t-card reveal">
   <header class="t-card__head">
     <h2 class="t-card__name"><span class="t-card__num">n°83</span> Kais</h2>
     
@@ -1351,22 +1178,17 @@ body::after {
   <div class="t-card__video" data-wid="r6sdz788m6" role="button" tabindex="0" aria-label="Lire le témoignage de Kais (n°83)">
     <img src="https://embed-ssl.wistia.com/deliveries/dfa4b7d7f0e75da74f892048648802f68eaf1e71.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
     <span class="t-card__play" aria-hidden="true"></span>
-    <span class="t-card__tag" aria-hidden="true">▶&nbsp;TÉMOIGNAGE</span>
   </div>
 </article>
   </main>
 
   
-<a class="cta-yt cta-yt--big reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
-  <span class="cta-yt__label">— et maintenant ? —</span>
+<a class="cta-yt reveal" href="https://www.youtube.com/@djibril.learning?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube Djibril.Learning">
   <span class="cta-yt__row">
-    <svg class="yt-badge" width="52" height="36" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg>
-    <span class="cta-yt__stack">
-      <span class="cta-yt__kicker">YOUTUBE</span>
-      <span class="cta-yt__name">Djibril.Learning</span>
-    </span>
+    <svg class="yt-badge" width="52" height="37" viewBox="0 0 48 34" aria-hidden="true"><rect x="0" y="0" width="48" height="34" rx="8" fill="#FF0000"/><path d="M19 10.5v13l12-6.5z" fill="#fff"/></svg>
+    <span class="cta-yt__name">Djibril.Learning</span>
   </span>
-  <span class="cta-yt__line">Rejoindre la chaîne YouTube&nbsp;&nbsp;→</span>
+  <span class="btn-gold">Rejoins la chaîne&nbsp;&nbsp;→</span>
 </a>
 
   <footer class="footer">
