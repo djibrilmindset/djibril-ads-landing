@@ -41,8 +41,8 @@
     /* halo blanc reset-ultra -> texte lisible sur la galaxie */
     'section :is(h1,h2,h3,h4,h5,p,span,a,li,strong,em){text-shadow:0 0 2px #fff,0 0 4px #fff,0 0 9px #fff,0 0 15px rgba(255,255,255,1),0 0 27px rgba(255,255,255,.9),0 0 44px rgba(255,255,255,.6) !important}',
     'iframe,img,video,[class*="wistia"],[class*="iclosed"]{text-shadow:none !important}',
-    /* remplace l'IMAGE du titre (ancienne capture blanche/bleue) par la version reset-ultra transparente */
-    'img[src*="69f22b8edc96f8"]{content:url(' + RU + '/sysio-title.png) !important;object-fit:contain !important;background:transparent !important}'
+    /* remplace l'IMAGE du titre (ancienne capture blanche/bleue) par la version reset-ultra (carte creme editoriale) */
+    'img[src*="69f22b8edc96f8"]{content:url(' + RU + '/sysio-title.png) !important;height:auto !important;background:transparent !important}'
   ].join('\n');
   document.head.appendChild(st);
 
