@@ -109,8 +109,6 @@ section{padding:26px 0;}
 .testimonial-card .who{position:absolute;bottom:10px;left:0;right:0;text-align:center;color:#fff;font-weight:700;font-size:13px;z-index:2;text-shadow:0 1px 6px rgba(0,0,0,0.6);}
 .testimonials-expand-btn{display:block;margin:28px auto 0;padding:15px 34px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:.8px;color:#fff;background:var(--blue);border:none;border-radius:999px;cursor:pointer;box-shadow:0 8px 22px rgba(28,64,242,0.35);transition:transform .18s ease,box-shadow .18s ease;}
 .testimonials-expand-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(28,64,242,0.45);}
-.grid-sep{grid-column:1/-1;margin:30px 0 6px;}
-.testimonial-card .who .res{display:block;font-size:11px;font-weight:800;color:#ffd84d;margin-top:2px;letter-spacing:.3px;}
 
 /* modal témoignage (fond blanc, accents bleus) */
 .temoignage-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(4,10,30,0.92);backdrop-filter:blur(14px);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .3s ease;overflow-y:auto;}
@@ -145,10 +143,10 @@ footer a{color:var(--muted);}
 <!-- ═══ HERO — recréation HTML du titre de la ref (proportions exactes systeme.io) ═══ -->
 <section class="hero">
   <div class="heroScale">
-    <p class="pre">Salarié ou Barber qui cherche un revenu complémentaire :</p>
-    <!-- retours à la ligne FORCÉS + mots EXACTS de l'image-titre systeme.io (mot pour mot, virgules comprises) -->
-    <h1>Est-Il Possible De Générer <span class="b">Entre 3,000 À</span><br><span class="b">5,000 Euros</span> Par Mois Depuis Chez Soi Grâce<br>Au Business <span class="b">Le Plus Vieux D'Internet&nbsp;?</span></h1>
-    <p class="sub">+ Si Tu N'as Pas Fait 5,000 Euros Sur Les 90<br>Prochains Jours, Je Te Rembourse (sur contrat)</p>
+    <p class="pre">Salarié ou diplômé qui cherche un revenu complémentaire :</p>
+    <!-- retours à la ligne FORCÉS = les 3 lignes exactes de l'image-titre systeme.io -->
+    <h1>Est-Il Possible De Générer <span class="b">Entre 3&nbsp;000 À</span><br><span class="b">5&nbsp;000 Euros</span> Par Mois Depuis Chez Soi Grâce<br>Au Business <span class="b">Le Plus Vieux D'Internet&nbsp;?</span></h1>
+    <p class="sub">+ Si Tu N'as Pas Fait 5&nbsp;000 Euros Sur Les 90<br>Prochains Jours, Je Te Rembourse (sur contrat)</p>
   </div>
 </section>
 
@@ -276,12 +274,12 @@ footer a{color:var(--muted);}
   // 83 Témoignages vidéo Wistia (récupérés via Wistia API, 83 = 69 numérotés + 14 anonymes)
   const TEMOIGNAGES_WISTIA = [
     {label:'A13',nom:'Seguy',id:'pqpqzpr3qq',thumb:'https://embed-ssl.wistia.com/deliveries/0224ee1ca34d0e3a13b2ad1e2a5a06a4688154f4.jpg?image_crop_resized=400x712'},
-    {label:'A14',nom:'Adam Younes',res:'40K en 4 mois',id:'lcgvstjd7s',thumb:'https://embed-ssl.wistia.com/deliveries/cc6e09b4e0cb4700e4eba26ae2aa7c80d5e7a5a1.jpg?image_crop_resized=400x712'},
-    {label:'1',nom:'Yassine',res:'de 5k à 15k',id:'0y16q2oude',thumb:'https://embed-ssl.wistia.com/deliveries/1cda3aee60db174d2e6d40a0dd0d5bdc98e2d5bf.jpg?image_crop_resized=400x712'},
-    {label:'2',nom:'Yanis',res:'10k/mois',id:'7m1ikq14mn',thumb:'https://embed-ssl.wistia.com/deliveries/8704d469c5ab86f3123aee616250005dd0bef15f.jpg?image_crop_resized=400x712'},
+    {label:'A14',nom:'Adam Younes',id:'lcgvstjd7s',thumb:'https://embed-ssl.wistia.com/deliveries/cc6e09b4e0cb4700e4eba26ae2aa7c80d5e7a5a1.jpg?image_crop_resized=400x712'},
+    {label:'1',nom:'Yassine',id:'0y16q2oude',thumb:'https://embed-ssl.wistia.com/deliveries/1cda3aee60db174d2e6d40a0dd0d5bdc98e2d5bf.jpg?image_crop_resized=400x712'},
+    {label:'2',nom:'Yanis',id:'7m1ikq14mn',thumb:'https://embed-ssl.wistia.com/deliveries/8704d469c5ab86f3123aee616250005dd0bef15f.jpg?image_crop_resized=400x712'},
     {label:'3',nom:'Kais',id:'r6sdz788m6',thumb:'https://embed-ssl.wistia.com/deliveries/dfa4b7d7f0e75da74f892048648802f68eaf1e71.jpg?image_crop_resized=400x712'},
     {label:'A1',nom:'ilyes',id:'s1ts2mssv4',thumb:'https://embed-ssl.wistia.com/deliveries/d67ed484b451ac5d365484621ea3390d50732b02.jpg?image_crop_resized=400x712'},
-    {label:'4',nom:'Benjamin',res:'5K/mois',id:'zpjrtfvck5',thumb:'https://embed-ssl.wistia.com/deliveries/320ed01f687a7264ff4a9beaeb6dfc518c2e8748.jpg?image_crop_resized=400x712'},
+    {label:'4',nom:'Benjamin',id:'zpjrtfvck5',thumb:'https://embed-ssl.wistia.com/deliveries/320ed01f687a7264ff4a9beaeb6dfc518c2e8748.jpg?image_crop_resized=400x712'},
     {label:'A2',nom:'Lany',id:'f4roc0xe2w',thumb:'https://embed-ssl.wistia.com/deliveries/d24bfe7e5a36c40b4bc4cffe3c8ce8c1c0e25b69.jpg?image_crop_resized=400x712'},
     {label:'5',nom:'Yanis',id:'h4988fyei0',thumb:'https://embed-ssl.wistia.com/deliveries/262f4acc3895349298f6c06ec7eac27bd990ae9c.jpg?image_crop_resized=400x712'},
     {label:'6',nom:'Isac',id:'cy05rzemas',thumb:'https://embed-ssl.wistia.com/deliveries/ad59c5c85c8d6fd63a6c05055a3fcb249cddeb23.jpg?image_crop_resized=400x712'},
@@ -365,12 +363,11 @@ footer a{color:var(--muted);}
     // v2 (2026-04-26): show only first 8 + expand CTA pour le reste
     const TESTIMONIAL_INITIAL_COUNT = 8;
     grid1.innerHTML = TEMOIGNAGES_WISTIA.map((t, i) => `
-      ${i > 0 && i % 12 === 0 ? `<h2 class="sec-title grid-sep${i >= TESTIMONIAL_INITIAL_COUNT ? ' testimonial-hidden' : ''}">+83 RÉSULTATS CLIENTS :</h2>` : ''}
       <div class="testimonial-card reveal${i >= TESTIMONIAL_INITIAL_COUNT ? ' testimonial-hidden' : ''}" data-index="${i}" data-thumb="${t.thumb}" role="button" tabindex="0" aria-label="Voir le témoignage de ${t.nom || 'participant ' + (i+1)}">
         <div class="badge">${String(i+1).padStart(2,'0')} / ${String(TEMOIGNAGES_WISTIA.length).padStart(2,'0')}</div>
         <div class="verified" aria-hidden="true">Vérifié</div>
         <div class="play" aria-hidden="true"></div>
-        <div class="who">${t.nom ? t.nom : 'Participant ' + (i+1)}${t.res ? `<span class="res">${t.res}</span>` : ''}</div>
+        <div class="who">${t.nom ? t.nom : 'Participant ' + (i+1)}</div>
       </div>
     `).join('');
 
@@ -420,7 +417,7 @@ footer a{color:var(--muted);}
 
     function openModal(idx) {
       const t = TEMOIGNAGES_WISTIA[idx];
-      document.getElementById('modalName').textContent = (t.nom || '') + (t.res ? ' — ' + t.res : '');
+      document.getElementById('modalName').textContent = t.nom || '';
       document.getElementById('modalVideo').innerHTML = `
         <iframe src="https://fast.wistia.net/embed/iframe/${t.id}?autoPlay=true&playerColor=1c40f2" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:0;display:block;"></iframe>
       `;
