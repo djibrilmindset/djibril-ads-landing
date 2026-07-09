@@ -1707,7 +1707,6 @@ section:nth-of-type(3n) h2 .pink{color:#9db8ff!important;-webkit-text-fill-color
 <!-- S1 HERO TITRE (en haut) -->
 <section class="hero" style="padding-top:30px;">
   <div class="container">
-    <div class="pastille">Pour le cadre ou le diplômé qui veut enfin sa liberté</div>
     <h1><span class="kw-power">Est-il possible</span> de générer entre <span class="gradient-num">3 000 et 5 000 €</span><br>par mois, <span class="kw-mute">depuis chez soi</span>,<br>grâce au <span class="kw-hook">business le plus vieux d'internet</span> ?</h1>
     <p class="hero-sub">Et si tu n'as pas fait <span class="kw-power">5 000 €</span> sur les <span class="kw-action">90 prochains jours</span>, je te rembourse <span class="kw-mental">(sur contrat)</span></p>
   </div>
@@ -2206,15 +2205,9 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 
 <style id="simplif-20260710">
-/* titre 3 lignes, un cran plus gros (demande Djibril 10/07) — le max-width 760px d'origine bloquait
-   le grossissement (4e ligne) : élargi à 1000px, montant insécable pour ne jamais couper "5 000 €" */
-.hero h1{font-size:clamp(24px,4.4vw,44px)!important;line-height:1.18!important;max-width:1000px!important;margin-left:auto!important;margin-right:auto!important;}
-.hero h1 .gradient-num{white-space:nowrap;}
-/* GARANTIE : bien visible, EN ROUGE, plus grosse (demande Djibril 10/07) */
-.hero-sub{font-size:clamp(16px,2.4vw,23px)!important;margin-top:14px!important;font-weight:700!important;}
-.hero-sub,.hero-sub span,.hero-sub .kw-power,.hero-sub .kw-action,.hero-sub .kw-mental{color:#d21f2c!important;-webkit-text-fill-color:#d21f2c!important;background:none!important;border-bottom:none!important;}
-/* pastille ciblage remise au-dessus du titre */
-.hero .pastille{display:inline-flex;margin-bottom:16px;}
+/* titre réduit, 3 lignes (demande Djibril 10/07) */
+.hero h1{font-size:clamp(22px,3.9vw,38px)!important;line-height:1.18!important;}
+.hero-sub{font-size:clamp(13px,1.9vw,18px)!important;margin-top:12px!important;}
 /* le "cadre blanc" du titre : halo réduit + dégradé fondu avec le fond spatial */
 .hero .container{position:relative;padding:30px 22px 26px;border-radius:30px;
   background:radial-gradient(ellipse 88% 92% at 50% 42%, rgba(255,252,246,.97) 0%, rgba(250,242,238,.93) 46%, rgba(238,222,232,.55) 72%, rgba(90,55,80,.12) 88%, transparent 100%);}
