@@ -36,41 +36,20 @@
 :root{--blue:#1c40f2;--deep:#013B51;--ink:#0a0a0a;--muted:#5c6b73;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:#241620;color:var(--ink);font-family:'Montserrat',system-ui,-apple-system,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body{background:#ffffff;color:var(--ink);font-family:'Montserrat',system-ui,-apple-system,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 body.modal-open{overflow:hidden;}
 .container{max-width:720px;margin:0 auto;padding:0 18px;}
 .wide{max-width:1100px;}
 
-/* ── FOND SPATIAL (repris de la version d'origine : space-bg.webp + drift + étoiles) ── */
-.galaxy{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#241620}
-.galaxy .sky{position:absolute;inset:-9%;background:url(space-bg.webp) center/cover no-repeat;transform:scale(1.06);animation:skyb 50s ease-in-out infinite alternate}
-.galaxy .tw{position:absolute;inset:0;background:radial-gradient(3px 3px at 61% 75%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(4px 4px at 61% 69%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(4px 4px at 28% 27%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(4px 4px at 64% 84%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(3px 3px at 27% 16%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(2px 2px at 42% 22%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(2px 2px at 72% 92%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(3px 3px at 80% 54%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(2px 2px at 87% 82%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(4px 4px at 83% 5%,#fff,rgba(255,255,255,.5) 30%,transparent 60%),radial-gradient(2px 2px at 12% 11%,#fff,rgba(255,255,255,.5) 30%,transparent 60%);animation:gtw 5.5s ease-in-out infinite}
-@keyframes skyb{from{transform:scale(1.05)}to{transform:scale(1.12)}}
-@keyframes gtw{0%,100%{opacity:.45}50%{opacity:1}}
-@media(prefers-reduced-motion:reduce){.galaxy .sky,.galaxy .tw{animation:none!important}}
-
-/* ── FEUILLE BLANCHE : tout le contenu sur fond blanc, l'espace autour ── */
-.sheet{position:relative;z-index:1;background:#ffffff;max-width:1020px;margin:22px auto;border-radius:18px;box-shadow:0 30px 90px rgba(0,0,0,0.55);padding:6px 0 8px;overflow:hidden;}
-@media (max-width:1060px){.sheet{margin:10px;border-radius:14px;}}
-
-/* ── HERO — proportions EXACTES de l'image-titre systeme.io (1500x523).
-   Typo en cqw : le bloc scale comme une image, les 3 lignes du h1 et les 2 lignes
-   de la garantie ne re-wrappent JAMAIS, à toutes les largeurs (= rendu systeme.io). ── */
-.hero{padding:30px 0 4px;text-align:center;}
-.hero .heroScale{container-type:inline-size;max-width:960px;margin:0 auto;padding:0 14px;}
-.hero .pre{color:var(--blue);font-weight:700;font-size:1.85cqw;line-height:1.4;margin-bottom:2.1cqw;}
-.hero h1{font-weight:800;color:var(--ink);font-size:4.3cqw;line-height:1.27;letter-spacing:-0.02em;}
+/* ── HERO (recréation HTML du titre-image de la ref, fond blanc conservé) ── */
+.hero{padding:34px 0 6px;text-align:center;}
+.hero .pre{color:var(--blue);font-weight:700;font-size:clamp(15px,2.4vw,21px);line-height:1.35;margin-bottom:14px;}
+.hero h1{font-weight:800;color:var(--ink);font-size:clamp(29px,5.4vw,46px);line-height:1.28;letter-spacing:-0.5px;}
 .hero h1 .b{color:var(--blue);}
-.hero .sub{color:var(--blue);font-weight:700;font-size:2.28cqw;line-height:1.4;margin-top:2.6cqw;}
-@supports not (font-size:1cqw){
-  .hero .pre{font-size:clamp(7px,1.75vw,17px);}
-  .hero h1{font-size:clamp(16px,4.1vw,41px);}
-  .hero .sub{font-size:clamp(9px,2.15vw,21px);}
-}
+.hero .sub{color:var(--blue);font-weight:700;font-size:clamp(16px,2.7vw,23px);line-height:1.4;margin-top:18px;}
 
-/* ── TITRES DE SECTION (ref systeme.io : Montserrat 700, #013B51 — 32px desktop / 24px mobile, valeurs EXACTES du JSON ref) ── */
-.sec-title{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--deep);font-size:32px;line-height:1.2;text-align:center;max-width:680px;margin:0 auto;}
-@media (max-width:768px){.sec-title{font-size:24px;}}
+/* ── TITRES DE SECTION (ref : Montserrat 700, #013B51, 32px, centré) ── */
+.sec-title{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--deep);font-size:clamp(22px,3.6vw,32px);line-height:1.2;text-align:center;max-width:680px;margin:0 auto;}
 section{padding:26px 0;}
 
 /* ── VIDEO ── */
@@ -134,19 +113,12 @@ footer a{color:var(--muted);}
 </head>
 <body>
 
-<!-- ═══ FOND SPATIAL (signature Djibril, repris de la version d'origine) ═══ -->
-<div class="galaxy" aria-hidden="true"><span class="sky"></span><span class="tw"></span></div>
-
-<!-- ═══ FEUILLE BLANCHE : tout le contenu sur blanc, l'espace autour ═══ -->
-<div class="sheet">
-
-<!-- ═══ HERO — recréation HTML du titre de la ref (proportions exactes systeme.io) ═══ -->
+<!-- ═══ HERO — recréation HTML du titre de la ref (fond blanc conservé) ═══ -->
 <section class="hero">
-  <div class="heroScale">
+  <div class="container">
     <p class="pre">Salarié ou diplômé qui cherche un revenu complémentaire :</p>
-    <!-- retours à la ligne FORCÉS = les 3 lignes exactes de l'image-titre systeme.io -->
-    <h1>Est-Il Possible De Générer <span class="b">Entre 3&nbsp;000 À</span><br><span class="b">5&nbsp;000 Euros</span> Par Mois Depuis Chez Soi Grâce<br>Au Business <span class="b">Le Plus Vieux D'Internet&nbsp;?</span></h1>
-    <p class="sub">+ Si Tu N'as Pas Fait 5&nbsp;000 Euros Sur Les 90<br>Prochains Jours, Je Te Rembourse (sur contrat)</p>
+    <h1>Est-Il Possible De Générer <span class="b">Entre 3 000 À 5 000 Euros</span> Par Mois Depuis Chez Soi Grâce Au Business <span class="b">Le Plus Vieux D'Internet&nbsp;?</span></h1>
+    <p class="sub">+ Si Tu N'as Pas Fait 5 000 Euros Sur Les 90 Prochains Jours, Je Te Rembourse (sur contrat)</p>
   </div>
 </section>
 
@@ -260,8 +232,6 @@ footer a{color:var(--muted);}
     <a href="#" title="A completer">Confidentialité</a>
   </div>
 </footer>
-
-</div><!-- /sheet -->
 
 <script>
   // Scroll to top
