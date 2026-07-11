@@ -7,7 +7,7 @@
 <meta name="description" content="Est-il possible de générer 3 000 à 5 000 € par mois depuis chez toi grâce au business le plus vieux d'internet ? Garanti sur contrat ou remboursé + 1 000 €.">
 <link rel="canonical" href="https://reset-ultra.com/prochaine-etape">
 <meta property="og:title" content="Débloque ta garantie de Remboursement — Reset Ultra">
-<meta property="og:description" content="Envoie le mot-clé sur WhatsApp et débloque ta garantie 1 000€ offerts (sur contrat).">
+<meta property="og:description" content="Regarde la vidéo jusqu'au bout et débloque ta garantie 1 000€ offerts (sur contrat).">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://reset-ultra.com/og-prochaine-etape.jpg">
 <meta name="twitter:title" content="Débloque ta garantie de Remboursement — Reset Ultra">
-<meta name="twitter:description" content="Envoie le mot-clé sur WhatsApp et débloque ta garantie 1 000€ offerts (sur contrat).">
+<meta name="twitter:description" content="Regarde la vidéo jusqu'au bout et débloque ta garantie 1 000€ offerts (sur contrat).">
 <title>Débloque ta garantie de Remboursement · Reset Ultra</title>
 <!-- PERF: preconnect + preload (look 100% inchangé, vitesse max) -->
 <link rel="preconnect" href="https://fast.wistia.com" crossorigin>
@@ -1700,8 +1700,7 @@ body .hero h1{background:none!important}
   <div class="container">
     <div class="pastille">Avant ton appel · Reset Ultra</div>
     <h1>Prochaine étape :</h1>
-    <p class="ty-step">Envoie le <span class="kw-power">mot clef</span> dans le groupe WhatsApp pour bénéficier de <span class="kw-mental">notre garantie des « 1 000 euros OFFERTS »</span>.</p>
-    <div class="ty-cta-wrap"><a class="btn-pill btn-gradient" href="https://wa.me/33766026708?text=voici%20le%20mot%20cl%C3%A9%20%3A%20"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:1.15em;height:1.15em;vertical-align:-.2em;margin-right:.5em"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.5-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.4-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1 2.1-1 2.2 0 .2.7 2.7 2.6 4.3 2.6 2.3 4.1 2.5 4.9 2.5.5 0 1.6-.2 1.8-1 .2-.5.2-1 .1-1.1 0-.1-.2-.2-.5-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.9 14.9c-.8 1.2-2 2.1-3.5 2.4a8.2 8.2 0 0 1-6.3-1.1l-.4-.3-3 .8.8-2.9-.3-.5A8.3 8.3 0 1 1 12 20.3c-1.5 0-3-.4-4.2-1.1"/></svg>Rejoindre le groupe WhatsApp</a></div>
+    <p class="ty-step">Regarde la vidéo <span class="kw-power">jusqu'au bout</span> : le <span class="kw-power">mot clef</span> qui débloque <span class="kw-mental">ta garantie des « 1 000 euros OFFERTS »</span> est à l'intérieur.</p>
   </div>
 </section>
 <section class="video-section" style="padding-top:18px;text-align:center">
@@ -1721,6 +1720,14 @@ body .hero h1{background:none!important}
     </div>
     <p class="ty-step" style="margin-top:22px"><span class="kw-power">Attention</span> : la vidéo est <span class="kw-mental">disponible une seule fois</span>. Tu ne pourras ni revenir en arrière ni avancer &mdash; installe-toi dans un endroit calme avant de la lancer.</p>
     <p class="ty-step" style="margin-top:10px"><span class="kw-action">Prends tes popcorns et bon visionnage !</span></p>
+    <!-- CTA de fin de vidéo, adaptatif selon la provenance (groupe WhatsApp vs email) -->
+    <div id="endCta" style="display:none;margin-top:26px;padding:26px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(255,46,147,0.10) 0%,rgba(126,243,255,0.08) 100%);border:1px solid rgba(255,255,255,0.10)">
+      <p class="ty-step" id="endCtaWa" style="display:none;margin:0"><span class="kw-power">Tu as le mot clef ?</span> Envoie-le <span class="kw-mental">maintenant dans ton groupe WhatsApp</span> pour débloquer ta garantie des « 1 000 euros OFFERTS ».</p>
+      <div id="endCtaBook" style="display:none">
+        <p class="ty-step" style="margin:0 0 16px">Tu sais maintenant exactement comment on travaille. <span class="kw-power">La suite logique : ton appel.</span></p>
+        <a class="btn-pill btn-gradient" href="https://djibrilsylearn.systeme.io/copyandpast4-588140fd">Je réserve mon appel</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1783,6 +1790,40 @@ window.ruTrack=function(ev,p){try{var b=JSON.stringify({site:'reset-ultra',sessi
 ruTrack('page_view');
 document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventListener('click',function(){ruTrack('wa_click')})});
 }catch(e){}})();
+</script>
+<script data-video-tracking="1">
+/* Traçage vidéo garantie : identité par lien (?p=<digits lead> depuis WhatsApp, ?e=<email> depuis emailing).
+   Jalons Wistia -> beacon vers l'edge function (text/plain = pas de préflight CORS) + ruTrack local.
+   Fin de vidéo -> CTA adaptatif (groupe WhatsApp vs réservation). */
+(function(){try{
+  var q=new URLSearchParams(location.search);
+  var p=(q.get('p')||'').replace(/\D/g,'').slice(0,17);
+  var e=(q.get('e')||'').slice(0,120);
+  var src=(q.get('src')||(e?'email':(p?'wa':'direct'))).slice(0,12);
+  var sent={};
+  function ping(m){
+    if(sent[m])return;sent[m]=1;
+    try{if(window.ruTrack)ruTrack('video_'+m,{p:p,src:src})}catch(_){}
+    if(!p&&!e)return;
+    try{navigator.sendBeacon('https://nbnbsljqtolzzuqnkyae.supabase.co/functions/v1/video-events',
+      new Blob([JSON.stringify({p:p,e:e,m:m,src:src})],{type:'text/plain'}))}catch(_){}
+  }
+  function showEnd(){
+    var w=document.getElementById('endCta');if(!w)return;
+    var isWa=(src==='wa');
+    var a=document.getElementById('endCtaWa'),b=document.getElementById('endCtaBook');
+    if(a)a.style.display=isWa?'block':'none';
+    if(b)b.style.display=isWa?'none':'block';
+    w.style.display='block';
+    try{w.scrollIntoView({behavior:'smooth',block:'center'})}catch(_){}
+  }
+  window._wq=window._wq||[];
+  _wq.push({id:'87y86ger8w',onReady:function(v){
+    v.bind('play',function(){ping('start')});
+    v.bind('percentwatchedchanged',function(pct){if(pct>=0.5)ping('half');if(pct>=0.9){ping('full');showEnd()}});
+    v.bind('end',function(){ping('full');showEnd()});
+  }});
+}catch(_){}})();
 </script>
 <script data-pill-parallax="1">
 (function(){
