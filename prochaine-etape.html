@@ -1799,14 +1799,18 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
   var q=new URLSearchParams(location.search);
   var p=(q.get('p')||'').replace(/\D/g,'').slice(0,17);
   var e=(q.get('e')||'').slice(0,120);
+  var sig=(q.get('s')||'').slice(0,32);
   var src=(q.get('src')||(e?'email':(p?'wa':'direct'))).slice(0,12);
   var sent={};
   function ping(m){
     if(sent[m])return;sent[m]=1;
+    /* dédup locale par session : un reload ne double-compte pas les analytics */
+    var sk='ruvid_'+m+'_'+(p||e||'anon');
+    try{if(sessionStorage.getItem(sk))return;sessionStorage.setItem(sk,'1')}catch(_){}
     try{if(window.ruTrack)ruTrack('video_'+m,{p:p,src:src})}catch(_){}
     if(!p&&!e)return;
     try{navigator.sendBeacon('https://nbnbsljqtolzzuqnkyae.supabase.co/functions/v1/video-events',
-      new Blob([JSON.stringify({p:p,e:e,m:m,src:src})],{type:'text/plain'}))}catch(_){}
+      new Blob([JSON.stringify({p:p,e:e,m:m,src:src,s:sig})],{type:'text/plain'}))}catch(_){}
   }
   function showEnd(){
     var w=document.getElementById('endCta');if(!w)return;
@@ -1819,8 +1823,12 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
   }
   window._wq=window._wq||[];
   _wq.push({id:'87y86ger8w',onReady:function(v){
-    v.bind('play',function(){ping('start')});
-    v.bind('percentwatchedchanged',function(pct){if(pct>=0.5)ping('half');if(pct>=0.9){ping('full');showEnd()}});
+    /* start = engagement réel (>=5% regardé), pas l autoplay muet qui se déclenche sur 100% des chargements */
+    v.bind('percentwatchedchanged',function(pct){
+      if(pct>=0.05)ping('start');
+      if(pct>=0.5)ping('half');
+      if(pct>=0.9){ping('full');showEnd()}
+    });
     v.bind('end',function(){ping('full');showEnd()});
   }});
 }catch(_){}})();
