@@ -1835,9 +1835,11 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
     v.bind('percentwatchedchanged',function(pct){
       if(pct>=0.05)ping('start');
       if(pct>=0.5)ping('half');
+      /* key = 95.5% : le mot clef est prononce a 52min42 = 94.9% des 55min33 (captions Wistia 12/07) */
+      if(pct>=0.955)ping('key');
       if(pct>=0.9){ping('full');showEnd()}
     });
-    v.bind('end',function(){ping('full');showEnd()});
+    v.bind('end',function(){ping('key');ping('full');showEnd()});
   }});
 }catch(_){}})();
 </script>
