@@ -1686,7 +1686,13 @@ body .hero h1{background:none!important}
 .btn-pill.btn-gradient:hover{box-shadow:6px 6px 0 #063d1f!important;transform:translate(-2px,-2px)!important}
 .btn-pill.btn-gradient:active{box-shadow:0 0 0 #063d1f!important;transform:translate(2px,2px)!important}
 .btn-pill.btn-gradient::after{background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.42) 50%,transparent 60%)!important}
-.video-wrapper{box-shadow:0 0 0 3px rgba(255,255,255,.9),0 0 30px rgba(255,255,255,.5),6px 6px 0 #2e2470!important;border:1.5px solid #1a1614!important}
+.video-wrapper{box-shadow:0 0 0 3px rgba(255,255,255,.9),0 0 30px rgba(255,255,255,.5),6px 6px 0 #17130a!important;border:1.5px solid #1a1614!important}
+/* === PROCHAINE-ETAPE · système de surbrillance lisibilité v2 (2026-07-12) ===
+   récompense = pastille OR (la plus voyante) · urgence = pastille ROUGE · clé = charbon gras souligné. Zéro violet. */
+.ty-step{color:#17130a!important;-webkit-text-fill-color:#17130a!important;font-weight:600!important}
+.ty-step .hl-gain{background:#FFC72C!important;background-image:none!important;color:#1a1207!important;-webkit-text-fill-color:#1a1207!important;font-family:'Inter',system-ui,-apple-system,sans-serif!important;font-style:normal!important;font-weight:800!important;letter-spacing:.005em!important;padding:2px 10px!important;border-radius:8px!important;box-shadow:0 2px 0 rgba(0,0,0,.20),0 0 0 1.5px rgba(0,0,0,.10)!important;text-shadow:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;white-space:nowrap;display:inline-block;line-height:1.35}
+.ty-step .hl-urgent{background:#E1263A!important;background-image:none!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font-family:'Inter',system-ui,-apple-system,sans-serif!important;font-style:normal!important;font-weight:800!important;padding:2px 10px!important;border-radius:8px!important;box-shadow:0 2px 0 rgba(0,0,0,.22)!important;text-shadow:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;display:inline;line-height:1.35}
+.ty-step .hl-key{color:#17130a!important;-webkit-text-fill-color:#17130a!important;font-family:'Inter',system-ui,-apple-system,sans-serif!important;font-style:normal!important;font-weight:800!important;background:none!important;background-image:none!important;border-bottom:3px solid #E1263A!important;padding:0 1px 1px!important;text-shadow:0 0 3px #fff,0 0 8px #fff,0 0 14px #fff!important}
 </style>
 </head>
 <body>
@@ -1700,29 +1706,29 @@ body .hero h1{background:none!important}
   <div class="container">
     <div class="pastille">Avant ton appel · Reset Ultra</div>
     <h1>Prochaine étape :</h1>
-    <p class="ty-step">Regarde la vidéo <span class="kw-power">jusqu'au bout</span> : le <span class="kw-power">mot clef</span> qui débloque <span class="kw-mental">ta garantie des « 1 000 euros OFFERTS »</span> est à l'intérieur.</p>
+    <p class="ty-step">Regarde la vidéo <span class="hl-key">jusqu'au bout</span>. Le <span class="hl-key">mot-clé</span> caché dedans débloque ta <span class="hl-gain">garantie 1 000 € offerts</span>.</p>
   </div>
 </section>
 <section class="video-section" style="padding-top:18px;text-align:center">
   <div class="container">
-    <p class="ty-step"><span class="kw-action">Notre CMO (= expert marketing) va vous appeler</span> le jour de votre appel entre 9h et 11h (heure France). <span class="kw-power">Veillez à décrocher</span> sinon votre appel sera annulé.</p>
+    <p class="ty-step">Un expert de l'équipe t'appelle le jour de ton rendez-vous <span class="hl-key">entre 9h et 11h</span> (heure France). <span class="hl-urgent">Décroche, sinon l'appel est annulé.</span></p>
     <div class="video-wrapper" style="margin-top:22px">
       <script src="https://fast.wistia.com/embed/medias/87y86ger8w.jsonp" async></script>
       <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div id="vslOnce" class="wistia_embed wistia_async_87y86ger8w seo=false videoFoam=true autoPlay=true muted=true playsinline=true playbar=false playbackRateControl=false settingsControl=false contextMenu=false playerColor=2e2470" style="height:100%;position:relative;width:100%"></div>
+          <div id="vslOnce" class="wistia_embed wistia_async_87y86ger8w seo=false videoFoam=true autoPlay=true muted=true playsinline=true playbar=false playbackRateControl=false settingsControl=false contextMenu=false playerColor=17130a" style="height:100%;position:relative;width:100%"></div>
         </div>
       </div>
       <div class="video-overlay" id="vslSoundOverlay">
         <div class="vsl-prompt"><div class="sound-icon">&#128266;</div><span>Clique pour activer le son</span></div>
       </div>
     </div>
-    <p class="ty-step" style="margin-top:22px"><span class="kw-power">Attention</span> : la vidéo est <span class="kw-mental">disponible une seule fois</span>. Tu ne pourras ni revenir en arrière ni avancer &mdash; installe-toi dans un endroit calme avant de la lancer.</p>
-    <p class="ty-step" style="margin-top:10px"><span class="kw-action">Prends tes popcorns et bon visionnage !</span></p>
+    <p class="ty-step" style="margin-top:22px"><span class="hl-urgent">Attention : la vidéo ne passe qu'une seule fois.</span> Ni retour, ni avance possible. Installe-toi au calme avant de la lancer.</p>
+    <p class="ty-step" style="margin-top:10px">Garde de quoi noter le <span class="hl-key">mot-clé</span>, et bon visionnage.</p>
     <!-- CTA de fin de vidéo, adaptatif selon la provenance (groupe WhatsApp vs email) -->
     <div id="endCta" style="display:none;margin-top:26px;padding:26px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(255,46,147,0.10) 0%,rgba(126,243,255,0.08) 100%);border:1px solid rgba(255,255,255,0.10)">
-      <p class="ty-step" id="endCtaWa" style="display:none;margin:0"><span class="kw-power">Tu as le mot clef ?</span> Envoie-le <span class="kw-mental">maintenant dans ton groupe WhatsApp</span> pour débloquer ta garantie des « 1 000 euros OFFERTS ».</p>
+      <p class="ty-step" id="endCtaWa" style="display:none;margin:0"><span class="hl-key">Tu as le mot-clé ?</span> Envoie-le dans ton <span class="hl-key">groupe WhatsApp</span> pour débloquer ta <span class="hl-gain">garantie 1 000 € offerts</span>.</p>
       <div id="endCtaBook" style="display:none">
         <p class="ty-step" style="margin:0 0 16px">Tu sais maintenant exactement comment on travaille. <span class="kw-power">La suite logique : ton appel.</span></p>
         <a class="btn-pill btn-gradient" href="https://djibrilsylearn.systeme.io/copyandpast4-588140fd">Je réserve mon appel</a>
