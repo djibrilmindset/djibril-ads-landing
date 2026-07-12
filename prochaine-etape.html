@@ -1809,6 +1809,7 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
   var e=(q.get('e')||'').slice(0,120);
   var sig=(q.get('s')||'').slice(0,32);
   var src=(q.get('src')||(e?'email':(p?'wa':'direct'))).slice(0,12);
+  var tst=(q.get('t')||'').slice(0,1); /* t=1 propage le mode test jusqu'a video-events (carte privee, audit 12/07) */
   var sent={};
   function ping(m){
     if(sent[m])return;sent[m]=1;
@@ -1818,7 +1819,7 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
     try{if(window.ruTrack)ruTrack('video_'+m,{p:p,src:src})}catch(_){}
     if(!p&&!e)return;
     try{navigator.sendBeacon('https://nbnbsljqtolzzuqnkyae.supabase.co/functions/v1/video-events',
-      new Blob([JSON.stringify({p:p,e:e,m:m,src:src,s:sig})],{type:'text/plain'}))}catch(_){}
+      new Blob([JSON.stringify({p:p,e:e,m:m,src:src,s:sig,t:tst})],{type:'text/plain'}))}catch(_){}
   }
   function showEnd(){
     var w=document.getElementById('endCta');if(!w)return;
@@ -1831,12 +1832,18 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
   }
   window._wq=window._wq||[];
   _wq.push({id:'87y86ger8w',onReady:function(v){
+    /* Mot clef « merci Djibril » a 3163s ; fin de sa triple repetition ~3185s (captions Wistia 12/07).
+       Seuil calcule sur la DUREE REELLE au runtime : si la video est remplacee (duree qui diverge de
+       plus de 10s des 3333s attendues), seuil prudent 98% + trace analytics pour recalibrer. */
+    var KEY_ABS=3185, DUR_REF=3333;
+    var dur=0; try{dur=v.duration()||0}catch(_){}
+    var keyPct=(dur>0&&Math.abs(dur-DUR_REF)<=10)?(KEY_ABS/dur):0.98;
+    if(dur>0&&Math.abs(dur-DUR_REF)>10){try{if(window.ruTrack)ruTrack('video_duration_drift',{dur:Math.round(dur)})}catch(_){}}
     /* start = engagement réel (>=5% regardé), pas l autoplay muet qui se déclenche sur 100% des chargements */
     v.bind('percentwatchedchanged',function(pct){
       if(pct>=0.05)ping('start');
       if(pct>=0.5)ping('half');
-      /* key = 95.5% : le mot clef est prononce a 52min42 = 94.9% des 55min33 (captions Wistia 12/07) */
-      if(pct>=0.955)ping('key');
+      if(pct>=keyPct)ping('key');
       if(pct>=0.9){ping('full');showEnd()}
     });
     v.bind('end',function(){ping('key');ping('full');showEnd()});
