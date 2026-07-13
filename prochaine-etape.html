@@ -1842,11 +1842,12 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
     /* start = engagement réel (>=5% regardé), pas l autoplay muet qui se déclenche sur 100% des chargements */
     v.bind('percentwatchedchanged',function(pct){
       if(pct>=0.05)ping('start');
-      if(pct>=0.5)ping('half');
-      if(pct>=keyPct)ping('key');
+      if(pct>=0.3)ping('p30');
+      if(pct>=0.6)ping('p60');
       if(pct>=0.9){ping('full');showEnd()}
+      if(pct>=keyPct)ping('key');
     });
-    v.bind('end',function(){ping('key');ping('full');showEnd()});
+    v.bind('end',function(){ping('full');ping('key');showEnd()});
   }});
 }catch(_){}})();
 </script>
