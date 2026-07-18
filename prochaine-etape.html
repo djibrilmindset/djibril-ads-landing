@@ -1758,8 +1758,14 @@ body .hero h1{background:none!important}
 <script>
 (function(){
   var KEY='ru_vsl_once_87y86ger8w';var MAX=2;var engaged=false,views=0,locked=false,counted=false;
+  /* Déblocage TOTAL par lead (clients) : numéros canon exemptés du verrou — leur lien ?p=<dig>
+     ne verrouille jamais et purge un verrou déjà posé sur l'appareil. */
+  var UNLOCK=['33745928949'];/* Zackary Traore 18/07 */
+  var pDig='';try{pDig=(new URLSearchParams(location.search).get('p')||'').replace(/\D/g,'');}catch(e){}
+  var noLimit=UNLOCK.indexOf(pDig)>=0;
+  if(noLimit){try{localStorage.removeItem(KEY);}catch(e){}}
   try{views=parseInt(localStorage.getItem(KEY)||'0',10)||0;}catch(e){}
-  locked=views>=MAX;
+  locked=!noLimit&&views>=MAX;
   function showLock(){
     var w=document.querySelector('.video-wrapper'); if(!w||document.getElementById('tyLock'))return;
     var ov=document.getElementById('vslSoundOverlay'); if(ov)ov.style.display='none';
@@ -1786,7 +1792,7 @@ body .hero h1{background:none!important}
     setTimeout(function(){invite(isMuted());},500);
     if(ov){ov.addEventListener('click',enableSound);ov.addEventListener('touchend',enableSound,{passive:true});}
     document.addEventListener('click',enableSound);
-    video.bind('end',function(){ if(engaged&&!counted){counted=true;views++;try{localStorage.setItem(KEY,String(views));}catch(e){}} });
+    video.bind('end',function(){ if(engaged&&!counted&&!noLimit){counted=true;views++;try{localStorage.setItem(KEY,String(views));}catch(e){}} });
   }});
 })();
 </script>
