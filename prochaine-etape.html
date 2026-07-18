@@ -1726,7 +1726,7 @@ body .hero h1{background:none!important}
         <div class="vsl-prompt"><div class="sound-icon">&#128266;</div><span>Clique pour activer le son</span></div>
       </div>
     </div>
-    <p class="ty-step" style="margin-top:22px"><span class="hl-urgent">Attention : la vidéo ne passe qu'une seule fois.</span> Ni retour, ni avance possible. Installe-toi au calme avant de la lancer.</p>
+    <p class="ty-step" style="margin-top:22px"><span class="hl-urgent">Attention : la vidéo ne passe que deux fois maximum.</span> Ni retour, ni avance possible. Installe-toi au calme avant de la lancer.</p>
     <p class="ty-step" style="margin-top:10px">Garde de quoi noter le <span class="hl-key">mot-clé</span>, et bon visionnage.</p>
     <!-- CTA de fin de vidéo, adaptatif selon la provenance (groupe WhatsApp vs email) -->
     <div id="endCta" style="display:none;margin-top:26px;padding:26px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(255,46,147,0.10) 0%,rgba(126,243,255,0.08) 100%);border:1px solid rgba(255,255,255,0.10)">
@@ -1757,14 +1757,15 @@ body .hero h1{background:none!important}
 </footer>
 <script>
 (function(){
-  var KEY='ru_vsl_once_87y86ger8w';var engaged=false,locked=false;
-  try{locked=localStorage.getItem(KEY)==='1';}catch(e){}
+  var KEY='ru_vsl_once_87y86ger8w';var MAX=2;var engaged=false,views=0,locked=false,counted=false;
+  try{views=parseInt(localStorage.getItem(KEY)||'0',10)||0;}catch(e){}
+  locked=views>=MAX;
   function showLock(){
     var w=document.querySelector('.video-wrapper'); if(!w||document.getElementById('tyLock'))return;
     var ov=document.getElementById('vslSoundOverlay'); if(ov)ov.style.display='none';
     var d=document.createElement('div'); d.id='tyLock';
     d.setAttribute('style','position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#1a1614;color:#f3ecdf;font-family:\'JetBrains Mono\',monospace;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:20px');
-    d.innerHTML='<span style="font-size:26px">\uD83D\uDD12</span>Vid\u00e9o d\u00e9j\u00e0 visionn\u00e9e<span style="opacity:.7;font-size:11px;text-transform:none;letter-spacing:0">Elle n\'\u00e9tait disponible qu\'une seule fois</span>';
+    d.innerHTML='<span style="font-size:26px">\uD83D\uDD12</span>Vid\u00e9o d\u00e9j\u00e0 visionn\u00e9e<span style="opacity:.7;font-size:11px;text-transform:none;letter-spacing:0">Elle n\'\u00e9tait disponible que deux fois</span>';
     w.appendChild(d);
   }
   if(locked){ if(document.readyState!=="loading")setTimeout(showLock,300); else document.addEventListener("DOMContentLoaded",function(){setTimeout(showLock,300)}); }
@@ -1785,7 +1786,7 @@ body .hero h1{background:none!important}
     setTimeout(function(){invite(isMuted());},500);
     if(ov){ov.addEventListener('click',enableSound);ov.addEventListener('touchend',enableSound,{passive:true});}
     document.addEventListener('click',enableSound);
-    video.bind('end',function(){ if(engaged){try{localStorage.setItem(KEY,'1');}catch(e){}} });
+    video.bind('end',function(){ if(engaged&&!counted){counted=true;views++;try{localStorage.setItem(KEY,String(views));}catch(e){}} });
   }});
 })();
 </script>
