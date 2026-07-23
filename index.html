@@ -658,11 +658,19 @@ html.mouvement-reduit .indice::after{animation:none}
 /* ---------- TOUS LES TEMOIGNAGES : grille facade en toute fin ---------- */
 .tfin{position:relative;z-index:var(--z-contenu);background:var(--fond);
   padding:10svh var(--gouttiere) 12svh}
-.tfin__tete{max-width:900px;margin:0 auto var(--e-6);text-align:center}
+/* flex-centré comme .bloc : sinon les caps globaux h2 18ch / p colonne-lecture
+   (tokens.css) collent les enfants à gauche du conteneur centré */
+.tfin__tete{max-width:900px;margin:0 auto var(--e-6);text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:var(--e-3)}
 .tfin h2{font-size:clamp(1.6rem,3vw,2.4rem);color:var(--texte-titre);text-wrap:balance}
-.tfin__grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
-  gap:var(--e-4);max-width:1240px;margin:0 auto}
-.tfin__carte{display:flex;flex-direction:column;gap:8px}
+.tfin__descend{margin-top:10px;font-size:.95rem;color:var(--texte-corps)}
+.tfin__descend::after{content:" ↓";color:var(--texte-accent)}
+/* pile VERTICALE (demande 23/07) : un témoignage à la fois, on descend — zéro choix
+   à faire, donc zéro hésitation. content-visibility rend les 83 cartes gratuites. */
+.tfin__grille{display:flex;flex-direction:column;align-items:center;gap:var(--e-5);
+  max-width:1240px;margin:0 auto}
+.tfin__carte{display:flex;flex-direction:column;gap:8px;width:min(100%,380px);
+  content-visibility:auto;contain-intrinsic-size:380px 720px}
 .tfin__carte header{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
 .tfin__carte h3{font-size:.95rem;color:var(--texte-titre)}
 .tfin__carte header span{font-family:var(--police-mono);font-size:var(--taille-mono-petit);
@@ -682,12 +690,7 @@ html.mouvement-reduit .indice::after{animation:none}
 .reservation__confiance{font-size:.95rem;color:var(--texte-corps);max-width:52ch}
 .reservation__secours{color:var(--texte-corps)}
 .reservation__secours a{color:var(--texte-accent)}
-/* mobile : la grille des 83 devient un carrousel horizontal (fini le mur de 60 écrans) */
-@media (max-width:640px){
-  .tfin__grille{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;padding-bottom:12px;gap:12px}
-  .tfin__carte{flex:0 0 44vw;scroll-snap-align:start}
-}
+/* mobile : même pile verticale que desktop — le scroll natif, aucun geste à découvrir */
 </style>
 
 <div class="secours" aria-hidden="true"></div>
@@ -790,46 +793,11 @@ html.mouvement-reduit .indice::after{animation:none}
     <p class="reservation__confiance">Je suis Djibril. J'aide des experts et des commerces premium à attirer leurs bons clients — mon parcours et 83 témoignages t'attendent juste en dessous.</p>
   </div>
 </section>
-<section class="fondateur" aria-labelledby="fondateur-titre">
-  <div class="fondateur__coeur">
-    <h2 id="fondateur-titre">Avant d'aider des experts à attirer de meilleurs clients, j'ai appris à lire les gens.</h2>
-    
-    <div class="fondateur__recit">
-      <p>À 16 ans, je vendais des parfums.</p>
-      <p>À 17 ans, je me suis lancé dans l'entrepreneuriat.</p>
-      <p>Ensuite, je suis passé par la coiffure.</p>
-      <p>Et c'est là que j'ai compris un truc que beaucoup de formations ne t'apprennent jamais.</p>
-      <p>Tu peux parler à quelqu'un pendant une heure sans vraiment l'écouter.</p>
-      <p>J'ai coiffé des milliers de personnes.</p>
-      <p>Des entrepreneurs, des dirigeants, des familles installées et des profils très différents.</p>
-      <p>Mais peu importe leur niveau, je voyais toujours la même chose.</p>
-      <p>Les gens ne prennent pas leurs décisions juste avec de la logique.</p>
-      <p>Ils avancent quand ils se sentent compris.</p>
-      <p>Ils hésitent quand ils ont peur de perdre du temps, de faire le mauvais choix ou de ne pas être à la hauteur.</p>
-      <p>Ils achètent quand ils comprennent clairement ce que ça peut changer pour eux.</p>
-      <p>À force de voir ça tous les jours, j'ai commencé à m'intéresser sérieusement aux comportements humains.</p>
-      <p>À ce qui rassure.</p>
-      <p>À ce qui freine.</p>
-      <p>À ce qui donne confiance.</p>
-      <p>Puis j'ai compris que le marketing, c'était exactement ça.</p>
-      <p>Pas faire du bruit.</p>
-      <p>Pas chercher à plaire à tout le monde.</p>
-      <p>Comprendre une personne assez précisément pour lui montrer qu'on peut réellement l'aider.</p>
-      <p>C'est pour ça que je me suis dirigé vers le marketing.</p>
-      <p>Aujourd'hui, avec Reset Ultra, j'utilise cette lecture humaine pour aider des experts à attirer des clients plus cohérents avec leur niveau.</p>
-      <p>Des clients qui comprennent mieux leur valeur.</p>
-      <p>Qui respectent davantage leur temps.</p>
-      <p>Qui rendent leur activité plus rentable.</p>
-      <p>Et surtout, plus agréable à développer.</p>
-    </div>
-    <p class="fondateur__citation">Le marketing commence quand tu comprends vraiment la personne en face.</p>
-    
-  </div>
-</section>
 <section class="tfin" id="temoignages" aria-labelledby="tfin-titre">
   <div class="tfin__tete">
     <p class="chapitre">ILS EN PARLENT MIEUX QUE NOUS</p>
     <h2 id="tfin-titre">83 personnes accompagnées racontent.</h2>
+    <p class="tfin__descend">Descends. Un témoignage à la fois.</p>
   </div>
   <div class="tfin__grille">
 <article class="tfin__carte">
@@ -1429,6 +1397,42 @@ html.mouvement-reduit .indice::after{animation:none}
     f.allow='autoplay; fullscreen';f.setAttribute('allowfullscreen','');
     c.innerHTML='';c.appendChild(f);}
   </script>
+</section>
+<section class="fondateur" aria-labelledby="fondateur-titre">
+  <div class="fondateur__coeur">
+    <h2 id="fondateur-titre">Avant d'aider des experts à attirer de meilleurs clients, j'ai appris à lire les gens.</h2>
+    
+    <div class="fondateur__recit">
+      <p>À 16 ans, je vendais des parfums.</p>
+      <p>À 17 ans, je me suis lancé dans l'entrepreneuriat.</p>
+      <p>Ensuite, je suis passé par la coiffure.</p>
+      <p>Et c'est là que j'ai compris un truc que beaucoup de formations ne t'apprennent jamais.</p>
+      <p>Tu peux parler à quelqu'un pendant une heure sans vraiment l'écouter.</p>
+      <p>J'ai coiffé des milliers de personnes.</p>
+      <p>Des entrepreneurs, des dirigeants, des familles installées et des profils très différents.</p>
+      <p>Mais peu importe leur niveau, je voyais toujours la même chose.</p>
+      <p>Les gens ne prennent pas leurs décisions juste avec de la logique.</p>
+      <p>Ils avancent quand ils se sentent compris.</p>
+      <p>Ils hésitent quand ils ont peur de perdre du temps, de faire le mauvais choix ou de ne pas être à la hauteur.</p>
+      <p>Ils achètent quand ils comprennent clairement ce que ça peut changer pour eux.</p>
+      <p>À force de voir ça tous les jours, j'ai commencé à m'intéresser sérieusement aux comportements humains.</p>
+      <p>À ce qui rassure.</p>
+      <p>À ce qui freine.</p>
+      <p>À ce qui donne confiance.</p>
+      <p>Puis j'ai compris que le marketing, c'était exactement ça.</p>
+      <p>Pas faire du bruit.</p>
+      <p>Pas chercher à plaire à tout le monde.</p>
+      <p>Comprendre une personne assez précisément pour lui montrer qu'on peut réellement l'aider.</p>
+      <p>C'est pour ça que je me suis dirigé vers le marketing.</p>
+      <p>Aujourd'hui, avec Reset Ultra, j'utilise cette lecture humaine pour aider des experts à attirer des clients plus cohérents avec leur niveau.</p>
+      <p>Des clients qui comprennent mieux leur valeur.</p>
+      <p>Qui respectent davantage leur temps.</p>
+      <p>Qui rendent leur activité plus rentable.</p>
+      <p>Et surtout, plus agréable à développer.</p>
+    </div>
+    <p class="fondateur__citation">Le marketing commence quand tu comprends vraiment la personne en face.</p>
+    
+  </div>
 </section>
 
 <footer class="footer">
