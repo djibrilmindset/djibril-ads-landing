@@ -1817,6 +1817,19 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
   var sig=(q.get('s')||'').slice(0,32);
   var src=(q.get('src')||(e?'email':(p?'wa':'direct'))).slice(0,12);
   var tst=(q.get('t')||'').slice(0,1); /* t=1 propage le mode test jusqu'a video-events (carte privee, audit 12/07) */
+  /* IDENTITÉ QUI SURVIT AU RECHARGEMENT (28/07). Sans paramètre dans l'URL, plus un seul jalon ne part
+     (voir `if(!p&&!e)return` plus bas) : un prospect qui revient par son historique, qui recolle
+     l'adresse sans la fin, ou qui rouvre l'onglet le lendemain devient invisible — il regarde la vidéo
+     en entier et le CRM jure qu'il n'y a jamais touché. On mémorise donc la dernière identité SIGNÉE
+     vue sur ce navigateur, et on ne s'en sert QUE si l'URL n'en porte aucune (l'URL gagne toujours).
+     La signature est gardée avec : sans elle l'edge function refuse le numéro (anti-forge). */
+  try{
+    if(p&&sig){localStorage.setItem('ruvid_id',JSON.stringify({p:p,s:sig,e:e}));}
+    else if(!p&&!e){
+      var mem=JSON.parse(localStorage.getItem('ruvid_id')||'null');
+      if(mem&&mem.p&&mem.s){p=mem.p;sig=mem.s;e=mem.e||'';}
+    }
+  }catch(_){}
   var sent={};
   function ping(m){
     if(sent[m])return;sent[m]=1;
@@ -1839,10 +1852,14 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
   }
   window._wq=window._wq||[];
   _wq.push({id:'87y86ger8w',onReady:function(v){
-    /* Mot clef « merci Djibril » a 3163s ; fin de sa triple repetition ~3185s (captions Wistia 12/07).
-       Seuil calcule sur la DUREE REELLE au runtime : si la video est remplacee (duree qui diverge de
+    /* ⚠️ NE JAMAIS ÉCRIRE LE MOT CLEF ICI. Cette page est publique et son code source est lisible par
+       n'importe qui (Cmd+U) : le mot clef y est resté en clair jusqu'au 28/07, donc récupérable sans
+       regarder une seule seconde de vidéo. Seules les POSITIONS en secondes vivent ici.
+       KEY_POS  = moment où le mot clef est prononcé.
+       KEY_ABS  = fin de sa triple répétition (seuil « il a tout regardé »).
+       Seuil calculé sur la DURÉE RÉELLE au runtime : si la vidéo est remplacée (durée qui diverge de
        plus de 10s des 3333s attendues), seuil prudent 98% + trace analytics pour recalibrer. */
-    var KEY_ABS=3185, DUR_REF=3333;
+    var KEY_ABS=3185, KEY_POS=3163, DUR_REF=3333;
     var dur=0; try{dur=v.duration()||0}catch(_){}
     var keyPct=(dur>0&&Math.abs(dur-DUR_REF)<=10)?(KEY_ABS/dur):0.98;
     if(dur>0&&Math.abs(dur-DUR_REF)>10){try{if(window.ruTrack)ruTrack('video_duration_drift',{dur:Math.round(dur)})}catch(_){}}
@@ -1854,7 +1871,13 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
       if(pct>=0.9){ping('full');showEnd()}
       if(pct>=keyPct)ping('key');
     });
-    v.bind('end',function(){ping('full');ping('key');showEnd()});
+    /* POSITION ATTEINTE, pas quantité vue (28/07). percentwatchedchanged compte le contenu VU au moins
+       une fois et ignore les sauts : un prospect qui fait glisser la barre jusqu'à la fin ENTEND le mot
+       clef sans jamais franchir 90%. On croyait alors qu'il n'avait pas fini — alors qu'il l'avait en
+       main et venait de l'envoyer. `keypos` dit « il a le mot clef » ; `key` dit « il a tout regardé ».
+       Les deux sont utiles et ne veulent pas dire la même chose. */
+    v.bind('secondchange',function(t){ if(t>=KEY_POS){ping('keypos');showEnd()} });
+    v.bind('end',function(){ping('full');ping('key');ping('keypos');showEnd()});
   }});
 }catch(_){}})();
 </script>
