@@ -1,0 +1,1045 @@
+<!-- RU-PREMIUM-V1 -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reset Ultra — Le Système de Sélection Client</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Reset Ultra aide les professionnels à attirer des clients qui respectent leur expertise, leur temps et leur façon de travailler. Moins de conversations inutiles, davantage de clients cohérents.">
+<meta name="robots" content="noindex"><!-- RU-PREM : chemin neuf en construction — retirer à la bascule racine validée (E10) -->
+<meta name="theme-color" content="#fbfbfb">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Reset Ultra — Le Système de Sélection Client">
+<meta property="og:description" content="Attire tes clients idéaux. Monte la valeur de chaque dossier. Libère tes heures. Acquisition ciblée pour experts et commerces premium.">
+<meta property="og:image" content="https://reset-ultra.com/og-image.png">
+<link rel="preload" href="fonts/bric800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/bric400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrument-serif-italic-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* ============================================================
+   RU-PREMIUM-V1 · E1 SQUELETTE
+   Fond blanc cassé #fbfbfb · encre #0B0710 · magenta #FF2D7E
+   (accent UNIQUEMENT, parcimonie). Sous-couches blanches fondues
+   derrière chaque bloc de texte (dégradé doux vers le fond).
+   Copy = source canonique index.html, mot pour mot (splice).
+   Couches à venir : E2 scroll cockpit · E3 aurore · E4 marquee ·
+   E5 glass enrichi · E6 vidéo hero. AUCUN JS requis pour lire.
+   ============================================================ */
+
+/* ---------- fonts (chemins relatifs, swap) ---------- */
+@font-face{font-family:'Bric';src:url('fonts/bric400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Bric';src:url('fonts/bric800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:'Inter';src:url('fonts/inter-normal-400-latin.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';src:url('fonts/inter-normal-400-latin-ext.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20BF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Inter';src:url('fonts/inter-normal-500-latin.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';src:url('fonts/inter-normal-500-latin-ext.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20BF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Inter';src:url('fonts/inter-normal-800-latin.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';src:url('fonts/inter-normal-800-latin-ext.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap;unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20BF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Serif';src:url('fonts/instrument-serif-italic-400-latin.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Instrument Serif';src:url('fonts/instrument-serif-italic-400-latin-ext.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap;unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20BF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+/* ---------- tokens ---------- */
+:root{
+  --ru-fond:#fbfbfb;
+  --ru-encre:#0B0710;          /* violet-noir du logo, jamais du noir pur */
+  --ru-magenta:#FF2D7E;        /* SIGNATURE — gros display (AA large 3,4:1) et accents non textuels UNIQUEMENT */
+  --ru-magenta-txt:#9E0349;    /* seul magenta autorisé en petit texte sur clair (7,4:1) */
+  --ru-corps:#39333F;          /* corps : encre adoucie, largement AA */
+  --ru-gris:#544F5C;           /* secondaire sur clair : 7,1:1 */
+  --ru-voile:rgba(255,255,255,.78);                                   /* voile blanc des cartes */
+  --ru-trait:color-mix(in srgb, var(--ru-encre) 8%, transparent);     /* liseré interne */
+  --ru-trait-doux:color-mix(in srgb, var(--ru-encre) 5%, transparent);
+  --ru-sh-glass:0 0 32px 0 rgba(255,255,255,.55) inset, 0 0 6px 0 rgba(255,255,255,.35) inset;
+  --ru-ombre:0 24px 70px -34px rgba(11,7,16,.20);
+  --ru-r-carte:1.75rem;        /* plancher radius cohérent */
+  --ru-r-grande:2.25rem;
+  --ru-gouttiere:clamp(20px, 4vw, 48px);
+  --ru-police-display:'Bric','Inter',system-ui,sans-serif;
+  --ru-police-corps:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ru-police-emph:'Instrument Serif',Georgia,serif;
+  --ru-ease:cubic-bezier(.22,1,.36,1);
+}
+
+/* ---------- base ---------- */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--ru-fond);color:var(--ru-encre);
+  font-family:var(--ru-police-corps);font-size:1rem;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:clip}
+h1,h2,h3,p,figure{margin:0}
+img{max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ru-magenta-txt);outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+
+/* ---------- accès direct ---------- */
+.ru-prem-skip{position:fixed;left:1rem;top:1rem;z-index:100;transform:translateY(-300%);
+  background:var(--ru-encre);color:#fff;padding:.85em 1.25em;border-radius:.65em;
+  text-decoration:none;font-weight:500;transition:transform .2s var(--ru-ease)}
+.ru-prem-skip:focus-visible{transform:none}
+
+/* ---------- header fixe · verre léger (enrichi 4 couches en E2) ---------- */
+.ru-prem-header{position:fixed;inset:0 0 auto 0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.75rem var(--ru-gouttiere)}
+.ru-prem-header__verre{position:absolute;inset:0;z-index:-1;
+  background:color-mix(in srgb, var(--ru-fond) 74%, transparent);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:0 1px 0 var(--ru-trait-doux)}
+.ru-prem-brand{display:inline-flex;align-items:center;min-height:44px;padding:0 .25em;
+  font-family:var(--ru-police-display);font-weight:800;font-size:1.02rem;
+  letter-spacing:.02em;text-decoration:none;color:var(--ru-encre)}
+.ru-prem-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+  padding:.6em 1.3em;border-radius:999px;background:var(--ru-encre);color:#fff;
+  text-decoration:none;font-weight:500;font-size:.95rem;letter-spacing:.01em;
+  transition:background .3s var(--ru-ease),transform .3s var(--ru-ease)}
+.ru-prem-cta:hover{background:#1B1122;transform:translateY(-1px)}
+.ru-prem-cta__point{width:.5em;height:.5em;border-radius:50%;background:var(--ru-magenta);
+  margin-right:.6em;flex:none}
+
+/* ---------- sous-couche blanche fondue (derrière chaque bloc de texte) ---------- */
+.acte,.reservation,.tfin,.fondateur{position:relative}
+.acte::before,.reservation::before,.fondateur::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(72% 82% at 50% 45%, #ffffff 0%, rgba(255,255,255,.55) 46%, rgba(251,251,251,0) 78%);
+  pointer-events:none}
+
+/* ---------- cartes douces : voile blanc + liseré interne + radius ≥1.75rem ---------- */
+.ru-prem-carte{position:relative;max-width:820px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.1rem;
+  padding:clamp(2rem,5vw,3.5rem) clamp(1.4rem,4vw,3rem);
+  border-radius:var(--ru-r-grande);background:var(--ru-voile);
+  outline:1px solid var(--ru-trait-doux);outline-offset:-1px;
+  box-shadow:var(--ru-sh-glass), var(--ru-ombre)}
+
+/* ---------- copy commune (classes de la source, styles premium) ---------- */
+.chapitre{display:inline-flex;align-items:center;margin:0;padding:.55em 1.05em;
+  border-radius:.875em;background:color-mix(in srgb, var(--ru-encre) 5%, transparent);
+  font-size:.78rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ru-gris)}
+.constat{max-width:46ch;color:var(--ru-corps);font-size:clamp(1rem,1.4vw,1.15rem)}
+.rassure{max-width:46ch;color:var(--ru-gris);font-size:.92rem}
+.hero-sig{display:block;margin-top:.55em;font-family:var(--ru-police-emph);font-style:italic;
+  font-weight:400;font-size:clamp(1.5rem,2.6vw,1.95rem);line-height:1.25;
+  letter-spacing:0;color:var(--ru-magenta)}  /* ≥24px partout → AA texte large (3,4:1) */
+
+/* ---------- hero (acte 1) ---------- */
+.ru-prem-hero{overflow:clip;padding:calc(84px + 7svh) var(--ru-gouttiere) 8svh}
+.ru-prem-aurore{position:absolute;left:-20%;right:-20%;top:-12%;height:72svh;z-index:0;
+  pointer-events:none}  /* reçoit l'aurore E3 (couches ci-dessous) */
+
+/* ---------- RU-PREM-E3-AURORE · anneaux magenta tramés derrière le H1 ----------
+   Porté de reset-ultra-temoignages/aurore (variante claire validée) : anneau SVG
+   1000×1000 even-odd (trou r=175/500), radialGradient #FF2D7E→transparent, vu à
+   travers une trame de points CSS 3px (aucun PNG), blur FIXE sur le conteneur +
+   rotation seule sur le svg → la texture floutée est mise en cache, la rotation
+   ne coûte qu'un transform. Fond clair #fbfbfb : nappe basse coupée, opacités
+   basses, confinement radial pour que l'anneau ne bave pas dans la page. */
+.ru-prem-aurore{overflow:hidden;
+  -webkit-mask:linear-gradient(#fff 62%,#0000 100%);
+          mask:linear-gradient(#fff 62%,#0000 100%)}  /* fondu vertical vers le fond */
+.ru-prem-aurore__dots{position:absolute;inset:0;display:flex;
+  justify-content:center;align-items:flex-start;
+  -webkit-mask:
+    radial-gradient(circle at 50% 50%,#000 .7px,#0000 .78px) 0 0/3px 3px,
+    radial-gradient(60% 52% at 50% 38%,#000 40%,#0000 100%);
+  -webkit-mask-composite:source-in;
+          mask:
+    radial-gradient(circle at 50% 50%,#000 .7px,#0000 .78px) 0 0/3px 3px,
+    radial-gradient(60% 52% at 50% 38%,#000 40%,#0000 100%);
+          mask-composite:intersect}
+.ru-prem-aurore__anneau{position:absolute;top:0;left:50%;
+  width:100%;max-width:clamp(520px,96vw,980px);aspect-ratio:1;
+  filter:blur(24px);opacity:.46;mix-blend-mode:multiply;
+  transform:translateX(-50%) translateZ(0);
+  isolation:isolate;backface-visibility:hidden;user-select:none}
+.ru-prem-aurore__anneau svg{width:100%;height:100%;display:block;transform-origin:50% 50%;
+  animation:ru-prem-aurore-tourne 10s linear infinite}
+.ru-prem-aurore__anneau:last-child svg{animation-direction:reverse}  /* anneaux opposés */
+@keyframes ru-prem-aurore-tourne{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.ru-prem-aurore__overlay{position:absolute;inset:0;opacity:.09;mix-blend-mode:multiply;
+  background:
+    radial-gradient(69.57% 58.2% at 79.79% 50%,#FF2D7E 0%,rgba(0,0,0,0) 100%),
+    radial-gradient(66.03% 54.15% at 29.2% 50%,#FF2D7E 0%,rgba(0,0,0,0) 100%)}
+/* pause RÉELLE hors viewport : attribut posé par défaut, l'IntersectionObserver
+   le retire quand le hero est visible (si JS mort → aurore statique, lisible) */
+.ru-prem-aurore__dots[data-viewport-pause] .ru-prem-aurore__anneau svg{
+  animation-play-state:paused}
+@media (max-width:768px){
+  .ru-prem-aurore__anneau{filter:blur(14px)}  /* coût GPU réduit, même dessin */
+}
+@media (prefers-reduced-motion:reduce){
+  .ru-prem-aurore__anneau svg{animation:none}  /* aurore statique */
+}
+.ru-prem-hero .ru-prem-carte{z-index:1;max-width:900px}
+.ru-prem-hero h1{font-family:var(--ru-police-display);font-weight:800;
+  font-size:clamp(2rem,5.6vw,4.15rem);line-height:1.06;letter-spacing:-.01em;
+  max-width:18ch;text-wrap:balance}
+
+/* dalle vidéo 16/9 — poster placeholder encre, reçoit la VSL/vidéo en E6 */
+.ru-prem-dalle{position:relative;z-index:1;width:min(100%,960px);margin:3rem auto 0;
+  aspect-ratio:16/9;border-radius:var(--ru-r-carte);overflow:hidden;
+  background:radial-gradient(120% 140% at 50% 0%, #1B1122 0%, var(--ru-encre) 55%, #070409 100%);
+  outline:1px solid color-mix(in srgb, currentColor 8%, transparent);outline-offset:-1px;
+  box-shadow:var(--ru-ombre), 0 0 32px 0 rgba(255,255,255,.05) inset}
+.ru-prem-dalle::after{content:"";position:absolute;left:-20%;right:-20%;bottom:-60%;height:80%;
+  background:radial-gradient(50% 60% at 50% 100%, rgba(255,45,126,.26), transparent 70%);
+  filter:blur(30px)}  /* lueur magenta non textuelle, parcimonie */
+.ru-prem-dalle__play{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;
+  background:rgba(251,251,251,.10);outline:1px solid rgba(251,251,251,.28);outline-offset:-1px;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ru-prem-dalle__play::after{content:"";position:absolute;inset:0;margin:auto;width:0;height:0;
+  border-style:solid;border-width:10px 0 10px 17px;
+  border-color:transparent transparent transparent #F4F2F7;transform:translateX(2px)}
+
+/* ---------- actes narratifs (2 → 8) ---------- */
+.ru-prem-acte{padding:6svh var(--ru-gouttiere)}
+.ru-prem-acte h2{font-family:var(--ru-police-display);font-weight:800;
+  font-size:clamp(1.6rem,3.6vw,2.6rem);line-height:1.12;max-width:24ch;text-wrap:balance}
+
+/* ---------- réservation (embed iClosed EXACT de la source) ---------- */
+.reservation{padding:8svh var(--ru-gouttiere) 6svh}
+.reservation__coeur{position:relative;max-width:900px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.1rem;
+  padding:clamp(2rem,5vw,3.5rem) clamp(1.2rem,4vw,3rem);
+  border-radius:var(--ru-r-grande);background:var(--ru-voile);
+  outline:1px solid var(--ru-trait-doux);outline-offset:-1px;
+  box-shadow:var(--ru-sh-glass), var(--ru-ombre)}
+.reservation h2{font-family:var(--ru-police-display);font-weight:800;
+  font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.12;text-wrap:balance}
+.reservation__rassure{color:var(--ru-corps)}
+.reservation .iclosed-widget{border-radius:1.25rem;overflow:hidden;align-self:stretch;
+  background:#fff;outline:1px solid var(--ru-trait-doux);outline-offset:-1px}
+.reservation__confiance{font-size:.95rem;color:var(--ru-corps);max-width:52ch}
+.reservation__secours{color:var(--ru-corps)}
+.reservation__secours a,.ru-prem-noscript a{color:var(--ru-magenta-txt)}
+.ru-prem-noscript{max-width:52ch;margin:1.5rem auto;padding:0 var(--ru-gouttiere);
+  text-align:center;color:var(--ru-corps)}
+
+/* ---------- emplacement marquee preuve sociale (E4) ---------- */
+.ru-prem-marquee{min-height:0}
+
+/* ---------- témoignages : pile verticale, un à la fois ---------- */
+.tfin{padding:9svh var(--ru-gouttiere) 11svh}
+.tfin__tete{position:relative;max-width:900px;margin:0 auto 3.25rem;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem}
+.tfin h2{font-family:var(--ru-police-display);font-weight:800;
+  font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.12;text-wrap:balance}
+.tfin__descend{color:var(--ru-gris);font-size:.95rem}
+.tfin__descend::after{content:" ↓";color:var(--ru-magenta-txt)}
+.tfin__grille{position:relative;display:flex;flex-direction:column;align-items:center;
+  gap:2.25rem;max-width:1240px;margin:0 auto}
+.tfin__carte{display:flex;flex-direction:column;gap:.6rem;width:min(100%,380px);
+  padding:1rem;border-radius:var(--ru-r-carte);background:var(--ru-voile);
+  outline:1px solid var(--ru-trait-doux);outline-offset:-1px;
+  box-shadow:var(--ru-sh-glass), var(--ru-ombre);
+  content-visibility:auto;contain-intrinsic-size:380px 760px}
+.tfin__carte header{display:flex;align-items:baseline;justify-content:space-between;
+  gap:.5rem;padding:.15rem .35rem 0}
+.tfin__carte h3{font-size:.95rem;font-weight:500;color:var(--ru-encre)}
+.tfin__carte header span{font-size:.8rem;font-weight:500;color:var(--ru-magenta-txt);
+  white-space:nowrap}
+.tfin__video{position:relative;aspect-ratio:9/16;border-radius:1.15rem;overflow:hidden;
+  cursor:pointer;background:var(--ru-encre);outline:1px solid var(--ru-trait);outline-offset:-1px}
+.tfin__video img{width:100%;height:100%;object-fit:cover;display:block}
+.tfin__video iframe{width:100%;height:100%;border:0;display:block}
+.tfin__play{position:absolute;inset:0;margin:auto;width:52px;height:52px;border-radius:50%;
+  background:rgba(20,18,22,.82);display:flex;align-items:center;justify-content:center}
+.tfin__play::after{content:"";margin-left:4px;border-style:solid;border-width:9px 0 9px 15px;
+  border-color:transparent transparent transparent #F7F7F4}
+.tfin__video:hover .tfin__play{background:rgba(20,18,22,.95)}
+
+/* ---------- fondateur ---------- */
+.fondateur{padding:12svh var(--ru-gouttiere) 10svh}
+.fondateur__coeur{position:relative;max-width:680px;margin:0 auto;
+  display:flex;flex-direction:column;gap:2.1rem;text-align:left;
+  padding:clamp(2rem,5vw,3.5rem) clamp(1.4rem,4vw,3rem);
+  border-radius:var(--ru-r-grande);background:var(--ru-voile);
+  outline:1px solid var(--ru-trait-doux);outline-offset:-1px;
+  box-shadow:var(--ru-sh-glass), var(--ru-ombre)}
+.fondateur h2{font-family:var(--ru-police-display);font-weight:800;
+  font-size:clamp(1.6rem,3.2vw,2.4rem);line-height:1.15;text-wrap:balance}
+.fondateur__recit{display:flex;flex-direction:column;gap:.85em}
+.fondateur__recit p{color:var(--ru-corps);font-size:clamp(1rem,1.3vw,1.15rem);line-height:1.65;max-width:62ch}
+.fondateur__citation{font-family:var(--ru-police-emph);font-style:italic;font-weight:400;
+  font-size:clamp(1.3rem,2.2vw,1.7rem);line-height:1.35;color:var(--ru-encre);
+  border-left:3px solid var(--ru-magenta);padding-left:1.2rem;text-wrap:balance}
+
+/* ---------- footer sobre ---------- */
+.footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:2.2rem var(--ru-gouttiere) calc(2.2rem + env(safe-area-inset-bottom));
+  color:var(--ru-gris)}
+.footer__mono{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase}
+.footer a{color:inherit;text-decoration:none;border-bottom:1px solid var(--ru-trait);
+  padding:.95em .4em;margin:-.95em -.4em}  /* zone tactile ≥44px */
+.footer a:hover{color:var(--ru-encre);border-color:var(--ru-encre)}
+</style>
+</head>
+<body>
+<a class="ru-prem-skip" href="#contenu">Aller au contenu</a>
+
+<header class="ru-prem-header">
+  <div class="ru-prem-header__verre" aria-hidden="true"><!-- RU-PREM E2 : verre 4 couches --></div>
+  <a class="ru-prem-brand" href="#g1">Reset Ultra</a>
+  <a class="ru-prem-cta" href="#reservation"><span class="ru-prem-cta__point" aria-hidden="true"></span>Choisis ton créneau</a>
+</header>
+
+<main id="contenu">
+  <section class="acte ru-prem-hero" id="g1" data-nom="Le bruit">
+    <!-- RU-PREM-E3-AURORE : anneaux magenta tramés derrière le H1 (porté de aurore/clair.html) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <radialGradient id="ru-prem-aurore-grad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-0.00170823 328.676) rotate(21.1567) scale(379.585)">
+          <stop stop-color="#FF2D7E"/>
+          <stop offset="1" stop-color="#FF2D7E" stop-opacity="0"/>
+        </radialGradient>
+        <path id="ru-prem-aurore-anneau" d="M1000 500C1000 223.858 776.143 0 500 0C223.858 0 0 223.858 0 500C0 776.143 223.858 1000 500 1000C776.143 1000 1000 776.143 1000 500ZM325 500C325 403.35 403.35 325 500 325C596.65 325 675 403.35 675 500C675 596.65 596.65 675 500 675C403.35 675 325 596.65 325 500Z"/>
+      </defs>
+    </svg>
+    <div class="ru-prem-aurore" aria-hidden="true">
+      <div class="ru-prem-aurore__dots" data-viewport-pause>
+        <div class="ru-prem-aurore__anneau"><svg viewBox="0 0 1000 1000" fill="none"><use href="#ru-prem-aurore-anneau" fill="url(#ru-prem-aurore-grad)"/></svg></div>
+        <div class="ru-prem-aurore__anneau"><svg viewBox="0 0 1000 1000" fill="none"><use href="#ru-prem-aurore-anneau" fill="url(#ru-prem-aurore-grad)"/></svg></div>
+      </div>
+      <div class="ru-prem-aurore__overlay"></div>
+    </div>
+    <div class="ru-prem-carte">
+<p class="chapitre revele">01 · LE BRUIT</p><h1 class="revele">Attire tes clients idéaux. Monte la valeur de chaque dossier. Libère tes heures.<span class="hero-sig">Le levier : une vraie compréhension de ceux qui achètent.</span></h1><p class="constat revele">Avocats, experts-comptables, notaires, consultants, commerces premium : une acquisition ciblée, construite sur ce qui rassure, freine et décide vraiment tes futurs clients. Livrée sur mesure pour ton activité.</p>
+    </div>
+    <figure class="ru-prem-dalle" aria-hidden="true"><!-- RU-PREM E6 : VSL / vidéo hero -->
+      <span class="ru-prem-dalle__play"></span>
+    </figure>
+    <script>
+    /* RU-PREM-E3-AURORE : pause RÉELLE hors viewport (le compositeur se repose).
+       L'attribut data-viewport-pause est posé dans le markup → l'observer le
+       retire quand le hero entre dans le viewport, le repose quand il en sort. */
+    (function(){
+      var d=document.querySelector('.ru-prem-aurore__dots');if(!d)return;
+      if(!('IntersectionObserver' in window)){d.removeAttribute('data-viewport-pause');return;}
+      new IntersectionObserver(function(entrees){
+        entrees.forEach(function(e){
+          if(e.isIntersecting)d.removeAttribute('data-viewport-pause');
+          else d.setAttribute('data-viewport-pause','');
+        });
+      },{rootMargin:'80px'}).observe(d);
+    })();
+    </script>
+  </section>
+
+  <section class="acte ru-prem-acte" id="g2" data-nom="Le signal">
+    <div class="ru-prem-carte">
+<p class="chapitre revele">02 · LE SIGNAL</p><h2 class="revele">Les bons clients ne répondent pas au hasard.</h2><p class="constat revele">Ils reconnaissent qu'on comprend déjà ce qu'ils cherchent. Quand ton message devient clair, les mauvaises demandes s'effacent et les bonnes conversations prennent la place.</p>
+    </div>
+  </section>
+
+  <section class="acte ru-prem-acte" id="g3" data-nom="La sélection">
+    <div class="ru-prem-carte">
+<p class="chapitre revele">03 · LA SÉLECTION</p><h2 class="revele">Le but n'est pas d'attirer tout le monde.</h2><p class="constat revele">Le but, c'est d'attirer les personnes avec qui tu travailles le mieux.</p>
+    </div>
+  </section>
+
+  <section class="acte ru-prem-acte" id="g4" data-nom="La marge">
+    <div class="ru-prem-carte">
+<p class="chapitre revele">04 · LA MARGE</p><h2 class="revele">Quand tu arrêtes de tout négocier, ta marge respire.</h2><p class="constat revele">Un client qui te choisit pour ton expertise ne discute pas chaque ligne. Tu peux gagner plus sans multiplier les heures.</p>
+    </div>
+  </section>
+
+  <section class="acte ru-prem-acte" id="g5" data-nom="Le temps">
+    <div class="ru-prem-carte">
+<p class="chapitre revele">05 · LE TEMPS</p><h2 class="revele">Le vrai luxe, ce n'est pas de remplir ton agenda.<span class="hero-sig">C'est de pouvoir choisir ce que tu fais de ton temps.</span></h2><p class="constat revele">Stratégie. Projets. Famille. Respiration.</p>
+    </div>
+  </section>
+
+  <section class="acte ru-prem-acte" id="g6" data-nom="La satisfaction">
+    <div class="ru-prem-carte">
+<p class="chapitre revele">06 · LA SATISFACTION</p><h2 class="revele">Les meilleurs clients ne te prennent pas seulement moins d'énergie.</h2><p class="constat revele">Ils te rappellent pourquoi tu as choisi ce métier.</p>
+    </div>
+  </section>
+
+  <section class="acte ru-prem-acte" id="g7" data-nom="Le système">
+    <div class="ru-prem-carte">
+<p class="chapitre revele">07 · LE SYSTÈME</p><h2 class="revele">Publicité ciblée. Qualification. Conversion.<span class="hero-sig">Pas pour faire plus de bruit.</span></h2><p class="constat revele">Pour rendre ton acquisition plus régulière, plus claire et plus utile. On construit un système qui attire, filtre et transforme plus facilement les bonnes demandes.</p>
+    </div>
+  </section>
+
+  <section class="acte ru-prem-acte" id="g8" data-nom="La décision">
+    <div class="ru-prem-carte">
+<p class="chapitre revele">08 · LA DÉCISION</p><h2 class="revele">Ton expertise mérite des clients qui la reconnaissent.</h2><p class="constat revele">Découvre comment rendre ton acquisition plus sélective, plus régulière et plus rentable. Le calendrier t'attend juste en dessous.</p><p class="rassure revele">Un échange clair. Sans promesse irréaliste. Sans engagement forcé.</p>
+    </div>
+  </section>
+
+<section class="reservation" id="reservation" aria-labelledby="resa-titre">
+  <div class="reservation__coeur">
+    <p class="chapitre">RÉSERVER</p>
+    <h2 id="resa-titre">Choisis ton créneau.</h2>
+    <p class="reservation__rassure">Un échange clair. Sans promesse irréaliste. Sans engagement forcé.</p>
+    <!-- iClosed inline widget begin -->
+    <div class="iclosed-widget" data-url="https://app.iclosed.io/e/djibrilsylearning/brand" title="Djibril.learning " style="width: 100%; height: 620px"></div>
+    <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
+    <!-- iClosed inline widget end -->
+    <p class="reservation__secours" hidden>Le calendrier met du temps à charger ? Écris-moi directement : <a href="mailto:djibrilsylearn@gmail.com">djibrilsylearn@gmail.com</a></p>
+    <script>setTimeout(function(){var w=document.querySelector('.iclosed-widget');
+      if(w&&!w.querySelector('iframe')){var s=document.querySelector('.reservation__secours');if(s)s.hidden=false;}},5000);</script>
+    <p class="reservation__confiance">Je suis Djibril. J'aide des experts et des commerces premium à attirer leurs bons clients — mon parcours et 83 témoignages t'attendent juste en dessous.</p>
+  </div>
+</section>
+<noscript><p class="ru-prem-noscript">Le calendrier met du temps à charger ? Écris-moi directement : <a href="mailto:djibrilsylearn@gmail.com">djibrilsylearn@gmail.com</a></p></noscript>
+
+<div class="ru-prem-marquee" aria-hidden="true"><!-- RU-PREM E4 : marquee preuve sociale --></div>
+
+<section class="tfin" id="temoignages" aria-labelledby="tfin-titre">
+  <div class="tfin__tete">
+    <p class="chapitre">ILS EN PARLENT MIEUX QUE NOUS</p>
+    <h2 id="tfin-titre">83 personnes accompagnées racontent.</h2>
+    <p class="tfin__descend">Descends. Un témoignage à la fois.</p>
+  </div>
+  <div class="tfin__grille">
+<article class="tfin__carte">
+  <header><h3>Adam Younes</h3><span>40K en 4 mois</span></header>
+  <div class="tfin__video" data-wid="lcgvstjd7s" role="button" tabindex="0" aria-label="Lire le témoignage de Adam Younes (1 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/cc6e09b4e0cb4700e4eba26ae2aa7c80d5e7a5a1.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Yassine</h3><span>de 5K à 15K</span></header>
+  <div class="tfin__video" data-wid="0y16q2oude" role="button" tabindex="0" aria-label="Lire le témoignage de Yassine (2 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/1cda3aee60db174d2e6d40a0dd0d5bdc98e2d5bf.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Yanis</h3><span>10K/mois</span></header>
+  <div class="tfin__video" data-wid="7m1ikq14mn" role="button" tabindex="0" aria-label="Lire le témoignage de Yanis (3 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/8704d469c5ab86f3123aee616250005dd0bef15f.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Benjamin</h3><span>5K/mois</span></header>
+  <div class="tfin__video" data-wid="zpjrtfvck5" role="button" tabindex="0" aria-label="Lire le témoignage de Benjamin (4 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/320ed01f687a7264ff4a9beaeb6dfc518c2e8748.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Yanis</h3><span></span></header>
+  <div class="tfin__video" data-wid="h4988fyei0" role="button" tabindex="0" aria-label="Lire le témoignage de Yanis (5 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/262f4acc3895349298f6c06ec7eac27bd990ae9c.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Isac</h3><span></span></header>
+  <div class="tfin__video" data-wid="cy05rzemas" role="button" tabindex="0" aria-label="Lire le témoignage de Isac (6 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/ad59c5c85c8d6fd63a6c05055a3fcb249cddeb23.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Walid</h3><span></span></header>
+  <div class="tfin__video" data-wid="nh67qkvcpl" role="button" tabindex="0" aria-label="Lire le témoignage de Walid (7 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/98515cfe8ccf3a8e207828992419288fce735baf.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Natannël</h3><span></span></header>
+  <div class="tfin__video" data-wid="oamtl0t1km" role="button" tabindex="0" aria-label="Lire le témoignage de Natannël (8 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/51c59f6003f8fe1b5664e4ee29bcc05052ced705.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Ibrahim</h3><span></span></header>
+  <div class="tfin__video" data-wid="kgmir1i6qv" role="button" tabindex="0" aria-label="Lire le témoignage de Ibrahim (9 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/2f35375db2b0ac69a032779021d8629042381e72.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Ilyes</h3><span></span></header>
+  <div class="tfin__video" data-wid="6hyrimcjfj" role="button" tabindex="0" aria-label="Lire le témoignage de Ilyes (10 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/9f21751da44432de311690b96e404467802dc0cd.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Ianis</h3><span></span></header>
+  <div class="tfin__video" data-wid="qfr0h9r2m2" role="button" tabindex="0" aria-label="Lire le témoignage de Ianis (11 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/33cc980dec488aa86a049191af6a2fc99a30faa4.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Celio</h3><span></span></header>
+  <div class="tfin__video" data-wid="wb2n19eagu" role="button" tabindex="0" aria-label="Lire le témoignage de Celio (12 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/c1669d37e5ee2342ca2c4e895233e94501dc338a.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Wassim</h3><span></span></header>
+  <div class="tfin__video" data-wid="9g1jf7nzjv" role="button" tabindex="0" aria-label="Lire le témoignage de Wassim (13 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/1baa34e27c7736b068ecc575679ed577bac564d5.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Gary</h3><span></span></header>
+  <div class="tfin__video" data-wid="gjwxjx90wj" role="button" tabindex="0" aria-label="Lire le témoignage de Gary (14 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/1206d2ed111f2e1f7b12096468af800881bbed5f.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Ibrahim</h3><span></span></header>
+  <div class="tfin__video" data-wid="il5ohzf2qw" role="button" tabindex="0" aria-label="Lire le témoignage de Ibrahim (15 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/aa16ac335f2ec0c862e5e84fd1d9ab7330df4425.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Léo</h3><span></span></header>
+  <div class="tfin__video" data-wid="vvvs9cb91i" role="button" tabindex="0" aria-label="Lire le témoignage de Léo (16 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/632004c167b8e1782f7e9420e8f818abef259433.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Bastien</h3><span></span></header>
+  <div class="tfin__video" data-wid="pmxlouje32" role="button" tabindex="0" aria-label="Lire le témoignage de Bastien (17 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/5a3350aefc6234e6774025a9b753191ca37bb12e.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Gahilou</h3><span></span></header>
+  <div class="tfin__video" data-wid="arscjpke7l" role="button" tabindex="0" aria-label="Lire le témoignage de Gahilou (18 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/8a231b43c38324dbe9bad1dcf6641aac95e63fe2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Jimmy</h3><span></span></header>
+  <div class="tfin__video" data-wid="56p3pb14c1" role="button" tabindex="0" aria-label="Lire le témoignage de Jimmy (19 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/256d102e20c99c3848ce000eaf7071594d3735d3.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Alexis</h3><span></span></header>
+  <div class="tfin__video" data-wid="nc900jms2i" role="button" tabindex="0" aria-label="Lire le témoignage de Alexis (20 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/dc135c86c7c0725f23317f488ee638e1c04c75f2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Jonathan</h3><span></span></header>
+  <div class="tfin__video" data-wid="ulf3sksaz5" role="button" tabindex="0" aria-label="Lire le témoignage de Jonathan (21 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/d497bee941c4a9a2c64efe5d723b7d65a9136d75.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Manda</h3><span></span></header>
+  <div class="tfin__video" data-wid="fknb9tu1as" role="button" tabindex="0" aria-label="Lire le témoignage de Manda (22 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/22c266f5a880d3e38a09df3b105538c8ef9055a3.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Julien</h3><span></span></header>
+  <div class="tfin__video" data-wid="amkfddzscp" role="button" tabindex="0" aria-label="Lire le témoignage de Julien (23 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/2125daa3a1b2d6f5ba2f621857d181561d50c740.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Lucas</h3><span></span></header>
+  <div class="tfin__video" data-wid="qnjyuyygml" role="button" tabindex="0" aria-label="Lire le témoignage de Lucas (24 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/d127b35e63f9702fcfb9893e607e5395db01c78b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Noah</h3><span></span></header>
+  <div class="tfin__video" data-wid="qj9xyko36b" role="button" tabindex="0" aria-label="Lire le témoignage de Noah (25 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/650237e0ab279f62759ee1b49046675f160dda55.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Baptiste</h3><span></span></header>
+  <div class="tfin__video" data-wid="4l55xlmfij" role="button" tabindex="0" aria-label="Lire le témoignage de Baptiste (26 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/565d57d3b08ee1685ca135aa1097d76d1fdeb485.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Noman</h3><span></span></header>
+  <div class="tfin__video" data-wid="78uk2mh9np" role="button" tabindex="0" aria-label="Lire le témoignage de Noman (27 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/70113fd60d5bee8d664204232a9e168cfb1823f9.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Johan</h3><span></span></header>
+  <div class="tfin__video" data-wid="q5cx01g8ia" role="button" tabindex="0" aria-label="Lire le témoignage de Johan (28 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/9a915f4b808c0f4b00b0e531358a186ddbd0d3a2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Massil</h3><span></span></header>
+  <div class="tfin__video" data-wid="y3g5guxa96" role="button" tabindex="0" aria-label="Lire le témoignage de Massil (29 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/b6a0ddbab4421824773afd7bed818e5a03245797.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Yanis</h3><span></span></header>
+  <div class="tfin__video" data-wid="xd19qqu5mi" role="button" tabindex="0" aria-label="Lire le témoignage de Yanis (30 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/fdd4839410e8032c08d57fdcd408f1605f54b05f.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Berenger</h3><span></span></header>
+  <div class="tfin__video" data-wid="c0y5llunv9" role="button" tabindex="0" aria-label="Lire le témoignage de Berenger (31 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/8dd2ec6b7eb7a56a1b7675665f1af524042bba1d.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Theo</h3><span></span></header>
+  <div class="tfin__video" data-wid="f4omw519tr" role="button" tabindex="0" aria-label="Lire le témoignage de Theo (32 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/91099ca37b2ac98ee41883e823d5cf4e9b9ff303.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Kelvin</h3><span></span></header>
+  <div class="tfin__video" data-wid="nvpohd4lk1" role="button" tabindex="0" aria-label="Lire le témoignage de Kelvin (33 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/70317148962b6c1cf217ca74100cf0a08e4ef87e.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Thierry</h3><span></span></header>
+  <div class="tfin__video" data-wid="zyoma8m7cd" role="button" tabindex="0" aria-label="Lire le témoignage de Thierry (34 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/c373b9a382b4d2188816f738de3760fdb3d0debd.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Carlos</h3><span></span></header>
+  <div class="tfin__video" data-wid="cxya1rerrk" role="button" tabindex="0" aria-label="Lire le témoignage de Carlos (35 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/32ea26868e4d7337ce39262d4a01505f04f99484.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Lucman</h3><span></span></header>
+  <div class="tfin__video" data-wid="qdk7si2x7z" role="button" tabindex="0" aria-label="Lire le témoignage de Lucman (36 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/7abd6dd68a6c93577dc6ee9bb3c409fa6a33290b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Ichou</h3><span></span></header>
+  <div class="tfin__video" data-wid="swq0dstcor" role="button" tabindex="0" aria-label="Lire le témoignage de Ichou (37 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/2f4ebd47038e9721df7d9df98674af280a145e3b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Malik</h3><span></span></header>
+  <div class="tfin__video" data-wid="xqlngf3ih6" role="button" tabindex="0" aria-label="Lire le témoignage de Malik (38 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/be84816964b35838dec275b5842c01f30d6a4f82.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Adrien</h3><span></span></header>
+  <div class="tfin__video" data-wid="pw66i10xf5" role="button" tabindex="0" aria-label="Lire le témoignage de Adrien (39 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/82e7bcd84fe43d6b9350a97f7d9d51b0df93087e.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Wylad</h3><span></span></header>
+  <div class="tfin__video" data-wid="6t16pmmq7d" role="button" tabindex="0" aria-label="Lire le témoignage de Wylad (40 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/d79ad1bcda08dc9ead7e27652559a7bd354afe65.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Houssine</h3><span></span></header>
+  <div class="tfin__video" data-wid="9v0r2495oi" role="button" tabindex="0" aria-label="Lire le témoignage de Houssine (41 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/3ccc6cf20f073e2b1e5d22def3e4e3f5aeb5b64b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Soan</h3><span></span></header>
+  <div class="tfin__video" data-wid="jdjdtl17fe" role="button" tabindex="0" aria-label="Lire le témoignage de Soan (42 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/e163d8ac7c1863ab65f5fd9f7642756713798a66.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Ismaïl</h3><span></span></header>
+  <div class="tfin__video" data-wid="y9o25ff90b" role="button" tabindex="0" aria-label="Lire le témoignage de Ismaïl (43 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/56d83346c4fefac76553d934349e4f8a826989aa.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Redouane</h3><span></span></header>
+  <div class="tfin__video" data-wid="y3xpgqqaiw" role="button" tabindex="0" aria-label="Lire le témoignage de Redouane (44 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/7d0e30f17a2139be25f1d0f2eaf4d278b8ce249b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Qasim</h3><span></span></header>
+  <div class="tfin__video" data-wid="4xto92mzox" role="button" tabindex="0" aria-label="Lire le témoignage de Qasim (45 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/94daf66b44a6f76e13f119ef7d2623bceadb851d.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Brygthon</h3><span></span></header>
+  <div class="tfin__video" data-wid="q9m6ttsnmn" role="button" tabindex="0" aria-label="Lire le témoignage de Brygthon (46 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/4b52d7f8be979ee25700650c3e114d400adf0c5c.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Nolan</h3><span></span></header>
+  <div class="tfin__video" data-wid="8nc99pkhea" role="button" tabindex="0" aria-label="Lire le témoignage de Nolan (47 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/87c83db726e1bcdd9e63156214dad09cf0c1c91f.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Samy</h3><span></span></header>
+  <div class="tfin__video" data-wid="r97jl7n0ew" role="button" tabindex="0" aria-label="Lire le témoignage de Samy (48 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/f6fc25dec1bf47b13eddb9e2ba809c6ac9037648.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Luis</h3><span></span></header>
+  <div class="tfin__video" data-wid="v11hw0kh2e" role="button" tabindex="0" aria-label="Lire le témoignage de Luis (49 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/536b14e41cd0b55a579f2eceadf38c0a877499e5.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Jeremy</h3><span></span></header>
+  <div class="tfin__video" data-wid="yq9jssaf1a" role="button" tabindex="0" aria-label="Lire le témoignage de Jeremy (50 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/8187b1777045e3bc0ae06fdf17dabbfd2883f5df.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Ali</h3><span></span></header>
+  <div class="tfin__video" data-wid="vts8vwex2v" role="button" tabindex="0" aria-label="Lire le témoignage de Ali (51 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/c6611b9748c3b2bc3c17a6a8a1a3d748933a9738.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Paul</h3><span></span></header>
+  <div class="tfin__video" data-wid="bw6v2scn79" role="button" tabindex="0" aria-label="Lire le témoignage de Paul (52 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/92d20b9d52ba09516c2311d1eddeec11dccae0a6.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Mohamed</h3><span></span></header>
+  <div class="tfin__video" data-wid="k888n704n3" role="button" tabindex="0" aria-label="Lire le témoignage de Mohamed (53 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/83ca857656215d20cd013510d8b473796d62da0f.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Raphael</h3><span></span></header>
+  <div class="tfin__video" data-wid="dtji3wjoiu" role="button" tabindex="0" aria-label="Lire le témoignage de Raphael (54 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/4abfa5f47e9ac61c6fb772391d09fa5c05b35e70.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Dara</h3><span></span></header>
+  <div class="tfin__video" data-wid="yq9ya6apd4" role="button" tabindex="0" aria-label="Lire le témoignage de Dara (55 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/11aa7b441e8e7ed85327c17945e6d5449e56632a.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Milan</h3><span></span></header>
+  <div class="tfin__video" data-wid="bj05d7kuhf" role="button" tabindex="0" aria-label="Lire le témoignage de Milan (56 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/3b77f01962cb525c317aa888d5650d8e7ff1f7f7.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Clément</h3><span></span></header>
+  <div class="tfin__video" data-wid="w4rf12z91v" role="button" tabindex="0" aria-label="Lire le témoignage de Clément (57 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/a6f0969730ce84dc6459a3167d578aa90cbe5f32.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Hugo</h3><span></span></header>
+  <div class="tfin__video" data-wid="kgui3v6qoi" role="button" tabindex="0" aria-label="Lire le témoignage de Hugo (58 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/55d47e22f5c74d8f346be1c131a25c65daee2df9.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Yacine</h3><span></span></header>
+  <div class="tfin__video" data-wid="dqkz1siohj" role="button" tabindex="0" aria-label="Lire le témoignage de Yacine (59 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/d66d1cbf52255d90adbd8f12fbc00cf5ef1d6e37.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Swan</h3><span></span></header>
+  <div class="tfin__video" data-wid="jp9pxkcd7b" role="button" tabindex="0" aria-label="Lire le témoignage de Swan (60 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/802dd2f4d8ecf23fc0e15fe834b2067b359270c4.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Mohamed</h3><span></span></header>
+  <div class="tfin__video" data-wid="jggeglhg45" role="button" tabindex="0" aria-label="Lire le témoignage de Mohamed (61 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/90202ca0f4f494df0e0efe233b27de1b0086a2f2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Wassim</h3><span></span></header>
+  <div class="tfin__video" data-wid="dmq7xbj3bw" role="button" tabindex="0" aria-label="Lire le témoignage de Wassim (62 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/2036836c7c363287ba623c97b0c60a0a319f588d.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Ulrick</h3><span></span></header>
+  <div class="tfin__video" data-wid="quqp0w3htr" role="button" tabindex="0" aria-label="Lire le témoignage de Ulrick (63 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/536abbe3c84fdc052f84bb2edda9cfd12c3e3415.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Christopher</h3><span></span></header>
+  <div class="tfin__video" data-wid="7v3ts2fc4d" role="button" tabindex="0" aria-label="Lire le témoignage de Christopher (64 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/2377e761eae735862e8644b9c73280200daa431a.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Lenny</h3><span></span></header>
+  <div class="tfin__video" data-wid="hzqp2z25sy" role="button" tabindex="0" aria-label="Lire le témoignage de Lenny (65 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/140016412a9a0846d88751482c26ed1968d23b9b.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Abou</h3><span></span></header>
+  <div class="tfin__video" data-wid="mnu9zo24yc" role="button" tabindex="0" aria-label="Lire le témoignage de Abou (66 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/bb830bb20b3d620ae06ba04dd7b8d54ad753a310.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Alexandre</h3><span></span></header>
+  <div class="tfin__video" data-wid="7si6lmqgzq" role="button" tabindex="0" aria-label="Lire le témoignage de Alexandre (67 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/18498f2d20e5c5c3feae92413c90fb53abbb6062.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Djibryl</h3><span></span></header>
+  <div class="tfin__video" data-wid="a5etrshmpz" role="button" tabindex="0" aria-label="Lire le témoignage de Djibryl (68 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/3ecc64e2b12bcd5a43020c0940e6134be89cc7b0.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Chris</h3><span></span></header>
+  <div class="tfin__video" data-wid="qpnljbh7y2" role="button" tabindex="0" aria-label="Lire le témoignage de Chris (69 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/277520ab1550742798202004d78e427e05e2d26d.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Keryan</h3><span></span></header>
+  <div class="tfin__video" data-wid="9e6tevdk4t" role="button" tabindex="0" aria-label="Lire le témoignage de Keryan (70 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/8a8e788458cecc00f34be7a0a2f3b295e8d3dda2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Quentin</h3><span></span></header>
+  <div class="tfin__video" data-wid="84qvndi09v" role="button" tabindex="0" aria-label="Lire le témoignage de Quentin (71 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/2948e9e93c1261686b8cf35415d91b0ba0382013.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Salem</h3><span></span></header>
+  <div class="tfin__video" data-wid="m643jp2d5l" role="button" tabindex="0" aria-label="Lire le témoignage de Salem (72 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/502064845d9256795e2100cab698b5cfb91f4eb8.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Mathieu</h3><span></span></header>
+  <div class="tfin__video" data-wid="owxop692fa" role="button" tabindex="0" aria-label="Lire le témoignage de Mathieu (73 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/3f5b3364eb76b4f104ce3adb47cea8739d7e460c.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Yahya</h3><span></span></header>
+  <div class="tfin__video" data-wid="9ne4ub7k90" role="button" tabindex="0" aria-label="Lire le témoignage de Yahya (74 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/9a4b11af5c1f39747e5b2e2fcd081d00c2925ad2.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Macim</h3><span></span></header>
+  <div class="tfin__video" data-wid="lj3b71sbhv" role="button" tabindex="0" aria-label="Lire le témoignage de Macim (75 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/551468c66d5224227f65701cd868dd8b698ebbac.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Nassim</h3><span></span></header>
+  <div class="tfin__video" data-wid="y4do3loz6e" role="button" tabindex="0" aria-label="Lire le témoignage de Nassim (76 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/da6584e5c0d2b7044a5c4dffe8b7fb4d27389909.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Andy</h3><span></span></header>
+  <div class="tfin__video" data-wid="w0628fupnp" role="button" tabindex="0" aria-label="Lire le témoignage de Andy (77 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/b80a1904441dad0b074ec1088a63e934456ab6b0.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Nathan</h3><span></span></header>
+  <div class="tfin__video" data-wid="ki491gr1sm" role="button" tabindex="0" aria-label="Lire le témoignage de Nathan (78 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/66c5573fb44a51cc3f3abec44e21d24b7349df7d.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Seguy</h3><span></span></header>
+  <div class="tfin__video" data-wid="pqpqzpr3qq" role="button" tabindex="0" aria-label="Lire le témoignage de Seguy (79 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/0224ee1ca34d0e3a13b2ad1e2a5a06a4688154f4.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Ilyes</h3><span></span></header>
+  <div class="tfin__video" data-wid="s1ts2mssv4" role="button" tabindex="0" aria-label="Lire le témoignage de Ilyes (80 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/d67ed484b451ac5d365484621ea3390d50732b02.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Lany</h3><span></span></header>
+  <div class="tfin__video" data-wid="f4roc0xe2w" role="button" tabindex="0" aria-label="Lire le témoignage de Lany (81 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/d24bfe7e5a36c40b4bc4cffe3c8ce8c1c0e25b69.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Rayan</h3><span></span></header>
+  <div class="tfin__video" data-wid="jdo059ntyi" role="button" tabindex="0" aria-label="Lire le témoignage de Rayan (82 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/5cf046bee4cfe6195a90ca01a1d2e35e3ca52570.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+<article class="tfin__carte">
+  <header><h3>Kais</h3><span></span></header>
+  <div class="tfin__video" data-wid="r6sdz788m6" role="button" tabindex="0" aria-label="Lire le témoignage de Kais (83 sur 83)">
+    <img src="https://embed-ssl.wistia.com/deliveries/dfa4b7d7f0e75da74f892048648802f68eaf1e71.jpg?image_crop_resized=400x712" alt="" loading="lazy" decoding="async" width="400" height="712">
+    <span class="tfin__play" aria-hidden="true"></span>
+  </div>
+</article>
+  </div>
+  <script>
+  document.addEventListener('click',function(e){var c=e.target.closest('.tfin__video');if(c)lireTfin(c);});
+  document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')return;var c=e.target.closest&&e.target.closest('.tfin__video');if(c){e.preventDefault();lireTfin(c);}});
+  var tfinOuverts=[];
+  function lireTfin(c){if(c.dataset.lu)return;c.dataset.lu='1';
+    /* plafond 3 lecteurs ouverts : au 4e, on referme le plus ancien (batterie/mémoire).
+       On restaure la carte TELLE QUELLE (miniature incluse) : l'innerHTML d'origine est
+       sauvegardé avant d'être remplacé par l'iframe. */
+    c.__miniature=c.innerHTML;
+    tfinOuverts.push(c);
+    if(tfinOuverts.length>3){var vieux=tfinOuverts.shift();delete vieux.dataset.lu;
+      vieux.innerHTML=vieux.__miniature||'<span class="tfin__play" aria-hidden="true"></span>';}
+    var f=document.createElement('iframe');
+    f.title=c.getAttribute('aria-label')||'Témoignage vidéo';
+    f.src='https://fast.wistia.net/embed/iframe/'+c.dataset.wid+'?autoPlay=true';
+    f.allow='autoplay; fullscreen';f.setAttribute('allowfullscreen','');
+    c.innerHTML='';c.appendChild(f);}
+  </script>
+</section>
+
+<section class="fondateur" aria-labelledby="fondateur-titre">
+  <div class="fondateur__coeur">
+    <h2 id="fondateur-titre">Avant d'aider des experts à attirer de meilleurs clients, j'ai appris à lire les gens.</h2>
+    
+    <div class="fondateur__recit">
+      <p>À 16 ans, je vendais des parfums.</p>
+      <p>À 17 ans, je me suis lancé dans l'entrepreneuriat.</p>
+      <p>Ensuite, je suis passé par la coiffure.</p>
+      <p>Et c'est là que j'ai compris un truc que beaucoup de formations ne t'apprennent jamais.</p>
+      <p>Tu peux parler à quelqu'un pendant une heure sans vraiment l'écouter.</p>
+      <p>J'ai coiffé des milliers de personnes.</p>
+      <p>Des entrepreneurs, des dirigeants, des familles installées et des profils très différents.</p>
+      <p>Mais peu importe leur niveau, je voyais toujours la même chose.</p>
+      <p>Les gens ne prennent pas leurs décisions juste avec de la logique.</p>
+      <p>Ils avancent quand ils se sentent compris.</p>
+      <p>Ils hésitent quand ils ont peur de perdre du temps, de faire le mauvais choix ou de ne pas être à la hauteur.</p>
+      <p>Ils achètent quand ils comprennent clairement ce que ça peut changer pour eux.</p>
+      <p>À force de voir ça tous les jours, j'ai commencé à m'intéresser sérieusement aux comportements humains.</p>
+      <p>À ce qui rassure.</p>
+      <p>À ce qui freine.</p>
+      <p>À ce qui donne confiance.</p>
+      <p>Puis j'ai compris que le marketing, c'était exactement ça.</p>
+      <p>Pas faire du bruit.</p>
+      <p>Pas chercher à plaire à tout le monde.</p>
+      <p>Comprendre une personne assez précisément pour lui montrer qu'on peut réellement l'aider.</p>
+      <p>C'est pour ça que je me suis dirigé vers le marketing.</p>
+      <p>Aujourd'hui, avec Reset Ultra, j'utilise cette lecture humaine pour aider des experts à attirer des clients plus cohérents avec leur niveau.</p>
+      <p>Des clients qui comprennent mieux leur valeur.</p>
+      <p>Qui respectent davantage leur temps.</p>
+      <p>Qui rendent leur activité plus rentable.</p>
+      <p>Et surtout, plus agréable à développer.</p>
+    </div>
+    <p class="fondateur__citation">Le marketing commence quand tu comprends vraiment la personne en face.</p>
+    
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <span class="footer__mono">Reset Ultra</span>
+  <span class="footer__mono"><a href="mailto:djibrilsylearn@gmail.com">Contact</a></span>
+</footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Déploie le site reset-ultra sur les DEUX cibles d'un coup :
+#   1) GitHub Pages  -> djibrilmindset.github.io/djibril-ads-landing/  (via git push)
+#   2) Cloudflare Pages -> reset-ultra.com  (via wrangler, direct-upload, avec le _headers)
+# Usage : ./deploy.sh ["message de commit"]
+set -euo pipefail
+
+REPO="/Users/pardin/agence-ia/djibril-ads-landing"
+HEADERS="/Users/pardin/agence-ia/reset-deploy/_headers"   # headers sécurité, hors repo -> à réinjecter à chaque deploy CF
+PROJECT="resetultra"
+MSG="${1:-deploy $(date '+%Y-%m-%d %H:%M')}"
+
+cd "$REPO"
+
+echo "==> 1/2  GitHub Pages (git push)"
+if [[ -n "$(git status --porcelain)" ]]; then
+  git add -A && git commit -m "$MSG"
+  echo "    commit: $(git rev-parse --short HEAD)"
+else
+  echo "    rien à committer (working tree propre)"
+fi
+git push origin main
+echo "    pushé. (build GitHub Pages ~1-3 min)"
+
+echo "==> 2/2  Cloudflare Pages (wrangler, reset-ultra.com)"
+STAGE="$(mktemp -d)/site"
+mkdir -p "$STAGE"
+rsync -a --exclude='.git' --exclude='.github' --exclude='.DS_Store' --exclude='deploy.sh' "$REPO/" "$STAGE/"
+if [[ -f "$HEADERS" ]]; then cp "$HEADERS" "$STAGE/_headers"; echo "    _headers réinjecté (CSP/X-Frame/HSTS...)"; else echo "    ⚠️ _headers introuvable ($HEADERS) — headers sécurité NON réinjectés !"; fi
+
+export CLOUDFLARE_API_TOKEN="$(grep -E '^CLOUDFLARE_API_TOKEN=' "$HOME/.env" | head -1 | cut -d= -f2- | tr -d "\"' ")"
+export CLOUDFLARE_ACCOUNT_ID="$(grep -E '^CLOUDFLARE_ACCOUNT_ID=' "$HOME/.env" | head -1 | cut -d= -f2- | tr -d "\"' ")"
+wrangler pages deploy "$STAGE" --project-name="$PROJECT" --branch=main --commit-dirty=true
+rm -rf "$(dirname "$STAGE")"
+
+echo ""
+echo "✅ Déployé sur les deux : github.io (GitHub Pages) + reset-ultra.com (Cloudflare Pages)."
+echo "   • reset-ultra.com est instantané. Si tu vois l'ancien, hard-refresh (Cmd+Shift+R)."
+echo "   • Si GitHub Pages reste bloqué en 'errored' :"
+echo "       gh api -X POST repos/djibrilmindset/djibril-ads-landing/pages/builds"
