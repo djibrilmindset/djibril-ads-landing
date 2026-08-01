@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Tableau de bord</title>
+<style>
+/* Un écran = une question = un chiffre géant (SPEC_DASHBOARD.md). Mobile d'abord : tout tient
+   sur un écran de téléphone en portrait, aucun réglage, aucun filtre de dates. */
+:root{--bg:#0d0f12;--card:#16191f;--line:#242832;--txt:#f2f4f8;--dim:#8b93a3;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;--acc:#3b82f6}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--txt);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:16px 14px 40px;max-width:520px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px}
+.lbl{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.hero{font-size:clamp(46px,15vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1}
+.sub{margin-top:8px;font-size:15px;color:var(--dim)}
+.up{color:var(--ok)}.down{color:var(--bad)}
+.row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.row:last-child{border-bottom:0}
+.row b{font-weight:700;font-variant-numeric:tabular-nums}
+.bar{height:10px;background:#000;border-radius:99px;overflow:hidden;margin:10px 0 8px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#3b82f6,#22c55e)}
+.big2{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}
+details{margin-top:2px}
+summary{cursor:pointer;color:var(--acc);font-size:15px;padding:14px 0 4px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:" ›"}
+details[open] summary::after{content:" ⌄"}
+pre{font:14px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--txt);white-space:pre-wrap;margin-top:12px;font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--dim);margin-top:12px;line-height:1.5}
+.tag{display:inline-block;font-size:12px;padding:3px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+.t-ok{background:rgba(34,197,94,.16);color:#4ade80}
+.t-no{background:rgba(239,68,68,.14);color:#f87171}
+.t-w{background:rgba(245,158,11,.14);color:#fbbf24}
+.t-n{background:#20242d;color:var(--dim)}
+.lead{padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.lead:last-child{border-bottom:0}
+.lead .d{font-size:13px;color:var(--dim);margin-top:3px}
+.maj{text-align:center;color:var(--dim);font-size:12px;margin-top:18px}
+.err{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.4)}
+h1{font-size:19px;font-weight:700;margin-bottom:14px}
+.seg{display:flex;gap:6px;margin:14px 0 4px}
+.seg button{flex:1;background:#20242d;border:0;color:var(--dim);padding:9px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer}
+.seg button.on{background:var(--acc);color:#fff}
+</style>
+</head>
+<body>
+<div id="app"><div class="card"><div class="lbl">Chargement</div><div class="sub">Un instant…</div></div></div>
+<div class="maj" id="maj"></div>
+
+<script>
+// ── Réglages ───────────────────────────────────────────────────────────────────────────────────
+var API = "https://nbnbsljqtolzzuqnkyae.supabase.co/functions/v1/dashboard-api";
+var qs  = new URLSearchParams(location.search);
+var ROLE = (qs.get("r") || "").toLowerCase();
+var TOK  = qs.get("t") || "";
+var WHO  = qs.get("q") || "";
+var app  = document.getElementById("app");
+
+function eur(n){ return (Math.round(n||0)).toLocaleString("fr-FR") + " €"; }
+function esc(s){ return String(s==null?"":s).replace(/[<>&]/g, function(c){ return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c]; }); }
+function card(html, cls){ return '<div class="card'+(cls?" "+cls:"")+'">'+html+'</div>'; }
+
+function erreur(msg){
+  app.innerHTML = card('<div class="lbl">Indisponible</div><div class="sub">'+esc(msg)+'</div>', "err");
+}
+
+// ── Écran SETTER : sa commission, rien d'autre ────────────────────────────────────────────────
+function vueSetter(d){
+  var h = "";
+  // 1. Le chiffre géant. La commission n'est publiée QUE si la dépense pub est connue : sinon elle
+  //    serait calculée sur des charges incomplètes, donc fausse, et servirait de base à un paiement.
+  if (d.commission === null || d.commission === undefined) {
+    h += card('<div class="lbl">Ta commission de ce mois</div><div class="big2">En cours de calcul</div>'
+      + '<div class="note">Le montant s\'affiche dès que la dépense publicitaire du mois est connue. '
+      + 'Tes ventes, elles, sont déjà comptées : ' + eur(d.assiette) + ' encaissés sur tes RDV.</div>');
+  } else {
+    var delta = (d.commission_prev !== null && d.commission_prev !== undefined)
+      ? (d.commission - d.commission_prev) : null;
+    h += card('<div class="lbl">Ta commission de ce mois</div>'
+      + '<div class="hero">' + eur(d.commission) + '</div>'
+      + (delta !== null ? '<div class="sub '+(delta>=0?"up":"down")+'">'+(delta>=0?"↑ +":"↓ ")+eur(Math.abs(delta))+' vs le mois dernier</div>' : '')
+      + '<div class="note">Elle bouge chaque jour : elle dépend de ce que tu settes ET de ce qu\'il reste une fois la publicité et les frais payés.</div>');
+  }
+  // 2. Son activité — le seul autre chiffre qui compte pour lui
+  h += card('<div class="lbl">Tes rendez-vous ce mois</div>'
+    + '<div class="row"><span>RDV que tu as settés</span><b>'+d.rdv_settes+'</b></div>'
+    + '<div class="row"><span>Venus à l\'appel</span><b>'+d.venus+'</b></div>'
+    + '<div class="row"><span>Ventes signées</span><b>'+d.ventes+'</b></div>');
+  // 3. La transparence : dépliable, jamais imposée
+  h += card('<details><summary>D\'où vient ce chiffre ?</summary>'
+    + '<pre>Encaissé sur les RDV que TU as settés   ' + eur(d.assiette) + '\n'
+    + '× marge du mois                        ' + (d.marge||0).toFixed(1) + ' %\n'
+    + '  (ce qui reste après pub et frais)\n'
+    + '────────────────────────────────────────────\n'
+    + '× ta part                              ' + d.pct + ' %\n'
+    + '= ta commission                        ' + (d.commission!=null?eur(d.commission):"—") + '</pre>'
+    + '<div class="note">Ta part est calculée sur ce qui reste une fois la publicité et les frais payés. '
+    + 'Plus de publicité veut dire plus de rendez-vous pour toi, mais un bénéfice mensuel plus serré. '
+    + 'Seules les ventes que TU as settées comptent ici.</div></details>');
+  // 4. Le détail de SES leads
+  var L = d.detail || [];
+  if (L.length) {
+    var lignes = L.slice().sort(function(a,b){ return a.date < b.date ? 1 : -1; }).map(function(l){
+      var t = l.montant > 0 ? '<span class="tag t-ok">vendu '+eur(l.montant)+'</span>'
+            : l.venu ? '<span class="tag t-w">venu</span>'
+            : l.noshow ? '<span class="tag t-no">pas venu</span>'
+            : '<span class="tag t-n">à venir</span>';
+      return '<div class="lead"><span>'+esc(l.nom)+'</span>'+t+'<div class="d">'+esc(l.date)+'</div></div>';
+    }).join("");
+    h += card('<details><summary>Voir tes '+L.length+' rendez-vous</summary>'+lignes+'</details>');
+  }
+  app.innerHTML = h;
+}
+
+// ── Écran PATRON : décider ────────────────────────────────────────────────────────────────────
+var DATA = null, FILTRE = "tous";
+function vuePatron(d){
+  DATA = d;
+  var h = "";
+  // 1. Bénéfice en géant ; le hors-pub reste à côté, jamais fondu dedans (sinon le rendement pub ment)
+  var dl = (d.benefice_prev !== null && d.benefice_prev !== undefined) ? (d.benefice - d.benefice_prev) : null;
+  h += card('<div class="lbl">Ton bénéfice ce mois</div><div class="hero">'+eur(d.benefice)+'</div>'
+    + (dl !== null ? '<div class="sub '+(dl>=0?"up":"down")+'">'+(dl>=0?"↑ +":"↓ ")+eur(Math.abs(dl))+' vs le mois dernier</div>' : '')
+    + '<div class="sub">+ ' + eur(d.hors_pubs) + ' encaissés hors publicité</div>');
+  // 2. La publicité, racontée en phrases + une ligne de décision
+  var dec = "", cls = "";
+  if (d.rendement === null) { dec = "Dépense publicitaire inconnue ce mois."; cls = "t-n"; }
+  else if (d.rendement < 2.5) { dec = "Rendement faible : coupe ou revois les créas avant d'ajouter du budget."; cls = "t-no"; }
+  else if (d.presence !== null && d.presence < 70) { dec = "Rendement bon, mais trop d'absents : traite la présence avant de monter le budget."; cls = "t-w"; }
+  else { dec = "Tu peux monter le budget publicitaire."; cls = "t-ok"; }
+  h += card('<div class="lbl">Ta publicité</div>'
+    + (d.rendement !== null ? '<div class="big2">1 € dépensé → '+d.rendement.toFixed(2)+' € encaissés</div>' : '<div class="big2">—</div>')
+    + '<div class="row"><span>Dépensé ce mois</span><b>'+eur(d.pub)+(d.pub_source==="meta"?' <span class="tag t-ok">Meta en direct</span>':' <span class="tag t-w">saisi à la main</span>')+'</b></div>'
+    + (d.cout_client !== null ? '<div class="row"><span>Coût d\'un client</span><b>'+eur(d.cout_client)+'</b></div>' : '')
+    + '<div class="note"><span class="tag '+cls+'">'+esc(dec)+'</span></div>');
+  // 3. Les deux taux qui pilotent tout le reste
+  var pd = (d.presence_prev !== null && d.presence !== null) ? (d.presence - d.presence_prev) : null;
+  h += card('<div class="lbl">Tes rendez-vous</div>'
+    + '<div class="row"><span>Présence aux appels</span><b>'+(d.presence!==null?d.presence.toFixed(0)+" %":"—")
+      + (pd !== null && Math.abs(pd) >= 1 ? ' <span class="'+(pd>=0?"up":"down")+'" style="font-size:13px">'+(pd>=0?"↑":"↓")+Math.abs(pd).toFixed(0)+' pts</span>' : '') + '</b></div>'
+    + '<div class="row"><span>Ventes sur les venus</span><b>'+(d.closing!==null?d.closing.toFixed(0)+" %":"—")+'</b></div>'
+    + '<div class="row"><span>RDV du mois</span><b>'+d.rdv+'</b></div>'
+    + (d.non_renseignes > 0 ? '<div class="note">⚠️ '+d.non_renseignes+' rendez-vous sans réponse venu / pas venu. Tant qu\'ils ne sont pas renseignés, ils ne comptent dans aucun taux.</div>' : ''));
+  // 4. Ce qu'on doit aux setters
+  var pl = (d.parts||[]).map(function(p){
+    return '<div class="row"><span>'+esc(p.nom)+'<span class="tag t-n">'+eur(p.assiette)+' settés</span></span><b>'+(p.part!==null?eur(p.part):"—")+'</b></div>';
+  }).join("");
+  h += card('<div class="lbl">À verser aux setters</div>'+(pl||'<div class="sub">Personne pour l\'instant</div>'));
+  // 5. Le détail, filtrable — la demande du 01/08 : croiser venu et « setté par qui »
+  h += card('<details><summary>Voir les '+d.rdv+' rendez-vous</summary>'
+    + '<div class="seg" id="seg"></div><div id="liste"></div></details>');
+  // 6. Le calcul complet
+  h += card('<details><summary>Le calcul du mois</summary><pre>'
+    + 'CA venu de la publicité      ' + eur(d.ca) + '\n'
+    + '− publicité                  ' + eur(d.pub) + '\n'
+    + '− abonnements                ' + eur(d.abos) + '\n'
+    + '− frais d\'encaissement ' + d.frais_pct + ' %   ' + eur(d.frais) + '\n'
+    + '──────────────────────────────────────\n'
+    + '= bénéfice                   ' + eur(d.benefice) + '   (' + d.marge.toFixed(1) + ' % de marge)\n\n'
+    + 'Hors publicité               ' + eur(d.hors_pubs) + '\n'
+    + 'TOTAL ENCAISSÉ               ' + eur(d.total) + '</pre>'
+    + '<div class="note">' + (d.subs||[]).map(function(s){ return esc(s.nom)+" "+eur(s.eur); }).join(" · ") + '</div></details>');
+  app.innerHTML = h;
+  dessineFiltres();
+}
+
+function dessineFiltres(){
+  var seg = document.getElementById("seg"); if (!seg) return;
+  var f = [["tous","Tous"],["venus","Venus"],["absents","Absents"],["gokhan","Settés Gokhan"]];
+  seg.innerHTML = f.map(function(x){ return '<button data-f="'+x[0]+'"'+(FILTRE===x[0]?' class="on"':'')+'>'+x[1]+'</button>'; }).join("");
+  Array.prototype.forEach.call(seg.querySelectorAll("button"), function(b){
+    b.onclick = function(){ FILTRE = b.dataset.f; dessineFiltres(); };
+  });
+  var L = (DATA.lignes||[]).filter(function(l){
+    if (FILTRE === "venus") return l.venu;
+    if (FILTRE === "absents") return l.noshow;
+    if (FILTRE === "gokhan") return l.setter === "Gokhan";
+    return true;
+  }).sort(function(a,b){ return a.date < b.date ? 1 : -1; });
+  document.getElementById("liste").innerHTML = L.length ? L.map(function(l){
+    var t = l.montant > 0 ? '<span class="tag t-ok">vendu '+eur(l.montant)+'</span>'
+          : l.venu ? '<span class="tag t-w">venu</span>'
+          : l.noshow ? '<span class="tag t-no">pas venu</span>'
+          : '<span class="tag t-n">non renseigné</span>';
+    var q = l.qualifie ? '<span class="tag t-ok">qualifié</span>' : '';
+    return '<div class="lead"><span>'+esc(l.nom)+'</span>'+t+q
+      + '<div class="d">'+esc(l.date)+' · setté par '+esc(l.setter||"personne")+'</div></div>';
+  }).join("") : '<div class="sub" style="padding:12px 0">Aucun rendez-vous dans ce filtre.</div>';
+}
+
+// ── Chargement + rafraîchissement automatique ─────────────────────────────────────────────────
+function charger(){
+  if (!ROLE || !TOK) { erreur("Lien incomplet. Redemande ton lien d'accès."); return; }
+  var u = API + "?r=" + encodeURIComponent(ROLE) + "&t=" + encodeURIComponent(TOK)
+        + (WHO ? "&q=" + encodeURIComponent(WHO) : "");
+  fetch(u, { cache: "no-store" })
+    .then(function(r){
+      if (r.status === 401) throw new Error("Lien invalide ou expiré. Redemande-le à Djibril.");
+      if (!r.ok) throw new Error("Chiffres momentanément indisponibles. Réessaie dans un instant.");
+      return r.json();
+    })
+    .then(function(d){
+      if (d.error) throw new Error(d.message || "Chiffres indisponibles.");
+      document.title = d.role === "setter" ? "Ma commission" : "Mon business";
+      (d.role === "setter" ? vueSetter : vuePatron)(d);
+      document.getElementById("maj").textContent = "Mis à jour à l'instant · " +
+        new Date(d.maj).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+    })
+    .catch(function(e){ erreur(e.message); });
+}
+charger();
+// Rafraîchit tout seul quand l'écran revient au premier plan (le setter garde l'onglet ouvert).
+document.addEventListener("visibilitychange", function(){ if (!document.hidden) charger(); });
+setInterval(function(){ if (!document.hidden) charger(); }, 180000);
+</script>
+</body>
+</html>
