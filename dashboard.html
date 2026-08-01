@@ -59,8 +59,24 @@ var WHO  = qs.get("q") || "";
 var app  = document.getElementById("app");
 
 function eur(n){ return (Math.round(n||0)).toLocaleString("fr-FR") + " €"; }
+var MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+function nomMois(ym){ var p = String(ym||"").split("-"); return (MOIS[(+p[1]||1)-1]||"") + (p[0] != String(new Date().getFullYear()) ? " " + p[0] : ""); }
+// Un mois qui vient de commencer affiche forcément une perte (charges déjà là, ventes pas encore) et
+// une chute « vs mois dernier » absurde. On dit où on en est, et on tait les comparaisons trop tôt.
+function jourDuMois(ym){
+  var now = new Date(), ymNow = now.getFullYear() + "-" + String(now.getMonth()+1).padStart(2,"0");
+  return ym === ymNow ? now.getDate() : 99;
+}
 function esc(s){ return String(s==null?"":s).replace(/[<>&]/g, function(c){ return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c]; }); }
 function card(html, cls){ return '<div class="card'+(cls?" "+cls:"")+'">'+html+'</div>'; }
+function moisPrec(ym){ var p = ym.split("-").map(Number); return p[1] === 1 ? (p[0]-1)+"-12" : p[0]+"-"+String(p[1]-1).padStart(2,"0"); }
+function barreMois(d){
+  var j = jourDuMois(d.mois), autre = MOIS_VUE ? "" : moisPrec(d.mois);
+  return '<div class="seg" style="margin:0 0 12px">'
+    + '<button class="'+(MOIS_VUE?"":"on")+'" onclick="voirMois(null)">Mois en cours</button>'
+    + '<button class="'+(MOIS_VUE?"on":"")+'" onclick="voirMois(\''+moisPrec(new Date().getFullYear()+"-"+String(new Date().getMonth()+1).padStart(2,"0"))+'\')">Mois dernier</button></div>'
+    + (j <= 7 && !MOIS_VUE ? '<div class="note" style="margin:-4px 0 12px">📅 '+nomMois(d.mois)+' vient de commencer (jour '+j+'). Les charges du mois sont déjà comptées, les ventes arrivent : c\'est normal que le chiffre soit bas ou négatif au début.</div>' : '');
+}
 
 function erreur(msg){
   app.innerHTML = card('<div class="lbl">Indisponible</div><div class="sub">'+esc(msg)+'</div>', "err");
@@ -68,7 +84,7 @@ function erreur(msg){
 
 // ── Écran SETTER : sa commission, rien d'autre ────────────────────────────────────────────────
 function vueSetter(d){
-  var h = "";
+  var h = barreMois(d);
   // 1. Le chiffre géant. La commission n'est publiée QUE si la dépense pub est connue : sinon elle
   //    serait calculée sur des charges incomplètes, donc fausse, et servirait de base à un paiement.
   if (d.commission === null || d.commission === undefined) {
@@ -76,15 +92,15 @@ function vueSetter(d){
       + '<div class="note">Le montant s\'affiche dès que la dépense publicitaire du mois est connue. '
       + 'Tes ventes, elles, sont déjà comptées : ' + eur(d.assiette) + ' encaissés sur tes RDV.</div>');
   } else {
-    var delta = (d.commission_prev !== null && d.commission_prev !== undefined)
+    var delta = (d.commission_prev !== null && d.commission_prev !== undefined && jourDuMois(d.mois) > 10)
       ? (d.commission - d.commission_prev) : null;
-    h += card('<div class="lbl">Ta commission de ce mois</div>'
+    h += card('<div class="lbl">Ta commission — '+nomMois(d.mois)+'</div>'
       + '<div class="hero">' + eur(d.commission) + '</div>'
       + (delta !== null ? '<div class="sub '+(delta>=0?"up":"down")+'">'+(delta>=0?"↑ +":"↓ ")+eur(Math.abs(delta))+' vs le mois dernier</div>' : '')
       + '<div class="note">Elle bouge chaque jour : elle dépend de ce que tu settes ET de ce qu\'il reste une fois la publicité et les frais payés.</div>');
   }
   // 2. Son activité — le seul autre chiffre qui compte pour lui
-  h += card('<div class="lbl">Tes rendez-vous ce mois</div>'
+  h += card('<div class="lbl">Tes rendez-vous — '+nomMois(d.mois)+'</div>'
     + '<div class="row"><span>RDV que tu as settés</span><b>'+d.rdv_settes+'</b></div>'
     + '<div class="row"><span>Venus à l\'appel</span><b>'+d.venus+'</b></div>'
     + '<div class="row"><span>Ventes signées</span><b>'+d.ventes+'</b></div>');
@@ -120,8 +136,9 @@ function vuePatron(d){
   DATA = d;
   var h = "";
   // 1. Bénéfice en géant ; le hors-pub reste à côté, jamais fondu dedans (sinon le rendement pub ment)
-  var dl = (d.benefice_prev !== null && d.benefice_prev !== undefined) ? (d.benefice - d.benefice_prev) : null;
-  h += card('<div class="lbl">Ton bénéfice ce mois</div><div class="hero">'+eur(d.benefice)+'</div>'
+  var dl = (d.benefice_prev !== null && d.benefice_prev !== undefined && jourDuMois(d.mois) > 10) ? (d.benefice - d.benefice_prev) : null;
+  h += barreMois(d);
+  h += card('<div class="lbl">Ton bénéfice — '+nomMois(d.mois)+'</div><div class="hero">'+eur(d.benefice)+'</div>'
     + (dl !== null ? '<div class="sub '+(dl>=0?"up":"down")+'">'+(dl>=0?"↑ +":"↓ ")+eur(Math.abs(dl))+' vs le mois dernier</div>' : '')
     + '<div class="sub">+ ' + eur(d.hors_pubs) + ' encaissés hors publicité</div>');
   // 2. La publicité, racontée en phrases + une ligne de décision
@@ -191,10 +208,13 @@ function dessineFiltres(){
 }
 
 // ── Chargement + rafraîchissement automatique ─────────────────────────────────────────────────
+var MOIS_VUE = null;
+function voirMois(ym){ MOIS_VUE = ym; charger(); }
 function charger(){
   if (!ROLE || !TOK) { erreur("Lien incomplet. Redemande ton lien d'accès."); return; }
   var u = API + "?r=" + encodeURIComponent(ROLE) + "&t=" + encodeURIComponent(TOK)
-        + (WHO ? "&q=" + encodeURIComponent(WHO) : "");
+        + (WHO ? "&q=" + encodeURIComponent(WHO) : "")
+        + (MOIS_VUE ? "&m=" + encodeURIComponent(MOIS_VUE) : "");
   fetch(u, { cache: "no-store" })
     .then(function(r){
       if (r.status === 401) throw new Error("Lien invalide ou expiré. Redemande-le à Djibril.");
