@@ -97,6 +97,7 @@ function vueSetter(d){
     h += card('<div class="lbl">Ta commission — '+nomMois(d.mois)+'</div>'
       + '<div class="hero">' + eur(d.commission) + '</div>'
       + (delta !== null ? '<div class="sub '+(delta>=0?"up":"down")+'">'+(delta>=0?"↑ +":"↓ ")+eur(Math.abs(delta))+' vs le mois dernier</div>' : '')
+      + (d.commission === 0 ? '<div class="note">Le mois est à perte une fois la publicité et les frais payés : aucune part n\'est due ce mois-ci. Ça repart dès que le bénéfice redevient positif.</div>' : '')
       + '<div class="note">Elle bouge chaque jour : elle dépend de ce que tu settes ET de ce qu\'il reste une fois la publicité et les frais payés.</div>');
   }
   // 2. Son activité — le seul autre chiffre qui compte pour lui
@@ -107,7 +108,7 @@ function vueSetter(d){
   // 3. La transparence : dépliable, jamais imposée
   h += card('<details><summary>D\'où vient ce chiffre ?</summary>'
     + '<pre>Encaissé sur les RDV que TU as settés   ' + eur(d.assiette) + '\n'
-    + '× marge du mois                        ' + (d.marge||0).toFixed(1) + ' %\n'
+    + '× marge du mois                        ' + (d.marge !== null ? d.marge.toFixed(1) + ' %' : 'en attente de la dépense pub') + '\n'
     + '  (ce qui reste après pub et frais)\n'
     + '────────────────────────────────────────────\n'
     + '× ta part                              ' + d.pct + ' %\n'
@@ -138,9 +139,15 @@ function vuePatron(d){
   // 1. Bénéfice en géant ; le hors-pub reste à côté, jamais fondu dedans (sinon le rendement pub ment)
   var dl = (d.benefice_prev !== null && d.benefice_prev !== undefined && jourDuMois(d.mois) > 10) ? (d.benefice - d.benefice_prev) : null;
   h += barreMois(d);
-  h += card('<div class="lbl">Ton bénéfice — '+nomMois(d.mois)+'</div><div class="hero">'+eur(d.benefice)+'</div>'
+  // Pub inconnue = on n'affiche AUCUN bénéfice (audit 01/08) : un chiffre calculé sans la dépense
+  // publicitaire serait faux et servirait de base à la commission du setter.
+  h += (d.benefice === null
+    ? card('<div class="lbl">Ton bénéfice — '+nomMois(d.mois)+'</div><div class="big2">Dépense pub inconnue</div>'
+      + '<div class="note">Meta n\'a pas répondu et aucun montant n\'a été saisi pour ce mois. Le bénéfice reste masqué : sans la publicité, il serait faux. Envoie <b>/pub 1500</b> sur Telegram pour débloquer.</div>'
+      + '<div class="sub">Encaissé quand même : ' + eur(d.ca) + ' via la pub + ' + eur(d.hors_pubs) + ' hors pub</div>')
+    : card('<div class="lbl">Ton bénéfice — '+nomMois(d.mois)+'</div><div class="hero">'+eur(d.benefice)+'</div>'
     + (dl !== null ? '<div class="sub '+(dl>=0?"up":"down")+'">'+(dl>=0?"↑ +":"↓ ")+eur(Math.abs(dl))+' vs le mois dernier</div>' : '')
-    + '<div class="sub">+ ' + eur(d.hors_pubs) + ' encaissés hors publicité</div>');
+    + '<div class="sub">+ ' + eur(d.hors_pubs) + ' encaissés hors publicité</div>'));
   // 2. La publicité, racontée en phrases + une ligne de décision
   var dec = "", cls = "";
   if (d.rendement === null) { dec = "Dépense publicitaire inconnue ce mois."; cls = "t-n"; }
@@ -201,6 +208,7 @@ function dessineFiltres(){
           : l.venu ? '<span class="tag t-w">venu</span>'
           : l.noshow ? '<span class="tag t-no">pas venu</span>'
           : '<span class="tag t-n">non renseigné</span>';
+    if (l.orphelin) t += '<span class="tag t-w">RDV annulé</span>';
     var q = l.qualifie ? '<span class="tag t-ok">qualifié</span>' : '';
     return '<div class="lead"><span>'+esc(l.nom)+'</span>'+t+q
       + '<div class="d">'+esc(l.date)+' · setté par '+esc(l.setter||"personne")+'</div></div>';
