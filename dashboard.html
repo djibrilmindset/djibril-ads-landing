@@ -88,9 +88,13 @@ function vueSetter(d){
   // 1. Le chiffre géant. La commission n'est publiée QUE si la dépense pub est connue : sinon elle
   //    serait calculée sur des charges incomplètes, donc fausse, et servirait de base à un paiement.
   if (d.commission === null || d.commission === undefined) {
-    h += card('<div class="lbl">Ta commission de ce mois</div><div class="big2">En cours de calcul</div>'
-      + '<div class="note">Le montant s\'affiche dès que la dépense publicitaire du mois est connue. '
-      + 'Tes ventes, elles, sont déjà comptées : ' + eur(d.assiette) + ' encaissés sur tes RDV.</div>');
+    // Deux raisons très différentes de ne pas afficher un montant — les confondre ferait croire à
+    // un système cassé alors qu'il n'y a simplement pas encore de vente.
+    h += (d.assiette > 0
+      ? card('<div class="lbl">Ta commission — '+nomMois(d.mois)+'</div><div class="big2">En attente du coût de la pub</div>'
+        + '<div class="note">Tes ventes sont comptées (' + eur(d.assiette) + ' encaissés sur tes RDV), mais la dépense publicitaire du mois n\'est pas encore connue — sans elle, le montant serait faux. Il s\'affiche dès qu\'elle arrive.</div>')
+      : card('<div class="lbl">Ta commission — '+nomMois(d.mois)+'</div><div class="hero">0 €</div>'
+        + '<div class="note">Pas encore de vente encaissée sur les rendez-vous que tu as settés ce mois-ci. Chaque vente signée fera monter ce chiffre.</div>'));
   } else {
     var delta = (d.commission_prev !== null && d.commission_prev !== undefined && jourDuMois(d.mois) > 10)
       ? (d.commission - d.commission_prev) : null;
