@@ -176,11 +176,14 @@ function dessineAppels(){
   z.innerHTML = L.map(function(l){
     var k = cleJour(l.iso), entete = "";
     if (k !== jourPrec) { jourPrec = k; entete = '<div class="jour">'+esc(libelleJour(k))+'</div>'; }
-    var et = l.etat === "vendu"   ? '<span class="tag t-ok">signé '+eur(l.montant)+'</span>'
-           : l.etat === "venu"    ? '<span class="tag t-w">venu</span>'
-           : l.etat === "absent"  ? '<span class="tag t-no">pas venu</span>'
-           : l.etat === "attente" ? '<span class="tag t-n">réponse attendue</span>'
-           : '<span class="tag t-n">à venir</span>';
+    // « réponse attendue » n'a de sens que sur un appel DÉJÀ PASSÉ : sur un appel de demain, ça
+    // laissait croire qu'on attendait quelque chose du setter alors qu'il n'y a rien à faire.
+    var futurL = Date.parse(l.iso) >= Date.now();
+    var et = l.etat === "vendu"  ? '<span class="tag t-ok">signé '+eur(l.montant)+'</span>'
+           : l.etat === "venu"   ? '<span class="tag t-w">venu</span>'
+           : l.etat === "absent" ? '<span class="tag t-no">pas venu</span>'
+           : futurL              ? '<span class="tag t-n">à venir</span>'
+           : '<span class="tag t-w">réponse attendue</span>';
     var q = l.qualifie ? '<span class="tag t-ok">bon profil</span>' : '';
     var n = (l.notes || []).map(function(x){
       var m = String(x).match(/^\[([^\]]+)\]\s*([\s\S]*)$/);
