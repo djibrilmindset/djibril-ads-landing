@@ -91,66 +91,100 @@ function erreur(msg){
   app.innerHTML = card('<div class="lbl">Indisponible</div><div class="sub">'+esc(msg)+'</div>', "err");
 }
 
-// ── Écran SETTER : sa commission, rien d'autre ────────────────────────────────────────────────
+// ── Écran SETTER : ce que j'ai gagné, mes appels, mon bilan ───────────────────────────────────
+// REFONTE 02/08 (Djibril : « c'est pas intuitif, c'est moche, simplifie, fais plus concret »).
+// L'écran empilait SIX blocs dont TROIS listes des mêmes rendez-vous. Il en reste trois, dans
+// l'ordre des questions que le setter se pose vraiment :
+//   1. combien j'ai gagné      2. qu'est-ce que j'ai à faire / qu'est-ce que ça a donné      3. où j'en suis
+var ONGLET = "avenir";
 function vueSetter(d){
   var h = barreMois(d);
-  // 1. Le chiffre géant. La commission n'est publiée QUE si la dépense pub est connue : sinon elle
-  //    serait calculée sur des charges incomplètes, donc fausse, et servirait de base à un paiement.
-  if (d.commission === null || d.commission === undefined) {
-    // Deux raisons très différentes de ne pas afficher un montant — les confondre ferait croire à
-    // un système cassé alors qu'il n'y a simplement pas encore de vente.
-    h += (d.assiette > 0
-      ? card('<div class="lbl">Ta commission — '+nomMois(d.mois)+'</div><div class="big2">En attente du coût de la pub</div>'
-        + '<div class="note">Tes ventes sont comptées (' + eur(d.assiette) + ' encaissés sur tes RDV), mais la dépense publicitaire du mois n\'est pas encore connue — sans elle, le montant serait faux. Il s\'affiche dès qu\'elle arrive.</div>')
-      : card('<div class="lbl">Ta commission — '+nomMois(d.mois)+'</div><div class="hero">0 €</div>'
-        + '<div class="note">Pas encore de vente encaissée sur les rendez-vous que tu as settés ce mois-ci. Chaque vente signée fera monter ce chiffre.</div>'));
+
+  // ── 1. L'ARGENT ────────────────────────────────────────────────────────────────────────────
+  var c = d.commission;
+  if (c === null || c === undefined) {
+    h += card('<div class="lbl">Ce que tu as gagné — '+nomMois(d.mois)+'</div>'
+      + (d.assiette > 0
+        ? '<div class="big2">En attente du coût de la pub</div><div class="note">Tes ventes sont comptées ('
+          + eur(d.assiette)+' encaissés sur tes rendez-vous), mais la dépense publicitaire du mois n\'est pas '
+          + 'encore connue. Sans elle le montant serait faux, donc il ne s\'affiche pas.</div>'
+        : '<div class="hero">0 €</div><div class="sub">aucune vente encore signée sur tes rendez-vous ce mois-ci</div>'));
   } else {
-    var delta = (d.commission_prev !== null && d.commission_prev !== undefined && jourDuMois(d.mois) > 10)
-      ? (d.commission - d.commission_prev) : null;
-    h += card('<div class="lbl">Ta commission — '+nomMois(d.mois)+'</div>'
-      + '<div class="hero">' + eur(d.commission) + '</div>'
-      + (delta !== null ? '<div class="sub '+(delta>=0?"up":"down")+'">'+(delta>=0?"↑ +":"↓ ")+eur(Math.abs(delta))+' vs le mois dernier</div>' : '')
-      + (d.commission === 0 ? '<div class="note">Le mois est à perte une fois la publicité et les frais payés : aucune part n\'est due ce mois-ci. Ça repart dès que le bénéfice redevient positif.</div>' : '')
-      + '<div class="note">Elle bouge chaque jour : elle dépend de ce que tu settes ET de ce qu\'il reste une fois la publicité et les frais payés.</div>');
+    var dl = (d.commission_prev !== null && d.commission_prev !== undefined && jourDuMois(d.mois) > 10)
+      ? (c - d.commission_prev) : null;
+    h += card('<div class="lbl">Ce que tu as gagné — '+nomMois(d.mois)+'</div>'
+      + '<div class="hero">'+eur(c)+'</div>'
+      + '<div class="sub">sur '+eur(d.assiette)+' de ventes que tu as settées</div>'
+      + (dl !== null ? '<div class="sub '+(dl>=0?"up":"down")+'">'+(dl>=0?"↑ +":"↓ ")+eur(Math.abs(dl))+' vs le mois dernier</div>' : '')
+      + (c === 0 && d.assiette === 0 ? '' : '')
+      + '<details><summary>Comment c\'est calculé</summary><pre>'
+      + 'Ventes signées sur TES rendez-vous   ' + eur(d.assiette) + '\n'
+      + '× ce qui reste après pub et frais    ' + (d.marge !== null ? d.marge.toFixed(1)+' %' : '—') + '\n'
+      + '× ta part                            ' + d.pct + ' %\n'
+      + '──────────────────────────────────────────\n'
+      + '= ta commission                      ' + eur(c) + '</pre>'
+      + '<div class="note">Ta part se calcule sur ce qui reste une fois la publicité, les abonnements et '
+      + 'les frais payés. Seules les ventes issues de TES rendez-vous comptent.</div></details>');
   }
-  // 2. Son activité — le seul autre chiffre qui compte pour lui
-  h += card('<div class="lbl">Tes rendez-vous — '+nomMois(d.mois)+'</div>'
-    + '<div class="row"><span>RDV que tu as settés</span><b>'+d.rdv_settes+'</b></div>'
-    + '<div class="row"><span>Venus à l\'appel</span><b>'+d.venus+'</b></div>'
-    + '<div class="row"><span>Ventes signées</span><b>'+d.ventes+'</b></div>');
-  // 3. L'agenda 7 jours : ce qui arrive, pas ce qui est passé. Aucun montant n'y figure.
-  h += carteAgenda(d);
-  // 4. La transparence : dépliable, jamais imposée
-  h += card('<details><summary>D\'où vient ce chiffre ?</summary>'
-    + '<pre>Encaissé sur les RDV que TU as settés   ' + eur(d.assiette) + '\n'
-    + '× marge du mois                        ' + (d.marge !== null ? d.marge.toFixed(1) + ' %' : 'en attente de la dépense pub') + '\n'
-    + '  (ce qui reste après pub et frais)\n'
-    + '────────────────────────────────────────────\n'
-    + '× ta part                              ' + d.pct + ' %\n'
-    + '= ta commission                        ' + (d.commission!=null?eur(d.commission):"—") + '</pre>'
-    + '<div class="note">Ta part est calculée sur ce qui reste une fois la publicité et les frais payés. '
-    + 'Plus de publicité veut dire plus de rendez-vous pour toi, mais un bénéfice mensuel plus serré. '
-    + 'Seules les ventes que TU as settées comptent ici.</div></details>');
-  // 4. SON AUTO-BILAN (demande Djibril 02/08 : « qu'il puisse se faire un feedback sur lui-même »).
-  //    Uniquement des taux calculés sur SES leads, aucun chiffre de Djibril.
+
+  // ── 2. UNE SEULE LISTE D'APPELS ────────────────────────────────────────────────────────────
+  var A = d.appels || [];
+  var now = Date.now();
+  var futur = A.filter(function(x){ return Date.parse(x.iso) >= now; }).sort(function(a,b){ return Date.parse(a.iso)-Date.parse(b.iso); });
+  var passe = A.filter(function(x){ return Date.parse(x.iso) <  now; });
+  h += card('<div class="lbl">Tes appels</div>'
+    + '<div class="seg"><button id="tab-a" onclick="onglet(\'avenir\')">À venir ('+futur.length+')</button>'
+    + '<button id="tab-p" onclick="onglet(\'passe\')">Passés ('+passe.length+')</button></div>'
+    + '<div id="appels"></div>');
+
+  // ── 3. SON BILAN ───────────────────────────────────────────────────────────────────────────
   var b = d.bilan;
   if (b && b.rdv > 0) {
-    h += card('<div class="lbl">Ton bilan — '+nomMois(d.mois)+'</div>'
-      + '<div class="row"><span>Rendez-vous settés</span><b>'+b.rdv+'</b></div>'
-      + '<div class="row"><span>Fiches que tu as annotées</span><b>'+b.notes_ecrites+' / '+b.rdv+'</b></div>'
-      + (b.presence !== null ? '<div class="row"><span>Ils sont venus</span><b>'+b.presence.toFixed(0)+' %</b></div>' : '')
+    h += card('<div class="lbl">Où tu en es — '+nomMois(d.mois)+'</div>'
+      + (b.presence !== null ? '<div class="row"><span>Ils viennent à l\'appel</span><b>'+b.presence.toFixed(0)+' %</b></div>' : '')
       + (b.qualif !== null ? '<div class="row"><span>Bons profils parmi les venus</span><b>'+b.qualif.toFixed(0)+' %</b></div>' : '')
-      + (b.closing !== null ? '<div class="row"><span>Signés parmi les venus</span><b>'+b.closing.toFixed(0)+' %</b></div>' : '')
-      + (b.sans_reponse > 0
-          ? '<div class="note">'+b.sans_reponse+' rendez-vous n\'ont pas encore de réponse venu / pas venu. Tes taux se calculent uniquement sur ceux qui en ont une, donc ils bougeront encore.</div>'
-          : ''));
-  }
-  // 5. Le détail de SES leads, avec les notes qu'il a écrites (traçabilité complète)
-  var L = d.detail || [];
-  if (L.length) {
-    h += card('<details><summary>Voir tes '+L.length+' rendez-vous</summary>'+ficheLeads(L, true)+'</details>');
+      + (b.closing !== null ? '<div class="row"><span>Signent parmi les venus</span><b>'+b.closing.toFixed(0)+' %</b></div>' : '')
+      + '<div class="row"><span>Fiches que tu as annotées</span><b>'+b.notes_ecrites+' / '+b.rdv+'</b></div>'
+      + (b.sans_reponse > 0 ? '<div class="note">'+b.sans_reponse+' appel'+(b.sans_reponse>1?'s':'')
+          +' sans réponse venu / pas venu : tes taux ne les comptent pas encore, ils bougeront.</div>' : ''));
   }
   app.innerHTML = h;
+  APPELS = { avenir: futur, passe: passe };
+  dessineAppels();
+}
+
+var APPELS = { avenir: [], passe: [] };
+function onglet(k){ ONGLET = k; dessineAppels(); }
+function dessineAppels(){
+  var z = document.getElementById("appels"); if (!z) return;
+  var ta = document.getElementById("tab-a"), tp = document.getElementById("tab-p");
+  if (ta) ta.className = ONGLET === "avenir" ? "on" : "";
+  if (tp) tp.className = ONGLET === "passe" ? "on" : "";
+  var L = APPELS[ONGLET] || [];
+  if (!L.length) {
+    z.innerHTML = '<div class="sub" style="padding:14px 0">'
+      + (ONGLET === "avenir" ? "Aucun appel à venir pour l\'instant." : "Aucun appel passé ce mois-ci.") + '</div>';
+    return;
+  }
+  var jourPrec = "";
+  z.innerHTML = L.map(function(l){
+    var k = cleJour(l.iso), entete = "";
+    if (k !== jourPrec) { jourPrec = k; entete = '<div class="jour">'+esc(libelleJour(k))+'</div>'; }
+    var et = l.etat === "vendu"   ? '<span class="tag t-ok">signé '+eur(l.montant)+'</span>'
+           : l.etat === "venu"    ? '<span class="tag t-w">venu</span>'
+           : l.etat === "absent"  ? '<span class="tag t-no">pas venu</span>'
+           : l.etat === "attente" ? '<span class="tag t-n">réponse attendue</span>'
+           : '<span class="tag t-n">à venir</span>';
+    var q = l.qualifie ? '<span class="tag t-ok">bon profil</span>' : '';
+    var n = (l.notes || []).map(function(x){
+      var m = String(x).match(/^\[([^\]]+)\]\s*([\s\S]*)$/);
+      return '<div class="nt">' + (m ? '<span class="nt-q">'+esc(m[1])+'</span>' : '')
+           + esc(m ? m[2] : String(x)).replace(/\n/g, "<br>") + '</div>';
+    }).join("");
+    return entete + '<div class="lead"><span class="cr-h">'+esc(heureFr(l.iso))+'</span> <span>'+esc(l.nom)+'</span>'+et+q
+      + (n ? '<details><summary>Ta note</summary>'+n+'</details>'
+           : '<div class="d">Aucune note écrite</div>') + '</div>';
+  }).join("");
 }
 
 // ── AGENDA 7 JOURS (demande Djibril 02/08) ────────────────────────────────────────────────────
