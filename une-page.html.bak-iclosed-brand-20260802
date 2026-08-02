@@ -1161,22 +1161,15 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
         <div class="booking-card">
           <h2 class="card-head">Entrez vos informations pour voir s'il reste des créneaux&nbsp;:</h2>
           <div id="iclosed-mount">
-            <!-- Evenement iClosed « brand » (Djibril.learning) — bascule 02/08 sur demande de
-                 Djibril. C'est deja l'evenement de index.html et premium.html : cette page etait
-                 la derniere restee sur l'ancien « reset-1-to1 ». Verifie au navigateur avant
-                 bascule : formulaire (telephone + nom) puis calendrier, creneaux disponibles.
-                 On garde min-height et PAS le height:620px de l'embed officiel : la hauteur est
-                 reservee par #iclosed-mount (720px) pour que le widget ne pousse rien en montant. -->
             <div class="iclosed-widget"
-                 data-url="https://app.iclosed.io/e/djibrilsylearning/brand"
-                 title="Djibril.learning"
-                 data-title="Djibril.learning"
+                 data-url="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1"
+                 data-title="Reset Ultra, appel 1:1"
                  style="width:100%;min-height:700px"></div>
           </div>
           <!-- Secours : masqué, révélé seulement si aucune iframe après 8 s. -->
           <div class="iclosed-fallback" id="iclosed-fallback">
             <p>Le module de réservation ne s'affiche pas&nbsp;?
-              <a href="https://app.iclosed.io/e/djibrilsylearning/brand">Ouvre le formulaire ici</a>
+              <a href="https://app.iclosed.io/e/djibrilsylearning/reset-1-to1">Ouvre le formulaire ici</a>
             </p>
           </div>
           <p class="rgpd">Vos informations servent uniquement à organiser l'appel. Elles ne sont ni vendues ni cédées. <a href="confidentialite.html">Politique de confidentialité</a>.</p>
