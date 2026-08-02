@@ -143,15 +143,25 @@ function vuePatron(d){
   // 1. Bénéfice en géant ; le hors-pub reste à côté, jamais fondu dedans (sinon le rendement pub ment)
   var dl = (d.benefice_prev !== null && d.benefice_prev !== undefined && jourDuMois(d.mois) > 10) ? (d.benefice - d.benefice_prev) : null;
   h += barreMois(d);
+  // 0. LE BRUT (demande Djibril 02/08 : « je veux savoir en brut combien j'ai fait »). Il ne dépend
+  // d'AUCUNE charge — donc il s'affiche même quand Meta est muet et que le bénéfice reste masqué.
+  // C'est le seul chiffre du tableau qui ne peut pas être faux : c'est de l'argent réellement entré.
+  h += card('<div class="lbl">Brut encaissé — '+nomMois(d.mois)+'</div><div class="hero">'+eur(d.total)+'</div>'
+    + '<div class="sub">avant publicité, abonnements et frais</div>'
+    + '<div class="row"><span>Venu de la publicité</span><b>'+eur(d.ca)+'</b></div>'
+    + '<div class="row"><span>Hors publicité</span><b>'+eur(d.hors_pubs)+'</b></div>');
   // Pub inconnue = on n'affiche AUCUN bénéfice (audit 01/08) : un chiffre calculé sans la dépense
   // publicitaire serait faux et servirait de base à la commission du setter.
   h += (d.benefice === null
     ? card('<div class="lbl">Ton bénéfice — '+nomMois(d.mois)+'</div><div class="big2">Dépense pub inconnue</div>'
-      + '<div class="note">Meta n\'a pas répondu et aucun montant n\'a été saisi pour ce mois. Le bénéfice reste masqué : sans la publicité, il serait faux. Envoie <b>/pub 1500</b> sur Telegram pour débloquer.</div>'
-      + '<div class="sub">Encaissé quand même : ' + eur(d.ca) + ' via la pub + ' + eur(d.hors_pubs) + ' hors pub</div>')
+      + '<div class="note">Meta n\'a pas répondu et aucun montant n\'a été saisi pour ce mois. Le bénéfice reste masqué : sans la publicité, il serait faux. Envoie <b>/pub 1500</b> sur Telegram pour débloquer. Le brut ci-dessus, lui, reste juste.</div>')
     : card('<div class="lbl">Ton bénéfice — '+nomMois(d.mois)+'</div><div class="hero">'+eur(d.benefice)+'</div>'
+    + '<div class="sub">ce qui reste une fois la pub, les abonnements et les frais payés</div>'
     + (dl !== null ? '<div class="sub '+(dl>=0?"up":"down")+'">'+(dl>=0?"↑ +":"↓ ")+eur(Math.abs(dl))+' vs le mois dernier</div>' : '')
-    + '<div class="sub">+ ' + eur(d.hors_pubs) + ' encaissés hors publicité</div>'));
+    // Ce bénéfice ne couvre QUE le périmètre pub : c'est voulu, la marge qui en découle sert à calculer
+    // la part du setter, qui ne doit rien toucher sur une vente qu'il n'a pas settée. Mais Djibril garde
+    // aussi les ventes hors pub — sans cette ligne, son bénéfice réel paraît plus bas qu'il n'est.
+    + (d.hors_pubs > 0 ? '<div class="row" style="margin-top:10px"><span>Gardé au total, hors pub compris</span><b>'+eur(d.benefice + d.hors_pubs)+'</b></div>' : '')));
   // 2. La publicité, racontée en phrases + une ligne de décision
   var dec = "", cls = "";
   if (d.rendement === null) { dec = "Dépense publicitaire inconnue ce mois."; cls = "t-n"; }
@@ -186,7 +196,7 @@ function vuePatron(d){
     + '− abonnements                ' + eur(d.abos) + '\n'
     + '− frais d\'encaissement ' + d.frais_pct + ' %   ' + eur(d.frais) + '\n'
     + '──────────────────────────────────────\n'
-    + '= bénéfice                   ' + eur(d.benefice) + '   (' + d.marge.toFixed(1) + ' % de marge)\n\n'
+    + '= bénéfice                   ' + (d.benefice === null ? 'en attente de la dépense pub' : eur(d.benefice) + (d.marge !== null ? '   (' + d.marge.toFixed(1) + ' % de marge)' : '')) + '\n\n'
     + 'Hors publicité               ' + eur(d.hors_pubs) + '\n'
     + 'TOTAL ENCAISSÉ               ' + eur(d.total) + '</pre>'
     + '<div class="note">' + (d.subs||[]).map(function(s){ return esc(s.nom)+" "+eur(s.eur); }).join(" · ") + '</div></details>');
