@@ -164,7 +164,11 @@ function vuePatron(d){
     + (d.hors_pubs > 0 ? '<div class="row" style="margin-top:10px"><span>Gardé au total, hors pub compris</span><b>'+eur(d.benefice + d.hors_pubs)+'</b></div>' : '')));
   // 2. La publicité, racontée en phrases + une ligne de décision
   var dec = "", cls = "";
-  if (d.rendement === null) { dec = "Dépense publicitaire inconnue ce mois."; cls = "t-n"; }
+  // Un mois de 2 jours a forcément un rendement écrasé (la pub est dépensée tous les jours, les ventes
+  // arrivent après le cycle de closing) : conseiller « coupe tes créas » là-dessus, c'est pousser à
+  // couper une campagne qui marche. Aucune décision publicitaire avant le 8.
+  if (jourDuMois(d.mois) <= 7) { dec = "Trop tôt pour juger la publicité ce mois-ci : attends quelques jours de ventes."; cls = "t-n"; }
+  else if (d.rendement === null) { dec = "Dépense publicitaire inconnue ce mois."; cls = "t-n"; }
   else if (d.rendement < 2.5) { dec = "Rendement faible : coupe ou revois les créas avant d'ajouter du budget."; cls = "t-no"; }
   else if (d.presence !== null && d.presence < 70) { dec = "Rendement bon, mais trop d'absents : traite la présence avant de monter le budget."; cls = "t-w"; }
   else { dec = "Tu peux monter le budget publicitaire."; cls = "t-ok"; }
@@ -174,7 +178,9 @@ function vuePatron(d){
     + (d.cout_client !== null ? '<div class="row"><span>Coût d\'un client</span><b>'+eur(d.cout_client)+'</b></div>' : '')
     + '<div class="note"><span class="tag '+cls+'">'+esc(dec)+'</span></div>');
   // 3. Les deux taux qui pilotent tout le reste
-  var pd = (d.presence_prev !== null && d.presence !== null) ? (d.presence - d.presence_prev) : null;
+  // Même garde que le bénéfice (jour > 10) : au 2 du mois, 16 RDV encore sans réponse donnaient
+  // « présence 0 % ↓46 pts » — une chute inventée par le calendrier, pas par le business.
+  var pd = (d.presence_prev !== null && d.presence !== null && jourDuMois(d.mois) > 10) ? (d.presence - d.presence_prev) : null;
   h += card('<div class="lbl">Tes rendez-vous</div>'
     + '<div class="row"><span>Présence aux appels</span><b>'+(d.presence!==null?d.presence.toFixed(0)+" %":"—")
       + (pd !== null && Math.abs(pd) >= 1 ? ' <span class="'+(pd>=0?"up":"down")+'" style="font-size:13px">'+(pd>=0?"↑":"↓")+Math.abs(pd).toFixed(0)+' pts</span>' : '') + '</b></div>'
