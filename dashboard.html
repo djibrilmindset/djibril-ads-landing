@@ -49,6 +49,9 @@ h1{font-size:19px;font-weight:700;margin-bottom:14px}
 .cr-off{opacity:.45}
 .cr-h{font-variant-numeric:tabular-nums;font-weight:600;min-width:46px;font-size:14px}
 .cr-n{flex:1;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nt{margin-top:7px;padding:8px 10px;background:#1b1f27;border-left:2px solid var(--acc);border-radius:0 8px 8px 0;font-size:13px;line-height:1.5;color:#cfd6e4}
+.nt-q{display:block;font-size:11px;color:var(--dim);margin-bottom:3px}
+.nt-v{border-left-color:var(--line);color:var(--dim);font-style:italic}
 </style>
 </head>
 <body>
@@ -128,17 +131,24 @@ function vueSetter(d){
     + '<div class="note">Ta part est calculée sur ce qui reste une fois la publicité et les frais payés. '
     + 'Plus de publicité veut dire plus de rendez-vous pour toi, mais un bénéfice mensuel plus serré. '
     + 'Seules les ventes que TU as settées comptent ici.</div></details>');
-  // 4. Le détail de SES leads
+  // 4. SON AUTO-BILAN (demande Djibril 02/08 : « qu'il puisse se faire un feedback sur lui-même »).
+  //    Uniquement des taux calculés sur SES leads, aucun chiffre de Djibril.
+  var b = d.bilan;
+  if (b && b.rdv > 0) {
+    h += card('<div class="lbl">Ton bilan — '+nomMois(d.mois)+'</div>'
+      + '<div class="row"><span>Rendez-vous settés</span><b>'+b.rdv+'</b></div>'
+      + '<div class="row"><span>Fiches que tu as annotées</span><b>'+b.notes_ecrites+' / '+b.rdv+'</b></div>'
+      + (b.presence !== null ? '<div class="row"><span>Ils sont venus</span><b>'+b.presence.toFixed(0)+' %</b></div>' : '')
+      + (b.qualif !== null ? '<div class="row"><span>Bons profils parmi les venus</span><b>'+b.qualif.toFixed(0)+' %</b></div>' : '')
+      + (b.closing !== null ? '<div class="row"><span>Signés parmi les venus</span><b>'+b.closing.toFixed(0)+' %</b></div>' : '')
+      + (b.sans_reponse > 0
+          ? '<div class="note">'+b.sans_reponse+' rendez-vous n\'ont pas encore de réponse venu / pas venu. Tes taux se calculent uniquement sur ceux qui en ont une, donc ils bougeront encore.</div>'
+          : ''));
+  }
+  // 5. Le détail de SES leads, avec les notes qu'il a écrites (traçabilité complète)
   var L = d.detail || [];
   if (L.length) {
-    var lignes = L.slice().sort(function(a,b){ return a.date < b.date ? 1 : -1; }).map(function(l){
-      var t = l.montant > 0 ? '<span class="tag t-ok">vendu '+eur(l.montant)+'</span>'
-            : l.venu ? '<span class="tag t-w">venu</span>'
-            : l.noshow ? '<span class="tag t-no">pas venu</span>'
-            : '<span class="tag t-n">à venir</span>';
-      return '<div class="lead"><span>'+esc(l.nom)+'</span>'+t+'<div class="d">'+esc(l.date)+'</div></div>';
-    }).join("");
-    h += card('<details><summary>Voir tes '+L.length+' rendez-vous</summary>'+lignes+'</details>');
+    h += card('<details><summary>Voir tes '+L.length+' rendez-vous</summary>'+ficheLeads(L, true)+'</details>');
   }
   app.innerHTML = h;
 }
@@ -190,6 +200,32 @@ function carteAgenda(d){
     });
   });
   return card(h);
+}
+
+// ── FICHE LEAD AVEC SES NOTES (demande Djibril 02/08) ─────────────────────────────────────────
+// « qu'il puisse voir les différentes notes qu'il écrit sur chaque lead et qu'il va s'attacher à
+// leur carte, pour savoir quel lead a no-show, a été présent, afin qu'il puisse se faire un
+// feedback sur lui-même et que nous on ait une traçabilité de ce qui a été fait et du résultat ».
+// La note et le RÉSULTAT sont volontairement collés : c'est en relisant « lead qualifié, prêt à
+// s'investir » à côté de « pas venu » qu'on apprend quelque chose. Séparés, ils n'apprennent rien.
+function ficheLeads(L, avecMontant){
+  return L.slice().sort(function(a,b){ return a.date < b.date ? 1 : -1; }).map(function(l){
+    var t = (avecMontant && l.montant > 0) ? '<span class="tag t-ok">vendu '+eur(l.montant)+'</span>'
+          : l.venu ? '<span class="tag t-w">venu</span>'
+          : l.noshow ? '<span class="tag t-no">pas venu</span>'
+          : '<span class="tag t-n">à venir</span>';
+    var q = l.qualifie ? '<span class="tag t-ok">bon profil</span>' : '';
+    var n = (l.notes || []).map(function(x){
+      // Le texte porte déjà son préfixe [Prénom JJ/MM HH:MM] : on le met en tête de note, en gris.
+      var m = String(x).match(/^\[([^\]]+)\]\s*([\s\S]*)$/);
+      var qui = m ? m[1] : "", txt = m ? m[2] : String(x);
+      return '<div class="nt">' + (qui ? '<span class="nt-q">'+esc(qui)+'</span>' : '')
+           + esc(txt).replace(/\n/g, "<br>") + '</div>';
+    }).join("");
+    return '<div class="lead"><span>'+esc(l.nom)+'</span>'+t+q
+      + '<div class="d">'+esc(l.date)+(l.setter?' · setté par '+esc(l.setter):'')+'</div>'
+      + (n || '<div class="nt nt-v">Aucune note écrite sur ce lead</div>') + '</div>';
+  }).join("");
 }
 
 // ── Écran PATRON : décider ────────────────────────────────────────────────────────────────────
@@ -281,16 +317,11 @@ function dessineFiltres(){
     if (FILTRE === "gokhan") return l.setter === "Gokhan";
     return true;
   }).sort(function(a,b){ return a.date < b.date ? 1 : -1; });
-  document.getElementById("liste").innerHTML = L.length ? L.map(function(l){
-    var t = l.montant > 0 ? '<span class="tag t-ok">vendu '+eur(l.montant)+'</span>'
-          : l.venu ? '<span class="tag t-w">venu</span>'
-          : l.noshow ? '<span class="tag t-no">pas venu</span>'
-          : '<span class="tag t-n">non renseigné</span>';
-    if (l.orphelin) t += '<span class="tag t-w">RDV annulé</span>';
-    var q = l.qualifie ? '<span class="tag t-ok">qualifié</span>' : '';
-    return '<div class="lead"><span>'+esc(l.nom)+'</span>'+t+q
-      + '<div class="d">'+esc(l.date)+' · setté par '+esc(l.setter||"personne")+'</div></div>';
-  }).join("") : '<div class="sub" style="padding:12px 0">Aucun rendez-vous dans ce filtre.</div>';
+  // Même fiche que côté setter : Djibril lit EXACTEMENT ce que son setter a écrit sur chaque lead,
+  // à côté du résultat. C'est la traçabilité qu'il a demandée : ce qui a été fait, et ce qui en découle.
+  document.getElementById("liste").innerHTML = L.length
+    ? ficheLeads(L, true)
+    : '<div class="sub" style="padding:12px 0">Aucun rendez-vous dans ce filtre.</div>';
 }
 
 // ── Chargement + rafraîchissement automatique ─────────────────────────────────────────────────
