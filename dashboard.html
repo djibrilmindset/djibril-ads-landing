@@ -43,6 +43,12 @@ h1{font-size:19px;font-weight:700;margin-bottom:14px}
 .seg{display:flex;gap:6px;margin:14px 0 4px}
 .seg button{flex:1;background:#20242d;border:0;color:var(--dim);padding:9px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer}
 .seg button.on{background:var(--acc);color:#fff}
+.jour{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.55;margin:14px 0 6px}
+.jour:first-of-type{margin-top:4px}
+.cr{display:flex;align-items:center;gap:9px;padding:7px 0;border-top:1px solid var(--line)}
+.cr-off{opacity:.45}
+.cr-h{font-variant-numeric:tabular-nums;font-weight:600;min-width:46px;font-size:14px}
+.cr-n{flex:1;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -109,7 +115,9 @@ function vueSetter(d){
     + '<div class="row"><span>RDV que tu as settés</span><b>'+d.rdv_settes+'</b></div>'
     + '<div class="row"><span>Venus à l\'appel</span><b>'+d.venus+'</b></div>'
     + '<div class="row"><span>Ventes signées</span><b>'+d.ventes+'</b></div>');
-  // 3. La transparence : dépliable, jamais imposée
+  // 3. L'agenda 7 jours : ce qui arrive, pas ce qui est passé. Aucun montant n'y figure.
+  h += carteAgenda(d);
+  // 4. La transparence : dépliable, jamais imposée
   h += card('<details><summary>D\'où vient ce chiffre ?</summary>'
     + '<pre>Encaissé sur les RDV que TU as settés   ' + eur(d.assiette) + '\n'
     + '× marge du mois                        ' + (d.marge !== null ? d.marge.toFixed(1) + ' %' : 'en attente de la dépense pub') + '\n'
@@ -133,6 +141,55 @@ function vueSetter(d){
     h += card('<details><summary>Voir tes '+L.length+' rendez-vous</summary>'+lignes+'</details>');
   }
   app.innerHTML = h;
+}
+
+// ── AGENDA 7 JOURS (demande Djibril 02/08) ────────────────────────────────────────────────────
+// Lecture seule, alimenté par le vrai Google Agenda. Pour le setter : aucun montant, et les créneaux
+// personnels de Djibril restent « Occupé » sans libellé. Rendu null par l'API = agenda injoignable :
+// on le DIT, au lieu d'afficher un calendrier vide qui ferait croire à une semaine libre.
+var JOURS = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+function heureFr(iso){
+  return new Date(iso).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit",timeZone:"Europe/Paris"});
+}
+function cleJour(iso){
+  return new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date(iso));
+}
+function libelleJour(ymd){
+  var p = ymd.split("-").map(Number), d = new Date(Date.UTC(p[0],p[1]-1,p[2],12));
+  var auj = cleJour(new Date().toISOString());
+  var dem = cleJour(new Date(Date.now()+86400000).toISOString());
+  if (ymd === auj) return "Aujourd'hui";
+  if (ymd === dem) return "Demain";
+  return JOURS[d.getUTCDay()] + " " + p[2];
+}
+function carteAgenda(d){
+  if (d.agenda === null || d.agenda === undefined) {
+    return card('<div class="lbl">Les 7 prochains jours</div>'
+      + '<div class="note">Agenda momentanément injoignable. Il revient tout seul, mais ne considère pas la semaine comme libre en attendant.</div>');
+  }
+  if (!d.agenda.length) {
+    return card('<div class="lbl">Les 7 prochains jours</div><div class="sub">Aucun rendez-vous prévu</div>');
+  }
+  var parJour = {}, ordre = [];
+  d.agenda.forEach(function(e){
+    var k = cleJour(e.iso);
+    if (!parJour[k]) { parJour[k] = []; ordre.push(k); }
+    parJour[k].push(e);
+  });
+  var h = '<div class="lbl">Les 7 prochains jours</div>';
+  ordre.forEach(function(k){
+    h += '<div class="jour">' + esc(libelleJour(k)) + '</div>';
+    parJour[k].forEach(function(e){
+      var badge = e.lead
+        ? (e.moi === true ? '<span class="tag t-ok">tu l\'as setté</span>'
+           : (e.setter ? '<span class="tag t-n">' + esc(e.setter) + '</span>' : ''))
+        : '<span class="tag t-n">perso</span>';
+      h += '<div class="cr' + (e.lead ? '' : ' cr-off') + '">'
+        + '<span class="cr-h">' + (e.journee ? "journée" : esc(heureFr(e.iso))) + '</span>'
+        + '<span class="cr-n">' + esc(e.nom) + '</span>' + badge + '</div>';
+    });
+  });
+  return card(h);
 }
 
 // ── Écran PATRON : décider ────────────────────────────────────────────────────────────────────
@@ -193,6 +250,7 @@ function vuePatron(d){
   }).join("");
   h += card('<div class="lbl">À verser aux setters</div>'+(pl||'<div class="sub">Personne pour l\'instant</div>'));
   // 5. Le détail, filtrable — la demande du 01/08 : croiser venu et « setté par qui »
+  h += carteAgenda(d);
   h += card('<details><summary>Voir les '+d.rdv+' rendez-vous</summary>'
     + '<div class="seg" id="seg"></div><div id="liste"></div></details>');
   // 6. Le calcul complet
