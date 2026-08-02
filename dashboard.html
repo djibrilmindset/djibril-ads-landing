@@ -132,9 +132,15 @@ function vueSetter(d){
   var now = Date.now();
   var futur = A.filter(function(x){ return Date.parse(x.iso) >= now; }).sort(function(a,b){ return Date.parse(a.iso)-Date.parse(b.iso); });
   var passe = A.filter(function(x){ return Date.parse(x.iso) <  now; });
-  h += card('<div class="lbl">Tes appels</div>'
-    + '<div class="seg"><button id="tab-a" onclick="onglet(\'avenir\')">À venir ('+futur.length+')</button>'
-    + '<button id="tab-p" onclick="onglet(\'passe\')">Passés ('+passe.length+')</button></div>'
+  // Sur un mois PASSÉ, « à venir » n'a aucun sens : les appels futurs appartiennent au mois en cours.
+  // Les afficher là ferait croire à un mois qui continue, et mélangerait deux périodes dans un écran
+  // censé répondre à « qu'est-ce que j'ai fait en juillet ».
+  var moisPasse = !!MOIS_VUE;
+  if (moisPasse) { futur = []; ONGLET = "passe"; }
+  h += card('<div class="lbl">Tes appels — '+nomMois(d.mois)+'</div>'
+    + (moisPasse ? '' :
+       '<div class="seg"><button id="tab-a" onclick="onglet(\'avenir\')">À venir ('+futur.length+')</button>'
+       + '<button id="tab-p" onclick="onglet(\'passe\')">Passés ('+passe.length+')</button></div>')
     + '<div id="appels"></div>');
 
   // ── 3. SON BILAN ───────────────────────────────────────────────────────────────────────────
