@@ -37,6 +37,21 @@ td{padding:8px 6px;border-bottom:1px solid #eee;vertical-align:top;font-size:14p
 .bar button.on{background:#111;color:#fff}
 .maj{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #e5e5e5;text-align:center;color:#888;font-size:12px;padding:8px}
 .err{border:1px solid #fca5a5;background:#fef2f2;color:#991b1b;border-radius:10px;padding:14px;font-size:14px}
+/* MOBILE : 4 colonnes fixes sur 375 px écrasaient la colonne des notes à un mot par ligne, donc la
+   seule information vraiment utile devenait illisible. On repasse chaque ligne en bloc :
+   [date | état] sur la première ligne, le nom et sa note en pleine largeur, le setter en dessous. */
+@media(max-width:560px){
+  table,tbody{display:block}
+  tr{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;padding:11px 0;border-bottom:1px solid #eee;align-items:baseline}
+  td{display:block;border:0;padding:0}
+  .dt{grid-column:1;grid-row:1;width:auto}
+  .et{grid-column:2;grid-row:1;width:auto;text-align:right}
+  .nm{grid-column:1/-1;grid-row:2}
+  .st{grid-column:1/-1;grid-row:3;width:auto;font-size:11.5px;color:#777}
+  .st:before{content:"setté par "}
+  .nt{white-space:pre-wrap;word-break:break-word}
+  .k{min-width:calc(50% - 4px)}
+}
 @media print{
   body{padding:0;max-width:none}
   .bar,.maj{display:none}
