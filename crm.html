@@ -64,6 +64,8 @@ td{padding:8px 6px;border-bottom:1px solid #eee;vertical-align:top;font-size:14p
 .com-d b{font-variant-numeric:tabular-nums}
 .cre{margin-top:6px;padding:6px 10px;background:#fff7ed;border-left:2px solid #fb923c;border-radius:0 6px 6px 0;font-size:13px;color:#9a3412;font-weight:600}
 .com-d.fut{color:#777;font-style:italic}
+.ech{font-weight:600;font-size:12.5px;margin-top:4px;color:#9a3412}
+.ech i{font-weight:400;opacity:.75;font-style:normal}
 </style>
 </head>
 <body>
@@ -109,9 +111,19 @@ function ligne(l){
   // Créance : le reste dû sur le contrat. Affiché à côté de l'encaissé, jamais fondu dedans — sinon
   // on lirait comme « argent rentré » quelque chose qui n'est pas encore sur le compte.
   if (l.reste > 0) {
-    var d2 = l.echeance ? l.echeance.split("-").reverse().join("/") : "";
+    var jj = function(x){ return x ? x.split("-").reverse().join("/") : ""; };
+    var ech = (l.echeances || []).filter(function(e){ return e.cumul > l.montant; });
+    var lignesEch = ech.length
+      // Paliers CUMULÉS : on affiche ce qu'il reste à verser À CHAQUE palier, pas le cumul brut —
+      // « encore 750 € le 15/08 » se comprend tout de suite, « 1 000 € cumulés » demande un calcul.
+      ? ech.map(function(e, i){
+          var precedent = i === 0 ? l.montant : ech[i-1].cumul;
+          return '<div class="ech">→ ' + (e.cumul - precedent).toLocaleString("fr-FR") + ' € le ' + esc(jj(e.date))
+               + ' <i>(pour atteindre ' + e.cumul.toLocaleString("fr-FR") + ' €)</i></div>';
+        }).join("")
+      : '<div class="ech">→ ' + l.reste.toLocaleString("fr-FR") + ' € ' + (l.echeance ? 'le ' + esc(jj(l.echeance)) : '(date non précisée)') + '</div>';
     nt = '<div class="cre">⏳ reste ' + l.reste.toLocaleString("fr-FR") + ' € sur ' + l.total.toLocaleString("fr-FR") + ' €'
-       + (d2 ? ' · attendu le ' + esc(d2) : ' · date non précisée') + '</div>' + nt;
+       + lignesEch + '</div>' + nt;
   }
   return '<tr><td class="dt">' + esc(frDate(l.iso)) + '</td>'
        + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : '') + nt + '</td>'
