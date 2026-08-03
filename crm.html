@@ -62,6 +62,8 @@ td{padding:8px 6px;border-bottom:1px solid #eee;vertical-align:top;font-size:14p
 .com-b{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:2px 0 10px;font-variant-numeric:tabular-nums}
 .com-d{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;color:#444;padding:4px 0;border-top:1px solid #e8e8e8}
 .com-d b{font-variant-numeric:tabular-nums}
+.cre{margin-top:6px;padding:6px 10px;background:#fff7ed;border-left:2px solid #fb923c;border-radius:0 6px 6px 0;font-size:13px;color:#9a3412;font-weight:600}
+.com-d.fut{color:#777;font-style:italic}
 </style>
 </head>
 <body>
@@ -104,6 +106,13 @@ function etatDe(l){
 function ligne(l){
   var e = etatDe(l);
   var nt = (l.notes || []).map(function(x){ return '<div class="nt">' + esc(x) + '</div>'; }).join("");
+  // Créance : le reste dû sur le contrat. Affiché à côté de l'encaissé, jamais fondu dedans — sinon
+  // on lirait comme « argent rentré » quelque chose qui n'est pas encore sur le compte.
+  if (l.reste > 0) {
+    var d2 = l.echeance ? l.echeance.split("-").reverse().join("/") : "";
+    nt = '<div class="cre">⏳ reste ' + l.reste.toLocaleString("fr-FR") + ' € sur ' + l.total.toLocaleString("fr-FR") + ' €'
+       + (d2 ? ' · attendu le ' + esc(d2) : ' · date non précisée') + '</div>' + nt;
+  }
   return '<tr><td class="dt">' + esc(frDate(l.iso)) + '</td>'
        + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : '') + nt + '</td>'
        + '<td class="st">' + esc(l.setter || "—") + '</td>'
@@ -149,6 +158,9 @@ function rendre(d){
     +   '<div class="com-d">'
     +     '<span>' + d.bonus_qualif + ' € × ' + d.qualifies + ' lead' + (d.qualifies>1?'s':'') + ' qualifié' + (d.qualifies>1?'s':'') + '</span><b>' + d.comm_qualif.toLocaleString("fr-FR") + ' €</b>'
     +   '</div>'
+    +   (d.reste_a_encaisser > 0
+        ? '<div class="com-d fut"><span>À venir quand les soldes rentreront (' + d.reste_a_encaisser.toLocaleString("fr-FR") + ' €)</span><b>+ ' + d.comm_a_venir.toLocaleString("fr-FR") + ' €</b></div>'
+        : '')
     + '</div>') : '';
   app.innerHTML =
       '<h1>' + (d.setter ? 'Mes rendez-vous' : 'CRM Reset Ultra') + '</h1>'
