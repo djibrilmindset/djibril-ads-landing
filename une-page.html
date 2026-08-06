@@ -28,7 +28,16 @@
      Dès que le fichier est déposé, décommenter cette ligne.
      Ne PAS ajouter viewport-fit=cover au meta viewport : env(safe-area-inset-top)
      passerait de 0 à ~50px sur iPhone à encoche et mangerait la pliure. -->
-<!-- <link rel="preload" as="image" href="assets/poster-vsl.webp" fetchpriority="high"> -->
+<!-- RU-1P-COCKPIT (07/08, audit perf) : le fichier existe (assets/vsl-poster.webp,
+     servi par la façade l.~1200) — préload activé avec le VRAI nom (l'ancien
+     commentaire visait poster-vsl.webp, inexistant). type=image/webp : les
+     navigateurs sans webp ignorent le preload et prendront le jpg du <picture>. -->
+<link rel="preload" as="image" type="image/webp" href="assets/vsl-poster.webp" fetchpriority="high">
+<!-- Les deux origines qui portent les deux actions de conversion (lecture VSL,
+     réservation) : la poignée de main TLS se paie pendant la lecture du hero,
+     pas au moment du clic. -->
+<link rel="preconnect" href="https://fast.wistia.net">
+<link rel="preconnect" href="https://app.iclosed.io">
 
 <!-- RU-1P-VITESSE (28/07) — les 4 coupes Bricolage etaient embarquees en
      base64 DANS le HTML : 116 Ko sur les 126 Ko reellement transferes, soit
@@ -41,7 +50,10 @@
      Les ecraser changerait la typographie de la page d'accueil (erreur commise
      puis rattrapee le 28/07). -->
 <link rel="preload" as="font" type="font/woff2" href="fonts/ru1p-bric800.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="fonts/ru1p-bric500.woff2" crossorigin>
+<!-- RU-1P-COCKPIT (07/08, audit perf) : bric700 remplace bric500 dans le preload —
+     la 700 peint la garantie et la ligne de preuve du hero (premier écran), la
+     500 n'apparaît que sous la ligne de flottaison (.parcours-texte). -->
+<link rel="preload" as="font" type="font/woff2" href="fonts/ru1p-bric700.woff2" crossorigin>
 <!-- RU-1P-DIFF · fonts-reelles : preload des polices de differenciation -->
 <link rel="preload" as="font" type="font/woff2" href="fonts/departure.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/instrument-serif-italic-400-latin.woff2" crossorigin>
@@ -372,6 +384,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
      qu'il annote : a 320px la garantie faisait 8,35px et la pastille 11px, soit
      31,7% de plus. Une annotation ne peut pas dominer son texte. */
   font-family:var(--mono);font-weight:400;font-size:max(9px,.46em);
+  /* renfort de trait : même seuil que .seal-u/.eyebrow, la mono <11px
+     s'évapore sur iPhone sans lui (audit 07/08) */
+  -webkit-text-stroke:.42px currentColor;paint-order:stroke fill;
   letter-spacing:.1em;text-transform:uppercase;color:#C1123C;
   background:rgba(225,29,72,.09);outline:1.5px solid rgba(225,29,72,.42);outline-offset:-1px;
   padding:.45em .8em;border-radius:.7em;vertical-align:.14em;display:inline-block;
@@ -483,6 +498,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
   transition:transform .22s var(--ease-micro,ease),box-shadow .22s ease,background .22s ease;
 }
 .pc-cta:hover{background:#000;transform:translateY(-1px);box-shadow:0 14px 32px -12px rgba(15,13,20,.62)}
+/* RU-1P-COCKPIT (07/08, audit) : dernier CTA avant le footer, trafic mobile —
+   sans :active le tap était muet. L'enfoncement rend le tap tangible. */
+.pc-cta:active{transform:translateY(0) scale(.97)}
 .pc-cta:focus-visible{outline:2px solid var(--violet-deep);outline-offset:3px}
 @media(max-width:560px){
   .parcours-in::after{left:-14px;right:-14px;--e:11px}
@@ -511,6 +529,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
   transition:transform .25s var(--ease-out,ease),background .25s ease;
 }
 .proof-play:hover .proof-play-dot{transform:translate(-50%,-50%) scale(1.07);background:rgba(109,40,217,.96)}
+.proof-play:focus-visible{outline:none}
+.proof-play:focus-visible .proof-play-dot{
+  box-shadow:0 0 0 3px #fff,0 0 0 6px var(--violet-deep),0 6px 22px rgba(46,16,84,.38)}
+.proof-play:active .proof-play-dot{transform:translate(-50%,-50%) scale(.93)}
 .proof-frame{width:100%;height:100%;border:0;display:block}
 /* RU-1P-DIFF — demande 28/07 : « le CTA des témoignages doit être TRÈS
    visible, et en noir, vu que c'est sur fond blanc ». Un bouton fantôme
@@ -550,6 +572,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
   width:100%;max-width:min(88vw,880px);
   position:relative;overflow:hidden;
   padding:9px 0;border-radius:20px;
+  /* RU-1P-COCKPIT (07/08, audit CLS) : la piste est montée APRÈS `load` —
+     sans hauteur réservée, la glissière passait de 18px à ~80px au montage
+     et poussait toute la section conversion d'un coup. */
+  min-height:calc(var(--tuile) + 18px);
   /* la vitrine est une glissière ENCASTRÉE : léger creux violet + arête
      haute sombre. C'est ce contraste qui fait ressortir les visages sur un
      fond blanc cassé — sans lui, les tuiles claires se noient dans la page. */
@@ -764,6 +790,29 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
   transition:background .2s var(--ease-micro),transform .18s var(--ease-micro);
 }
 .play-btn:hover .play-dot{background:var(--violet)}
+/* RU-1P-COCKPIT (07/08, audit) : le bouton couvre tout le cadre (inset:0) —
+   l'outline global dessinait un rectangle autour de TOUTE la vidéo au focus
+   clavier. L'anneau se porte sur le rond ▶, seul objet que l'œil identifie
+   comme bouton. Même logique sur les vignettes témoignages. */
+.play-btn:focus-visible{outline:none}
+.play-btn:focus-visible .play-dot{
+  box-shadow:0 0 0 3px #fff,0 0 0 6px var(--violet),0 22px 56px -18px rgba(109,40,217,.95)}
+.play-btn:active .play-dot{transform:scale(.93)}
+/* Retour visuel pendant le chargement de l'iframe Wistia : sur réseau in-app
+   lent, le tap restait muet (cadre noir / carte grise) jusqu'au premier paint
+   du lecteur. L'anneau tourne tant que l'iframe n'a pas répondu `load`. */
+.player.chargement::after,.stack .proof-shot.chargement::after{
+  content:'';position:absolute;left:50%;top:50%;width:34px;height:34px;
+  margin:-17px 0 0 -17px;border-radius:50%;
+  border:3px solid rgba(255,255,255,.25);border-top-color:#fff;
+  animation:ru-tourne .8s linear infinite;pointer-events:none;
+}
+.stack .proof-shot.chargement::after{
+  border-color:rgba(109,40,217,.25);border-top-color:var(--violet-deep)}
+@keyframes ru-tourne{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){
+  .player.chargement::after,.stack .proof-shot.chargement::after{animation-duration:1.6s}
+}
 .player-time{
   position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:11px;
   letter-spacing:.1em;color:#fff;opacity:.85;
@@ -806,7 +855,22 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
 /* Hauteur réservée : le widget ne pousse rien quand il monte.
    Pas de `contain:layout` ici : ça piégerait les overlays position:fixed du
    widget (sélecteur de dates, fuseau) dans une boîte de 720px. */
-#iclosed-mount{width:100%;padding:14px 10px 10px;min-height:720px}
+#iclosed-mount{width:100%;padding:14px 10px 10px;min-height:720px;position:relative}
+/* RU-1P-COCKPIT (07/08, audit) : la zone de conversion n°1 restait une carte
+   BLANCHE MUETTE jusqu'à 8s (le secours n'apparaît qu'au minuteur) sur les
+   réseaux in-app lents. Miroitement + une ligne mono le temps que le widget
+   monte ; la classe ic-monte (posée par le JS de secours) l'éteint. */
+#iclosed-mount::before{
+  content:'LE CALENDRIER SE PRÉPARE…';position:absolute;inset:14px 10px 10px;
+  display:flex;align-items:center;justify-content:center;border-radius:12px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  color:var(--ink-mute);-webkit-text-fill-color:var(--ink-mute);
+  background:linear-gradient(100deg,rgba(15,14,18,.04) 30%,rgba(15,14,18,.085) 50%,rgba(15,14,18,.04) 70%) 0 0/220% 100%;
+  animation:ru-miroite 1.6s linear infinite;pointer-events:none;
+}
+#iclosed-mount.ic-monte::before{content:none}
+@keyframes ru-miroite{to{background-position:-120% 0}}
+@media(prefers-reduced-motion:reduce){#iclosed-mount::before{animation:none}}
 .rgpd{
   margin:0;padding:0 18px 14px;font-size:11.5px;line-height:1.5;color:var(--ink-mute);
   -webkit-text-fill-color:var(--ink-mute);
@@ -880,6 +944,17 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
 
 /* ── Panneau encre : questions puis garantie ──────────────────────────── */
 .slab{position:relative;z-index:2;background:var(--ink-panel);color:var(--on-dark);overflow:hidden}
+/* RU-1P-COCKPIT (07/08, audit motion) : sur desktop, une lueur discrète suit
+   le curseur sur le panneau encre — l'expérience « la page sent ma présence »
+   des sites Framer. Pointeur fin uniquement : zéro coût sur le trafic mobile. */
+@media(hover:hover) and (pointer:fine){
+  .slab::after{
+    content:'';position:absolute;inset:0;pointer-events:none;opacity:0;
+    transition:opacity .6s ease;
+    background:radial-gradient(560px circle at var(--sx,50%) var(--sy,38%),rgba(181,123,255,.08),transparent 62%);
+  }
+  .slab:hover::after{opacity:1}
+}
 /* RU-1P-FONDUS (audit 28/07) — meme rampe a 2 arrets en haut de la dalle,
    memes deux ruptures de derivee (une bande de Mach a la couture papier/encre,
    une seconde la ou le fondu s'arretait net), et la meme traversee du gris.
@@ -925,6 +1000,20 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
   margin:0 0 clamp(20px,2.4vw,30px);font-size:clamp(21px,2.6vw,34px);font-weight:800;
   letter-spacing:-.03em;color:#fff;
 }
+/* RU-1P-COCKPIT (07/08, audit) : la FAQ était le SEUL grand bloc sans amorce
+   mono (.eyebrow, .proofs-head, .parcours-kicker en portent tous une) — la
+   grammaire kicker se referme ici. Version panneau sombre : lueur violette,
+   filet qui meurt vers la droite. */
+.faq-kicker{
+  margin:0 0 10px;font-family:var(--mono);font-size:12.5px;font-weight:400;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--glow);
+  -webkit-text-stroke:.42px currentColor;paint-order:stroke fill;
+  display:flex;align-items:center;gap:.9em;
+}
+.faq-kicker::after{
+  content:'';height:1px;flex:none;width:52px;
+  background:linear-gradient(90deg,rgba(181,123,255,.65),rgba(181,123,255,0));
+}
 .qa{border-top:1px solid rgba(244,241,248,.14);padding:clamp(14px,1.6vw,20px) 0;max-width:820px}
 .qa:last-of-type{border-bottom:1px solid rgba(244,241,248,.14)}
 /* RU-1P-LISIBILITE (28/07) — « c'est trop clair, le gris est illisible, faut
@@ -949,7 +1038,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
   background:radial-gradient(closest-side,rgba(181,123,255,.22),transparent);color:#fff;
 }
 .seal-n{font-size:33px;font-weight:800;line-height:1;letter-spacing:-.04em}
-.seal-u{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em}
+/* RU-1P-COCKPIT (07/08, audit) : à 9,5px la mono passe SOUS le seuil qui a
+   déjà imposé le renfort de trait sur .eyebrow (11px) — même remède. */
+.seal-u{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
+  -webkit-text-stroke:.42px currentColor;paint-order:stroke fill}
 .guarantee-body{flex:1;min-width:270px}
 .guarantee-body h2{
   margin:0 0 14px;max-width:22ch;font-size:clamp(22px,3.2vw,42px);font-weight:800;
@@ -1259,6 +1351,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
     <div class="slab-ray" aria-hidden="true"></div>
     <div class="slab-inner">
       <div class="faq">
+        <p class="faq-kicker" data-reveal>Avant de réserver</p>
         <h2 data-reveal>Les questions qu'on me pose avant l'appel</h2>
 
         <!-- À VALIDER PAR DJIBRIL : les réponses ci-dessous sont des
@@ -1665,7 +1758,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
         f.allow = 'autoplay; fullscreen; picture-in-picture';
         f.allowFullscreen = true;
         f.className = 'proof-frame';
-        shot.classList.add('joue');
+        shot.classList.add('joue', 'chargement');
+        const fini = () => shot.classList.remove('chargement');
+        f.addEventListener('load', fini, { once: true });
+        setTimeout(fini, 12000);
         shot.replaceChildren(f);
       }, { once: true });
       shot.appendChild(btn);
@@ -1927,10 +2023,19 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
         new MutationObserver(collecter).observe(pile, { childList: true });
     }, { once: true });
 
+    // Parallaxe des étoiles du hero (audit motion 07/08) : elles descendent
+    // moins vite que le contenu, la profondeur naît de ce retard. twinkle
+    // n'anime que l'opacité, le transform inline ne le contrarie pas.
+    const etoiles = [...document.querySelectorAll('.hero .star')];
+    const FACTEURS = [.22, .12, .17];
+
     let prevu = false;
     const poser = () => {
       prevu = false;
       const vh = innerHeight || 1;
+      if (scrollY < 1400) etoiles.forEach((s, i) => {
+        s.style.transform = 'translate3d(0,' + (scrollY * FACTEURS[i % 3]).toFixed(1) + 'px,0)';
+      });
       cibles.forEach(el => {
         const r = el.getBoundingClientRect();
         // loin du viewport : transform remis à zéro une fois, puis plus rien
@@ -1949,6 +2054,20 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
     addEventListener('scroll', demander, { passive: true });
     addEventListener('resize', demander, { passive: true });
     demander();
+  })();
+
+  /* ══ RU-1P-COCKPIT · lueur qui suit le curseur sur le panneau encre ═══
+     Desktop uniquement (le CSS est gaté hover:hover + pointer:fine, le JS
+     aussi) : deux custom properties, le radial-gradient du ::after suit. */
+  (() => {
+    if (!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    document.querySelectorAll('.slab').forEach(s => {
+      s.addEventListener('pointermove', e => {
+        const r = s.getBoundingClientRect();
+        s.style.setProperty('--sx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+        s.style.setProperty('--sy', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+      }, { passive: true });
+    });
   })();
 
   /* ══ RU-1P-COCKPIT · « +83 » se compte sous les yeux ══════════════════
@@ -2006,6 +2125,14 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
         frame.title = 'Reset Ultra, la vidéo';
         frame.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share';
         frame.allowFullscreen = true;
+        // RU-1P-COCKPIT (audit 07/08) : sur réseau in-app lent le tap restait
+        // muet (cadre noir) jusqu'au premier paint du lecteur — anneau de
+        // chargement jusqu'au `load` de l'iframe, filet à 12s au cas où
+        // l'événement ne vient jamais
+        player.classList.add('chargement');
+        const fini = () => player.classList.remove('chargement');
+        frame.addEventListener('load', fini, { once: true });
+        setTimeout(fini, 12000);
         player.appendChild(frame);
         frame.focus();
         return;
@@ -2031,14 +2158,25 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
     const mount = document.getElementById('iclosed-mount');
     const fallback = document.getElementById('iclosed-fallback');
     if (!mount || !fallback) return;
-    const minuteur = setTimeout(() => { fallback.style.display = 'block'; }, 8000);
-    if (mount.querySelector('iframe')) { clearTimeout(minuteur); return; }
+    // ic-monte éteint aussi le miroitement « LE CALENDRIER SE PRÉPARE… » :
+    // quand le widget est là OU quand le secours s'affiche — jamais les deux
+    // messages en même temps.
+    const minuteur = setTimeout(() => {
+      fallback.style.display = 'block';
+      mount.classList.add('ic-monte');
+    }, 8000);
+    if (mount.querySelector('iframe')) {
+      clearTimeout(minuteur);
+      mount.classList.add('ic-monte');
+      return;
+    }
     if (!('MutationObserver' in window)) return;
     // Dès que le widget monte son iframe, le secours n'a plus lieu d'être.
     const mo = new MutationObserver(() => {
       if (!mount.querySelector('iframe')) return;
       clearTimeout(minuteur);
       fallback.style.display = 'none';
+      mount.classList.add('ic-monte');
       mo.disconnect();
     });
     mo.observe(mount, { childList: true, subtree: true });
