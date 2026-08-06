@@ -133,6 +133,38 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
 }
 .logo svg{display:block;width:100%;height:100%}
 .logo .slot-img{object-fit:cover}
+/* RU-1P-COCKPIT (07/08, demande Djibril) : le logo respire. Deux couches en
+   pseudo-éléments PAR-DESSUS le contenu — indispensables car au chargement
+   le SVG de secours est REMPLACÉ par l'image logo-176.webp (cf RU-1P-LOGO) :
+   une animation qui ciblerait l'intérieur du SVG mourrait à la bascule.
+   · ::before — le halo magenta monte et descend d'un souffle (4,6 s)
+   · ::after — un reflet de verre balaie la tuile une fois toutes les 7 s
+   Amplitude volontairement faible : un logo qui s'agite fait gadget, un
+   logo qui respire fait vivant. */
+.logo::before{
+  content:'';position:absolute;inset:-28%;border-radius:50%;z-index:1;
+  background:radial-gradient(circle,rgba(232,121,249,.5),transparent 64%);
+  opacity:.3;animation:logo-souffle 4.6s ease-in-out infinite;
+  pointer-events:none;
+}
+.logo::after{
+  content:'';position:absolute;top:-40%;bottom:-40%;left:-70%;width:55%;z-index:2;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.4) 50%,transparent);
+  animation:logo-reflet 7s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes logo-souffle{
+  0%,100%{opacity:.22;transform:scale(.96)}
+  50%{opacity:.7;transform:scale(1.06)}
+}
+@keyframes logo-reflet{
+  0%,74%{transform:translateX(0)}
+  90%,100%{transform:translateX(330%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .logo::before,.logo::after{animation:none}
+  .logo::before{opacity:.3}
+}
 
 /* ── Hero ─────────────────────────────────────────────────────────────── */
 .hero{position:relative;padding:58px 20px 18px;overflow:clip}
@@ -530,16 +562,19 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
   /* les visages naissent et meurent dans le fond, jamais sur un bord net */
   -webkit-mask:linear-gradient(90deg,#0000,#000 7%,#000 93%,#0000);
           mask:linear-gradient(90deg,#0000,#000 7%,#000 93%,#0000);
+  /* RU-1P-COCKPIT (07/08, réf magicfeedpro) : le rail se prend en main.
+     pan-y laisse le scroll vertical de la page au navigateur, seul l'axe X
+     est capté — un rail qui vole le scroll vertical est une friction. */
+  touch-action:pan-y;cursor:grab;
+  user-select:none;-webkit-user-select:none;
 }
-.vitrine-piste{display:flex;gap:var(--pas);width:max-content;
-  animation:vitrine-defile var(--duree,110s) linear infinite}
+.vitrine.en-main{cursor:grabbing}
+/* La piste n'est plus une animation CSS : un rail JS la pilote (croisière
+   auto + doigt/souris avec inertie, boucle invisible par modulo). L'ancienne
+   pause :hover collait sur iPhone : le tap posait l'état hover et FIGEAIT le
+   défilement jusqu'au tap suivant ailleurs — c'était le « bug de swipe ». */
+.vitrine-piste{display:flex;gap:var(--pas);width:max-content;will-change:transform}
 .vitrine-lot{display:flex;gap:var(--pas)}
-.vitrine:hover .vitrine-piste,
-.vitrine[data-viewport-pause] .vitrine-piste{animation-play-state:paused}
-@keyframes vitrine-defile{
-  from{transform:translate3d(0,0,0)}
-  to{transform:translate3d(calc(var(--course,0px) * -1),0,0)}
-}
 .vitrine figure{
   margin:0;flex:none;width:var(--tuile);height:var(--tuile);
   border-radius:13px;overflow:hidden;position:relative;background:#ECE7F4;
@@ -553,9 +588,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
     0 3px 7px rgba(46,16,84,.16);
 }
 .vitrine img{width:100%;height:100%;object-fit:cover;display:block;
-  filter:contrast(1.09) saturate(1.06)}
+  filter:contrast(1.09) saturate(1.06);-webkit-user-drag:none}
 @media(max-width:700px){.vitrine{--tuile:52px;--pas:8px}}
-@media(prefers-reduced-motion:reduce){.vitrine-piste{animation:none}}
+/* reduced-motion : la croisière auto est coupée dans le JS du rail ;
+   le geste, lui, reste possible — c'est l'utilisateur qui décide. */
 
 /* ── Bloc de conversion : vidéo + iClosed sur un panneau encre ─────────
    C'est le pivot de la page : sur l'encre, la vidéo et la carte blanche du
@@ -700,6 +736,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
 @media(max-width:700px){
   .player-frame::after{height:30%}  /* RU-1P-DIFF : jamais sur la carte iClosed */
 }
+/* RU-1P-COCKPIT (07/08, réf magicfeedpro — « l'écran pivote en même temps
+   qu'on scrolle ») : l'écran arrive d'en bas légèrement incliné, se pose à
+   plat au centre de l'écran, et verse un peu dans l'autre sens quand on le
+   dépasse. Le transform vit sur .player-frame SEULEMENT : .video-col est
+   sticky en desktop et un transform d'ancêtre tuerait le sticky. */
+.js .player-frame{will-change:transform}
 .player{position:relative;border-radius:1.25rem;overflow:hidden;background:#0f0d14;aspect-ratio:16/9}
 .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .poster-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
@@ -929,14 +971,22 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
   font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink);background:#F4F2F7;border-radius:.85em;
   box-shadow:0 0 0 1px rgba(181,123,255,.45),0 12px 30px -14px rgba(0,0,0,.75);
-  transition:transform .22s var(--ease-micro,ease),box-shadow .22s ease,background .22s ease;
+  /* courbe à ressort (réf magicfeedpro) : le bouton dépasse un rien sa
+     position avant de se poser — c'est ce dépassement qui fait « vivant » */
+  transition:transform .32s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease,background .22s ease;
 }
 .guarantee-links .anchor:hover{
-  background:#fff;transform:translateY(-1px);
+  background:#fff;transform:translateY(-2px);
   box-shadow:0 0 0 1px rgba(181,123,255,.7),0 16px 36px -14px rgba(0,0,0,.8);
 }
 .guarantee-links .anchor:active{transform:translateY(0)}
 .guarantee-links .anchor:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+/* RU-1P-COCKPIT (07/08, vu téléphone) : quand le bloc garantie passe en
+   colonne, le sceau 90 JOURS se centre — collé à gauche il flottait dans le
+   vide. Au-dessus de 700px rien ne bouge : le corps flex:1 absorbe la ligne. */
+@media(max-width:700px){
+  .guarantee{justify-content:center}
+}
 
 /* ── Footer ───────────────────────────────────────────────────────────── */
 .footer{position:relative;z-index:2;background:var(--ink-panel);padding:22px 20px 36px}
@@ -963,8 +1013,15 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
 .hero-inner.is-in .hairline{transform:scaleX(1)}
 /* Etats d'entree conditionnes a .js : sans JavaScript, ou si le script casse,
    la page reste entierement lisible au lieu de rester a opacity 0. */
-.js [data-reveal]{opacity:0;transform:translateY(22px)}
-.js [data-reveal].shown{opacity:1;transform:none;transition:opacity .6s var(--ease-in-out),transform .6s var(--ease-in-out)}
+/* RU-1P-COCKPIT (07/08, réf magicfeedpro) : l'apparition gagne un léger flou
+   qui se dissipe + une courbe qui dépasse à peine sa cible avant de se poser
+   (la signature « spring » Framer). Le flou n'existe qu'un instant, sur des
+   blocs courts : coût GPU ponctuel, nul au repos. */
+.js [data-reveal]{opacity:0;transform:translateY(22px);filter:blur(8px)}
+.js [data-reveal].shown{opacity:1;transform:none;filter:blur(0);
+  transition:opacity .65s var(--ease-in-out),
+             transform .65s cubic-bezier(.22,1,.36,1),
+             filter .5s var(--ease-in-out)}
 .js .pre-in{opacity:0;transform:translateY(14px)}
 .js .hairline{transform:scaleX(0)}
 
@@ -1188,7 +1245,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
   <!-- ══ Preuves ════════════════════════════════════════════════════════ -->
   <section class="proofs" id="preuves">
     <div class="proofs-head">
-      <h2 data-reveal>+83 RÉSULTATS CLIENTS&nbsp;:</h2>
+      <!-- RU-1P-COCKPIT : le nombre se compte sous les yeux à l'arrivée du
+           bloc (réf magicfeedpro). tabular-nums : les chiffres défilent sans
+           faire trembler la ligne. -->
+      <h2 data-reveal>+<span id="compteur-83" style="font-variant-numeric:tabular-nums">83</span> RÉSULTATS CLIENTS&nbsp;:</h2>
     </div>
     <!-- Témoignages empilés, les uns sous les autres. -->
     <div class="stack" id="stack"></div>
@@ -1721,6 +1781,19 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
     53,54,55,56,57,58,59,62,64,66,67,68,69,70,72,74,75,76,77,79,82];
   const VITRINE_VITESSE = 46; /* px/s — assez lent pour distinguer un visage */
 
+  /* RU-1P-COCKPIT (07/08, réf magicfeedpro). Deux bugs constatés sur le
+     rail CSS d'avant, tous deux visibles téléphone en main :
+     · affichage — en `loading=lazy`, 10 vignettes chargées sur 138 au
+       premier écran : les tuiles ENTRAIENT vides par la droite puis
+       apparaissaient en retard. Un rail qui amène ses images doit les
+       avoir AVANT qu'elles entrent. Monté après `load`, l'eager ne
+       dispute plus rien au premier rendu.
+     · swipe — aucun geste capté, et la pause :hover collait au tap iOS :
+       le rail se FIGEAIT jusqu'au tap suivant ailleurs.
+     Le rail devient un cockpit : croisière auto + prise en main au doigt
+     ou à la souris, inertie du geste au lâcher, puis retour en douceur à
+     la croisière. Boucle infinie par modulo de la largeur d'un lot,
+     toujours MESURÉE, jamais devinée en pourcentage. */
   (() => {
     const boite = document.getElementById('vitrine');
     if (!boite || !VITRINE.length) return;
@@ -1737,7 +1810,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
           const img = document.createElement('img');
           img.src = 'assets/clients/s' + String(n).padStart(2, '0') + '.webp';
           img.width = 176; img.height = 176; img.alt = '';
-          img.loading = 'lazy'; img.decoding = 'async';
+          img.loading = 'eager'; img.decoding = 'async';
+          img.setAttribute('fetchpriority', 'low');
+          img.draggable = false;
           f.appendChild(img);
           lot.appendChild(f);
         });
@@ -1746,29 +1821,158 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
       });
       boite.appendChild(piste);
 
+      let course = 0;
       const caler = () => {
         const pas = parseFloat(getComputedStyle(boite).getPropertyValue('--pas')) || 10;
-        const course = lots[0].getBoundingClientRect().width + pas;
-        if (course < 50) return; // mise en page pas encore faite
-        piste.style.setProperty('--course', course + 'px');
-        piste.style.setProperty('--duree', (course / VITRINE_VITESSE).toFixed(1) + 's');
+        const c = lots[0].getBoundingClientRect().width + pas;
+        if (c > 50) course = c; // < 50 : mise en page pas encore faite
       };
       caler();
       // la largeur d'un lot change avec --tuile (media query) : on recale
       if (window.ResizeObserver) new ResizeObserver(caler).observe(lots[0]);
 
-      // pause réelle hors viewport : une animation qui tourne sous le pli
-      // consomme du compositeur pour rien
-      if (window.IntersectionObserver) {
-        new IntersectionObserver(es => es.forEach(e => {
-          if (e.isIntersecting) boite.removeAttribute('data-viewport-pause');
-          else boite.setAttribute('data-viewport-pause', '');
-        }), { rootMargin: '120px' }).observe(boite);
+      /* 3 états : `libre` (croisière), `main` (le doigt fait la position),
+         `lance` (l'inertie du geste refond vers la croisière). En
+         reduced-motion la croisière est nulle mais le geste reste permis :
+         c'est l'utilisateur qui décide du mouvement. */
+      const reduit = matchMedia('(prefers-reduced-motion:reduce)').matches;
+      const CROISIERE = reduit ? 0 : -VITRINE_VITESSE;
+      let x = 0, vx = CROISIERE, cible = CROISIERE, mode = 'libre', enVue = true;
+
+      // pause au survol : pointeur fin uniquement — sur écran tactile un
+      // `:hover` collant après le tap figeait le rail (le bug d'origine)
+      if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+        boite.addEventListener('pointerenter', () => { cible = 0; });
+        boite.addEventListener('pointerleave', () => { cible = CROISIERE; });
       }
+
+      let doigtX = 0, xPrise = 0, dernX = 0, dernT = 0;
+      boite.addEventListener('pointerdown', e => {
+        mode = 'main'; boite.classList.add('en-main');
+        try { boite.setPointerCapture(e.pointerId); } catch (_) {}
+        doigtX = dernX = e.clientX; xPrise = x; vx = 0;
+        dernT = performance.now();
+      });
+      boite.addEventListener('pointermove', e => {
+        if (mode !== 'main') return;
+        x = xPrise + (e.clientX - doigtX);
+        const t = performance.now(), dt = (t - dernT) / 1000;
+        // vitesse lissée (EMA) : la vitesse instantanée d'un doigt est bruitée
+        if (dt > 0.001) vx = vx * .75 + ((e.clientX - dernX) / dt) * .25;
+        dernX = e.clientX; dernT = t;
+      });
+      // pointercancel : le navigateur a réclamé le geste (scroll vertical
+      // pan-y) — on lâche proprement, jamais de rail à moitié pris
+      const lacher = () => {
+        if (mode !== 'main') return;
+        mode = 'lance'; boite.classList.remove('en-main');
+        vx = Math.max(-2400, Math.min(2400, vx));
+      };
+      boite.addEventListener('pointerup', lacher);
+      boite.addEventListener('pointercancel', lacher);
+
+      // hors viewport le rail dort : un compositeur qui anime sous le pli
+      // travaille pour personne
+      if (window.IntersectionObserver) {
+        new IntersectionObserver(es => es.forEach(e => { enVue = e.isIntersecting; }),
+          { rootMargin: '120px' }).observe(boite);
+      }
+
+      let avant = performance.now();
+      const tour = t => {
+        // dt plafonné : au retour d'un onglet endormi, un dt d'une minute
+        // téléporterait le rail
+        const dt = Math.min((t - avant) / 1000, .05); avant = t;
+        if (enVue && mode !== 'main') {
+          if (mode === 'lance') {
+            vx += (cible - vx) * Math.min(1, dt * 2.4);
+            if (Math.abs(vx - cible) < 24) mode = 'libre';
+          } else {
+            vx += (cible - vx) * Math.min(1, dt * 5);
+          }
+          x += vx * dt;
+        }
+        if (course > 0) x = ((x % course) + course) % course - course;
+        piste.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+        requestAnimationFrame(tour);
+      };
+      requestAnimationFrame(tour);
     };
 
     if (document.readyState === 'complete') monter();
     else window.addEventListener('load', monter, { once: true });
+  })();
+
+  /* ══ RU-1P-COCKPIT · l'écran qui pivote au scroll ═════════════════════
+     Réf magicfeedpro : l'écran arrive d'en bas un peu incliné, se pose à
+     plat quand il traverse le centre, verse légèrement dans l'autre sens
+     quand on le dépasse — dans les deux sens de scroll. Un seul transform
+     compositeur par frame de scroll, listener passif, zéro layout. */
+  (() => {
+    if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    /* Le même pivot s'applique à l'écran VSL et à chaque carte témoignage :
+       répété sur tous les « écrans » de la page, l'effet devient une
+       grammaire, pas un gadget isolé. Les cartes naissent en JS et d'autres
+       arrivent au clic « Voir les autres » : on re-collecte à chaque
+       mutation de la pile plutôt que de figer la liste au chargement. */
+    const cibles = new Set();
+    const collecter = () => document
+      .querySelectorAll('.player-frame, .stack .proof')
+      .forEach(el => cibles.add(el));
+    collecter();
+    addEventListener('load', () => {
+      collecter();
+      const pile = document.querySelector('.stack');
+      if (pile && window.MutationObserver)
+        new MutationObserver(collecter).observe(pile, { childList: true });
+    }, { once: true });
+
+    let prevu = false;
+    const poser = () => {
+      prevu = false;
+      const vh = innerHeight || 1;
+      cibles.forEach(el => {
+        const r = el.getBoundingClientRect();
+        // loin du viewport : transform remis à zéro une fois, puis plus rien
+        const rel = ((r.top + r.height / 2) - vh / 2) / (vh / 2 + r.height / 2);
+        if (rel < -1.15 || rel > 1.15) {
+          if (el.style.transform) el.style.transform = '';
+          return;
+        }
+        const p = Math.max(-1, Math.min(1, rel));
+        el.style.transform =
+          'perspective(1150px) rotateX(' + (p * 8).toFixed(2) + 'deg)' +
+          ' scale(' + (1 - Math.abs(p) * .025).toFixed(4) + ')';
+      });
+    };
+    const demander = () => { if (!prevu) { prevu = true; requestAnimationFrame(poser); } };
+    addEventListener('scroll', demander, { passive: true });
+    addEventListener('resize', demander, { passive: true });
+    demander();
+  })();
+
+  /* ══ RU-1P-COCKPIT · « +83 » se compte sous les yeux ══════════════════
+     0 → 83 en 1,1 s à l'entrée du bloc dans l'écran, une seule fois.
+     reduced-motion ou vieux navigateur : le 83 est déjà dans le HTML,
+     personne ne perd la preuve. */
+  (() => {
+    const el = document.getElementById('compteur-83');
+    if (!el || !('IntersectionObserver' in window)
+        || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    const FIN = 83, DUREE = 1100;
+    const io = new IntersectionObserver((es, obs) => {
+      if (!es.some(e => e.isIntersecting)) return;
+      obs.disconnect();
+      let t0 = 0;
+      const pas = t => {
+        if (!t0) t0 = t;
+        const a = Math.min(1, (t - t0) / DUREE);
+        el.textContent = Math.round(FIN * (1 - Math.pow(1 - a, 3)));
+        if (a < 1) requestAnimationFrame(pas);
+      };
+      requestAnimationFrame(pas);
+    }, { threshold: .4 });
+    io.observe(el);
   })();
 
 
@@ -1880,9 +2084,14 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
     const filet = setTimeout(toutAfficher, 3000);
     let restants = cibles.length;
     const io = new IntersectionObserver((entries, obs) => {
+      // RU-1P-COCKPIT : les blocs qui deviennent visibles ENSEMBLE se
+      // suivent à 90 ms d'écart — la cascade Framer, au lieu d'un bloc
+      // monolithique qui surgit d'un coup
+      let file = 0;
       entries.forEach(e => {
         if (!e.isIntersecting) return;
         restants--;
+        e.target.style.transitionDelay = (file++ * 90) + 'ms';
         e.target.classList.add('shown');
         obs.unobserve(e.target);
       });
