@@ -105,6 +105,16 @@ function etatDe(l){
   return ["non renseigné", "na"];
 }
 
+// Badge de PRIME par ligne (barème 08/08). Quand elle est due : le montant. Quand elle ne l'est
+// pas sur un lead venu : la condition MANQUANTE, nommée — c'est ce qui rend le barème motivant,
+// le setter voit exactement quoi améliorer (« vidéo pas vue » se travaille avant l'appel).
+function badgePrime(l){
+  if (l.prime > 0) return '<span class="q" style="background:#dcfce7;color:#15803d">prime ' + l.prime + ' €' + (l.converti ? ' · converti' : '') + '</span>';
+  if (!l.passe || l.etat !== "venu") return '';
+  if (!l.qualif) return '';
+  if (!l.vsp) return '<span class="q" style="background:#f1f5f9;color:#64748b">vidéo pas vue → pas de prime</span>';
+  return '';
+}
 function ligne(l){
   var e = etatDe(l);
   var nt = (l.notes || []).map(function(x){ return '<div class="nt">' + esc(x) + '</div>'; }).join("");
@@ -126,7 +136,7 @@ function ligne(l){
        + lignesEch + '</div>' + nt;
   }
   return '<tr><td class="dt">' + esc(frDate(l.iso)) + '</td>'
-       + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : '') + nt + '</td>'
+       + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : '') + badgePrime(l) + nt + '</td>'
        + '<td class="st">' + esc(l.setter || "—") + '</td>'
        + '<td class="et"><span class="p ' + e[1] + '">' + esc(e[0]) + '</span></td></tr>';
 }
@@ -168,7 +178,10 @@ function rendre(d){
     +     '<span>' + d.pct + ' % de ' + d.ca.toLocaleString("fr-FR") + ' € de ventes</span><b>' + d.comm_ventes.toLocaleString("fr-FR") + ' €</b>'
     +   '</div>'
     +   '<div class="com-d">'
-    +     '<span>' + d.bonus_qualif + ' € × ' + d.qualifies + ' lead' + (d.qualifies>1?'s':'') + ' qualifié' + (d.qualifies>1?'s':'') + '</span><b>' + d.comm_qualif.toLocaleString("fr-FR") + ' €</b>'
+    +     '<span>' + d.prime_lead + ' € × ' + d.leads_abouti + ' lead' + (d.leads_abouti>1?'s':'') + ' abouti' + (d.leads_abouti>1?'s':'') + ' (venu + bon profil + vidéo vue)</span><b>' + (d.leads_abouti*d.prime_lead).toLocaleString("fr-FR") + ' €</b>'
+    +   '</div>'
+    +   '<div class="com-d">'
+    +     '<span>' + (d.prime_lead+d.prime_convert) + ' € × ' + d.leads_converti + ' converti' + (d.leads_converti>1?'s':'') + ' (pris RDV grâce à ton appel)</span><b>' + (d.leads_converti*(d.prime_lead+d.prime_convert)).toLocaleString("fr-FR") + ' €</b>'
     +   '</div>'
     +   (d.reste_a_encaisser > 0
         ? '<div class="com-d fut"><span>À venir quand les soldes rentreront (' + d.reste_a_encaisser.toLocaleString("fr-FR") + ' €)</span><b>+ ' + d.comm_a_venir.toLocaleString("fr-FR") + ' €</b></div>'
