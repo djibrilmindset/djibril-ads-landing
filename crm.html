@@ -109,7 +109,13 @@ function etatDe(l){
 // pas sur un lead venu : la condition MANQUANTE, nommée — c'est ce qui rend le barème motivant,
 // le setter voit exactement quoi améliorer (« vidéo pas vue » se travaille avant l'appel).
 function badgePrime(l){
-  if (l.prime > 0) return '<span class="q" style="background:#dcfce7;color:#15803d">prime ' + l.prime + ' €' + (l.converti ? ' · converti' : '') + '</span>';
+  // La source du statut converti, toujours dite : ✋ = corrigé à la main (certain), sinon la
+  // déduction en toutes lettres (« a booké 2 j après son arrivée »). Un badge sans pourquoi ne se
+  // vérifie pas, et un chiffre invérifiable ne sert pas à payer quelqu'un.
+  if (l.prime > 0) {
+    var src = l.converti ? ' · converti' + (l.conv_manuel ? ' ✋' : (l.conv_src ? ' (' + l.conv_src + ')' : '')) : '';
+    return '<span class="q" style="background:#dcfce7;color:#15803d">prime ' + l.prime + ' €' + esc(src) + '</span>';
+  }
   if (!l.passe || l.etat !== "venu") return '';
   if (!l.qualif) return '';
   if (!l.vsp) return '<span class="q" style="background:#f1f5f9;color:#64748b">vidéo pas vue → pas de prime</span>';
