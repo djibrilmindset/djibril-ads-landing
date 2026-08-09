@@ -67,6 +67,13 @@ var TOK  = qs.get("t") || "";
 var WHO  = qs.get("q") || "";
 var app  = document.getElementById("app");
 
+// L'ÉCRAN SETTER VIT DÉSORMAIS SUR /crm (09/08 soir). Cette page calculait encore la commission avec
+// la formule à la MARGE abandonnée le 03/08 : elle affichait 17,98 € pendant que le CRM disait 300 €.
+// Deux écrans qui donnent deux montants au même setter, c'est la mort de la confiance — plutôt que
+// d'entretenir deux calculs jumeaux, l'ancien lien redirige vers la source de vérité unique. Le jeton
+// est le même, rien à redistribuer.
+if (ROLE === "setter") { location.replace("/crm" + location.search); }
+
 function eur(n){ return (Math.round(n||0)).toLocaleString("fr-FR") + " €"; }
 var MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
 function nomMois(ym){ var p = String(ym||"").split("-"); return (MOIS[(+p[1]||1)-1]||"") + (p[0] != String(new Date().getFullYear()) ? " " + p[0] : ""); }
