@@ -117,6 +117,9 @@ function badgePrime(l){
     return '<span class="q" style="background:#dcfce7;color:#15803d">prime ' + l.prime + ' €' + esc(src) + '</span>';
   }
   if (!l.passe || l.etat !== "venu") return '';
+  // Barème à date d'effet (10/08) : sur un RDV antérieur, aucune prime n'existe — afficher
+  // « vidéo pas vue → pas de prime » y serait vrai mais trompeur (la prime manquerait de toute façon).
+  if (l.prime_active === false) return '';
   if (!l.qualif) return '';
   if (!l.vsp) return '<span class="q" style="background:#f1f5f9;color:#64748b">vidéo pas vue → pas de prime</span>';
   return '';
