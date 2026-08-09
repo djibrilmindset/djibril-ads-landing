@@ -184,7 +184,7 @@ function rendre(d){
     +   '<div class="com-l">Ta commission</div>'
     +   '<div class="com-b">' + d.commission.toLocaleString("fr-FR") + ' €</div>'
     +   '<div class="com-d">'
-    +     '<span>' + d.pct + ' % de ' + d.ca.toLocaleString("fr-FR") + ' € de ventes</span><b>' + d.comm_ventes.toLocaleString("fr-FR") + ' €</b>'
+    +     '<span>' + d.pct + ' % de ' + (d.ca_ancien!=null?d.ca_ancien:d.ca).toLocaleString("fr-FR") + ' € de ventes (RDV d\'avant le 10/08 — le 5 % s\'arrête là)</span><b>' + d.comm_ventes.toLocaleString("fr-FR") + ' €</b>'
     +   '</div>'
     +   '<div class="com-d">'
     +     '<span>' + d.prime_lead + ' € × ' + d.leads_abouti + ' lead' + (d.leads_abouti>1?'s':'') + ' abouti' + (d.leads_abouti>1?'s':'') + ' (venu + bon profil ; + vidéo vue dès le 10/08)</span><b>' + (d.leads_abouti*d.prime_lead).toLocaleString("fr-FR") + ' €</b>'
