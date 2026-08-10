@@ -101,6 +101,8 @@ function etatDe(l){
   if (l.montant > 0) return ["signé " + l.montant.toLocaleString("fr-FR") + " €", "ok"];
   if (l.etat === "venu")   return ["venu", "ok"];
   if (l.etat === "noshow") return ["pas venu", "no"];
+  // Vue COLD : un lead jamais booké n'est pas « non renseigné », il est À APPELER — c'est le travail.
+  if (l.cold_booke === false) return ["à appeler", "av"];
   if (!l.passe)            return ["à venir", "av"];
   return ["non renseigné", "na"];
 }
@@ -163,6 +165,8 @@ function tableau(L){
 }
 
 function filtrer(L){
+  if (FILTRE === "appeler")  return L.filter(function(l){ return l.cold_booke === false; });
+  if (FILTRE === "bookes")   return L.filter(function(l){ return l.cold_booke === true; });
   if (FILTRE === "venus")    return L.filter(function(l){ return l.etat === "venu"; });
   if (FILTRE === "absents")  return L.filter(function(l){ return l.etat === "noshow"; });
   if (FILTRE === "signes")   return L.filter(function(l){ return l.montant > 0; });
@@ -171,7 +175,29 @@ function filtrer(L){
   return L;
 }
 
+function rendreCold(d){
+  DATA = d;
+  var L = filtrer(d.lignes || []);
+  var f = [["tous","Tous ("+d.total+")"],["appeler","À appeler ("+d.a_appeler+")"],["bookes","Bookés ("+d.bookes+")"],
+           ["venus","Venus ("+d.venus+")"],["signes","Signés ("+d.signes+")"]];
+  app.innerHTML =
+      '<h1>Cold call — tes leads</h1>'
+    + '<div class="sous">' + d.total + ' leads de la cohorte · mise à jour automatique</div>'
+    + '<div class="kpi">'
+    +   '<div class="k hero"><b>' + d.a_appeler + '</b><span>À appeler</span></div>'
+    +   '<div class="k"><b>' + d.bookes + '</b><span>Bookés</span></div>'
+    +   '<div class="k"><b>' + d.venus + '</b><span>Venus</span></div>'
+    +   '<div class="k"><b>' + d.signes + '</b><span>Signés</span></div>'
+    + '</div>'
+    + '<div class="note">Chaque lead : appelle → envoie l\'Instagram pendant l\'appel → booke son rendez-vous toi-même depuis la carte Telegram. La feuille se met à jour toute seule quand le statut change.</div>'
+    + '<div class="bar">' + f.map(function(x){ return '<button data-f="' + x[0] + '"' + (FILTRE===x[0]?' class="on"':'') + '>' + x[1] + '</button>'; }).join("") + '</div>'
+    + tableau(L);
+  [].forEach.call(app.querySelectorAll(".bar button"), function(b){
+    b.onclick = function(){ FILTRE = b.getAttribute("data-f"); rendreCold(DATA); };
+  });
+}
 function rendre(d){
+  if (d.cold) return rendreCold(d);
   DATA = d;
   var L = filtrer(d.lignes || []);
   var f = [["tous","Tous ("+d.total+")"],["avenir","À venir ("+d.avenir+")"],["venus","Venus ("+d.venus+")"],
