@@ -152,8 +152,10 @@ function ligne(l){
   if (l.q_statut === "en attente") qs = '<span class="q">qualification en attente</span>';
   else if (l.q_statut === "à venir") qs = '<span class="q" style="background:#e0e7ff;color:#3730a3">rendez-vous à venir</span>';
   else if (l.q_statut === "non venu") qs = '<span class="q" style="background:#fee2e2;color:#b91c1c">pas venu</span>';
+  // La campagne d'origine, sur la ligne : c'est la traçabilité demandée (11/08), pas une statistique.
+  var camp = l.campagne ? '<span class="q" style="background:#f1f5f9;color:#475569">' + esc(l.campagne) + '</span>' : '';
   return '<tr><td class="dt">' + esc(frDate(l.iso)) + '</td>'
-       + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : qs) + badgePrime(l) + nt + '</td>'
+       + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : qs) + camp + badgePrime(l) + nt + '</td>'
        + '<td class="st">' + esc(l.setter || "—") + '</td>'
        + '<td class="et"><span class="p ' + e[1] + '">' + esc(e[0]) + '</span></td></tr>';
 }
@@ -266,11 +268,32 @@ function rendre(d){
     + '<div class="note">La présence se calcule sur les ' + (d.venus + d.absents) + ' rendez-vous tranchés (venus + pas venus). '
     + 'Les ' + d.non_notes + ' non renseignés ne comptent dans aucun taux. Le repère « bon profil » n\'existe que depuis le 28 juillet : '
     + 'avant cette date, son absence ne veut pas dire que le profil était mauvais.</div>'
+    + campagnesBloc(d)
     + '<div class="bar">' + f.map(function(x){ return '<button data-f="' + x[0] + '"' + (FILTRE===x[0]?' class="on"':'') + '>' + x[1] + '</button>'; }).join("") + '</div>'
     + tableau(L);
   [].forEach.call(app.querySelectorAll(".bar button"), function(b){
     b.onclick = function(){ FILTRE = b.getAttribute("data-f"); rendre(DATA); };
   });
+}
+
+// PAR CAMPAGNE (Djibril 11/08 : « quel lead vient de quelle campagne »). Un tableau court, trié par
+// volume : chaque campagne Meta avec ses rendez-vous, venus, bons profils, signés et l'encaissé.
+// « (origine inconnue) » = rendez-vous sans UTM (pris avant le tracking, ou lien partagé à la main) :
+// il reste visible, sinon les campagnes connues auraient l'air de porter tout le funnel.
+function campagnesBloc(d){
+  var c = d.campagnes || {};
+  var noms = Object.keys(c);
+  if (!noms.length) return '';
+  noms.sort(function(a,b){ return c[b].rdv - c[a].rdv; });
+  var rows = noms.map(function(n){
+    var x = c[n];
+    return '<tr><td class="nm">' + esc(n) + '</td>'
+         + '<td class="et">' + x.rdv + ' rdv</td>'
+         + '<td class="et">' + x.venus + ' venus</td>'
+         + '<td class="et">' + x.qualifies + ' bons profils</td>'
+         + '<td class="et">' + (x.ca > 0 ? x.signes + ' signés · ' + x.ca.toLocaleString("fr-FR") + ' €' : '—') + '</td></tr>';
+  }).join("");
+  return '<h2>Par campagne Meta</h2><table>' + rows + '</table>';
 }
 
 function charger(){
