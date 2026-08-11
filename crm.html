@@ -146,8 +146,14 @@ function ligne(l){
     nt = '<div class="cre">⏳ reste ' + l.reste.toLocaleString("fr-FR") + ' € sur ' + l.total.toLocaleString("fr-FR") + ' €'
        + lignesEch + '</div>' + nt;
   }
+  // VUE COLD : le statut de qualification est dit sur CHAQUE ligne bookée, parce que c'est lui qui
+  // decide de la commission. « en attente » n'est pas « non » : la distinction doit rester visible.
+  var qs = '';
+  if (l.q_statut === "en attente") qs = '<span class="q">qualification en attente</span>';
+  else if (l.q_statut === "à venir") qs = '<span class="q" style="background:#e0e7ff;color:#3730a3">rendez-vous à venir</span>';
+  else if (l.q_statut === "non venu") qs = '<span class="q" style="background:#fee2e2;color:#b91c1c">pas venu</span>';
   return '<tr><td class="dt">' + esc(frDate(l.iso)) + '</td>'
-       + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : '') + badgePrime(l) + nt + '</td>'
+       + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : qs) + badgePrime(l) + nt + '</td>'
        + '<td class="st">' + esc(l.setter || "—") + '</td>'
        + '<td class="et"><span class="p ' + e[1] + '">' + esc(e[0]) + '</span></td></tr>';
 }
@@ -165,12 +171,17 @@ function tableau(L){
 }
 
 function filtrer(L){
+  if (FILTRE === "qualifies") return L.filter(function(l){ return l.prime > 0; });
   if (FILTRE === "appeler")  return L.filter(function(l){ return l.cold_booke === false; });
   if (FILTRE === "bookes")   return L.filter(function(l){ return l.cold_booke === true; });
   if (FILTRE === "venus")    return L.filter(function(l){ return l.etat === "venu"; });
   if (FILTRE === "absents")  return L.filter(function(l){ return l.etat === "noshow"; });
   if (FILTRE === "signes")   return L.filter(function(l){ return l.montant > 0; });
-  if (FILTRE === "attente")  return L.filter(function(l){ return l.passe && !l.etat; });
+  // « En attente » en vue cold = tout ce qui peut ENCORE devenir de la commission (rendez-vous à
+  // venir, ou passé mais pas encore tranché), pour que le compte du bouton et la liste coïncident.
+  if (FILTRE === "attente")  return L.filter(function(l){
+    return l.q_statut ? (l.q_statut === "en attente" || l.q_statut === "à venir") : (l.passe && !l.etat);
+  });
   if (FILTRE === "avenir")   return L.filter(function(l){ return !l.passe; });
   return L;
 }
@@ -179,17 +190,35 @@ function rendreCold(d){
   DATA = d;
   var L = filtrer(d.lignes || []);
   var f = [["tous","Tous ("+d.total+")"],["appeler","À appeler ("+d.a_appeler+")"],["bookes","Bookés ("+d.bookes+")"],
+           ["qualifies","Qualifiés ("+(d.qualifies||0)+")"],["attente","En attente ("+(d.en_attente||0)+")"],
            ["venus","Venus ("+d.venus+")"],["signes","Signés ("+d.signes+")"]];
+  // LA COMMISSION D'ABORD, EN GROS : c'est la seule question qu'on se pose en ouvrant sa feuille.
+  // Barème dit en toutes lettres pour qu'il soit recalculable de tête, et le « pas encore tranché »
+  // affiché à part — un rendez-vous en attente n'est ni acquis ni perdu, le confondre serait mentir.
+  var pu = d.prime_unitaire || 25;
+  var comm = ''
+    + '<div class="com">'
+    +   '<div class="com-l">Ta commission</div>'
+    +   '<div class="com-b">' + (d.commission || 0).toLocaleString("fr-FR") + ' €</div>'
+    +   '<div class="com-d"><span>' + pu + ' € × ' + (d.qualifies || 0) + ' rendez-vous converti'
+    +     ((d.qualifies||0) > 1 ? 's' : '') + ' et qualifié' + ((d.qualifies||0) > 1 ? 's' : '')
+    +     '</span><b>' + (d.commission || 0).toLocaleString("fr-FR") + ' €</b></div>'
+    +   ((d.en_attente || 0) > 0
+        ? '<div class="com-d fut"><span>' + d.en_attente + ' rendez-vous pas encore tranché'
+          + (d.en_attente > 1 ? 's' : '') + ' par Djibril</span><b>+ ' + (d.commission_potentielle || 0).toLocaleString("fr-FR") + ' € possibles</b></div>'
+        : '')
+    + '</div>';
   app.innerHTML =
       '<h1>Cold call — tes leads</h1>'
     + '<div class="sous">' + d.total + ' leads de la cohorte · mise à jour automatique</div>'
+    + comm
     + '<div class="kpi">'
     +   '<div class="k hero"><b>' + d.a_appeler + '</b><span>À appeler</span></div>'
     +   '<div class="k"><b>' + d.bookes + '</b><span>Bookés</span></div>'
     +   '<div class="k"><b>' + d.venus + '</b><span>Venus</span></div>'
     +   '<div class="k"><b>' + d.signes + '</b><span>Signés</span></div>'
     + '</div>'
-    + '<div class="note">Chaque lead : appelle → envoie l\'Instagram pendant l\'appel → booke son rendez-vous toi-même depuis la carte Telegram. La feuille se met à jour toute seule quand le statut change.</div>'
+    + '<div class="note">Chaque lead : appelle → envoie l\'Instagram pendant l\'appel → booke son rendez-vous toi-même depuis la carte Telegram. Tu touches ' + pu + ' € par rendez-vous que tu as converti ET que Djibril a marqué bon profil après l\'appel. La feuille se met à jour toute seule.</div>'
     + '<div class="bar">' + f.map(function(x){ return '<button data-f="' + x[0] + '"' + (FILTRE===x[0]?' class="on"':'') + '>' + x[1] + '</button>'; }).join("") + '</div>'
     + tableau(L);
   [].forEach.call(app.querySelectorAll(".bar button"), function(b){
