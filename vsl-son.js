@@ -26,9 +26,6 @@
     sp.style.setProperty('text-shadow', 'none', 'important'); /* si le skin galaxie est actif, son halo blanc baverait ici */
     sp.innerHTML = '🔊 Votre vidéo a déjà commencé<br>Cliquez pour activer le son';
     ov.appendChild(sp);
-    host.appendChild(ov);
-    video.mute();
-    video.play();
     ov.addEventListener('click', function () {
       /* la config Wistia no-seek de la VSL refuse video.time(0) — le seek
          sur l'élément <video> brut passe, lui (vérifié live 2026-08-13) */
@@ -38,5 +35,16 @@
       video.play();
       if (ov.parentNode) ov.parentNode.removeChild(ov);
     });
+    /* 1er essai : son DIRECT dès l'ouverture. Le navigateur ne l'accorde
+       qu'aux visiteurs ayant déjà interagi avec le domaine (revisite, etc.) ;
+       s'il refuse, bascule auto : lecture muette + overlay clic-pour-le-son. */
+    video.unmute();
+    video.play();
+    setTimeout(function () {
+      if (video.state() === 'playing' && !video.isMuted()) return; /* son direct accordé, aucun overlay */
+      video.mute();
+      video.play();
+      host.appendChild(ov);
+    }, 600);
   }});
 })();
