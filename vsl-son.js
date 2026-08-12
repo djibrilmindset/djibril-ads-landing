@@ -30,7 +30,10 @@
     video.mute();
     video.play();
     ov.addEventListener('click', function () {
+      /* la config Wistia no-seek de la VSL refuse video.time(0) — le seek
+         sur l'élément <video> brut passe, lui (vérifié live 2026-08-13) */
       try { video.time(0); } catch (e) {}
+      try { var raw = host.querySelector('video'); if (raw) raw.currentTime = 0; } catch (e) {}
       video.unmute();
       video.play();
       if (ov.parentNode) ov.parentNode.removeChild(ov);
