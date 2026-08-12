@@ -37,14 +37,23 @@
     });
     /* 1er essai : son DIRECT dès l'ouverture. Le navigateur ne l'accorde
        qu'aux visiteurs ayant déjà interagi avec le domaine (revisite, etc.) ;
-       s'il refuse, bascule auto : lecture muette + overlay clic-pour-le-son. */
-    video.unmute();
-    video.play();
-    setTimeout(function () {
-      if (video.state() === 'playing' && !video.isMuted()) return; /* son direct accordé, aucun overlay */
+       s'il refuse OU suspend la lecture ensuite, bascule auto :
+       lecture muette + overlay clic-pour-le-son. Double contrôle car un
+       navigateur peut laisser partir le son puis suspendre après coup. */
+    var secours = function () {
+      if (window.__ruVslFallback) return; window.__ruVslFallback = 1;
       video.mute();
       video.play();
-      host.appendChild(ov);
-    }, 600);
+      if (!ov.parentNode) host.appendChild(ov);
+    };
+    var verif = function () {
+      if (window.__ruVslFallback) return;
+      if (video.state() === 'playing' && !video.isMuted()) return; /* son direct accordé et stable */
+      secours();
+    };
+    video.unmute();
+    video.play();
+    setTimeout(verif, 600);
+    setTimeout(verif, 3500);
   }});
 })();
