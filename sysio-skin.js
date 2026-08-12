@@ -3,8 +3,8 @@
    Injecté via UNE ligne dans systeme.io :
      <script src="https://reset-ultra.com/sysio-skin.js" defer></script>
    100% réversible : retirer cette ligne = retour à l'état d'origine.
-   Ne touche NI le pixel, NI l'iClosed, NI les témoignages — le look/fond
-   + le module son-au-clic de la VSL (bloc 4, fin de fichier).
+   Ne touche NI le pixel, NI l'iClosed, NI les témoignages — juste le look/fond.
+   (Le son-au-clic de la VSL vit dans vsl-son.js, fichier séparé.)
    ============================================================ */
 (function () {
   if (window.__ruSkin) return; window.__ruSkin = 1;
@@ -72,37 +72,4 @@
     });
     document.body.appendChild(p);
   });
-})();
-
-/* 4) VSL — son au premier clic (2026-08-13)
-   La vidéo Wistia démarre muette dès l'arrivée ; le premier clic sur l'overlay
-   relance du début AVEC le son (le clic = geste utilisateur, seul moyen autorisé
-   par les navigateurs de sortir du mute pour un visiteur froid).
-   ⚠️ cette API player Wistia n'a PAS volume() — unmute() seulement. */
-(function () {
-  window._wq = window._wq || [];
-  window._wq.push({ id: '_all', onReady: function (video) {
-    if (window.__ruVslSound) return; window.__ruVslSound = 1;
-    var host = document.querySelector('.wistia_embed') || video.container;
-    if (!host) return;
-    host.style.position = 'relative';
-    var ov = document.createElement('button');
-    ov.type = 'button';
-    ov.setAttribute('aria-label', 'Activer le son');
-    ov.style.cssText = 'position:absolute;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:20px;border:0;cursor:pointer;background:rgba(0,0,0,.28);color:#fff;font:700 clamp(15px,2.5vw,22px)/1.35 Arial,sans-serif;text-align:center;-webkit-tap-highlight-color:transparent;';
-    var sp = document.createElement('span');
-    sp.style.cssText = 'display:inline-block;max-width:640px;padding:14px 22px;border-radius:999px;background:rgba(0,0,0,.72);box-shadow:0 6px 24px rgba(0,0,0,.35);';
-    sp.style.setProperty('text-shadow', 'none', 'important'); /* le halo blanc du skin (section span) baverait sur ce texte */
-    sp.innerHTML = '🔊 Votre vidéo a déjà commencé<br>Cliquez pour activer le son';
-    ov.appendChild(sp);
-    host.appendChild(ov);
-    video.mute();
-    video.play();
-    ov.addEventListener('click', function () {
-      try { video.time(0); } catch (e) {}
-      video.unmute();
-      video.play();
-      if (ov.parentNode) ov.parentNode.removeChild(ov);
-    });
-  }});
 })();
