@@ -153,7 +153,7 @@ function ligne(l){
   else if (l.q_statut === "à venir") qs = '<span class="q" style="background:#e0e7ff;color:#3730a3">rendez-vous à venir</span>';
   else if (l.q_statut === "non venu") qs = '<span class="q" style="background:#fee2e2;color:#b91c1c">pas venu</span>';
   // La campagne d'origine, sur la ligne : c'est la traçabilité demandée (11/08), pas une statistique.
-  var camp = l.campagne ? '<span class="q" style="background:#f1f5f9;color:#475569">' + esc(l.campagne) + '</span>' : '';
+  var camp = l.campagne ? '<span class="q" style="background:#f1f5f9;color:#475569">' + esc(l.campagne) + (l.pub ? ' · ' + esc(l.pub) : '') + '</span>' : '';
   return '<tr><td class="dt">' + esc(frDate(l.iso)) + '</td>'
        + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : qs) + camp + badgePrime(l) + nt + '</td>'
        + '<td class="st">' + esc(l.setter || "—") + '</td>'
@@ -285,15 +285,28 @@ function campagnesBloc(d){
   var noms = Object.keys(c);
   if (!noms.length) return '';
   noms.sort(function(a,b){ return c[b].rdv - c[a].rdv; });
+  var ligneF = function(nom, x, sous){
+    return '<tr>' + (sous
+        ? '<td class="nm" style="padding-left:22px;font-weight:400;color:#555">↳ ' + esc(nom) + '</td>'
+        : '<td class="nm">' + esc(nom) + '</td>')
+      + '<td class="et">' + x.rdv + ' rdv</td>'
+      + '<td class="et">' + x.venus + ' venus</td>'
+      + '<td class="et">' + x.qualifies + ' bons profils</td>'
+      + '<td class="et">' + (x.ca > 0 ? x.signes + ' signés · ' + x.ca.toLocaleString("fr-FR") + ' €' : '—') + '</td></tr>';
+  };
   var rows = noms.map(function(n){
     var x = c[n];
-    return '<tr><td class="nm">' + esc(n) + '</td>'
-         + '<td class="et">' + x.rdv + ' rdv</td>'
-         + '<td class="et">' + x.venus + ' venus</td>'
-         + '<td class="et">' + x.qualifies + ' bons profils</td>'
-         + '<td class="et">' + (x.ca > 0 ? x.signes + ' signés · ' + x.ca.toLocaleString("fr-FR") + ' €' : '—') + '</td></tr>';
+    var out = ligneF(n, x, false);
+    // LE NIVEAU PUB (12/08 : « décortiquer ») : sous chaque campagne, ses publicités, triées par
+    // volume. C'est là que se lit « quel hook convertit » — la campagne ne dit que la moitié.
+    var pubs = x.pubs || {};
+    var pn = Object.keys(pubs);
+    pn.sort(function(a,b){ return pubs[b].rdv - pubs[a].rdv; });
+    pn.forEach(function(p2){ out += ligneF(p2, pubs[p2], true); });
+    return out;
   }).join("");
-  return '<h2>Par campagne Meta</h2><table>' + rows + '</table>';
+  return '<h2>Par campagne Meta, puis par publicité</h2><table>' + rows + '</table>'
+    + '<div class="note">Un RDV sans détail publicité = lien sans UTM complet (anciens RDV, ou lien organique). Les noms viennent de ton compte Meta et se rafraîchissent chaque matin : renomme tes pubs là-bas, le CRM suivra.</div>';
 }
 
 function charger(){
