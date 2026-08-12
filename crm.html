@@ -268,7 +268,6 @@ function rendre(d){
     + '<div class="note">La présence se calcule sur les ' + (d.venus + d.absents) + ' rendez-vous tranchés (venus + pas venus). '
     + 'Les ' + d.non_notes + ' non renseignés ne comptent dans aucun taux. Le repère « bon profil » n\'existe que depuis le 28 juillet : '
     + 'avant cette date, son absence ne veut pas dire que le profil était mauvais.</div>'
-    + campagnesBloc(d)
     + '<div class="bar">' + f.map(function(x){ return '<button data-f="' + x[0] + '"' + (FILTRE===x[0]?' class="on"':'') + '>' + x[1] + '</button>'; }).join("") + '</div>'
     + tableau(L);
   [].forEach.call(app.querySelectorAll(".bar button"), function(b){
@@ -276,38 +275,6 @@ function rendre(d){
   });
 }
 
-// PAR CAMPAGNE (Djibril 11/08 : « quel lead vient de quelle campagne »). Un tableau court, trié par
-// volume : chaque campagne Meta avec ses rendez-vous, venus, bons profils, signés et l'encaissé.
-// « (origine inconnue) » = rendez-vous sans UTM (pris avant le tracking, ou lien partagé à la main) :
-// il reste visible, sinon les campagnes connues auraient l'air de porter tout le funnel.
-function campagnesBloc(d){
-  var c = d.campagnes || {};
-  var noms = Object.keys(c);
-  if (!noms.length) return '';
-  noms.sort(function(a,b){ return c[b].rdv - c[a].rdv; });
-  var ligneF = function(nom, x, sous){
-    return '<tr>' + (sous
-        ? '<td class="nm" style="padding-left:22px;font-weight:400;color:#555">↳ ' + esc(nom) + '</td>'
-        : '<td class="nm">' + esc(nom) + '</td>')
-      + '<td class="et">' + x.rdv + ' rdv</td>'
-      + '<td class="et">' + x.venus + ' venus</td>'
-      + '<td class="et">' + x.qualifies + ' bons profils</td>'
-      + '<td class="et">' + (x.ca > 0 ? x.signes + ' signés · ' + x.ca.toLocaleString("fr-FR") + ' €' : '—') + '</td></tr>';
-  };
-  var rows = noms.map(function(n){
-    var x = c[n];
-    var out = ligneF(n, x, false);
-    // LE NIVEAU PUB (12/08 : « décortiquer ») : sous chaque campagne, ses publicités, triées par
-    // volume. C'est là que se lit « quel hook convertit » — la campagne ne dit que la moitié.
-    var pubs = x.pubs || {};
-    var pn = Object.keys(pubs);
-    pn.sort(function(a,b){ return pubs[b].rdv - pubs[a].rdv; });
-    pn.forEach(function(p2){ out += ligneF(p2, pubs[p2], true); });
-    return out;
-  }).join("");
-  return '<h2>Par campagne Meta, puis par publicité</h2><table>' + rows + '</table>'
-    + '<div class="note">Un RDV sans détail publicité = lien sans UTM complet (anciens RDV, ou lien organique). Les noms viennent de ton compte Meta et se rafraîchissent chaque matin : renomme tes pubs là-bas, le CRM suivra.</div>';
-}
 
 function charger(){
   if (!TOK) { app.innerHTML = '<div class="err">Lien incomplet. Redemande le lien d\'accès.</div>'; return; }
