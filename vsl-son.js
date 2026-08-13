@@ -17,15 +17,26 @@
     var host = document.querySelector('.wistia_embed') || video.container;
     if (!host) return;
     host.style.position = 'relative';
+    var anim = document.createElement('style');
+    anim.textContent = '@keyframes ruVslPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}' +
+      '@keyframes ruVslRing{0%{transform:scale(.55);opacity:.95}100%{transform:scale(1.9);opacity:0}}' +
+      '@keyframes ruVslShake{0%,100%{transform:rotate(0)}15%{transform:rotate(-9deg)}30%{transform:rotate(9deg)}45%{transform:rotate(-6deg)}60%{transform:rotate(6deg)}75%{transform:rotate(-3deg)}}';
+    document.head.appendChild(anim);
     var ov = document.createElement('button');
     ov.type = 'button';
     ov.setAttribute('aria-label', 'Activer le son');
-    ov.style.cssText = 'position:absolute;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:20px;border:0;cursor:pointer;background:rgba(0,0,0,.28);color:#fff;font:700 clamp(15px,2.5vw,22px)/1.35 Arial,sans-serif;text-align:center;-webkit-tap-highlight-color:transparent;';
-    var sp = document.createElement('span');
-    sp.style.cssText = 'display:inline-block;max-width:640px;padding:14px 22px;border-radius:999px;background:rgba(0,0,0,.72);box-shadow:0 6px 24px rgba(0,0,0,.35);';
-    sp.style.setProperty('text-shadow', 'none', 'important'); /* si le skin galaxie est actif, son halo blanc baverait ici */
-    sp.innerHTML = '🔊 Votre vidéo a déjà commencé<br>Cliquez pour activer le son';
-    ov.appendChild(sp);
+    ov.style.cssText = 'position:absolute;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:20px;border:0;cursor:pointer;background:rgba(0,0,0,.25);-webkit-tap-highlight-color:transparent;';
+    ov.innerHTML =
+      '<span style="display:flex;flex-direction:column;align-items:center;gap:14px;pointer-events:none;">' +
+        '<span style="position:relative;display:flex;align-items:center;justify-content:center;width:clamp(88px,22vw,120px);height:clamp(88px,22vw,120px);">' +
+          '<span style="position:absolute;inset:0;border-radius:50%;border:3px solid rgba(255,255,255,.9);animation:ruVslRing 1.6s ease-out infinite;"></span>' +
+          '<span style="position:absolute;inset:0;border-radius:50%;border:3px solid rgba(255,255,255,.6);animation:ruVslRing 1.6s ease-out .55s infinite;"></span>' +
+          '<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;border-radius:50%;background:rgba(0,0,0,.78);box-shadow:0 10px 40px rgba(0,0,0,.55);animation:ruVslPulse 1.6s ease-in-out infinite;">' +
+            '<svg width="52%" height="52%" viewBox="0 0 24 24" fill="#fff" style="animation:ruVslShake 1.5s ease-in-out infinite;"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/><path d="M14 3.2v2.1c2.9.9 5 3.6 5 6.7s-2.1 5.8-5 6.7v2.1c4-.9 7-4.5 7-8.8s-3-7.9-7-8.8z"/></svg>' +
+          '</span>' +
+        '</span>' +
+        '<span style="font:700 15px/1.3 Arial,sans-serif;color:#fff;background:rgba(0,0,0,.65);padding:8px 18px;border-radius:999px;text-shadow:none !important;">Appuyez pour activer le son</span>' +
+      '</span>';
     ov.addEventListener('click', function () {
       /* la config Wistia no-seek de la VSL refuse video.time(0) — le seek
          sur l'élément <video> brut passe, lui (vérifié live 2026-08-13) */
