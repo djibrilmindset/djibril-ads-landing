@@ -51,6 +51,17 @@
       video.play();
       if (ov.parentNode) ov.parentNode.removeChild(ov);
       ['click', 'touchend', 'keydown'].forEach(function (t) { document.removeEventListener(t, surGeste, true); });
+      /* certains webviews suspendent la lecture juste après l'avoir accordée :
+         un re-play borné, puis si ça résiste l'overlay revient (jamais de vidéo
+         figée sans issue) */
+      setTimeout(function () {
+        var r = host.querySelector('video');
+        if (r && r.paused) video.play();
+      }, 800);
+      setTimeout(function () {
+        var r = host.querySelector('video');
+        if (r && r.paused) { window.__ruVslActive = 0; host.appendChild(ov); }
+      }, 2500);
     };
     surGeste = function () {
       var raw = host.querySelector('video');
