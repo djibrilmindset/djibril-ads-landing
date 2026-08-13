@@ -154,6 +154,17 @@ function ligne(l){
   else if (l.q_statut === "non venu") qs = '<span class="q" style="background:#fee2e2;color:#b91c1c">pas venu</span>';
   // La campagne d'origine, sur la ligne : c'est la traçabilité demandée (11/08), pas une statistique.
   var camp = l.campagne ? '<span class="q" style="background:#f1f5f9;color:#475569">' + esc(l.campagne) + (l.pub ? ' · ' + esc(l.pub) : '') + '</span>' : '';
+  // CRISTALLISATION PUB (Djibril 13/08) : le detail complet vit EN BAS de la fiche, replie —
+  // « pas en haut du panier » — mais toujours la, extractible pour les prochains axes marketing.
+  if (l.campagne || l.adset || l.source) {
+    nt += '<details class="nt" style="border-left-color:#c4b5fd"><summary style="cursor:pointer;color:#6d28d9;font-size:12px">📣 données publicité</summary>'
+        + '<div style="font-size:12.5px;margin-top:4px;color:#444">'
+        + (l.campagne ? 'campagne : <b>' + esc(l.campagne) + '</b><br>' : '')
+        + (l.pub ? 'publicité : <b>' + esc(l.pub) + '</b><br>' : '')
+        + (l.adset ? 'ensemble : ' + esc(l.adset) + '<br>' : '')
+        + (l.source ? 'source : ' + esc(l.source === 'ig' ? 'Instagram' : l.source === 'fb' ? 'Facebook' : l.source) : '')
+        + '</div></details>';
+  }
   return '<tr><td class="dt">' + esc(frDate(l.iso)) + '</td>'
        + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : qs) + camp + badgePrime(l) + nt + '</td>'
        + '<td class="st">' + esc(l.setter || "—") + '</td>'
