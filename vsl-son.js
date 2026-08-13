@@ -37,7 +37,12 @@
         '</span>' +
         '<span style="font:700 15px/1.3 Arial,sans-serif;color:#fff;background:rgba(0,0,0,.65);padding:8px 18px;border-radius:999px;text-shadow:none !important;">Appuyez pour activer le son</span>' +
       '</span>';
-    ov.addEventListener('click', function () {
+    /* Activation du son : par l'overlay OU par le premier geste N'IMPORTE OÙ
+       sur la page (tap titre, fond, formulaire...). Un geste = autorisation
+       navigateur. On n'empêche jamais le clic d'origine de faire son travail. */
+    var surGeste;
+    var activer = function () {
+      if (window.__ruVslActive) return; window.__ruVslActive = 1;
       /* la config Wistia no-seek de la VSL refuse video.time(0) — le seek
          sur l'élément <video> brut passe, lui (vérifié live 2026-08-13) */
       try { video.time(0); } catch (e) {}
@@ -45,7 +50,15 @@
       video.unmute();
       video.play();
       if (ov.parentNode) ov.parentNode.removeChild(ov);
-    });
+      ['click', 'touchend', 'keydown'].forEach(function (t) { document.removeEventListener(t, surGeste, true); });
+    };
+    surGeste = function () {
+      var raw = host.querySelector('video');
+      if (raw && !raw.paused && !raw.muted) return; /* son déjà actif, ne pas relancer */
+      activer();
+    };
+    ov.addEventListener('click', activer);
+    ['click', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, surGeste, true); });
     /* 1er essai : son DIRECT dès l'ouverture. Le navigateur ne l'accorde
        qu'aux visiteurs ayant déjà interagi avec le domaine (revisite, etc.) ;
        s'il refuse OU suspend la lecture ensuite, bascule auto :
