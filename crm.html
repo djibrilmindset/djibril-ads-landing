@@ -123,8 +123,29 @@ function badgePrime(l){
   // « vidéo pas vue → pas de prime » y serait vrai mais trompeur (la prime manquerait de toute façon).
   if (l.prime_active === false) return '';
   if (!l.qualif) return '';
-  if (!l.vsp) return '<span class="q" style="background:#f1f5f9;color:#64748b">vidéo pas vue → pas de prime</span>';
+  if (!l.vsp) return '<span class="q" style="background:#f1f5f9;color:#64748b">' + esc(l.vsp_etat || "vidéo pas vue") + ' → pas de prime</span>';
   return '';
+}
+// LA VSP, SUR TOUTES LES FICHES (demande Djibril 17/08 : « rajoute toutes les personnes qui ont
+// regardé la vsp ou non »). Le badge de prime ne parlait de vidéo que pour les leads venus et
+// qualifiés ; partout ailleurs l'information n'existait pas. Elle apparaît maintenant sur chaque
+// fiche, et surtout elle DIT LAQUELLE des cinq situations c'est : « jamais envoyée » est un oubli
+// de l'équipe, « envoyée jamais ouverte » est un désintérêt du lead. Les confondre accuse un lead
+// d'une chose que personne n'a faite.
+function badgeVsp(l){
+  var r = l.vsp_rang;
+  if (r === undefined || r === null) return '';
+  var couleurs = [
+    ["#fef3c7", "#92400e"],  // 0 jamais envoyée      -> à faire, côté équipe
+    ["#fee2e2", "#b91c1c"],  // 1 envoyée jamais ouverte
+    ["#fee2e2", "#b91c1c"],  // 2 ouverte puis quittée
+    ["#ffedd5", "#c2410c"],  // 3 commencée puis lâchée
+    ["#dcfce7", "#15803d"],  // 4 regardée jusqu'au bout de l'argumentaire
+    ["#dcfce7", "#15803d"]   // 5 regardée en entier
+  ];
+  var c = couleurs[r] || couleurs[0];
+  var pre = r >= 4 ? "🎬 " : r === 0 ? "📭 " : "⚠️ ";
+  return '<span class="q" style="background:' + c[0] + ';color:' + c[1] + '">' + pre + esc(l.vsp_etat || "") + '</span>';
 }
 function ligne(l){
   var e = etatDe(l);
@@ -166,7 +187,7 @@ function ligne(l){
         + '</div></details>';
   }
   return '<tr><td class="dt">' + esc(frDate(l.iso)) + '</td>'
-       + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : qs) + camp + badgePrime(l) + nt + '</td>'
+       + '<td class="nm">' + esc(l.nom) + (l.qualif ? '<span class="q">bon profil</span>' : qs) + camp + badgeVsp(l) + badgePrime(l) + nt + '</td>'
        + '<td class="st">' + esc(l.setter || "—") + '</td>'
        + '<td class="et"><span class="p ' + e[1] + '">' + esc(e[0]) + '</span></td></tr>';
 }
@@ -196,6 +217,10 @@ function filtrer(L){
     return l.q_statut ? (l.q_statut === "en attente" || l.q_statut === "à venir") : (l.passe && !l.etat);
   });
   if (FILTRE === "avenir")   return L.filter(function(l){ return !l.passe; });
+  // Le seuil de 4 est celui qui vaut la prime : « regardée jusqu'au bout de l'argumentaire » ou
+  // « en entier ». En dessous, la fiche dit POURQUOI (jamais envoyée, jamais ouverte, lâchée).
+  if (FILTRE === "vsp_vue")  return L.filter(function(l){ return l.vsp_rang >= 4; });
+  if (FILTRE === "vsp_non")  return L.filter(function(l){ return l.vsp_rang !== undefined && l.vsp_rang < 4; });
   return L;
 }
 
@@ -242,8 +267,13 @@ function rendre(d){
   if (d.cold) return rendreCold(d);
   DATA = d;
   var L = filtrer(d.lignes || []);
+  // DEUX FILTRES VSP (demande Djibril 17/08) : qui a regardé, qui n'a pas. Les compteurs sont
+  // calculés sur les lignes RÉELLES, jamais sur un champ agrégé qui pourrait dériver de la liste.
+  var vus = (d.lignes||[]).filter(function(l){ return l.vsp_rang >= 4; }).length;
+  var pasVus = (d.lignes||[]).filter(function(l){ return l.vsp_rang !== undefined && l.vsp_rang < 4; }).length;
   var f = [["tous","Tous ("+d.total+")"],["avenir","À venir ("+d.avenir+")"],["venus","Venus ("+d.venus+")"],
-           ["absents","Pas venus ("+d.absents+")"],["attente","Non renseignés ("+d.non_notes+")"],["signes","Signés ("+d.signes+")"]];
+           ["absents","Pas venus ("+d.absents+")"],["attente","Non renseignés ("+d.non_notes+")"],["signes","Signés ("+d.signes+")"],
+           ["vsp_vue","🎬 VSP regardée ("+vus+")"],["vsp_non","📭 VSP pas regardée ("+pasVus+")"]];
   // VUE SETTER : sa commission d'abord, en gros. C'est la seule question qu'il se pose en ouvrant.
   // Formule Djibril 03/08 : 5 % du CA de chaque vente + 20 € par lead qualifié. Aucune marge, aucune
   // charge, aucun argent hors publicité : il peut la recalculer de tête le jour de la vente.
