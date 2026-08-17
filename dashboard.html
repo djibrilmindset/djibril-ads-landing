@@ -330,11 +330,13 @@ function vuePatron(d){
     + '<div class="row"><span>Ventes sur les venus</span><b>'+(d.closing!==null?d.closing.toFixed(0)+" %":"—")+'</b></div>'
     + '<div class="row"><span>RDV du mois</span><b>'+d.rdv+'</b></div>'
     + (d.non_renseignes > 0 ? '<div class="note">⚠️ '+d.non_renseignes+' rendez-vous sans réponse venu / pas venu. Tant qu\'ils ne sont pas renseignés, ils ne comptent dans aucun taux.</div>' : ''));
-  // 4. Ce qu'on doit aux setters
-  var pl = (d.parts||[]).map(function(p){
-    return '<div class="row"><span>'+esc(p.nom)+'<span class="tag t-n">'+eur(p.assiette)+' settés</span></span><b>'+(p.part!==null?eur(p.part):"—")+'</b></div>';
-  }).join("");
-  h += card('<div class="lbl">À verser aux setters</div>'+(pl||'<div class="sub">Personne pour l\'instant</div>'));
+  // 4. Ce qu'on doit aux setters — LA MÊME SOURCE QUE LA PAIE (17/08).
+  // Cette carte affichait encore un pourcentage du chiffre d'affaires, la formule abandonnée le
+  // 09/08 au profit des primes de 20/40 €. Djibril lisait donc un montant ici et un autre dans la
+  // paie, pour la même personne. Elle est désormais alimentée par view=paie : un seul calcul,
+  // un seul chiffre, et le détail de ce qui est acquis, retenu, ou encore en jeu.
+  h += card('<div class="lbl">À verser aux setteurs</div><div id="paie"><div class="sub">Calcul en cours…</div></div>');
+  chargerPaie();
   // 5. Le détail, filtrable — la demande du 01/08 : croiser venu et « setté par qui »
   h += carteAgenda(d);
   h += card('<details><summary>Voir les '+d.rdv+' rendez-vous</summary>'
@@ -375,6 +377,39 @@ function dessineFiltres(){
 }
 
 // ── Chargement + rafraîchissement automatique ─────────────────────────────────────────────────
+// PAIE : appel séparé (view=paie), patron uniquement. Séparé volontairement du chargement
+// principal — si la paie est indisponible, le reste du tableau de bord s'affiche quand même.
+function chargerPaie(){
+  if (ROLE !== "patron") return;
+  fetch(API + "?r=patron&t=" + encodeURIComponent(TOK) + "&view=paie", { cache: "no-store" })
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(p){
+      var el = document.getElementById("paie");
+      if (!el) return;
+      if (!p || !p.equipe) { el.innerHTML = '<div class="sub">Paie momentanément indisponible.</div>'; return; }
+      var actifs = p.equipe.filter(function(s){ return s.setter !== "(personne)" && (s.du || s.a_valider || s.en_attente); });
+      if (!actifs.length) { el.innerHTML = '<div class="sub">Rien à verser pour l\'instant</div>'; return; }
+      // LE DÉTAIL QUE DJIBRIL A DEMANDÉ (17/08) : sous chaque nom, ce qui décide de sa paie —
+      // combien sont venus, combien de no-shows, combien de bons profils, et combien sont venus
+      // SANS être retenus. C'est cette dernière colonne qui explique un écart entre « il a bossé »
+      // et « il touche peu » : le travail a eu lieu, le profil n'était pas le bon.
+      el.innerHTML = actifs.map(function(s){
+        var extra = [];
+        if (s.a_valider) extra.push('<span class="tag t-n">' + eur(s.a_valider) + ' à valider</span>');
+        if (s.en_attente) extra.push('<span class="tag t-n">' + eur(s.en_attente) + ' en jeu</span>');
+        var det = '<div class="sub">' + s.venus + ' venus · ' + s.qualifies + ' bons profils · '
+                + s.venus_non_qualifies + ' venus non retenus · ' + s.noshow + ' no-shows'
+                + (s.pct_ca ? ' · dont ' + eur(s.pct_ca) + ' de 5 % sur ses ventes' : '') + '</div>';
+        return '<div class="row"><span>' + esc(s.setter) + ' ' + extra.join(" ") + det + '</span><b>'
+             + eur(s.total !== undefined ? s.total : s.du) + '</b></div>';
+      }).join("")
+        + '<div class="row"><span><b>Total dû</b></span><b>' + eur(p.total_du) + '</b></div>'
+        + '<div class="sub">' + eur(p.total_primes) + ' de primes + ' + eur(p.total_pct)
+        + ' de ' + p.pct_ca + ' % sur le chiffre d\'affaires (leads d\'avant le 10/08 uniquement)</div>'
+        + '<div class="note">' + esc(p.bareme.regle) + ' ' + esc(p.bareme.preuve) + '</div>';
+    })
+    .catch(function(){});
+}
 var MOIS_VUE = null;
 function voirMois(ym){ MOIS_VUE = ym; charger(); }
 function charger(){
