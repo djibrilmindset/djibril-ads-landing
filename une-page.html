@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reset Ultra, entre 3 000 et 5 000 € par mois depuis chez soi</title>
-<meta name="description" content="Pour le cadre ou le diplômé qui veut enfin sa liberté. Regarde la vidéo, puis réserve ton appel. Si tu n'as pas fait 5 000 euros sur les 90 prochains jours, je te rembourse.">
+<meta name="description" content="Attention, uniquement pour les cadres et consultants qui ont les compétences, pas les clients. 5 000 à 8 000 € par mois avec ce que tu sais déjà faire, sans repartir de zéro.">
 <meta name="theme-color" content="#FAFAF7">
 
 <!-- RU-1P-LOGO — le logo officiel partout : onglet, écran d'accueil, et
@@ -17,7 +17,7 @@
 <link rel="apple-touch-icon" href="assets/ru-logo-apple.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Reset Ultra, entre 3 000 et 5 000 € par mois depuis chez soi">
-<meta property="og:description" content="Pour le cadre ou le diplômé qui veut enfin sa liberté. Regarde la vidéo, puis réserve ton appel.">
+<meta property="og:description" content="Attention, uniquement pour les cadres et consultants qui ont les compétences, pas les clients.">
 <meta property="og:image" content="assets/ru-og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -255,7 +255,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
   margin:0 auto;font-family:var(--mono);font-weight:400;
   font-size:min(14.5px,calc(var(--lock) / 38));
   line-height:1.35;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--violet-ink);white-space:nowrap;
+  color:var(--violet-ink);white-space:normal;text-wrap:balance;max-width:var(--lock);
   -webkit-text-stroke:.42px currentColor;paint-order:stroke fill;
   display:flex;align-items:center;justify-content:center;gap:.9em;
 }
@@ -348,6 +348,17 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
 .headline .ln.ln-open{overflow:visible}
 /* RU-1P-DIFF — même colonne que le titre : la garantie débordait à 1180px
    quand le titre tient dans 880, l'œil devait balayer plus large (demande 28/07). */
+.mecanisme{
+  margin:14px auto 0;max-width:var(--lock);font-family:var(--mono);
+  font-size:clamp(12px,calc(var(--lock) / 46),15px);
+  line-height:1.5;letter-spacing:.02em;color:var(--violet-ink);
+  text-align:center;text-wrap:balance;opacity:.92;
+}
+@media (max-width:520px){.mecanisme{margin-top:11px;line-height:1.45}}
+@media (max-width:560px){
+  .eyebrow{font-size:clamp(10px,calc(var(--lock) / 30),12.5px);letter-spacing:.09em;line-height:1.45;gap:0}
+  .eyebrow::before,.eyebrow::after{display:none}
+}
 .promise{
   margin:.72em auto 0;max-width:min(88vw,880px);
   /* RU-1P-AUDIT — meme defaut que le titre, meme cause : indexee sur --lock
@@ -1247,10 +1258,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--violet-deep);outlin
 
     <div class="hero-inner" id="hero-inner">
       <div class="lockup">
-        <p class="eyebrow pre-in">Pour le cadre ou le diplômé qui veut enfin sa liberté</p>
+        <p class="eyebrow pre-in">Attention, uniquement pour les cadres et consultants qui ont les compétences, pas les clients</p>
       <!-- Coupes de lignes figées, identiques à la page de référence : 3 lignes
            pour le titre, 2 pour la garantie, de l'iPhone SE au grand écran. -->
-        <h1 class="headline" id="headline"><span class="ln"><span class="ln-i">Est-Il Possible De Générer <span class="hl">Entre 3,000 À</span></span></span><span class="ln"><span class="ln-i"><span class="hl">5,000 Euros</span> Par Mois Depuis Chez Soi Grâce</span></span><span class="ln"><span class="ln-i">Au Business <span class="hl hl-serif">Le Plus Vieux D'Internet</span>&nbsp;?</span></span></h1>
+        <h1 class="headline" id="headline"><span class="ln"><span class="ln-i">Sera-T-Il Possible De Vendre <span class="hl">Ce Que</span></span></span><span class="ln"><span class="ln-i"><span class="hl">Tu Sais Déjà Faire</span> Pour Gagner Entre</span></span><span class="ln"><span class="ln-i"><span class="hl hl-serif">5,000 Et 8,000 Euros</span> Par Mois&nbsp;?</span></span></h1>
+        <p class="mecanisme pre-in">Sans repartir de zéro, grâce à la compétence universelle que personne ne t&rsquo;a apprise à l&rsquo;école</p>
         <p class="promise" id="promise"><span class="ln"><span class="ln-i">+ Si Tu N'as Pas Fait 5,000 Euros Sur Les 90</span></span><span class="ln"><span class="ln-i">Prochains Jours, <span class="garantie-hl">Je Te Rembourse</span> <span class="fine">(sur contrat)</span></span></span></p>
       </div>
       <div class="hairline" aria-hidden="true"></div>
