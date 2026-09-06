@@ -1782,8 +1782,14 @@ body .hero h1{background:none!important}
     }catch(_){return 'anon';}
   }
   var ID=rid(),POS=null;
-  try{var m0=JSON.parse(localStorage.getItem(POS_KEY)||'null');
-    if(m0&&m0.id===ID&&typeof m0.t==='number'&&m0.t>8&&Date.now()-(m0.ts||0)<30*864e5)POS=m0;}catch(_){}
+  /* F3 banc ATTAQUANT (06/09) : 'anon' (aucune identité dans l'URL ni mémorisée) est un slot
+     PARTAGÉ — deux inconnus sur le même navigateur se projetaient mutuellement à 37 min avec
+     « tu avais quitté ici ». La reprise ne vaut que par identité réelle ; 'anon' ne lit plus,
+     n'écrit plus (l'analytics site_events, elle, garde l'anonymat : sans effet sur autrui). */
+  if(ID!=='anon'){
+    try{var m0=JSON.parse(localStorage.getItem(POS_KEY)||'null');
+      if(m0&&m0.id===ID&&typeof m0.t==='number'&&m0.t>8&&Date.now()-(m0.ts||0)<30*864e5)POS=m0;}catch(_){}
+  }
   function showLock(){
     var w=document.querySelector('.video-wrapper'); if(!w||document.getElementById('tyLock'))return;
     var ov=document.getElementById('vslSoundOverlay'); if(ov)ov.style.display='none';
@@ -1800,13 +1806,24 @@ body .hero h1{background:none!important}
     function invite(s){if(ov)ov.classList.toggle('vsl-hidden',!s)}
     if(locked){try{video.pause()}catch(e){} showLock(); return;}
     /* --- Reprise : on saute à la position quittée (une seule fois, jamais après interaction) --- */
-    var loadPos=0,seeked=false;
+    var loadPos=0,seeked=false,tries=0;
     function applySeek(){
-      if(seeked||!POS)return;seeked=true;
+      if(seeked||!POS)return;
       var t=Math.round(POS.t),d=0;
       try{d=video.duration()||0}catch(_){}
-      if(d>0&&t>=d-20){POS=null;return;} /* trop près de la fin (vidéo raccourcie depuis) -> on reprend à 0 */
-      loadPos=t;
+      /* F2 banc ATTAQUANT (06/09) : ne PAS consommer 'seeked' avant d'avoir la durée — le timer
+         150 ms gagne presque toujours contre startplaying et, sur connexion lente, duration() vaut
+         encore 0 : le seek partait aveugle et la garde de fin était neutralisée. On réessaie
+         jusqu'à 6 fois (1,8 s) ; si la durée reste inconnue, POS.d (la durée mémorisée à
+         l'écriture) sert de garde, sinon on ABANDONE la reprise (repartir à 0 est plus sûr qu'un
+         seek aveugle qui peut finir la vidéo instantanément et consommer le verrou). */
+      if(d<=0){
+        if(++tries<6){setTimeout(applySeek,300);return;}
+        d=(typeof POS.d==='number'&&POS.d>0)?POS.d:0;
+        if(d<=0){POS=null;return;}
+      }
+      if(t>=d-20){POS=null;return;} /* trop près de la fin (vidéo raccourcie depuis) -> on reprend à 0 */
+      seeked=true;loadPos=t;
       try{video.time(t);}catch(_){}
       try{if(window.ruTrack)ruTrack('video_resume',{p:pDig,t:t});}catch(_){}
       showResumeBar(t);
@@ -1821,6 +1838,9 @@ body .hero h1{background:none!important}
       var btn=document.getElementById('ruRestart');
       if(btn)btn.addEventListener('click',function(){
         try{video.time(0);loadPos=0;}catch(_){}
+        /* F1 banc : purger l'état MÉMOIRE en plus du stockage, sinon la sauvegarde reste figée
+           jusqu'à l'ancienne position et le feature se tue elle-même. */
+        lastSave=0;lastEv=0;
         try{var mm=JSON.parse(localStorage.getItem(POS_KEY)||'null');if(mm&&mm.id===ID)localStorage.removeItem(POS_KEY);}catch(_){}
         POS=null;try{b.remove()}catch(_){}
       });
@@ -1831,9 +1851,14 @@ body .hero h1{background:none!important}
     var lastSave=0,lastEv=0;
     try{video.bind('secondchange',function(t){
       if(!(t instanceof Number)&&typeof t!=='number')return;
+      /* 06/09 banc ATTAQUANT F1 : le garde des 10 s est unidirectionnel — sans re-baseline, un
+         retour en arrière (barre Wistia, ou bouton « Revoir depuis le début ») figeait la sauvegarde
+         jusqu'à rattraper l'ancienne position. On re-base sur tout saut de > 2 s. */
+      if(t<lastSave-2||t<lastEv-2){lastSave=t;lastEv=t;}
       if(t-lastSave<10)return;lastSave=t;
       var d=0;try{d=video.duration()||0}catch(_){}
-      if(t<9||(d>0&&t>=d-15))return; /* ni le tout début, ni collé à la fin : 'end' verrouille déjà */
+      if(ID==='anon')return; /* F3 : voir au chargement — le slot partagé ne s'écrit pas */
+      if(t<9||(d>0&&t>=d-15))return; /* ni le tout début, ni collé à la fin : 'end' nettoie (si engagé) */
       try{localStorage.setItem(POS_KEY,JSON.stringify({id:ID,t:Math.round(t),d:d,ts:Date.now()}));}catch(_){}
       if(t-lastEv>=60){lastEv=t;try{if(window.ruTrack)ruTrack('video_pos',{p:pDig,t:Math.round(t),d:Math.round(d)});}catch(_){}}
     })}catch(e){}
@@ -1852,7 +1877,10 @@ body .hero h1{background:none!important}
     if(ov){ov.addEventListener('click',enableSound);ov.addEventListener('touchend',enableSound,{passive:true});}
     document.addEventListener('click',enableSound);
     video.bind('end',function(){
-      try{var mm=JSON.parse(localStorage.getItem(POS_KEY)||'null');if(mm&&mm.id===ID)localStorage.removeItem(POS_KEY);}catch(e){}
+      /* F4 banc (06/09) : le verrou ne se pose que si 'engaged' (le son activé au moins une fois) —
+         la purge de la position s'aligne sur la même condition, sinon une fin 100 % muette
+         (visionnage JAMAIS compté) détruirait quand même la reprise du prospect. */
+      if(engaged){try{var mm=JSON.parse(localStorage.getItem(POS_KEY)||'null');if(mm&&mm.id===ID)localStorage.removeItem(POS_KEY);}catch(e){}}
       if(engaged&&!counted&&!noLimit){counted=true;views++;try{localStorage.setItem(KEY,String(views));}catch(e){}}
     });
   }});
