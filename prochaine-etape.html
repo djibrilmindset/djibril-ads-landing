@@ -1950,8 +1950,15 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
        KEY_POS  = moment où le mot clef est prononcé.
        KEY_ABS  = fin de sa triple répétition (seuil « il a tout regardé »).
        Seuil calculé sur la DURÉE RÉELLE au runtime : si la vidéo est remplacée (durée qui diverge de
-       plus de 10s des 3333s attendues), seuil prudent 98% + trace analytics pour recalibrer. */
-    var KEY_ABS=3185, KEY_POS=3163, DUR_REF=3333;
+       plus de 10s des 3091s attendues), seuil prudent 98% + trace analytics pour recalibrer.
+       ⚠️ 06/09 : ces constantes étaient restées calibrées sur l'ANCIENNE vidéo (3333 s, mot clef à
+       52min42) alors que VSP_3_FINAL (id 0xa57p9nks, montée 16/08, en ligne depuis le commit
+       4621051 du 02/09) dure 3090,5 s — KEY_POS=3163 était DEVENU INJOIGNABLE (supérieur à la
+       durée !) : le jalon keypos « il est passé sur le mot clef » ne partait plus qu'au 'end'.
+       Recalibrées par transcription horodatée de la fin réelle (faster-whisper, mot à mot) :
+       le mot clef est prononcé en boucle de 2967,2 s à ~2977,5 s -> KEY_POS 2966 (-1 s de
+       marge ASR), KEY_ABS 2980 (+2 s pour couvrir la dernière répétition), DUR_REF 3091. */
+    var KEY_ABS=2980, KEY_POS=2966, DUR_REF=3091;
     var dur=0; try{dur=v.duration()||0}catch(_){}
     var keyPct=(dur>0&&Math.abs(dur-DUR_REF)<=10)?(KEY_ABS/dur):0.98;
     if(dur>0&&Math.abs(dur-DUR_REF)>10){try{if(window.ruTrack)ruTrack('video_duration_drift',{dur:Math.round(dur)})}catch(_){}}
