@@ -1759,6 +1759,31 @@ body .hero h1{background:none!important}
   if(noLimit){try{localStorage.removeItem(KEY);}catch(e){}}
   try{views=parseInt(localStorage.getItem(KEY)||'0',10)||0;}catch(e){}
   locked=!noLimit&&views>=MAX;
+
+  /* ===== REPRISE À L'ENDROIT QUITTÉ (ajoutée 06/09 — demande Djibril) =====
+     La promesse « il quitte la page, revient, ça reprend où il était » n'existait PAS dans le code :
+     chaque rechargement repartait de 0, le prospect qui lâchait à 60 % ne revenait jamais et le CRM
+     le voyait stagner. On mémorise la seconde courante par IDENTITÉ (mêmes règles que le bloc
+     traçage : URL ?p/?e d'abord, sinon la dernière identité signée mémorisée par ruvid_id, sinon
+     'anon'), limité au même navigateur (localStorage) — c'est le cas réel : le prospect revient par
+     l'historique ou le message WhatsApp ouvert sur son téléphone.
+     Clé unique par média (l'id Wistia est dans le nom) : changer de vidéo invalide d'office les
+     positions sauvegardées. Fraîcheur : 30 jours max, et jamais une position collée à la fin
+     (garde -15 s à l'écriture, re-vérifiée à la reprise une fois la durée connue). */
+  var POS_KEY='ruvid_pos_0xa57p9nks';
+  function fmt(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return m+':'+('0'+r).slice(-2);}
+  function rid(){
+    try{
+      var q=new URLSearchParams(location.search);
+      var p=pDig,e=(q.get('e')||'').trim();
+      if(!p&&!e){var mem=JSON.parse(localStorage.getItem('ruvid_id')||'null');
+        if(mem&&mem.p&&mem.s)p=mem.p;else if(mem&&mem.e)e=mem.e;}
+      return p||e||'anon';
+    }catch(_){return 'anon';}
+  }
+  var ID=rid(),POS=null;
+  try{var m0=JSON.parse(localStorage.getItem(POS_KEY)||'null');
+    if(m0&&m0.id===ID&&typeof m0.t==='number'&&m0.t>8&&Date.now()-(m0.ts||0)<30*864e5)POS=m0;}catch(_){}
   function showLock(){
     var w=document.querySelector('.video-wrapper'); if(!w||document.getElementById('tyLock'))return;
     var ov=document.getElementById('vslSoundOverlay'); if(ov)ov.style.display='none';
@@ -1774,10 +1799,51 @@ body .hero h1{background:none!important}
     function isMuted(){try{return video.isMuted()}catch(e){return true}}
     function invite(s){if(ov)ov.classList.toggle('vsl-hidden',!s)}
     if(locked){try{video.pause()}catch(e){} showLock(); return;}
+    /* --- Reprise : on saute à la position quittée (une seule fois, jamais après interaction) --- */
+    var loadPos=0,seeked=false;
+    function applySeek(){
+      if(seeked||!POS)return;seeked=true;
+      var t=Math.round(POS.t),d=0;
+      try{d=video.duration()||0}catch(_){}
+      if(d>0&&t>=d-20){POS=null;return;} /* trop près de la fin (vidéo raccourcie depuis) -> on reprend à 0 */
+      loadPos=t;
+      try{video.time(t);}catch(_){}
+      try{if(window.ruTrack)ruTrack('video_resume',{p:pDig,t:t});}catch(_){}
+      showResumeBar(t);
+    }
+    function showResumeBar(t){
+      if(document.getElementById('ruResumeBar'))return;
+      var w=document.querySelector('.video-wrapper');if(!w||!w.parentNode)return;
+      var b=document.createElement('div');b.id='ruResumeBar';
+      b.setAttribute('style','display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:10px auto 0;font-family:\'JetBrains Mono\',monospace;font-size:12px;letter-spacing:.04em;color:#f3ecdf;opacity:.85;text-align:center');
+      b.innerHTML='\u25b6 Reprise \u00e0 '+fmt(t)+' (tu avais quitt\u00e9 ici) <button id="ruRestart" type="button" style="background:none;border:1px solid rgba(243,236,223,.4);border-radius:6px;color:#f3ecdf;font:inherit;padding:3px 10px;cursor:pointer">Revoir depuis le d\u00e9but</button>';
+      w.parentNode.insertBefore(b,w.nextSibling);
+      var btn=document.getElementById('ruRestart');
+      if(btn)btn.addEventListener('click',function(){
+        try{video.time(0);loadPos=0;}catch(_){}
+        try{var mm=JSON.parse(localStorage.getItem(POS_KEY)||'null');if(mm&&mm.id===ID)localStorage.removeItem(POS_KEY);}catch(_){}
+        POS=null;try{b.remove()}catch(_){}
+      });
+    }
+    setTimeout(applySeek,150);
+    try{video.bind('startplaying',function(){setTimeout(applySeek,80);})}catch(e){}
+    /* --- Sauvegarde de la position : toutes les 10 s (localStorage) + vue CRM toutes les 60 s --- */
+    var lastSave=0,lastEv=0;
+    try{video.bind('secondchange',function(t){
+      if(!(t instanceof Number)&&typeof t!=='number')return;
+      if(t-lastSave<10)return;lastSave=t;
+      var d=0;try{d=video.duration()||0}catch(_){}
+      if(t<9||(d>0&&t>=d-15))return; /* ni le tout début, ni collé à la fin : 'end' verrouille déjà */
+      try{localStorage.setItem(POS_KEY,JSON.stringify({id:ID,t:Math.round(t),d:d,ts:Date.now()}));}catch(_){}
+      if(t-lastEv>=60){lastEv=t;try{if(window.ruTrack)ruTrack('video_pos',{p:pDig,t:Math.round(t),d:Math.round(d)});}catch(_){}}
+    })}catch(e){}
     function enableSound(e){
       if(!isMuted())return;
       if(e&&e.target&&e.target.closest&&e.target.closest("a,button,[role=button]"))return;
-      try{video.time(0);video.unmute();video.volume(1.0);video.play();}catch(err){}
+      /* 06/09 : repartir de 0 effaçait la reprise (prospect qui clique pour avoir le son après une
+         reprise à 60 % se retrouvait à la minute 0). On rejoue depuis la position CHARGÉE, plus rien
+         de la session en cours : tout ce qu'il vient de voir sans le son, il le rattrape avec. */
+      try{video.time(loadPos);video.unmute();video.volume(1.0);video.play();}catch(err){}
       engaged=true; invite(false); if(window.ruTrack)ruTrack("sound_on");
     }
     try{video.play();}catch(e){}
@@ -1785,7 +1851,10 @@ body .hero h1{background:none!important}
     setTimeout(function(){invite(isMuted());},500);
     if(ov){ov.addEventListener('click',enableSound);ov.addEventListener('touchend',enableSound,{passive:true});}
     document.addEventListener('click',enableSound);
-    video.bind('end',function(){ if(engaged&&!counted&&!noLimit){counted=true;views++;try{localStorage.setItem(KEY,String(views));}catch(e){}} });
+    video.bind('end',function(){
+      try{var mm=JSON.parse(localStorage.getItem(POS_KEY)||'null');if(mm&&mm.id===ID)localStorage.removeItem(POS_KEY);}catch(e){}
+      if(engaged&&!counted&&!noLimit){counted=true;views++;try{localStorage.setItem(KEY,String(views));}catch(e){}}
+    });
   }});
 })();
 </script>
