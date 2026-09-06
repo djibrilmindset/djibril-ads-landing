@@ -1,0 +1,9 @@
+# _redirects — 06/09/2026 (session ad0c94c5). Les docs internes du repo ont été servis PUBLICS
+# par Cloudflare (fuite découverte ce soir). L'artefact ne les contient plus (exclusions deploy.sh),
+# MAIS des entrées de cache edge antérieures au fix continuent de les servir sur certains colos.
+# Les règles _redirects sont évaluées par l'edge AVANT le cache : elles court-circuitent le stale.
+/CLAUDE.md            /  301
+/CLAUDE               /  301
+/AUDITS/*             /  301
+/AUDIT_PRELAUNCH_20260902.md   /  301
+/AUDIT_PRELAUNCH_20260902      /  301
