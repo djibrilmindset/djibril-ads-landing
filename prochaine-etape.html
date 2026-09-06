@@ -1857,9 +1857,11 @@ body .hero h1{background:none!important}
       if(t<lastSave-2||t<lastEv-2){lastSave=t;lastEv=t;}
       if(t-lastSave<10)return;lastSave=t;
       var d=0;try{d=video.duration()||0}catch(_){}
-      if(ID==='anon')return; /* F3 : voir au chargement — le slot partagé ne s'écrit pas */
       if(t<9||(d>0&&t>=d-15))return; /* ni le tout début, ni collé à la fin : 'end' nettoie (si engagé) */
-      try{localStorage.setItem(POS_KEY,JSON.stringify({id:ID,t:Math.round(t),d:d,ts:Date.now()}));}catch(_){}
+      /* F3 (garde ancré sur l'EFFET, pas en tête de handler — leçon banc L1 du 06/09) : seul le
+         slot localStorage partagé est réservé aux identités réelles ; le beacon video_pos,
+         lui, reste pour tout le monde (progression fine CRM, sans effet sur autrui). */
+      if(ID!=='anon'){try{localStorage.setItem(POS_KEY,JSON.stringify({id:ID,t:Math.round(t),d:d,ts:Date.now()}));}catch(_){}}
       if(t-lastEv>=60){lastEv=t;try{if(window.ruTrack)ruTrack('video_pos',{p:pDig,t:Math.round(t),d:Math.round(d)});}catch(_){}}
     })}catch(e){}
     function enableSound(e){
