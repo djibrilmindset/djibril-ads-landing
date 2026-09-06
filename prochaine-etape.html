@@ -1952,9 +1952,12 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
        Seuil calculé sur la DURÉE RÉELLE au runtime : si la vidéo est remplacée (durée qui diverge de
        plus de 10s des 3091s attendues), seuil prudent 98% + trace analytics pour recalibrer.
        ⚠️ 06/09 : ces constantes étaient restées calibrées sur l'ANCIENNE vidéo (3333 s, mot clef à
-       52min42) alors que VSP_3_FINAL (id 0xa57p9nks, montée 16/08, en ligne depuis le commit
-       4621051 du 02/09) dure 3090,5 s — KEY_POS=3163 était DEVENU INJOIGNABLE (supérieur à la
-       durée !) : le jalon keypos « il est passé sur le mot clef » ne partait plus qu'au 'end'.
+       52min42) alors que VSP_3_FINAL (id 0xa57p9nks) dure 3090,5 s — KEY_POS=3163 était DEVENU
+       INJOIGNABLE (supérieur à la durée !) : le jalon keypos « il est passé sur le mot clef » ne
+       partait plus qu'au 'end'. Fenêtre de mortalité : 16/08 (commit 4621051, swap d'id le jour
+       même, preuve git show -s --format=%ai) → 06/09 (ce recalibrage) — les leads passés sur le
+       mot clef SANS finir durant ces ~3 semaines sont sous-marqués côté CRM. (dates corrigées
+       par le banc round 3 : j'avais écrit « 02/09 », faux — le 02/09 ne touchait que le CTA.)
        Recalibrées par transcription horodatée de la fin réelle (faster-whisper, mot à mot) :
        le mot clef est prononcé en boucle de 2967,2 s à ~2977,5 s -> KEY_POS 2966 (-1 s de
        marge ASR), KEY_ABS 2980 (+2 s pour couvrir la dernière répétition), DUR_REF 3091. */
@@ -1975,7 +1978,15 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
        clef sans jamais franchir 90%. On croyait alors qu'il n'avait pas fini — alors qu'il l'avait en
        main et venait de l'envoyer. `keypos` dit « il a le mot clef » ; `key` dit « il a tout regardé ».
        Les deux sont utiles et ne veulent pas dire la même chose. */
-    v.bind('secondchange',function(t){ if(t>=KEY_POS){ping('keypos');showEnd()} });
+    /* Durcissement banc round 3 (P3) : KEY_POS est une seconde ABSOLUE calibrée sur la vidéo
+       actuelle. Si le média est encore remplacé sous le même id (précédent prouvé 3333->3090),
+       le seuil redeviendrait mort ou prématuré. Sur dérive de durée > 10 s, on retombe sur le
+       RATIO de KEY_POS (2966/3091 = 0,9597) ; durée pas encore connue -> seuil nominal. */
+    v.bind('secondchange',function(t){
+      var d=0;try{d=v.duration()||0}catch(_){}
+      var thr=(d>0&&Math.abs(d-DUR_REF)>10)?Math.round(d*0.9597):KEY_POS;
+      if(t>=thr){ping('keypos');showEnd()}
+    });
     v.bind('end',function(){ping('full');ping('key');ping('keypos');showEnd()});
   }});
 }catch(_){}})();
