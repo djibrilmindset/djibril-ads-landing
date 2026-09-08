@@ -116,7 +116,8 @@ function badgePrime(l){
   // vérifie pas, et un chiffre invérifiable ne sert pas à payer quelqu'un.
   if (l.prime > 0) {
     var src = l.converti ? ' · converti' + (l.conv_manuel ? ' ✋' : (l.conv_src ? ' (' + l.conv_src + ')' : '')) : '';
-    return '<span class="q" style="background:#dcfce7;color:#15803d">prime ' + l.prime + ' €' + esc(src) + '</span>';
+    var det = (l.bonus_close > 0) ? ' (' + (l.prime - l.bonus_close) + ' + bonus closé ' + l.bonus_close + ')' : '';
+    return '<span class="q" style="background:#dcfce7;color:#15803d">prime ' + l.prime + ' €' + det + esc(src) + '</span>';
   }
   if (!l.passe || l.etat !== "venu") return '';
   // Barème à date d'effet (10/08) : sur un RDV antérieur, aucune prime n'existe — afficher
@@ -184,6 +185,17 @@ function ligne(l){
         + (l.pub ? 'publicité : <b>' + esc(l.pub) + '</b><br>' : '')
         + (l.adset ? 'ensemble : ' + esc(l.adset) + '<br>' : '')
         + (l.source ? 'source : ' + esc(l.source === 'ig' ? 'Instagram' : l.source === 'fb' ? 'Facebook' : l.source) : '')
+        + '</div></details>';
+  }
+  // PARCOURS (08/09, demande Djibril : « à quelle heure elle est tombée sur la pub, à quelle heure
+  // elle a booké ») : les deux horaires + le délai entre les deux, extraits du CRM.
+  if (l.premiere_vue || l.booke_a) {
+    var hm = function(iso){ if(!iso) return '—'; var d = new Date(iso); return d.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit'}) + ' ' + d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}); };
+    nt += '<details class="nt" style="border-left-color:#fdba74"><summary style="cursor:pointer;color:#c2410c;font-size:12px">🧭 parcours du lead</summary>'
+        + '<div style="font-size:12.5px;margin-top:4px;color:#444">'
+        + 'vue la pub : <b>' + hm(l.premiere_vue) + '</b><br>'
+        + 'a booké son call : <b>' + hm(l.booke_a) + '</b>'
+        + (l.delai_min != null ? '<br>délai : <b>' + (l.delai_min >= 2880 ? Math.round(l.delai_min/1440) + ' j' : l.delai_min >= 120 ? Math.round(l.delai_min/60) + ' h' : l.delai_min + ' min') + '</b>' + (l.delai_min <= 10 ? ' (booké seul — bleu)' : ' (vert : booké après le contact)') : '')
         + '</div></details>';
   }
   return '<tr><td class="dt">' + esc(frDate(l.iso)) + '</td>'
@@ -290,6 +302,9 @@ function rendre(d){
     +   '<div class="com-d">'
     +     '<span>' + (d.prime_lead+d.prime_convert) + ' € × ' + d.leads_converti + ' converti' + (d.leads_converti>1?'s':'') + ' (pris RDV grâce à ton appel)</span><b>' + (d.leads_converti*(d.prime_lead+d.prime_convert)).toLocaleString("fr-FR") + ' €</b>'
     +   '</div>'
+    +   ((d.bonus_closes_nb > 0)
+        ? '<div class="com-d"><span>' + (d.prime_close||20) + ' € × ' + d.bonus_closes_nb + ' closé' + (d.bonus_closes_nb>1?'s':'') + ' (bonus : RDV venu et signé)</span><b>' + ((d.bonus_closes_nb)*(d.prime_close||20)).toLocaleString("fr-FR") + ' €</b></div>'
+        : '')
     +   (d.reste_a_encaisser > 0
         ? '<div class="com-d fut"><span>À venir quand les soldes rentreront (' + d.reste_a_encaisser.toLocaleString("fr-FR") + ' €)</span><b>+ ' + d.comm_a_venir.toLocaleString("fr-FR") + ' €</b></div>'
         : '')
