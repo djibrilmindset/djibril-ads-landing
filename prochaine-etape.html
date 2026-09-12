@@ -1757,12 +1757,31 @@ body .hero h1{background:none!important}
 </footer>
 <script>
 (function(){
+  function sha256hex(ascii){function rightRotate(v,a){return(v>>>a)|(v<<(32-a));}
+var mathPow=Math.pow,maxWord=mathPow(2,32),lengthProperty='length',i,j,result='';
+var words=[],asciiBitLength=ascii[lengthProperty]*8,hash=sha256hex.h=sha256hex.h||[],k=sha256hex.k=sha256hex.k||[],primeCounter=k[lengthProperty];
+var isComposite={};for(var candidate=2;primeCounter<64;candidate++){if(!isComposite[candidate]){for(i=0;i<313;i+=candidate)isComposite[i]=candidate;hash[primeCounter]=(mathPow(candidate,.5)*maxWord)|0;k[primeCounter++]=(mathPow(candidate,1/3)*maxWord)|0;}}
+ascii+='\x80';while(ascii[lengthProperty]%64-56)ascii+='\x00';
+for(i=0;i<ascii[lengthProperty];i++){j=ascii.charCodeAt(i);if(j>>8)return'';words[i>>2]|=j<<((3-i)%4)*8;}
+words[words[lengthProperty]]=(asciiBitLength/maxWord)|0;words[words[lengthProperty]]=asciiBitLength;
+for(j=0;j<words[lengthProperty];){var w=words.slice(j,j+=16),oldHash=hash;hash=hash.slice(0,8);
+for(i=0;i<64;i++){var w2=[],w15=w[i-15],w2v=w[i-2];var a=hash[0],e=hash[4];
+var temp1=hash[7]+(rightRotate(e,6)^rightRotate(e,11)^rightRotate(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]
++(w[i]=(i<16)?w[i]:(w[i-16]+(rightRotate(w15,7)^rightRotate(w15,18)^(w15>>>3))+w[i-7]+(rightRotate(w2v,17)^rightRotate(w2v,19)^(w2v>>>10)))|0);
+var temp2=(rightRotate(a,2)^rightRotate(a,13)^rightRotate(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+hash=[(temp1+temp2)|0].concat(hash);hash[4]=(hash[4]+temp1)|0;}
+for(i=0;i<8;i++)hash[i]=(hash[i]+oldHash[i])|0;}
+for(i=0;i<8;i++){for(j=3;j+1;j--){var b=(hash[i]>>(j*8))&255;result+=((b<16)?0:'')+b.toString(16);}}
+return result;}
   var KEY='ru_vsl_once_87y86ger8w';var MAX=1;var engaged=false,views=0,locked=false,counted=false;
   /* Déblocage TOTAL par lead (clients) : numéros canon exemptés du verrou — leur lien ?p=<dig>
      ne verrouille jamais et purge un verrou déjà posé sur l'appareil. */
-  var UNLOCK=['[masqué]','33766026708'];/* Lead A 18/07 + Djibril (owner, tests) */
+  /* Déblocage TOTAL par lead — 13/09 : comparaison par SHA-256 des digits. JAMAIS de numéro
+     en clair dans le code public (le numéro lead avait fui dans l'historique git, scrubé le
+     13/09 ; ce mécanisme empêche toute réintroduction). UNLOCK = hashes hex des numéros canon. */
+  var UNLOCK=['4a68a7db276c47822f20f1d39d55ab5779e493f70d8ef24470acedeedfe970c9','3302b597d8d8d74cbf8d5c6182cd887805a3763431a1a8b076f616bfcb095af6'];/* SHA-256 — Lead A + Djibril (tests) */
   var pDig='';try{pDig=(new URLSearchParams(location.search).get('p')||'').replace(/\D/g,'');}catch(e){}
-  var noLimit=UNLOCK.indexOf(pDig)>=0;
+  var pHash=pDig?sha256hex(pDig):'';var noLimit=!!pHash&&UNLOCK.indexOf(pHash)>=0;
   if(noLimit){try{localStorage.removeItem(KEY);}catch(e){}}
   try{views=parseInt(localStorage.getItem(KEY)||'0',10)||0;}catch(e){}
   locked=!noLimit&&views>=MAX;
