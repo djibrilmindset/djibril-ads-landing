@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="Est-il possible de générer 3 000 à 5 000 € par mois depuis chez toi grâce au business le plus vieux d'internet ? Garanti sur contrat ou remboursé + 1 000 €.">
+<meta name="description" content="Est-il possible de générer 3 000 à 5 000 € par mois depuis chez toi grâce au business le plus vieux d'internet ? Garanti sur contrat : 5 000 € sur 90 jours, ou remboursé.">
 <link rel="canonical" href="https://reset-ultra.com/prochaine-etape">
 <meta property="og:title" content="Débloque ta garantie de Remboursement — Reset Ultra">
-<meta property="og:description" content="Regarde la vidéo jusqu'au bout et débloque ta garantie 1 000€ offerts (sur contrat).">
+<meta property="og:description" content="Regarde la vidéo jusqu'au bout et débloque ta garantie : 5 000 € sur 90 jours, ou remboursé sur contrat.">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://reset-ultra.com/og-prochaine-etape.jpg">
 <meta name="twitter:title" content="Débloque ta garantie de Remboursement — Reset Ultra">
-<meta name="twitter:description" content="Regarde la vidéo jusqu'au bout et débloque ta garantie 1 000€ offerts (sur contrat).">
+<meta name="twitter:description" content="Regarde la vidéo jusqu'au bout et débloque ta garantie : 5 000 € sur 90 jours, ou remboursé sur contrat.">
 <title>Débloque ta garantie de Remboursement · Reset Ultra</title>
 <!-- PERF: preconnect + preload (look 100% inchangé, vitesse max) -->
 <link rel="preconnect" href="https://fast.wistia.com" crossorigin>
@@ -1708,7 +1708,7 @@ body .hero h1{background:none!important}
   <div class="container">
     <div class="pastille">Avant ton appel · Reset Ultra</div>
     <h1>Prochaine étape :</h1>
-    <p class="ty-step">Regarde la vidéo <span class="hl-key">jusqu'au bout</span>. Le <span class="hl-key">mot-clé</span> caché dedans <span class="hl-gain">débloque ta garantie 1 000 € offerts</span>.</p>
+    <p class="ty-step">Regarde la vidéo <span class="hl-key">jusqu'au bout</span>. Le <span class="hl-key">mot-clé</span> caché dedans <span class="hl-gain">débloque ta garantie : 5 000 € sur 90 jours, ou remboursé</span>.</p>
   </div>
 </section>
 <section class="video-section" style="padding-top:18px;text-align:center">
@@ -1730,7 +1730,7 @@ body .hero h1{background:none!important}
     <p class="ty-step" style="margin-top:10px">Garde de quoi noter le <span class="hl-key">mot-clé</span>, et bon visionnage.</p>
     <!-- CTA de fin de vidéo, adaptatif selon la provenance (groupe WhatsApp vs email) -->
     <div id="endCta" style="display:none;margin-top:26px;padding:26px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(255,46,147,0.10) 0%,rgba(126,243,255,0.08) 100%);border:1px solid rgba(255,255,255,0.10)">
-      <p class="ty-step" id="endCtaWa" style="display:none;margin:0"><span class="hl-key">Tu as le mot-clé ?</span> Envoie-le dans ton <span class="hl-key">groupe WhatsApp</span> pour débloquer ta <span class="hl-gain">garantie 1 000 € offerts</span>.</p>
+      <p class="ty-step" id="endCtaWa" style="display:none;margin:0"><span class="hl-key">Tu as le mot-clé ?</span> Envoie-le dans ton <span class="hl-key">groupe WhatsApp</span> pour débloquer ta <span class="hl-gain">garantie : 5 000 € sur 90 jours, ou remboursé</span>.</p>
       <div id="endCtaBook" style="display:none">
         <p class="ty-step" style="margin:0 0 16px">Tu sais maintenant exactement comment on travaille. <span class="kw-power">La suite logique : ton appel.</span></p>
         <a class="btn-pill btn-gradient" href="https://djibrilsylearn.systeme.io/copyandpast4-588140fd">Je réserve mon appel</a>
@@ -1795,23 +1795,130 @@ return result;}
   }
   if(locked){ if(document.readyState!=="loading")setTimeout(showLock,300); else document.addEventListener("DOMContentLoaded",function(){setTimeout(showLock,300)}); }
   window._wq=window._wq||[];
-  window._wq.push({id:'87y86ger8w',onReady:function(video){
-    var ov=document.getElementById('vslSoundOverlay');
-    function isMuted(){try{return video.isMuted()}catch(e){return true}}
-    function invite(s){if(ov)ov.classList.toggle('vsl-hidden',!s)}
-    if(locked){try{video.pause()}catch(e){} showLock(); return;}
-    function enableSound(e){
-      if(!isMuted())return;
-      if(e&&e.target&&e.target.closest&&e.target.closest("a,button,[role=button]"))return;
-      try{video.time(0);video.unmute();video.volume(1.0);video.play();}catch(err){}
-      engaged=true; invite(false); if(window.ruTrack)ruTrack("sound_on");
+
+  /* ═══ « J'APPUIE ET IL NE SE PASSE RIEN » — correctif du 15/09/2026 ═══════════════════════
+     Trois pannes distinctes se cumulaient sur ce lecteur, toutes reproduites en prod ce soir.
+
+     1. LE CLIC NAISSAIT TROP TARD. L'overlay « Clique pour activer le son » couvre tout le
+        lecteur (position:absolute;inset:0;pointer-events:auto) et TOUS ses ecouteurs etaient
+        crees DANS onReady de Wistia. Avant que le lecteur soit pret — 53 requetes wistia, 4G
+        lente, bloqueur de pub, DNS filtre — l'overlay avalait chaque tap sans rien y brancher.
+        Si Wistia ne repondait jamais, c'etait definitif. Les ecouteurs sont desormais poses au
+        parse, et un appui trop tot est MEMORISE puis rejoue des que le lecteur arrive.
+
+     2. LA VIDEO S'ARRETAIT TOUTE SEULE. onReady appelait unmute()+volume(1) sans le moindre
+        geste : la politique d'autoplay du navigateur repond en mettant la lecture en pause.
+        Mesure du 15/09 sur reset-ultra.com : etat « paused » a 2,7 s sur CHAQUE chargement.
+        On ne demute plus hors geste — la lecture muette demarre, le son attend le doigt.
+
+     3. L'ETAT MORT. Quand unmute() passait mais que la lecture etait refusee, on obtenait
+        « en pause + deja demute » : la garde `if(!isMuted())return` rendait TOUS les clics
+        inertes, et `invite(isMuted())` avait deja cache l'overlay. Ecran fige, aucune prise.
+        La question n'est plus « est-il muet ? » mais « joue-t-il AVEC le son ? », et l'invite
+        revient des que la lecture s'arrete. Aucun chemin ne laisse plus un lecteur sans prise. */
+
+  var lecteur=null, voulaitSon=false, fini=false, tropLong=false, etatAvantClic=false;
+  function ovl(){return document.getElementById('vslSoundOverlay');}
+  function montrerInvite(oui){var o=ovl();if(o)o.classList.toggle('vsl-hidden',!oui);}
+  function texteInvite(t){var o=ovl();if(!o)return;var s=o.querySelector('span');if(s&&s.textContent!==t)s.textContent=t;}
+  function joueAvecSon(){try{return !!lecteur&&lecteur.state()==='playing'&&!lecteur.isMuted();}catch(e){return false;}}
+  function rechargeDejaTentee(){try{return !!sessionStorage.getItem('ru_vsl_reload');}catch(e){return false;}}
+
+  /* Seule regle d'affichage, et elle ne depend que de l'etat REEL du lecteur : l'invite est la
+     tant que la video ne joue pas avec le son. C'est ce qui interdit desormais l'ecran fige sans
+     prise — quel que soit le chemin qui y mene. */
+  function verifier(){
+    if(locked||fini)return;
+    var ok=joueAvecSon();
+    if(!ok)texteInvite(
+      lecteur ? (engaged?'Reprendre la vid\u00e9o':'Clique pour activer le son')
+              : (tropLong ? (rechargeDejaTentee()
+                   ? 'Vid\u00e9o bloqu\u00e9e \u2014 coupe ton bloqueur de pub ou change de r\u00e9seau'
+                   : 'La vid\u00e9o ne se charge pas \u2014 touche ici pour recharger')
+                 : 'Chargement de la vid\u00e9o\u2026'));
+    montrerInvite(!ok);
+  }
+  /* Wistia emet 'pause' pendant un saut ou une mise en tampon : on relit l'etat 250 ms plus tard
+     au lieu de faire clignoter l'invite sur un arret qui n'en est pas un. */
+  function verifierApres(){setTimeout(verifier,250);}
+
+  /* Dans le geste : play() D'ABORD (c'est lui qui consomme l'activation utilisateur), puis le
+     son. Un try PAR appel : l'ancien bloc en mettait quatre dans un seul, donc un time(0) qui
+     jette emportait le unmute et le play avec lui. volume() est sans effet sur iOS — normal.
+     RIEN n'est declare acquis ici : l'ancien code posait engaged=true et cachait l'invite AVANT
+     de savoir si le son avait pris, ce qui laissait un lecteur arrete derriere un ecran muet.
+     C'est l'etat du lecteur, relu deux fois apres coup, qui tranche. */
+  function appliquerSon(){
+    if(!lecteur||locked)return;
+    try{lecteur.play();}catch(_){}
+    try{lecteur.unmute();}catch(_){}
+    try{lecteur.volume(1.0);}catch(_){}
+    if(!engaged){try{if(lecteur.time()>1)lecteur.time(0);}catch(_){}}   /* retour au debut au PREMIER engagement seulement : jamais de rembobinage surprise ensuite */
+    setTimeout(confirmer,700); setTimeout(confirmer,1800);
+  }
+  function confirmer(){
+    if(joueAvecSon()&&!engaged){engaged=true;voulaitSon=false;if(window.ruTrack)ruTrack('sound_on');}
+    verifier();
+  }
+
+  /* Phase de CAPTURE : on note l'etat AVANT que Wistia ne traite le clic. Sans ce releve, une
+     pause voulue par le prospect (il prend le mot-cle en note, on lui telephone) serait relancee
+     par notre propre ecouteur dans le meme clic — impossible de mettre en pause. */
+  document.addEventListener('click',function(){etatAvantClic=joueAvecSon();},true);
+
+  function activerSon(e){
+    if(locked||fini)return;
+    /* On ne detourne QUE le CTA de reservation et les vrais liens. L'ancienne garde excluait tout
+       `button`, donc aussi les commandes internes de Wistia : un tap dessus ne rendait pas le son. */
+    if(e&&e.target&&e.target.closest&&e.target.closest('a[href],#endCta'))return;
+    if(etatAvantClic){verifierApres();return;}   /* il jouait AVEC le son : ce clic est une pause voulue, on la respecte */
+    if(joueAvecSon())return;
+    if(!lecteur){
+      /* Seul un appui sur le lecteur lui-meme vaut intention : un tap sur un paragraphe ne doit
+         pas declencher du son a retardement quand Wistia finit par arriver. */
+      if(e&&e.target&&e.target.closest&&e.target.closest('.video-wrapper')){
+        voulaitSon=true;
+        if(window.ruTrack)ruTrack('vsl_appui_avant_pret');
+        if(tropLong&&!rechargeDejaTentee()){try{sessionStorage.setItem('ru_vsl_reload','1');}catch(_){}location.reload();return;}
+      }
+      verifier(); return;
     }
-    try{video.play();}catch(e){}
-    try{video.unmute();video.volume(1.0);}catch(e){}
-    setTimeout(function(){invite(isMuted());},500);
-    if(ov){ov.addEventListener('click',enableSound);ov.addEventListener('touchend',enableSound,{passive:true});}
-    document.addEventListener('click',enableSound);
-    video.bind('end',function(){ if(engaged&&!counted&&!noLimit){counted=true;views++;try{localStorage.setItem(KEY,String(views));}catch(e){}} });
+    appliquerSon();
+  }
+
+  /* Ecouteurs poses MAINTENANT, pas dans onReady. `touchend` reste sur l'overlay seul : sur le
+     document il se declencherait aussi a la fin d'un simple defilement. */
+  (function brancher(){
+    var o=ovl();
+    if(!o){document.addEventListener('DOMContentLoaded',brancher);return;}
+    o.addEventListener('click',activerSon);
+    o.addEventListener('touchend',activerSon,{passive:true});
+    document.addEventListener('click',activerSon);
+  })();
+  verifier();
+
+  /* Filet : si Wistia n'a toujours pas repondu, on le DIT au lieu de laisser une vignette inerte,
+     et on le remonte pour que la panne soit visible cote mesure. 15 s parce qu'un demarrage 3G
+     depasse largement 8 s — annoncer une panne a un prospect qui charge encore serait pire. */
+  setTimeout(function(){ if(lecteur||locked)return; tropLong=true; verifier();
+    if(window.ruTrack)ruTrack('vsl_lecteur_absent'); }, rechargeDejaTentee()?4000:15000);
+
+  window._wq.push({id:'87y86ger8w',onReady:function(video){
+    lecteur=video;
+    if(locked){try{video.pause()}catch(e){} showLock(); return;}
+    if(window.ruTrack)ruTrack('vsl_pret');
+    try{video.play();}catch(e){}                 /* muet : autorise partout, et on n'y touche plus */
+    /* Il a appuye pendant le chargement : on TENTE, sans rien tenir pour acquis. Si l'activation
+       utilisateur a expire entre-temps, confirmer() le verra et l'invite reviendra d'elle-meme
+       reclamer un appui frais — au lieu de se cacher devant une video arretee. */
+    if(voulaitSon)appliquerSon();
+    verifier();
+    try{video.bind('pause',verifierApres);video.bind('play',verifierApres);video.bind('mutechange',verifierApres);}catch(e){}
+    setInterval(verifier,1500);                  /* dernier recours : l'invite revient toujours */
+    video.bind('end',function(){
+      fini=true; montrerInvite(false);
+      if(engaged&&!counted&&!noLimit){counted=true;views++;try{localStorage.setItem(KEY,String(views));}catch(e){}}
+    });
   }});
 })();
 </script>
@@ -1820,7 +1927,12 @@ return result;}
 var SB='https://nbnbsljqtolzzuqnkyae.supabase.co/rest/v1/site_events';var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ibmJzbGpxdG9senp1cW5reWFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzODk2MDYsImV4cCI6MjA4Mzk2NTYwNn0.0Io_TLbntyxYeUUcv_krbcl4txHp6wSwdMy_BzORmV4';
 var sid=sessionStorage.ruSid||(sessionStorage.ruSid=(Date.now().toString(36)+Math.random().toString(36).slice(2,8)));
 var q=new URLSearchParams(location.search);
-window.ruTrack=function(ev,p){try{var b=JSON.stringify({site:'reset-ultra',session_id:sid,event:ev,props:p||{},utm_source:q.get('utm_source'),utm_medium:q.get('utm_medium'),utm_content:q.get('utm_content'),referrer:document.referrer.slice(0,180),path:location.pathname,device:innerWidth<768?'mobile':'desktop'});navigator.sendBeacon(SB+'?apikey='+KEY,new Blob([b],{type:'application/json'}))}catch(e){}};
+/* 15/09 : sendBeacon envoie TOUJOURS les cookies (credentials:include) ; Supabase repond
+   Access-Control-Allow-Origin:* ; le navigateur refuse alors la verification prealable et la
+   requete ne PART JAMAIS. Zero evenement enregistre depuis le 4 aout — la page etait aveugle
+   exactement sur la panne que les prospects signalaient. fetch+keepalive garde la survie a la
+   fermeture d'onglet, credentials:'omit' rend le joker '*' acceptable. */
+window.ruTrack=function(ev,p){try{var b=JSON.stringify({site:'reset-ultra',session_id:sid,event:ev,props:p||{},utm_source:q.get('utm_source'),utm_medium:q.get('utm_medium'),utm_content:q.get('utm_content'),referrer:document.referrer.slice(0,180),path:location.pathname,device:innerWidth<768?'mobile':'desktop'});fetch(SB+'?apikey='+KEY,{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true,credentials:'omit',mode:'cors'}).catch(function(){})}catch(e){}};
 ruTrack('page_view');
 document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventListener('click',function(){ruTrack('wa_click')})});
 }catch(e){}})();
@@ -1912,7 +2024,10 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
    GX[j].style.setProperty('--gx',(-cx*f).toFixed(1)+'px'); GX[j].style.setProperty('--gy',(-cy*f).toFixed(1)+'px');}
   if(Math.abs(tx-cx)>.0005||Math.abs(ty-cy)>.0005){raf=requestAnimationFrame(tick)}else{raf=0} }
  addEventListener('mousemove',function(e){ tx=e.clientX/innerWidth-.5; ty=e.clientY/innerHeight-.5; if(!raf)raf=requestAnimationFrame(tick); },{passive:true});
- addEventListener('deviceorientation',function(e){ if(e.gamma==null)return; tx=Math.max(-.5,Math.min(.5,e.gamma/45)); ty=Math.max(-.5,Math.min(.5,(e.beta-45)/45)); if(!raf)raf=requestAnimationFrame(tick); },{passive:true});
+ /* Le site interdit lui-meme accelerometer/gyroscope dans sa Permissions-Policy : enregistrer
+    l'ecouteur produisait une erreur rouge en console a CHAQUE chargement mobile, pour rien. */
+ var capteurOk=true;try{var fp=document.permissionsPolicy||document.featurePolicy;if(fp&&fp.allowsFeature)capteurOk=fp.allowsFeature('accelerometer');}catch(_){}
+ if(capteurOk)addEventListener('deviceorientation',function(e){ if(e.gamma==null)return; tx=Math.max(-.5,Math.min(.5,e.gamma/45)); ty=Math.max(-.5,Math.min(.5,(e.beta-45)/45)); if(!raf)raf=requestAnimationFrame(tick); },{passive:true});
  }catch(e){}
 })();
 </script>
