@@ -1715,18 +1715,18 @@ body .hero h1{background:none!important}
   <div class="container">
     <p class="ty-step">Un expert de l'équipe t'appelle le jour de ton <span class="hl-key">rendez-vous entre 9h et 11h</span> (heure France). <span class="hl-urgent">Décroche, sinon l'appel est annulé.</span></p>
     <div class="video-wrapper" style="margin-top:22px">
-      <script src="https://fast.wistia.com/embed/medias/87y86ger8w.jsonp" async></script>
+      <script src="https://fast.wistia.com/embed/medias/0xa57p9nks.jsonp" async></script>
       <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div id="vslOnce" class="wistia_embed wistia_async_87y86ger8w seo=false videoFoam=true autoPlay=true muted=true playsinline=true playbar=false playbackRateControl=false settingsControl=false contextMenu=false playerColor=17130a" style="height:100%;position:relative;width:100%"></div>
+          <div id="vslOnce" class="wistia_embed wistia_async_0xa57p9nks seo=false videoFoam=true autoPlay=true muted=true playsinline=true playbar=false playbackRateControl=false settingsControl=false contextMenu=false playerColor=17130a" style="height:100%;position:relative;width:100%"></div>
         </div>
       </div>
       <div class="video-overlay" id="vslSoundOverlay">
         <div class="vsl-prompt"><div class="sound-icon">&#128266;</div><span>Clique pour activer le son</span></div>
       </div>
     </div>
-    <p class="ty-step" style="margin-top:22px"><span class="hl-urgent">Attention : la vidéo ne passe qu'une seule fois.</span> Ni retour, ni avance possible. Installe-toi au calme avant de la lancer.</p>
+    <p class="ty-step" style="margin-top:22px"><span class="hl-urgent">Attention : la vidéo ne passe que deux fois maximum.</span> Et si tu quittes en route, tu reprends exactement là où tu t'étais arrêté. Installe-toi au calme avant de la lancer.</p>
     <p class="ty-step" style="margin-top:10px">Garde de quoi noter le <span class="hl-key">mot-clé</span>, et bon visionnage.</p>
     <!-- CTA de fin de vidéo, adaptatif selon la provenance (groupe WhatsApp vs email) -->
     <div id="endCta" style="display:none;margin-top:26px;padding:26px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(255,46,147,0.10) 0%,rgba(126,243,255,0.08) 100%);border:1px solid rgba(255,255,255,0.10)">
@@ -1773,7 +1773,7 @@ hash=[(temp1+temp2)|0].concat(hash);hash[4]=(hash[4]+temp1)|0;}
 for(i=0;i<8;i++)hash[i]=(hash[i]+oldHash[i])|0;}
 for(i=0;i<8;i++){for(j=3;j+1;j--){var b=(hash[i]>>(j*8))&255;result+=((b<16)?0:'')+b.toString(16);}}
 return result;}
-  var KEY='ru_vsl_once_87y86ger8w';var MAX=1;var engaged=false,views=0,locked=false,counted=false;
+  var KEY='ru_vsl_once_0xa57p9nks';var MAX=2; /* arbitrage Djibril 06/09 : deux visionnages, pas un */var engaged=false,views=0,locked=false,counted=false;
   /* Déblocage TOTAL par lead (clients) : numéros canon exemptés du verrou — leur lien ?p=<dig>
      ne verrouille jamais et purge un verrou déjà posé sur l'appareil. */
   /* Déblocage TOTAL par lead — 13/09 : comparaison par SHA-256 des digits. JAMAIS de numéro
@@ -1790,7 +1790,7 @@ return result;}
     var ov=document.getElementById('vslSoundOverlay'); if(ov)ov.style.display='none';
     var d=document.createElement('div'); d.id='tyLock';
     d.setAttribute('style','position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#1a1614;color:#f3ecdf;font-family:\'JetBrains Mono\',monospace;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:20px');
-    d.innerHTML='<span style="font-size:26px">\uD83D\uDD12</span>Vid\u00e9o d\u00e9j\u00e0 visionn\u00e9e<span style="opacity:.7;font-size:11px;text-transform:none;letter-spacing:0">Elle n\'\u00e9tait disponible qu\'une seule fois</span>';
+    d.innerHTML='<span style="font-size:26px">\uD83D\uDD12</span>Vid\u00e9o d\u00e9j\u00e0 visionn\u00e9e<span style="opacity:.7;font-size:11px;text-transform:none;letter-spacing:0">Elle n\'\u00e9tait disponible que deux fois maximum</span>';
     w.appendChild(d);
   }
   if(locked){ if(document.readyState!=="loading")setTimeout(showLock,300); else document.addEventListener("DOMContentLoaded",function(){setTimeout(showLock,300)}); }
@@ -1818,6 +1818,35 @@ return result;}
         revient des que la lecture s'arrete. Aucun chemin ne laisse plus un lecteur sans prise. */
 
   var lecteur=null, voulaitSon=false, fini=false, tropLong=false, etatAvantClic=false;
+
+  /* ═══ REPRISE À L'ENDROIT QUITTÉ (portée du chantier du 06/09, mise en ligne le 15/09) ═══════
+     Personne ne regarde 51 minutes d'affilée sur un téléphone. Sans reprise, celui qui lâchait à
+     la 30e minute repartait de zéro et ne revenait jamais : mesuré ce soir, 56 % des rendez-vous
+     ont reçu le lien sans jamais lancer la vidéo, et ce groupe se présente à 5 %.
+     La position est gardée PAR IDENTITÉ (mêmes règles que le traçage : ?p / ?e de l'URL d'abord,
+     sinon la dernière identité signée mémorisée, sinon « anon »), sur CE navigateur seulement —
+     c'est le cas réel, le prospect rouvre le lien depuis son WhatsApp. « anon » est un slot
+     PARTAGÉ : il ne lit ni n'écrit, sans quoi deux inconnus sur le même téléphone se projetteraient
+     mutuellement au milieu de la vidéo. Fraîcheur 30 jours, jamais une position collée à la fin.
+     La clé porte l'identifiant du média : changer de vidéo invalide d'office les anciennes. */
+  var POS_KEY='ruvid_pos_0xa57p9nks';
+  var loadPos=0, seeked=false, essaisSeek=0, reprisePendante=false;
+  function fmt(x){x=Math.max(0,Math.round(x));var m=Math.floor(x/60),r=x%60;return m+':'+('0'+r).slice(-2);}
+  function identite(){
+    try{
+      var q=new URLSearchParams(location.search);
+      var pp=pDig, ee=(q.get('e')||'').trim();
+      if(!pp&&!ee){var mem=JSON.parse(localStorage.getItem('ruvid_id')||'null');
+        if(mem&&mem.p&&mem.s)pp=mem.p; else if(mem&&mem.e)ee=mem.e;}
+      return pp||ee||'anon';
+    }catch(_){return 'anon';}
+  }
+  var ID=identite(), POS=null;
+  if(ID!=='anon'){
+    try{var m0=JSON.parse(localStorage.getItem(POS_KEY)||'null');
+      if(m0&&m0.id===ID&&typeof m0.t==='number'&&m0.t>8&&Date.now()-(m0.ts||0)<30*864e5){POS=m0;reprisePendante=true;}
+    }catch(_){}
+  }
   function ovl(){return document.getElementById('vslSoundOverlay');}
   function montrerInvite(oui){var o=ovl();if(o)o.classList.toggle('vsl-hidden',!oui);}
   function texteInvite(t){var o=ovl();if(!o)return;var s=o.querySelector('span');if(s&&s.textContent!==t)s.textContent=t;}
@@ -1853,13 +1882,54 @@ return result;}
     try{lecteur.play();}catch(_){}
     try{lecteur.unmute();}catch(_){}
     try{lecteur.volume(1.0);}catch(_){}
-    if(!engaged){try{if(lecteur.time()>1)lecteur.time(0);}catch(_){}}   /* retour au debut au PREMIER engagement seulement : jamais de rembobinage surprise ensuite */
+    /* Retour au point de départ au PREMIER engagement seulement, et ce point est la position
+       REPRISE quand il y en a une : sans ça, celui qui reprend à 30 min puis clique pour avoir le
+       son se retrouvait à la minute zéro. Si la reprise n'a pas encore sauté, on ne touche à rien :
+       appliquerReprise() s'en charge dans l'instant. */
+    if(!engaged&&!reprisePendante){try{if(lecteur.time()>loadPos+1)lecteur.time(loadPos);}catch(_){}}
     setTimeout(confirmer,700); setTimeout(confirmer,1800);
   }
   function confirmer(){
     if(joueAvecSon()&&!engaged){engaged=true;voulaitSon=false;if(window.ruTrack)ruTrack('sound_on');}
     verifier();
   }
+
+  /* On ne consomme le saut qu'une fois la DURÉE connue : sur connexion lente duration() vaut encore
+     0 et le saut partirait aveugle, avec le risque de finir la vidéo d'un coup et de brûler un
+     visionnage. Six essais (1,8 s), puis la durée mémorisée à l'écriture, puis l'abandon —
+     repartir du début est toujours plus sûr qu'un saut à l'aveugle. */
+  function appliquerReprise(){
+    if(seeked||!POS||!lecteur||locked){reprisePendante=false;return;}
+    var t=Math.round(POS.t), d=0;
+    try{d=lecteur.duration()||0}catch(_){}
+    if(d<=0){
+      if(++essaisSeek<6){setTimeout(appliquerReprise,300);return;}
+      d=(typeof POS.d==='number'&&POS.d>0)?POS.d:0;
+      if(d<=0){POS=null;reprisePendante=false;return;}
+    }
+    if(t>=d-20){POS=null;reprisePendante=false;return;}   /* collé à la fin (vidéo raccourcie depuis) */
+    seeked=true; loadPos=t; reprisePendante=false;
+    try{lecteur.time(t);}catch(_){}
+    try{if(window.ruTrack)ruTrack('video_resume',{p:pDig,t:t});}catch(_){}
+    barreReprise(t);
+  }
+  function barreReprise(t){
+    if(document.getElementById('ruResumeBar'))return;
+    var w=document.querySelector('.video-wrapper'); if(!w||!w.parentNode)return;
+    var b=document.createElement('div'); b.id='ruResumeBar';
+    b.setAttribute('style','display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:10px auto 0;font-family:\'JetBrains Mono\',monospace;font-size:12px;letter-spacing:.04em;color:#17130a;opacity:.9;text-align:center');
+    b.innerHTML='\u25b6 Reprise \u00e0 '+fmt(t)+' (tu avais quitt\u00e9 ici) <button id="ruRestart" type="button" style="background:none;border:1px solid rgba(23,19,10,.45);border-radius:6px;color:#17130a;font:inherit;padding:3px 10px;cursor:pointer">Revoir depuis le d\u00e9but</button>';
+    w.parentNode.insertBefore(b,w.nextSibling);
+    var btn=document.getElementById('ruRestart');
+    if(btn)btn.addEventListener('click',function(ev){
+      ev.stopPropagation();                      /* sinon activerSon voit un clic « hors lecteur » */
+      try{lecteur.time(0);}catch(_){}
+      loadPos=0; dernierEnr=0; dernierEv=0;      /* purger la MÉMOIRE aussi, sinon l'enregistrement reste figé sur l'ancienne position */
+      try{var mm=JSON.parse(localStorage.getItem(POS_KEY)||'null');if(mm&&mm.id===ID)localStorage.removeItem(POS_KEY);}catch(_){}
+      POS=null; try{b.remove()}catch(_){}
+    });
+  }
+  var dernierEnr=0, dernierEv=0;
 
   /* Phase de CAPTURE : on note l'etat AVANT que Wistia ne traite le clic. Sans ce releve, une
      pause voulue par le prospect (il prend le mot-cle en note, on lui telephone) serait relancee
@@ -1903,7 +1973,7 @@ return result;}
   setTimeout(function(){ if(lecteur||locked)return; tropLong=true; verifier();
     if(window.ruTrack)ruTrack('vsl_lecteur_absent'); }, rechargeDejaTentee()?4000:15000);
 
-  window._wq.push({id:'87y86ger8w',onReady:function(video){
+  window._wq.push({id:'0xa57p9nks',onReady:function(video){
     lecteur=video;
     if(locked){try{video.pause()}catch(e){} showLock(); return;}
     if(window.ruTrack)ruTrack('vsl_pret');
@@ -1915,8 +1985,24 @@ return result;}
     verifier();
     try{video.bind('pause',verifierApres);video.bind('play',verifierApres);video.bind('mutechange',verifierApres);}catch(e){}
     setInterval(verifier,1500);                  /* dernier recours : l'invite revient toujours */
+    if(POS){setTimeout(appliquerReprise,150);try{video.bind('startplaying',function(){setTimeout(appliquerReprise,80);})}catch(e){}}
+    /* Enregistrement de la position toutes les 10 s, et remontée CRM toutes les 60 s. La garde des
+       10 s se re-cale sur tout saut arrière de plus de 2 s, sinon un retour en arrière figeait
+       l'enregistrement jusqu'à rattraper l'ancienne position. */
+    try{video.bind('secondchange',function(t){
+      if(typeof t!=='number')return;
+      if(t<dernierEnr-2||t<dernierEv-2){dernierEnr=t;dernierEv=t;}
+      if(t-dernierEnr<10)return; dernierEnr=t;
+      var d=0; try{d=video.duration()||0}catch(_){}
+      if(t<9||(d>0&&t>=d-15))return;             /* ni le tout debut, ni colle a la fin */
+      if(ID!=='anon'){try{localStorage.setItem(POS_KEY,JSON.stringify({id:ID,t:Math.round(t),d:d,ts:Date.now()}));}catch(_){}}
+      if(t-dernierEv>=60){dernierEv=t;try{if(window.ruTrack)ruTrack('video_pos',{p:pDig,t:Math.round(t),d:Math.round(d)});}catch(_){}}
+    })}catch(e){}
     video.bind('end',function(){
       fini=true; montrerInvite(false);
+      /* La position ne se purge que si le visionnage a COMPTÉ (son activé au moins une fois) :
+         une fin 100 % muette, qui ne consomme aucun visionnage, ne doit pas détruire la reprise. */
+      if(engaged){try{var mm=JSON.parse(localStorage.getItem(POS_KEY)||'null');if(mm&&mm.id===ID)localStorage.removeItem(POS_KEY);}catch(e){}}
       if(engaged&&!counted&&!noLimit){counted=true;views++;try{localStorage.setItem(KEY,String(views));}catch(e){}}
     });
   }});
@@ -1982,7 +2068,7 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
     try{w.scrollIntoView({behavior:'smooth',block:'center'})}catch(_){}
   }
   window._wq=window._wq||[];
-  _wq.push({id:'87y86ger8w',onReady:function(v){
+  _wq.push({id:'0xa57p9nks',onReady:function(v){
     /* ⚠️ NE JAMAIS ÉCRIRE LE MOT CLEF ICI. Cette page est publique et son code source est lisible par
        n'importe qui (Cmd+U) : le mot clef y est resté en clair jusqu'au 28/07, donc récupérable sans
        regarder une seule seconde de vidéo. Seules les POSITIONS en secondes vivent ici.
@@ -1990,7 +2076,7 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
        KEY_ABS  = fin de sa triple répétition (seuil « il a tout regardé »).
        Seuil calculé sur la DURÉE RÉELLE au runtime : si la vidéo est remplacée (durée qui diverge de
        plus de 10s des 3333s attendues), seuil prudent 98% + trace analytics pour recalibrer. */
-    var KEY_ABS=3185, KEY_POS=3163, DUR_REF=3333;
+    var KEY_ABS=2980, KEY_POS=2966, DUR_REF=3091;
     var dur=0; try{dur=v.duration()||0}catch(_){}
     var keyPct=(dur>0&&Math.abs(dur-DUR_REF)<=10)?(KEY_ABS/dur):0.98;
     if(dur>0&&Math.abs(dur-DUR_REF)>10){try{if(window.ruTrack)ruTrack('video_duration_drift',{dur:Math.round(dur)})}catch(_){}}
