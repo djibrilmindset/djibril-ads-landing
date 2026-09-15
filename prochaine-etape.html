@@ -2007,7 +2007,22 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventList
        clef sans jamais franchir 90%. On croyait alors qu'il n'avait pas fini — alors qu'il l'avait en
        main et venait de l'envoyer. `keypos` dit « il a le mot clef » ; `key` dit « il a tout regardé ».
        Les deux sont utiles et ne veulent pas dire la même chose. */
-    v.bind('secondchange',function(t){ if(t>=KEY_POS){ping('keypos');showEnd()} });
+    /* COURBE D'ABANDON (15/09) — la zone aveugle la plus chère du tunnel. Le premier jalon métier
+       (`start`) ne tombe qu'à 5 % d'une vidéo de 55 minutes, soit 2 min 45 : quelqu'un qui ouvre la
+       page, lance, et lâche au bout de 40 secondes ne laisse AUCUNE trace. Mesuré ce soir sur les
+       55 rendez-vous du mois : 31 ont reçu le lien et n'ont jamais lancé — et ce groupe se présente
+       à 5 %, contre 47 % pour ceux qui lancent. Impossible de savoir, jusqu'ici, s'ils n'ouvraient
+       pas, s'ils n'y arrivaient pas, ou s'ils décrochaient tout de suite : ces trois causes ont des
+       remèdes opposés. Ces repères vont UNIQUEMENT dans la mesure d'audience (site_events) : aucune
+       carte Telegram, aucune étiquette systeme.io, aucun effet sur les séquences. */
+    var PALIERS=[10,30,60,120,300,600,1200,1800,2400], vus={};
+    function repere(t){
+      for(var i=0;i<PALIERS.length;i++){
+        var s=PALIERS[i];
+        if(t>=s&&!vus[s]){vus[s]=1;try{if(window.ruTrack)ruTrack('vsl_t'+s,{p:p,src:src})}catch(_){}}
+      }
+    }
+    v.bind('secondchange',function(t){ repere(t); if(t>=KEY_POS){ping('keypos');showEnd()} });
     v.bind('end',function(){ping('full');ping('key');ping('keypos');showEnd()});
   }});
 }catch(_){}})();
